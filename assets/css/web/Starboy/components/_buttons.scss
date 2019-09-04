@@ -23,8 +23,9 @@
       background-color: #ffffff;
     }
     &:active{
-      border-color: #FF5566;
-      background-color: #FF5566;
+      border-color: #FF5566 !important;
+      border-color: #FF5566 !important;
+      background-color: #FF5566 !important;
     }
   }
   &.btn-secondary{
