@@ -169,6 +169,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // NOTE: dynamic variables in URL will be sanitized in routes
 app.use(sanitizer.sanitizeBodyAndQuery);
 
+// TODO LAUNCH - remove when launched and delete oldHome.ejs file
+app.get('/', function(req, res, next) {
+  return res.status(200).render('oldHome');
+});
+
 // Add basic auth in chain
 app.use(basicAuthentication);
 
@@ -181,7 +186,8 @@ app.use(appendRequestDebugInfo, startRequestLogLine);
 // set response Headers
 app.use(setResponseHeader);
 
-app.use('/', indexRouter);
+// TODO LAUNCH - replace /new with /
+app.use('/new', indexRouter);
 app.use('/users', usersRouter);
 
 // connect-assets relies on to use defaults in config
