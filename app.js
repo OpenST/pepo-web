@@ -14,6 +14,7 @@ const express = require('express'),
 const indexRouter = require(rootPrefix + '/routes/index'),
   usersRouter = require(rootPrefix + '/routes/users'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
   coreConstant = require(rootPrefix + '/config/coreConstants'),
@@ -190,7 +191,7 @@ app.use(setResponseHeader);
 
 // TODO LAUNCH - replace /new with /
 app.use('/new', indexRouter);
-app.use('/users', usersRouter);
+app.use('/account', usersRouter);
 
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {
@@ -209,6 +210,7 @@ app.use(function(req, res, next) {
 
 // Error handler
 app.use(async function(err, req, res, next) {
+  logger.error(err);
   return res.status(500).render('error/500');
 });
 

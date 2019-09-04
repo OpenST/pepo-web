@@ -13,6 +13,17 @@
   }
 }
 
+.meet-people,
+.meet-people-image{
+  opacity: 0;
+}
+
+@mixin translateY( $by ) {
+  -webkit-transform: translateY(  $by );  /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform: translateY( $by );  /* IE 9 */
+  transform: translateY( $by );  /* Firefox 16+, IE 10+, Opera */
+}
+
 @mixin translateX( $by ) {
   -webkit-transform: translateX(  $by );  /* Chrome, Opera 15+, Safari 3.1+ */
   -ms-transform: translateX( $by );  /* IE 9 */
@@ -24,14 +35,39 @@
   animation: jumbotronAnimation 1s forwards 1s;
 }
 
+.meet-people{
+  animation: jumbotronAnimation 1s forwards 1s;
+}
+
+.meet-people-image{
+  animation: jumbotronImageAnimation 2s forwards 1s;
+}
+
 @keyframes jumbotronAnimation{
   0%{
-    @include translateX( -10% ) ;
+    @include translateY( 10% ) ;
     opacity: 0.1;
     visibility: hidden;
   }
   25%{
-    @include translateX( -10% ) ;
+    @include translateY( 10% ) ;
+    opacity: 0.5;
+    visibility: hidden;
+  }
+  100%{
+    @include translateY( 0 ) ;
+    opacity: 1;
+  }
+}
+
+@keyframes jumbotronImageAnimation{
+  0%{
+    @include translateX( 10% ) ;
+    opacity: 0.1;
+    visibility: hidden;
+  }
+  75%{
+    @include translateX( 10% ) ;
     opacity: 0.5;
     visibility: hidden;
   }

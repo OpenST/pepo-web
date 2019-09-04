@@ -1,9 +1,15 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
+/* GET users account page. */
 router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+  res.render('loggedIn',
+    {
+      title: 'User Account',
+      page: 'Home Pepo',
+      pageMeta: { css:["home", "common"] }
+    }
+  );
 });
 
 module.exports = router;

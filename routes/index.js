@@ -28,7 +28,7 @@ router.get('/', async function (req, res, next) {
 
   if (apiResponse.success && apiResponse.data) {
     let twitterRedirectUrl = coreConstants.TWITTER_OAUTH_URL + apiResponse.data.oAuthToken;
-    res.render('home',
+    res.render('loggedOut',
       {
         title: 'pepo',
         page: 'Home Pepo',
