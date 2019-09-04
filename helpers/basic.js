@@ -29,9 +29,13 @@ class BasicHelper {
     );
   }
 
-  fetchErrorConfig() {
+  fetchErrorConfig(dynamicErrorConfig {
+    let _paramErrorConfig = dynamicErrorConfig
+      ? Object.assign({}, paramErrorConfig, dynamicErrorConfig)
+      : paramErrorConfig;
+
     return {
-      param_error_config: paramErrorConfig,
+      param_error_config: _paramErrorConfig,
       api_error_config: apiErrorConfig
     };
   }
