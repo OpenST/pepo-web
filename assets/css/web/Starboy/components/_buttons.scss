@@ -1,31 +1,45 @@
 .btn{
-  text-transform: uppercase;
-  font-weight: 500;
-  min-width: 185px;
-  letter-spacing: 2px;
   font-size: 0.75rem;
-  padding: 0.75rem;
-}
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: .75rem 1.6rem;
+  -webkit-transition: color .3s ease-in-out,background-color .3s ease-in-out,border-color .3s ease-in-out,box-shadow .3s ease-in-out !important;
+  -moz-transition: color .3s ease-in-out,background-color .3s ease-in-out,border-color .3s ease-in-out,box-shadow .3s ease-in-out !important;
+  transition: color .3s ease-in-out,background-color .3s ease-in-out,border-color .3s ease-in-out,box-shadow .3s ease-in-out !important;
 
-.btn-primary {
-  color: $white;
-  background-color: #FF5566 !important;
-  border-color: #FF5566 !important;
-  &:focus{
-    color: $white;
+  &:focus {
+    outline: none;
+    text-decoration: none;
     box-shadow: none;
   }
-  &:hover{
+
+  &.btn-primary{
+    border: 1.5px solid #ff5566;
     color: $white;
-    background-color: #FF5566 !important;
-    border-color: #FF5566 !important;
+    background-color: #FF5566;
+    &:hover{
+      color: #FF5566;
+      border-color: #FF5566;
+      background-color: #ffffff;
+    }
+    &:active{
+      border-color: #FF5566;
+      background-color: #FF5566;
+    }
   }
-  &:active{
-    color: $white;
-    background-color: #FF5566 !important;
-    border-color: #FF5566 !important;
-  }
-  &:disabled{
-    color: $white;
+  &.btn-secondary{
+    border: 1.5px solid #ff5566;
+    color: #ff5566;
+    background-color: #ffffff;
+    &:hover{
+      color: #ffffff;
+      border-color: #ff5566;
+      background-color: #ff5566;
+    }
+    &:active{
+      color: $white;
+      border-color: $blue-900;
+      background-color: $blue-900;
+    }
   }
 }

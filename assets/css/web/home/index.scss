@@ -6,4 +6,37 @@
   p{
     color: #2A293B;
   }
+  h2{
+    font-size: 28px;
+    color: #2A293B;
+    line-height: 1.5;
+  }
+}
+
+@mixin translateX( $by ) {
+  -webkit-transform: translateX(  $by );  /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform: translateX( $by );  /* IE 9 */
+  transform: translateX( $by );  /* Firefox 16+, IE 10+, Opera */
+}
+
+
+.meet-people{
+  animation: jumbotronAnimation 1s forwards 1s;
+}
+
+@keyframes jumbotronAnimation{
+  0%{
+    @include translateX( -10% ) ;
+    opacity: 0.1;
+    visibility: hidden;
+  }
+  25%{
+    @include translateX( -10% ) ;
+    opacity: 0.5;
+    visibility: hidden;
+  }
+  100%{
+    @include translateX( 0 ) ;
+    opacity: 1;
+  }
 }
