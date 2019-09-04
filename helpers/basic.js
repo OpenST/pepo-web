@@ -29,7 +29,7 @@ class BasicHelper {
     );
   }
 
-  fetchErrorConfig(dynamicErrorConfig {
+  fetchErrorConfig(dynamicErrorConfig) {
     let _paramErrorConfig = dynamicErrorConfig
       ? Object.assign({}, paramErrorConfig, dynamicErrorConfig)
       : paramErrorConfig;
