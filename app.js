@@ -4,6 +4,7 @@ const express = require('express'),
   path = require('path'),
   cookieParser = require('cookie-parser'),
   csrf = require('csurf'),
+  basicAuth = require('basic-auth'),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   helmet = require('helmet'),
@@ -17,11 +18,38 @@ const responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
-  coreConstant = require(rootPrefix + '/config/coreConstants');
+  coreConstant = require(rootPrefix + '/config/coreConstants'),
+  sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
 
 const errorConfig = basicHelper.fetchErrorConfig();
+
+const basicAuthentication = function(req, res, next) {
+  if (!coreConstants.USE_BASIC_AUTHENTICATION) {
+    return next();
+  }
+
+  function unauthorized(res) {
+    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
+    return res.status(401).render('error/401');
+  }
+
+  let user = basicAuth(req);
+
+  if (!user || !user.name || !user.pass) {
+    return unauthorized(res);
+  }
+
+  if (
+    user.name === coreConstants.BASIC_AUTHENTICATION_USERNAME &&
+    user.pass === coreConstants.BASIC_AUTHENTICATION_PASSWORD
+  ) {
+    return next();
+  } else {
+    return unauthorized(res);
+  }
+};
 
 const csrfProtection = csrf({
   cookie: {
@@ -141,6 +169,14 @@ app.use(bodyParser.json());
 // Parsing the URL-encoded data with the qs library (extended: true)
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Sanitize request body and query params
+// NOTE: dynamic variables in URL will be sanitized in routes
+app.use(sanitizer.sanitizeBodyAndQuery);
+
+// Add basic auth in chain
+app.use(basicAuthentication);
+
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -165,28 +201,12 @@ app.use(connectAssets(connectAssetConfig));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  return responseHelper.renderApiResponse(
-    responseHelper.error({
-      internal_error_identifier: 'a_1',
-      api_error_identifier: 'resource_not_found',
-      debug_options: {}
-    }),
-    res,
-    errorConfig
-  );
+  return res.status(404).render('error/404');
 });
 
 // Error handler
 app.use(async function(err, req, res, next) {
-  logger.error('a_2', 'Something went wrong', err);
-
-  let errorObject = responseHelper.error({
-    internal_error_identifier: 'a_2',
-    api_error_identifier: 'something_went_wrong',
-    debug_options: {}
-  });
-
-  return responseHelper.renderApiResponse(errorObject, res, errorConfig);
+  return res.status(500).render('error/500');
 });
 
 module.exports = app;

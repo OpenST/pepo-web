@@ -35,6 +35,17 @@ class CoreConstant {
     return process.env.DEVOPS_APP_NAME;
   }
 
+  get USE_BASIC_AUTHENTICATION() {
+    return process.env.PW_USE_BASIC_AUTH == '1';
+  }
+
+  get BASIC_AUTHENTICATION_USERNAME() {
+    return process.env.PW_BASIC_AUTH_USERNAME;
+  }
+
+  get BASIC_AUTHENTICATION_PASSWORD() {
+    return process.env.PW_BASIC_AUTH_PASSWORD;
+  }
   get PEPO_API_DOMAIN() {
     return process.env.PEPO_API_DOMAIN;
   }
