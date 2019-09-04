@@ -153,7 +153,17 @@ app.use(setResponseHeader);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// Catch 404 and forward to error handler
+// connect-assets relies on to use defaults in config
+const connectAssetConfig = {
+  paths: [path.join(__dirname, 'assets/css'), path.join(__dirname, 'assets/js')],
+    buildDir: path.join(__dirname, 'builtAssets'),
+  fingerprinting: true,
+  servePath: 'assets'
+};
+let connectAssets = require('connect-assets');
+app.use(connectAssets(connectAssetConfig));
+
+// catch 404 and forward to error handler
 app.use(function(req, res, next) {
   return responseHelper.renderApiResponse(
     responseHelper.error({

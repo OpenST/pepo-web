@@ -1,0 +1,31 @@
+.btn{
+  text-transform: uppercase;
+  font-weight: 500;
+  min-width: 185px;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  padding: 0.75rem;
+}
+
+.btn-primary {
+  color: $white;
+  background-color: #FF5566 !important;
+  border-color: #FF5566 !important;
+  &:focus{
+    color: $white;
+    box-shadow: none;
+  }
+  &:hover{
+    color: $white;
+    background-color: #FF5566 !important;
+    border-color: #FF5566 !important;
+  }
+  &:active{
+    color: $white;
+    background-color: #FF5566 !important;
+    border-color: #FF5566 !important;
+  }
+  &:disabled{
+    color: $white;
+  }
+}

@@ -1,0 +1,12 @@
+<title>Static Website | <%= page %></title>
+<meta charset="utf-8">
+<meta name="active-menu" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<% if (pageMeta && pageMeta.css && pageMeta.css.length ) {
+    let len = pageMeta.css.length, cnt = 0;
+    for(cnt=0; cnt<len; cnt++) {
+        let cssBundle = pageMeta.css[cnt];
+        let linkTags = css(cssBundle);
+        %><%- linkTags %><%
+    }
+} %>
