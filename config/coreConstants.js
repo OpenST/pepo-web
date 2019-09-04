@@ -31,6 +31,10 @@ class CoreConstant {
     return process.env.PW_COOKIE_DOMAIN;
   }
 
+  get appName() {
+    return process.env.DEVOPS_APP_NAME;
+  }
+
 }
 
 module.exports = new CoreConstant();
