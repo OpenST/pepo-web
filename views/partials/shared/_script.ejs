@@ -6,3 +6,15 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous">
 </script>
+
+<% if (pageMeta && pageMeta.assets ) {
+   let files = pageMeta.assets.js;
+   if ( files && files.length ) {
+      let len = files.length, cnt = 0;
+      for(cnt=0; cnt<len; cnt++) {
+          let assetBundle = files[cnt];
+          let linkTags = js(assetBundle);
+          %><%- linkTags %><%
+      }   
+   } 
+} %>

@@ -2,14 +2,14 @@
 <html lang="en">
   <head>
    <%- include partials/shared/_header -%>
-
+   <%- include partials/shared/_css -%>
    <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
   </head>
   <body contenteditable="false">
 
-      <%- include web/_account -%>
+    <%- include(_contentPartial) -%>
 
-      <%- include partials/shared/_footer -%>
+    <%- include partials/shared/_footer -%>
 
   </body>
 <% include partials/shared/_script %>

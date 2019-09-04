@@ -1,0 +1,11 @@
+<% if (pageMeta && pageMeta.assets ) {
+   let cssFiles = pageMeta.assets.css;
+   if ( cssFiles && cssFiles.length ) {
+      let len = cssFiles.length, cnt = 0;
+      for(cnt=0; cnt<len; cnt++) {
+          let cssBundle = cssFiles[cnt];
+          let linkTags = css(cssBundle);
+          %><%- linkTags %><%
+      }   
+   } 
+} %>

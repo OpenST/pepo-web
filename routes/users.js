@@ -1,15 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const rootPrefix = '..'
+const express = require('express');
+const router = express.Router();
+const renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
+
 
 /* GET users account page. */
 router.get('/', function(req, res, next) {
-  res.render('loggedIn',
-    {
-      title: 'User Account',
-      page: 'Home Pepo',
-      pageMeta: { css:["home", "common"] }
-    }
-  );
+  renderResponseHelper.renderWithLayout(res, 'loggedIn', 'web/_account', {});
 });
 
 module.exports = router;
