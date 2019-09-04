@@ -35,6 +35,10 @@ class CoreConstant {
     return process.env.DEVOPS_APP_NAME;
   }
 
+  get TWITTER_OAUTH_URL() {
+    return process.env.TWITTER_OAUTH_URL;
+  }
+
   get USE_BASIC_AUTHENTICATION() {
     return process.env.PW_USE_BASIC_AUTH == '1';
   }
@@ -48,6 +52,10 @@ class CoreConstant {
   }
   get PEPO_API_DOMAIN() {
     return process.env.PEPO_API_DOMAIN;
+  }
+
+  get WEB_COOKIE_SECRET() {
+    return process.env.PA_PW_COOKIE_SECRET;
   }
 
 }

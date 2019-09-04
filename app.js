@@ -169,6 +169,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // NOTE: dynamic variables in URL will be sanitized in routes
 app.use(sanitizer.sanitizeBodyAndQuery);
 
+app.use(assignParams);
+
 // TODO LAUNCH - remove when launched and delete oldHome.ejs file
 app.get('/', function(req, res, next) {
   return res.status(200).render('oldHome');
