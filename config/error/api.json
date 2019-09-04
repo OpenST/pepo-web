@@ -1,0 +1,112 @@
+{
+  "invalid_api_params": {
+  "http_code": "400",
+    "code": "BAD_REQUEST",
+    "message": "At least one parameter is invalid or missing. See \"err.error_data\" array for more details."
+},
+  "unauthorized_api_request": {
+  "http_code": "401",
+    "code": "UNAUTHORIZED",
+    "message": "Access denied due to invalid credentials."
+},
+  "api_under_maintenance": {
+  "http_code": "503",
+    "code": "SERVICE_UNAVAILABLE",
+    "message": "Sorry, we are down for maintaince. We'll be back up and running as soon as possible"
+},
+  "resource_not_found": {
+  "http_code": "404",
+    "code": "NOT_FOUND",
+    "message": "Resource not found. Please check the resource identifier passed in the URL is valid and try again."
+},
+  "unsupported_routes": {
+  "http_code": "410",
+    "code": "UNSUPPORTED_VERSION",
+    "message": "Unsupported API version. Please make sure a supported API version is included in API endpoint and try again."
+},
+  "something_went_wrong": {
+  "http_code": "500",
+    "code": "INTERNAL_SERVER_ERROR",
+    "message": "Something went wrong."
+},
+  "unhandled_catch_response": {
+  "http_code": "500",
+    "code": "INTERNAL_SERVER_ERROR",
+    "message": "Something went wrong."
+},
+  "internal_server_error": {
+  "http_code": "500",
+    "code": "INTERNAL_SERVER_ERROR",
+    "message": "Something went wrong."
+},
+  "invalid_params": {
+  "http_code": "400",
+    "code": "BAD_REQUEST",
+    "message": "At least one parameter is invalid or missing. See \"err.error_data\" array for more details."
+},
+  "invalid_api_version": {
+  "http_code": "400",
+    "code": "BAD_REQUEST",
+    "message": "At least one parameter is invalid or missing. See \"err.error_data\" array for more details."
+},
+  "invalid_api_name": {
+  "http_code": "400",
+    "code": "BAD_REQUEST",
+    "message": "At least one parameter is invalid or missing. See \"err.error_data\" array for more details."
+},
+  "could_not_proceed": {
+  "http_code": "422",
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "The request was good, but nevertheless could not be processed."
+},
+  "cache_issue": {
+  "http_code": "422",
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "The request was good, but nevertheless could not be processed."
+},
+  "entity_formatting_failed": {
+  "http_code": "500",
+    "code": "INTERNAL_SERVER_ERROR",
+    "message": "Something went wrong."
+},
+  "cache_key_invalid": {
+  "http_code": "422",
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "The request was good, but nevertheless could not be processed."
+},
+  "cache_servers_unavailable": {
+  "http_code": "422",
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "The request was good, but nevertheless could not be processed."
+},
+  "service_unavailable": {
+  "http_code": "422",
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "Service seems to be down or unavailable."
+},
+  "cron_stuck": {
+  "http_code": "422",
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "Cron Seems to be stuck"
+},
+  "websocket_service_unavailable": {
+  "http_code": "422",
+    "code": "UNPROCESSABLE_ENTITY",
+    "message": "Socket server is not available now. Please try after some time."
+},
+  "duplicate_entry": {
+  "http_code": "409",
+    "code": "ALREADY_EXISTS",
+    "message": "Addresses already exists."
+},
+  "invalid_login_details": {
+  "http_code": "401",
+    "code": "UNAUTHORIZED",
+    "message": "Invalid login details."
+},
+  "user_activation_failed": {
+  "http_code": "500",
+    "code": "INTERNAL_SERVER_ERROR",
+    "message": "User activation failed."
+}
+}
