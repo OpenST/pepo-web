@@ -7,3 +7,4 @@ export DEVOPS_ENV_ID='dev1-sandbox';
 export DEVOPS_IP_ADDRESS='127.0.0.1';
 export DEVOPS_SERVER_IDENTIFIER='1111';
 export PW_COOKIE_DOMAIN='127.0.0.1';
+export PEPO_API_DOMAIN='http://127.0.0.1:4000';

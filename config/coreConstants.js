@@ -35,6 +35,10 @@ class CoreConstant {
     return process.env.DEVOPS_APP_NAME;
   }
 
+  get PEPO_API_DOMAIN() {
+    return process.env.PEPO_API_DOMAIN;
+  }
+
 }
 
 module.exports = new CoreConstant();
