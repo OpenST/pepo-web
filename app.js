@@ -11,9 +11,7 @@ const express = require('express'),
   customUrlParser = require('url'),
   createNamespace = require('continuation-local-storage').createNamespace;
 
-const responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  indexRouter = require(rootPrefix + '/routes/index'),
+const indexRouter = require(rootPrefix + '/routes/index'),
   usersRouter = require(rootPrefix + '/routes/users'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
@@ -22,8 +20,6 @@ const responseHelper = require(rootPrefix + '/lib/formatter/response'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
-
-const errorConfig = basicHelper.fetchErrorConfig();
 
 const basicAuthentication = function(req, res, next) {
   if (!coreConstants.USE_BASIC_AUTHENTICATION) {
@@ -175,7 +171,6 @@ app.use(sanitizer.sanitizeBodyAndQuery);
 
 // Add basic auth in chain
 app.use(basicAuthentication);
-
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
