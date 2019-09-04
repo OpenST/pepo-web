@@ -40,8 +40,7 @@ morgan.token('id', function getId(req) {
 });
 
 morgan.token('endTime', function getendTime(req) {
-  let hrTime = process.hrtime();
-  return hrTime[0] * 1000 + hrTime[1] / 1000000;
+  return basicHelper.logDateFormat();
 });
 
 morgan.token('endDateTime', function getEndDateTime(req) {
@@ -123,7 +122,7 @@ app.use(customMiddleware());
 // Load Morgan
 app.use(
   morgan(
-    '[:pid][:id][:endTime][' +
+    '[:id][:endTime][' +
     coreConstants.APP_NAME +
     '] Completed with ":status" in :response-time ms at :endDateTime -  ":res[content-length] bytes" - ":remote-addr" ":remote-user" - "HTTP/:http-version :method :url" - ":referrer" - ":user-agent"'
   )
