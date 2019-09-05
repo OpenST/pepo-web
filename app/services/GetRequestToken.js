@@ -22,7 +22,7 @@ class GetRequestToken extends ServiceBase {
     super(params);
 
     const oThis = this;
-    oThis.cookies = params.cookies;
+    oThis.headers = params.headers;
     oThis.decodedParams = params.decodedParams;
 
     oThis.serviceResp = {};
@@ -51,7 +51,7 @@ class GetRequestToken extends ServiceBase {
     const oThis = this;
     logger.log('Start::_fetchRequestToken');
 
-    let PreLaunchInviteObj = new PreLaunchInvite(oThis.cookies, {});
+    let PreLaunchInviteObj = new PreLaunchInvite(oThis.headers);
     let resp = await PreLaunchInviteObj.getRequestToken(oThis.decodedParams);
 
     if (resp.isFailure()) {

@@ -24,7 +24,7 @@ class TwitterAuthenticate extends ServiceBase {
     super(params);
 
     const oThis = this;
-    oThis.cookies = params.cookies;
+    oThis.headers = params.headers;
     oThis.decodedParams = params.decodedParams;
 
     oThis.serviceResp = {};
@@ -56,7 +56,7 @@ class TwitterAuthenticate extends ServiceBase {
     let errRedirectUrl = `${pagePathConstants.home}?e=1`;
 
     if (oThis.decodedParams.oauth_token && oThis.decodedParams.oauth_verifier) {
-      let PreLaunchInviteObj = new PreLaunchInvite(oThis.cookies, {});
+      let PreLaunchInviteObj = new PreLaunchInvite(oThis.headers);
       let resp = await PreLaunchInviteObj.twitterLogin(oThis.decodedParams);
 
       if (resp.isFailure()) {

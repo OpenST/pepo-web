@@ -19,14 +19,15 @@ router.get('/', async function (req, res, next) {
   // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
 
   /** Always, uncomment and commit **/
-  let getRequestTokenObj = new GetRequestToken({cookies: req.cookies, decodedParams: req.decodedParams});
+  let getRequestTokenObj = new GetRequestToken({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getRequestTokenObj.perform();
 
+  cookieHelper.setNewCookies(req, res);
+
   if (apiResponse.success) {
-    cookieHelper.setNewCookies(req, res);
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', apiResponse.data);
   } else {
-    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+    renderResponseHelper.renderWithLayout(res, 'loggedOut', 'web/_home', {twitterRedirectUrl: '#', twitterSigninError: 0});
   }
 
 });
@@ -34,11 +35,12 @@ router.get('/', async function (req, res, next) {
 /* GET home page. */
 router.get('/twitter/auth', async function (req, res, next) {
 
-  let twitterAuthenticateObj = new TwitterAuthenticate({cookies: req.cookies, decodedParams: req.decodedParams});
+  let twitterAuthenticateObj = new TwitterAuthenticate({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await twitterAuthenticateObj.perform();
 
+  cookieHelper.setNewCookies(req, res);
+
   if (apiResponse.success) {
-    cookieHelper.setNewCookies(req, res);
     res.redirect(pagePathConstants.account);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

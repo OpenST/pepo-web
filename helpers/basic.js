@@ -1,8 +1,18 @@
 const rootPrefix = '..',
   apiErrorConfig = require(rootPrefix + '/config/error/api'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
   paramErrorConfig = require(rootPrefix + '/config/error/param');
 
 class BasicHelper {
+
+  /**
+   * Check if environment is production.
+   *
+   * @return {boolean}
+   */
+  isProduction() {
+    return coreConstants.environment === 'production';
+  }
 
   /**
    * Log date format.

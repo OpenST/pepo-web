@@ -18,11 +18,12 @@ router.get('/', async function (req, res, next) {
 
   /** Always, uncomment and commit **/
 
-  let getAccountObj = new GetAccount({cookies: req.cookies, decodedParams: req.decodedParams});
+  let getAccountObj = new GetAccount({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getAccountObj.perform();
 
+  cookieHelper.setNewCookies(req, res);
+
   if (apiResponse.success) {
-    cookieHelper.setNewCookies(req, res);
     renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_account', apiResponse.data.preLaunchInvite);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

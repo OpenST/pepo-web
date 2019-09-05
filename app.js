@@ -19,7 +19,7 @@ const indexRouter = require(rootPrefix + '/routes/index'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
-  coreConstant = require(rootPrefix + '/config/coreConstants'),
+  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
@@ -34,14 +34,7 @@ const basicAuthentication = function(req, res, next) {
   function unauthorized(res) {
     res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
 
-    let errorObject = responseHelper.error({
-      internal_error_identifier: 'a_3',
-      api_error_identifier: 'unauthorized_api_request',
-      debug_options: {}
-    });
-
-    return responseHelper.renderApiResponse(errorObject, res, errorConfig);
-
+    return res.status(401).render(`error/401`);
   }
 
   let user = basicAuth(req);
@@ -65,13 +58,14 @@ const basicAuthentication = function(req, res, next) {
  */
 const csrfProtection = csrf({
   cookie: {
+    key: cookieConstants.csrfCookieName,
     maxAge: 1000 * 5 * 60, // Cookie would expire after 5 minutes
     httpOnly: true, // The cookie only accessible by the web server
     signed: true, // Indicates if the cookie should be signed
-    secure: true, // Marks the cookie to be used with HTTPS only
+    secure: basicHelper.isProduction(), // Marks the cookie to be used with HTTPS only
     path: '/',
     sameSite: 'strict', // sets the same site policy for the cookie
-    domain: coreConstant.COOKIE_DOMAIN
+    domain: coreConstants.COOKIE_DOMAIN
   }
 });
 

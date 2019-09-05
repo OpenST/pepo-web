@@ -10,7 +10,7 @@ class CookieHelper {
    */
   setNewCookies(requestObj, responseObj) {
 
-    let newCookies = requestObj.cookies[cookieConstants.newCookieName];
+    const newCookies = requestObj.headers[cookieConstants.newCookieName];
 
     for (let cookieName in newCookies) {
       let cookieData = newCookies[cookieName];

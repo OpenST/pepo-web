@@ -22,7 +22,7 @@ class GetAccount extends ServiceBase {
     super(params);
 
     const oThis = this;
-    oThis.cookies = params.cookies;
+    oThis.headers = params.headers;
     oThis.decodedParams = params.decodedParams;
 
     oThis.serviceResp = {};
@@ -51,7 +51,7 @@ class GetAccount extends ServiceBase {
     const oThis = this;
     logger.log('Start::_fetchAccountInfo');
 
-    let PreLaunchInviteObj = new PreLaunchInvite(oThis.cookies, {});
+    let PreLaunchInviteObj = new PreLaunchInvite(oThis.headers);
     let resp = await PreLaunchInviteObj.getAccountInfo();
 
     if (resp.isFailure()) {
