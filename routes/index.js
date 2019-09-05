@@ -3,7 +3,8 @@ const router = express.Router();
 const cookieParser = require('cookie-parser');
 
 const rootPrefix = '..',
-  PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
+  GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
+  TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
@@ -27,23 +28,18 @@ const setNewCookies = async function (requestObj, responseObj) {
 /* GET home page. */
 router.get('/', async function (req, res, next) {
 
-  let twitterRedirectUrl = null;
-
   /** Never Uncomment and Commit This **/
-  // twitterRedirectUrl = "/for-local-testing-only"
+  // let apiResponse = {success: true, data: {oAuthToken: "11"}}; // "/for-local-testing-only"
 
   /** Always, uncomment and commit **/
 
-  let PreLaunchInviteObj = new PreLaunchInvite(req.cookies, {});
-  let apiResponse = await PreLaunchInviteObj.getRequestToken(req.decodedParams);
+  let getRequestTokenObj = new GetRequestToken({cookies: req.cookies, decodedParams: req.decodedParams});
+  let apiResponse = await getRequestTokenObj.perform();
 
-  setNewCookies(req, res);
-
-  if (apiResponse.success && apiResponse.data) {
+  if (apiResponse.success) {
+    setNewCookies(req, res);
     let twitterRedirectUrl = coreConstants.TWITTER_OAUTH_URL + apiResponse.data.oAuthToken;
-    renderResponseHelper.renderWithLayout(res, 'loggedOut', 'web/_home', {
-      twitterRedirectUrl: twitterRedirectUrl
-    });
+    renderResponseHelper.renderWithLayout(res, 'loggedOut', 'web/_home', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
@@ -53,12 +49,11 @@ router.get('/', async function (req, res, next) {
 /* GET home page. */
 router.get('/twitter/auth', async function (req, res, next) {
 
-  let PreLaunchInviteObj = new PreLaunchInvite(req.cookies, {});
-  let apiResponse = await PreLaunchInviteObj.twitterLogin(req.decodedParams);
-
-  setNewCookies(req, res);
+  let twitterAuthenticateObj = new TwitterAuthenticate({cookies: req.cookies, decodedParams: req.decodedParams});
+  let apiResponse = await twitterAuthenticateObj.perform();
 
   if (apiResponse.success) {
+    setNewCookies(req, res);
     res.redirect('/success');
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

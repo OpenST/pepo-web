@@ -32,7 +32,15 @@ const basicAuthentication = function(req, res, next) {
 
   function unauthorized(res) {
     res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-    return res.status(401).render('error/401');
+
+    let errorObject = responseHelper.error({
+      internal_error_identifier: 'a_3',
+      api_error_identifier: 'unauthorized_api_request',
+      debug_options: {}
+    });
+
+    return responseHelper.renderApiResponse(errorObject, res, errorConfig);
+
   }
 
   let user = basicAuth(req);
