@@ -200,7 +200,7 @@ app.use(setResponseHeader);
 
 app.use(csrfProtection);
 
-app.use(pagePathConstants.home, indexRouter);
+app.use('/', indexRouter);
 app.use(pagePathConstants.account, usersRouter);
 
 // connect-assets relies on to use defaults in config

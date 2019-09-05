@@ -6,14 +6,13 @@ const rootPrefix = '..',
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET home page. */
-router.get('/', async function (req, res, next) {
+router.get(pagePathConstants.home, async function (req, res, next) {
 
   /** Never Uncomment and Commit This **/
   // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
@@ -27,7 +26,7 @@ router.get('/', async function (req, res, next) {
   if (apiResponse.success) {
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', apiResponse.data);
   } else {
-    renderResponseHelper.renderWithLayout(res, 'loggedOut', 'web/_home', {twitterRedirectUrl: '#', twitterSigninError: 0});
+    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {twitterRedirectUrl: '#', twitterSigninError: 0});
   }
 
 });
@@ -41,9 +40,9 @@ router.get('/twitter/auth', async function (req, res, next) {
   cookieHelper.setNewCookies(req, res);
 
   if (apiResponse.success) {
-    res.redirect(pagePathConstants.account);
+    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: pagePathConstants.account});
   } else {
-    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: pagePathConstants.home});
   }
 
 });
