@@ -30,7 +30,7 @@ const loadAll = () => {
  */
 const loadPageMeta = (controller, pageMeta) => {
   pageMeta = pageMeta || require(rootPrefix + "/config/pageMeta/" + controller + ".json");
-  
+
   // Create a copy of pageMeta.
   pageMeta = cloneDeep(pageMeta);
 
@@ -98,25 +98,26 @@ const genericAssetConfigProcessor = (controller, action, assetsConfig, assetsArr
     }
   }
 
-  assetsConfig[ assetsArrayProp ] = cssArray;  
+  assetsConfig[ assetsArrayProp ] = cssArray;
 
 };
 
 const getDefaultAssetPath = (controller, action) =>{
-  controller = controller || "";
-  const viewPathSplits = controller.split(".");
-  
-  viewPathSplits.push(action);
-  // @Ashu/Akshay, please uncomment this.
-  // viewPathSplits.push(action + ".manifest");
-  
-
-  return viewPathSplits.join("/");
+  return action;
+  // controller = controller || "";
+  // const viewPathSplits = controller.split(".");
+  //
+  // viewPathSplits.push(action);
+  // // @Ashu/Akshay, please uncomment this.
+  // // viewPathSplits.push(action + ".manifest");
+  //
+  //
+  // return viewPathSplits.join("/");
 }
 
 const processViewPath = (viewPath) => {
   const viewPathSplits = viewPath.split("/");
-  
+
   let action = viewPathSplits.pop();
   action = action.replace("_", "");
   action = action.replace(".ejs", "");
@@ -151,7 +152,7 @@ module.exports = ( viewPath ) => {
 
   let actionMeta = controllerMeta[ action ];
   if ( null == actionMeta ) {
-    // action key not found. 
+    // action key not found.
     // Create one and cache it.
     actionMeta = cloneDeep(defaultMeta);
     actionMeta.assets.css_manifest = actionMeta.assets.js_manifest = false;
