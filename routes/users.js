@@ -23,7 +23,7 @@ router.get('/', async function (req, res, next) {
 
   if (apiResponse.success) {
     cookieHelper.setNewCookies(req, res);
-    renderResponseHelper.renderWithLayout(res, 'loggedIn', 'web/_account', apiResponse.data.preLaunchInvite);
+    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_account', apiResponse.data.preLaunchInvite);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }

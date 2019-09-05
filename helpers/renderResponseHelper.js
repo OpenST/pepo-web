@@ -9,8 +9,10 @@ class ResponseRenderer {
     return pageMetaProvider(contentPartialPath);
   }
 
-  renderWithLayout(response, layout, contentPartialPath, locals, callback) {
+  renderWithLayout(request, response, layout, contentPartialPath, locals, callback) {
     locals = locals || {};
+    this.populateCSRFToken(request, locals);
+
     if ( !locals.pageMeta ) {
       locals.pageMeta = this.getPageMeta( contentPartialPath );
     }
@@ -18,6 +20,10 @@ class ResponseRenderer {
     locals._contentPartial = contentPartialPath;
 
     response.render(layout, locals, callback);
+  }
+
+  populateCSRFToken(request, locals) {
+    locals._CSRFToken = request.csrfToken();
   }
 }
 

@@ -16,15 +16,15 @@ const errorConfig = basicHelper.fetchErrorConfig();
 router.get('/', async function (req, res, next) {
 
   /** Never Uncomment and Commit This **/
-  // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
+  let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
 
   /** Always, uncomment and commit **/
-  let getRequestTokenObj = new GetRequestToken({cookies: req.cookies, decodedParams: req.decodedParams});
-  let apiResponse = await getRequestTokenObj.perform();
+  // let getRequestTokenObj = new GetRequestToken({cookies: req.cookies, decodedParams: req.decodedParams});
+  // let apiResponse = await getRequestTokenObj.perform();
 
   if (apiResponse.success) {
     cookieHelper.setNewCookies(req, res);
-    renderResponseHelper.renderWithLayout(res, 'loggedOut', 'web/_home', apiResponse.data);
+    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
