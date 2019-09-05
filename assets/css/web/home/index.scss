@@ -13,8 +13,68 @@
   }
 }
 
+.uber-banner{
+  &:after{
+    content: "";
+    height: 1px;
+    background: linear-gradient(to right, #fff, #ffd5d5, #fff);
+    width: 100%;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    border-radius: 2px;
+  }
+  a{
+    color: #FF5566;
+    &:hover{
+      text-decoration: none;
+    }
+  }
+}
+
+.edge--top--reverse:before {
+  top: 0;
+  -webkit-transform: skewY(-3.5deg);
+  transform: skewY(-3.5deg);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.edge--top--reverse:before {
+  background: inherit;
+  content: '';
+  display: block;
+  height: 20%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  -webkit-backface-visibility: hidden;
+}
+
+.edge--top:before {
+  top: 0;
+  -webkit-transform: skewY(3.5deg);
+  transform: skewY(3.5deg);
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+
+.edge--top:before {
+  background: inherit;
+  content: '';
+  display: block;
+  height: 20%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  -webkit-backface-visibility: hidden;
+}
+
 .meet-people,
-.meet-people-image{
+.meet-people-image,
+.j-image-animation{
   opacity: 0;
 }
 
@@ -35,12 +95,12 @@
   animation: jumbotronAnimation 1s forwards 1s;
 }
 
-.meet-people{
-  animation: jumbotronAnimation 1s forwards 1s;
+.meet-people-image{
+  animation: jumbotronImageAnimation 1s forwards 1s;
 }
 
-.meet-people-image{
-  animation: jumbotronImageAnimation 2s forwards 1s;
+.j-image-animation{
+  animation: jumbotronAnimation 2s forwards 1s;
 }
 
 @keyframes jumbotronAnimation{
