@@ -13,7 +13,7 @@ export PW_USE_BASIC_AUTH='0'
 export PW_BASIC_AUTH_USERNAME='test'
 export PW_BASIC_AUTH_PASSWORD='testpasswd'
 
-export PEPO_API_DOMAIN='http://pepodev.com/api';
+export PEPO_API_DOMAIN='http://pepodev.com:8080';
 export PW_COOKIE_SECRET='aa5298d3a3fe181a3a52d085ee1525df5asa498337f8f3b76ca7df0a5de32124'
 
 export TWITTER_OAUTH_URL='https://api.twitter.com/oauth/authorize?oauth_token=';
