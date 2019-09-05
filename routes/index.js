@@ -42,7 +42,7 @@ router.get('/twitter/auth', async function (req, res, next) {
   if (apiResponse.success) {
     renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: pagePathConstants.account});
   } else {
-    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: pagePathConstants.home});
+    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
   }
 
 });
