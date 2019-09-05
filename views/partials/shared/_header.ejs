@@ -19,10 +19,22 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
-<meta name="description" content="Collect more than Likes">
-<meta name="keywords" content="pepo">
-<meta name="robots" content="index, follow">
-<link rel="canonical" href="https://pepo.com" />
+<meta name="description" content="<%= pageMeta.description %>">
+<meta name="keywords" content="<%= pageMeta.keywords %>">
+<meta name="robots" content="<%= pageMeta.robots%>">
+<link rel="canonical" href="<%= pageMeta.canonical %>" />
+
+<meta property="og:title" content="<%= pageMeta.og.title %>"/>
+<meta property="og:description" content="<%= pageMeta.og.description %>"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://pepo.com"/>
+<meta property="og:site_name" content="pepo.com"/>
+<meta property="og:image" content="<%= pageMeta.og.image %>"/>
+
+<meta name="twitter:title" content="<%= pageMeta.og.title %>" />
+<meta name="twitter:description" content="The OST Platform enables you to easily add brand currency into any app to strengthen direct-to-consumer relationships" />
+<meta name="twitter:image" content="https://dxwfxs8b4lg24.cloudfront.net/ost/images/og-images/ost-platform-og-image-new-1.png" />
+<meta name="twitter:card" content="<%= pageMeta.twitter.card %>" />
 
 
 <link rel="icon" type="image/png" sizes="64x64" href="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/fav-icons/64x64.png"/>

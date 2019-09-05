@@ -1,22 +1,22 @@
 module.exports = {
   "title": "Pepo",
   "page": null,
-  "description": "",
-  "canonical": null,
-  "keywords": null,
+  "description": "Meet the people shaping the crypto movement",
+  "canonical": "https://pepo.com",
+  "keywords": "pepo",
   "name": "Pepo",
   "robots": 'index, follow',
   "og": {
     "title": "Pepo",
-    "description": null,
-    "image": null,
-    "url": null,
+    "description": "Meet the people shaping the crypto movement",
+    "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img.png",
+    "url": "https://pepo.com",
   },
   "twitter": {
-    "card": 'summary_large_image',
     "title": "Pepo",
-    "description": null,
-    "image": null
+    "description": "Meet the people shaping the crypto movement",
+    "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img.png",
+    "card": 'summary_large_image',
   },
   "assets": {
     // @key 'js'
