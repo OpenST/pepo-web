@@ -17,6 +17,7 @@ const indexRouter = require(rootPrefix + '/routes/index'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
   coreConstant = require(rootPrefix + '/config/coreConstants'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
@@ -201,8 +202,8 @@ app.use(appendRequestDebugInfo, startRequestLogLine);
 app.use(setResponseHeader);
 
 // TODO LAUNCH - replace /new with /
-app.use('/new', indexRouter);
-app.use('/account', usersRouter);
+app.use(pagePathConstants.home, indexRouter);
+app.use(pagePathConstants.account, usersRouter);
 
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {

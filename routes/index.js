@@ -31,7 +31,6 @@ router.get('/', async function (req, res, next) {
 
   if (apiResponse.success) {
     cookieHelper.setNewCookies(req, res);
-    let twitterRedirectUrl = coreConstants.TWITTER_OAUTH_URL + apiResponse.data.oAuthToken;
     renderResponseHelper.renderWithLayout(res, 'loggedOut', 'web/_home', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
