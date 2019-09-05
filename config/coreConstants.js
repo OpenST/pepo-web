@@ -55,7 +55,7 @@ class CoreConstant {
   }
 
   get WEB_COOKIE_SECRET() {
-    return process.env.PA_PW_COOKIE_SECRET;
+    return process.env.PW_COOKIE_SECRET;
   }
 
 }
