@@ -30,7 +30,7 @@ fs.readFile(baseDir + '/manifest.json', function(err, data) {
   for (let file_key in manifest.assets) {
     const file = manifest.assets[file_key],
       splitFileNameArray = file.split('.'),
-      extension = splitFileNameArray[file.length - 1];
+      extension = splitFileNameArray[splitFileNameArray.length - 1];
 
     let executableString = undefined;
     if (content_types[extension]) {
@@ -55,12 +55,15 @@ fs.readFile(baseDir + '/manifest.json', function(err, data) {
       exec(executableString, function(error, stdout, stderr) {
         if (error) {
           console.log('\n\nExecuting error: ' + error);
+          process.exit(1);
         }
         if (stderr) {
           console.log('\n\nStd error: ' + stderr);
+          process.exit(1);
         }
         if (stdout) {
           console.log('\n\n' + stdout);
+          process.exit(1);
         }
       });
     } else {
