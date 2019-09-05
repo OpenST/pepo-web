@@ -1,8 +1,8 @@
 ;
 (function (window , $) {
   var ost = ns('ost');
-  var logoutRoute   = "/api/web/preLaunch/logout";
-  var logoutMethod  = "GET";
+  var logoutRoute   = "/api/web/prelaunch/logout";
+  var logoutMethod  = "POST";
   //TODO: FIND ME and replace me.
   var homeUrl = "/new";
 
