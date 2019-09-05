@@ -19,7 +19,7 @@
                 <%- include ../../../partials/shared/_twitterSvg -%>
             </a>
             <% if (typeof twitterSigninError != 'undefined' && twitterSigninError) { %>
-                <div class="error twitter-signin-error">Failed to sign in via twitter.</div>
+                <div class="error twitter-signin-error" style="color: #dd0017; font-size: 13px">Something Went Wrong!</div>
             <%}%>
         </div>
         <div class="col-12 col-md-6 pr-md-0 pt-6 pt-md-0 meet-people-image">
