@@ -59,7 +59,7 @@ class GetRequestToken extends ServiceBase {
     } else {
       let twitterRedirectUrl = coreConstants.TWITTER_OAUTH_URL + resp.data.oAuthToken;
 
-      let twitterSigninError = (oThis.decodedParams.e === 1) ? 1 : 0;
+      let twitterSigninError = (oThis.decodedParams.e && oThis.decodedParams.e.toString() == '1') ? 1 : 0;
 
       oThis.serviceResp = responseHelper.successWithData({
         twitterRedirectUrl: twitterRedirectUrl,
