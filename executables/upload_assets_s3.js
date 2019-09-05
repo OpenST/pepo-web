@@ -61,10 +61,7 @@ fs.readFile(baseDir + '/manifest.json', function(err, data) {
           console.log('\n\nStd error: ' + stderr);
           process.exit(1);
         }
-        if (stdout) {
-          console.log('\n\n' + stdout);
-          process.exit(1);
-        }
+        console.log('\n\n' + stdout);
       });
     } else {
       console.log("Can't upload : ", file);
