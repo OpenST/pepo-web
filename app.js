@@ -87,9 +87,6 @@ morgan.token('endDateTime', function getEndDateTime(req) {
   return basicHelper.logDateFormat();
 });
 
-/**
- * TODO CRITICAL: LOG BROWSER AGENT
- */
 const startRequestLogLine = function(req, res, next) {
   let message =
     "Started '" +
@@ -97,7 +94,9 @@ const startRequestLogLine = function(req, res, next) {
     "'  '" +
     req.method +
     "' at " +
-    basicHelper.logDateFormat();
+    basicHelper.logDateFormat() +
+    " from agent " +
+    req.headers['user-agent'];
   console.log(message);
 
   next();
