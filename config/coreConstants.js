@@ -50,6 +50,7 @@ class CoreConstant {
   get BASIC_AUTHENTICATION_PASSWORD() {
     return process.env.PW_BASIC_AUTH_PASSWORD;
   }
+
   get PEPO_API_DOMAIN() {
     return process.env.PEPO_API_DOMAIN;
   }

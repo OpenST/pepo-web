@@ -192,7 +192,8 @@ app.get('/', function(req, res, next) {
 // Add basic auth in chain
 app.use(basicAuthentication);
 
-app.use(cookieParser());
+app.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Start Request logging. Placed below static and health check to reduce logs
@@ -202,6 +203,9 @@ app.use(appendRequestDebugInfo, startRequestLogLine);
 app.use(setResponseHeader);
 
 // TODO LAUNCH - replace /new with /
+
+app.use(csrfProtection);
+
 app.use(pagePathConstants.home, indexRouter);
 app.use(pagePathConstants.account, usersRouter);
 
@@ -247,7 +251,5 @@ app.use(async function(err, req, res, next) {
 
   return responseHelper.renderApiResponse(errorObject, res, errorConfig);
 });
-
-app.use(csrfProtection);
 
 module.exports = app;

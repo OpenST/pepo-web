@@ -1,20 +1,14 @@
 const express = require('express');
 const router = express.Router();
-const cookieParser = require('cookie-parser');
 
 const rootPrefix = '..',
   GetAccount = require(rootPrefix + '/app/services/GetAccount'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
-  coreConstants = require(rootPrefix + '/config/coreConstants');
+  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
-
-router.use(cookieParser(cookieConstants.WEB_COOKIE_SECRET));
 
 /* GET users account page. */
 router.get('/', async function (req, res, next) {

@@ -1,22 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const cookieParser = require('cookie-parser');
 
 const rootPrefix = '..',
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
-  coreConstants = require(rootPrefix + '/config/coreConstants');
+  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
-
-router.use(cookieParser(cookieConstants.WEB_COOKIE_SECRET));
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
