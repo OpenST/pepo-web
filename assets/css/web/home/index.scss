@@ -97,7 +97,8 @@
 
 .meet-people,
 .meet-people-image,
-.j-image-animation{
+.j-image-animation,
+.uber-banner{
   opacity: 0;
 }
 
@@ -113,7 +114,9 @@
   transform: translateX( $by );  /* Firefox 16+, IE 10+, Opera */
 }
 
-
+.uber-banner{
+  animation: jumbotronAnimation 1s forwards 1s;
+}
 .meet-people{
   animation: jumbotronAnimation 1s forwards 1s;
 }
