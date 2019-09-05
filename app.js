@@ -202,8 +202,8 @@ app.use(appendRequestDebugInfo, startRequestLogLine);
 app.use(setResponseHeader);
 
 // TODO LAUNCH - replace /new with /
-app.use(pagePathConstants.home, csrfProtection, indexRouter);
-app.use(pagePathConstants.account, csrfProtection, usersRouter);
+app.use(pagePathConstants.home, indexRouter);
+app.use(pagePathConstants.account, usersRouter);
 
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {
@@ -247,5 +247,7 @@ app.use(async function(err, req, res, next) {
 
   return responseHelper.renderApiResponse(errorObject, res, errorConfig);
 });
+
+app.use(csrfProtection);
 
 module.exports = app;
