@@ -202,8 +202,8 @@ app.use(appendRequestDebugInfo, startRequestLogLine);
 app.use(setResponseHeader);
 
 // TODO LAUNCH - replace /new with /
-app.use(pagePathConstants.home, indexRouter);
-app.use(pagePathConstants.account, usersRouter);
+app.use(pagePathConstants.home, csrfProtection, indexRouter);
+app.use(pagePathConstants.account, csrfProtection, usersRouter);
 
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {
