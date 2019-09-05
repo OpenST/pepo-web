@@ -1,5 +1,8 @@
 {
   "home": {
     "page": "Home Page"
+  },
+  "account": {
+    "page": "Account"
   }
 }
