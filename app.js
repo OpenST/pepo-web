@@ -60,6 +60,9 @@ const basicAuthentication = function(req, res, next) {
   }
 };
 
+/**
+ * TODO CRITICAL: CSRF NOT INTEGRATED
+ */
 const csrfProtection = csrf({
   cookie: {
     maxAge: 1000 * 5 * 60, // Cookie would expire after 5 minutes
@@ -84,6 +87,9 @@ morgan.token('endDateTime', function getEndDateTime(req) {
   return basicHelper.logDateFormat();
 });
 
+/**
+ * TODO CRITICAL: LOG BROWSER AGENT
+ */
 const startRequestLogLine = function(req, res, next) {
   let message =
     "Started '" +
@@ -140,11 +146,6 @@ const appendRequestDebugInfo = function(req, res, next) {
 };
 
 const setResponseHeader = async function(req, res, next) {
-  res.setHeader('Pragma', 'no-cache');
-  res.setHeader('Cache-Control', 'no-store, no-cache, max-age=0, must-revalidate, post-check=0, pre-check=0');
-  res.setHeader('Vary', '*');
-  res.setHeader('Expires', '-1');
-  res.setHeader('Last-Modified', new Date().toUTCString());
   next();
 };
 
