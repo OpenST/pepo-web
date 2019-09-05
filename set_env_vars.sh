@@ -6,7 +6,7 @@ export DEVOPS_APP_NAME='pepo-web';
 export DEVOPS_ENV_ID='dev1-sandbox';
 export DEVOPS_IP_ADDRESS='127.0.0.1';
 export DEVOPS_SERVER_IDENTIFIER='1111';
-export PW_COOKIE_DOMAIN='127.0.0.1';
+export PW_COOKIE_DOMAIN='localhost';
 
 # basic auth env vars
 export PW_USE_BASIC_AUTH='0'
