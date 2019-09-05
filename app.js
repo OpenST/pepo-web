@@ -208,10 +208,17 @@ app.use(pagePathConstants.account, usersRouter);
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {
   paths: [path.join(__dirname, 'assets/css'), path.join(__dirname, 'assets/js')],
-    buildDir: path.join(__dirname, 'builtAssets'),
+  buildDir: path.join(__dirname, 'builtAssets'),
   fingerprinting: true,
   servePath: 'assets'
 };
+
+if (coreConstants.environment !== 'development') {
+  connectAssetConfig.servePath = coreConstants.CLOUD_FRONT_BASE_DOMAIN + coreConstants.appName + '/js-css';
+  connectAssetConfig.bundle = true;
+  connectAssetConfig.compress = true;
+}
+
 let connectAssets = require('connect-assets');
 app.use(connectAssets(connectAssetConfig));
 

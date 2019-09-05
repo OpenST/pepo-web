@@ -58,6 +58,10 @@ class CoreConstant {
     return process.env.PW_COOKIE_SECRET;
   }
 
+  get CLOUD_FRONT_BASE_DOMAIN() {
+    return process.env.PW_CLOUD_FRONT_BASE_DOMAIN;
+  }
+
 }
 
 module.exports = new CoreConstant();
