@@ -44,8 +44,9 @@ const loadPageMeta = (controller, pageMeta) => {
     //2. Deep merge actionMeta with default-meta.
     merge(finalActionMeta, actionMeta);
 
-    //3. Process CSS & JS assets config.
+    //3. Process assets config.
     processActionMeta(controller, action, finalActionMeta);
+
     //Finally, Reassign it.
     pageMeta[ action ] = finalActionMeta;
   }
@@ -104,7 +105,12 @@ const genericAssetConfigProcessor = (controller, action, assetsConfig, assetsArr
 const getDefaultAssetPath = (controller, action) =>{
   controller = controller || "";
   const viewPathSplits = controller.split(".");
+  
   viewPathSplits.push(action);
+  // @Ashu/Akshay, please uncomment this.
+  // viewPathSplits.push(action + ".manifest");
+  
+
   return viewPathSplits.join("/");
 }
 
@@ -126,6 +132,9 @@ const processViewPath = (viewPath) => {
 // Pre-Process on server boot.
 loadAll();
 
+
+//console.log( JSON.stringify(meta, null, 2) );
+
 module.exports = ( viewPath ) => {
   viewPath = viewPath || "";
   let processedPath = processViewPath(viewPath),
@@ -145,12 +154,14 @@ module.exports = ( viewPath ) => {
     // action key not found. 
     // Create one and cache it.
     actionMeta = cloneDeep(defaultMeta);
+    actionMeta.assets.css_manifest = actionMeta.assets.js_manifest = false;
+
     processActionMeta(controller,action, actionMeta);
     controllerMeta[ action ] = actionMeta;
   }
 
-  console.log("controller", controller, "action", action);
-  console.log("actionMeta", actionMeta);
+  // console.log("controller", controller, "action", action);
+  // console.log("actionMeta", actionMeta);
 
   return actionMeta;
 };
