@@ -30,7 +30,7 @@ fs.readFile(baseDir + '/manifest.json', function(err, data) {
   for (let file_key in manifest.assets) {
     const file = manifest.assets[file_key],
       splitFileNameArray = file.split('.'),
-      extension = splitFileNameArray[1];
+      extension = splitFileNameArray[file.length - 1];
 
     let executableString = undefined;
     if (content_types[extension]) {
@@ -65,6 +65,7 @@ fs.readFile(baseDir + '/manifest.json', function(err, data) {
       });
     } else {
       console.log("Can't upload : ", file);
+      process.exit(1);
     }
   }
 });
