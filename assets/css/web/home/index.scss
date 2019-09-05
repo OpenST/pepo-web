@@ -19,7 +19,7 @@
     -webkit-transition: fill .3s ease-in-out;
     -moz-transition: fill .3s ease-in-out;
     transition: fill .3s ease-in-out;
-    &.red{
+    &.special{
       fill: #FF5566;
     }
   }
@@ -28,12 +28,17 @@
     &:hover{
       .txt-svg{
         fill: #FF5566;
-        &.red{
+        &.special{
           fill: #ffffff;
         }
       }
     }
   }
+}
+
+.twitter-signin-error{
+  color: #dd0017;
+  font-size: 13px;
 }
 
 .uber-banner{
