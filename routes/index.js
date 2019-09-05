@@ -6,6 +6,7 @@ const rootPrefix = '..',
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
+  cookieHelper = require(rootPrefix + '/helpers/cookie'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
@@ -16,15 +17,6 @@ const rootPrefix = '..',
 const errorConfig = basicHelper.fetchErrorConfig();
 
 router.use(cookieParser(cookieConstants.WEB_COOKIE_SECRET));
-
-const setNewCookies = async function (requestObj, responseObj) {
-  let newCookies = requestObj.cookies[cookieConstants.newCookieName];
-
-  for (let cookieName in newCookies) {
-    let cookieData = newCookies[cookieName];
-    responseObj.cookie(cookieName, cookieData.value, cookieData.options); // Options is optional
-  }
-};
 
 /* GET home page. */
 router.get('/', async function (req, res, next) {
@@ -38,7 +30,7 @@ router.get('/', async function (req, res, next) {
   let apiResponse = await getRequestTokenObj.perform();
 
   if (apiResponse.success) {
-    setNewCookies(req, res);
+    cookieHelper.setNewCookies(req, res);
     let twitterRedirectUrl = coreConstants.TWITTER_OAUTH_URL + apiResponse.data.oAuthToken;
     renderResponseHelper.renderWithLayout(res, 'loggedOut', 'web/_home', apiResponse.data);
   } else {
@@ -54,7 +46,7 @@ router.get('/twitter/auth', async function (req, res, next) {
   let apiResponse = await twitterAuthenticateObj.perform();
 
   if (apiResponse.success) {
-    setNewCookies(req, res);
+    cookieHelper.setNewCookies(req, res);
     res.redirect(pagePathConstants.account);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
