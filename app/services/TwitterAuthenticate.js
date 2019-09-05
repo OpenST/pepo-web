@@ -1,6 +1,7 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
+  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
 
@@ -52,18 +53,30 @@ class TwitterAuthenticate extends ServiceBase {
     const oThis = this;
     logger.log('Start::_fetchRequestToken');
 
+    let errRedirectUrl = `${pagePathConstants.home}?e=1`;
+
     if (oThis.decodedParams.oauth_token && oThis.decodedParams.oauth_verifier) {
       let PreLaunchInviteObj = new PreLaunchInvite(oThis.cookies, {});
-      oThis.serviceResp = await PreLaunchInviteObj.twitterLogin(oThis.decodedParams);
+      let resp = await PreLaunchInviteObj.twitterLogin(oThis.decodedParams);
+
+      if (resp.isFailure()) {
+        return Promise.reject(responseHelper.error({
+          internal_error_identifier: 'r_i_ta_1',
+          api_error_identifier: 'unauthorized_api_request',
+          debug_options: {redirectUrl: errRedirectUrl}
+        }));
+      }
+
+      oThis.serviceResp = resp;
+
     } else {
-      oThis.serviceResp = responseHelper.error({
-        internal_error_identifier: 'r_i_ta_1',
+      return Promise.reject(responseHelper.error({
+        internal_error_identifier: 'r_i_ta_2',
         api_error_identifier: 'unauthorized_api_request',
-        debug_options: {}
-      });
+        debug_options: {redirectUrl: errRedirectUrl}
+      }));
     }
 
-    //if 401 error code chnage
     logger.log('End::_fetchRequestToken');
 
     return responseHelper.successWithData({});

@@ -9,6 +9,7 @@ const rootPrefix = '..',
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
+  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   coreConstants = require(rootPrefix + '/config/coreConstants');
 
@@ -54,7 +55,7 @@ router.get('/twitter/auth', async function (req, res, next) {
 
   if (apiResponse.success) {
     setNewCookies(req, res);
-    res.redirect('/success');
+    res.redirect(pagePathConstants.account);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
