@@ -20,6 +20,7 @@ const indexRouter = require(rootPrefix + '/routes/index'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
+  elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker');
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
@@ -177,6 +178,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sanitizer.sanitizeBodyAndQuery);
 
 app.use(assignParams);
+
+app.use('/health-checker', elbHealthCheckerRoute);
 
 // TODO LAUNCH - remove when launched and delete oldHome.ejs file
 app.get('/', function(req, res, next) {
