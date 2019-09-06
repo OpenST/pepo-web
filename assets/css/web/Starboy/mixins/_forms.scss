@@ -7,6 +7,7 @@
     margin-top: $form-feedback-margin-top;
     font-size: $form-feedback-font-size;
     color: $color;
+    border:10px;
   }
 
   .#{$state}-tooltip {

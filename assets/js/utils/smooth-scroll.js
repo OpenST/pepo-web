@@ -1,10 +1,10 @@
 ;
 (function (window , $) {
 
-  var accountPage = {
+  var smoothScroll = {
 
     init : function () {
-      accountPage.bindEvents();
+      smoothScroll.bindEvents();
     },
 
     bindEvents : function () {
@@ -24,6 +24,6 @@
   };
 
 
-  accountPage.init();
+  smoothScroll.init();
 
 })(window, jQuery);

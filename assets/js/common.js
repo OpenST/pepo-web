@@ -1,6 +1,9 @@
 //= require libs/namespace
-//= require libs/js.cookie
+//= require libs/js.cookie 
 //= require utils/ajaxHooks
 //= require utils/logout
+//= require utils/smooth-scroll
+//= require plugins/jquery-validate/jquery.validate
+//= require plugins/jquery-validate/ost-jquery-validate-modifications
+//= require plugins/jquery-validate/additional-methods
 //= require utils/formHelper
-//= require web/common/index
