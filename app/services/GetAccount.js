@@ -3,6 +3,7 @@ const rootPrefix = '../..',
   PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
+  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
@@ -59,6 +60,9 @@ class GetAccount extends ServiceBase {
     } else {
       oThis.serviceResp = resp
     }
+
+    let preLaunchInvite = oThis.serviceResp.data.preLaunchInvite;
+    preLaunchInvite['inviteUrl'] = pagePathConstants.inviteFullUrl(preLaunchInvite.inviteCode);
 
     logger.log('End::_fetchAccountInfo');
 

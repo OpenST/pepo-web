@@ -51,8 +51,8 @@ class CoreConstant {
     return process.env.PW_BASIC_AUTH_PASSWORD;
   }
 
-  get PEPO_API_DOMAIN() {
-    return process.env.PEPO_API_DOMAIN;
+  get PEPO_DOMAIN() {
+    return process.env.PEPO_DOMAIN;
   }
 
   get WEB_COOKIE_SECRET() {
