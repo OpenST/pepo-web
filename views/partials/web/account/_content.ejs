@@ -2,10 +2,12 @@
     <div class="row">
         <div class="container-fluid py-5 pt-6" style="background-color: #2A293B">
             <h5 style="color: #ffffff" class="mb-3">Which email address should we use to notify you when your access is approved?</h5>
-            <form class="mx-auto col-12 col-md-8 col-lg-5 col-xl-4">
+            <form class="mx-auto col-12 col-md-8 col-lg-5 col-xl-4" data-submiting="Confirming…" action="/api/web/prelaunch/subscribe-email" method="POST">
                 <div class="input-group mb-2">
                     <input type="email" class="form-control py-2" autocomplete="off" name="email" placeholder="thahir@pepo.com">
-                    <button class="btn btn-primary input-group-append px-3 align-items-center d-none d-md-block text-uppercase" type="submit" title="TRY NOW" data-jsonp="/ost-wallet/testnet/test-invite">
+                    <button class="btn btn-primary input-group-append px-3 align-items-center d-none d-md-block text-uppercase"
+                            type="submit" title="TRY NOW"
+                            data-submiting="sending..">
                         Confirm
                     </button>
                 </div>
