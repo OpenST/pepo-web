@@ -14,28 +14,28 @@
   }
 
   &.btn-primary{
-    border: 1.5px solid #ff5566;
+    border: 1.5px solid $wildWatermelon;
     color: $white;
-    background-color: #FF5566;
+    background-color: $wildWatermelon;
     &:hover{
-      color: #FF5566;
-      border-color: #FF5566;
-      background-color: #ffffff;
+      color: $wildWatermelon;
+      border-color: $wildWatermelon;
+      background-color: $white;
     }
     &:active{
-      border-color: #FF5566 !important;
-      border-color: #FF5566 !important;
-      background-color: #FF5566 !important;
+      border-color: $wildWatermelon !important;
+      border-color: $wildWatermelon !important;
+      background-color: $wildWatermelon !important;
     }
   }
   &.btn-secondary{
-    border: 1.5px solid #ff5566;
-    color: #ff5566;
-    background-color: #ffffff;
+    border: 1.5px solid $wildWatermelon;
+    color: $wildWatermelon;
+    background-color: $white;
     &:hover{
-      color: #ffffff;
-      border-color: #ff5566;
-      background-color: #ff5566;
+      color: $white;
+      border-color: $wildWatermelon;
+      background-color: $wildWatermelon;
     }
     &:active{
       color: $white;
