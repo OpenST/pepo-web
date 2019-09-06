@@ -4,6 +4,11 @@
     "code": "BAD_REQUEST",
     "message": "At least one parameter is invalid or missing. See \"err.error_data\" array for more details."
 },
+  "already_logged_in": {
+    "http_code": "302",
+    "code": "TEMPORARY_REDIRECT",
+    "message": "Already Logged In."
+  },
   "unauthorized_api_request": {
   "http_code": "401",
     "code": "UNAUTHORIZED",

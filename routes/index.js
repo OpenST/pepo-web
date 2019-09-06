@@ -5,8 +5,10 @@ const rootPrefix = '..',
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
+  responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
+  httpErrorCodes = require(rootPrefix + '/lib/globalConstant/httpErrorCodes'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -23,10 +25,18 @@ router.get(pagePathConstants.home, async function (req, res, next) {
 
   cookieHelper.setNewCookies(req, res);
 
+  if (apiResponse.isFailure() &&
+    apiResponse._fetchHttpCode(errorConfig.api_error_config || {}) == httpErrorCodes.temporaryRedirectErrorCode) {
+    responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  }
+
   if (apiResponse.success) {
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', apiResponse.data);
   } else {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {twitterRedirectUrl: '#', twitterSigninError: 0});
+    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+      twitterRedirectUrl: '#',
+      twitterSigninError: 0
+    });
   }
 
 });

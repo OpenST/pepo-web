@@ -2,7 +2,9 @@ const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  cookieGlobalConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
+  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
@@ -36,9 +38,42 @@ class GetRequestToken extends ServiceBase {
   async _asyncPerform() {
     const oThis = this;
 
+    await oThis._validateLoggedIn();
+
     await oThis._fetchRequestToken();
 
     return Promise.resolve(oThis.serviceResp);
+  }
+
+  /**
+   * Check if already Logged In
+   *
+   * @return {Promise<Result>}
+   * @private
+   */
+  async _validateLoggedIn() {
+    const oThis = this;
+
+    const hasLoginCookie = oThis.headers['cookie'] ?
+      oThis.headers['cookie'].includes(`${cookieGlobalConstants.preLaunchloginCookieName}=`) :
+      false;
+
+    console.log("oThis.headers['cookie']", oThis.headers['cookie'], hasLoginCookie);
+
+    if (hasLoginCookie) {
+      let PreLaunchInviteObj = new PreLaunchInvite(oThis.headers);
+      let resp = await PreLaunchInviteObj.getAccountInfo();
+
+      if (resp.isSuccess()) {
+        return Promise.reject(responseHelper.error({
+          internal_error_identifier: 'a_s_grt_vli_1',
+          api_error_identifier: 'already_logged_in',
+          debug_options: {redirectUrl: pagePathConstants.account}
+        }));
+      }
+    }
+
+    return responseHelper.successWithData({});
   }
 
   /**
