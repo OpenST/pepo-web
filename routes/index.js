@@ -3,6 +3,7 @@ const router = express.Router();
 
 const rootPrefix = '..',
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
+  DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
@@ -37,6 +38,27 @@ router.get(pagePathConstants.home, async function (req, res, next) {
       twitterRedirectUrl: '#',
       twitterSigninError: 0
     });
+  }
+
+});
+
+/* Double opt in page. */
+router.get(pagePathConstants.doubleOptIn, async function (req, res, next) {
+
+  /** Never Uncomment and Commit This **/
+  // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
+
+  /** Always, uncomment and commit **/
+  let doubleOptInObj = new DoubleOptIn({headers: req.headers, decodedParams: req.decodedParams});
+  let apiResponse = await doubleOptInObj.perform();
+
+
+  if (apiResponse.success) {
+    console.log("SUCCESS DOPTIN=================================================");
+    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: true});
+  } else {
+    console.log("ERRRRRRR DOPTIN=================================================");
+    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: false});
   }
 
 });
