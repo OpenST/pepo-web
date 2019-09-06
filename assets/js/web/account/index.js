@@ -45,7 +45,9 @@
       });
       
       $('#applyNow').on('click', function (event) {
-        $.post(accountPage.applyEndpoint, {
+        $.ajax({
+          url: accountPage.applyEndpoint,
+          method: "POST",
           success: function (response) {
             if (response.success) {
               $('#applyNow').hide();
