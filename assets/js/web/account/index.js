@@ -3,6 +3,8 @@
 
   var accountPage = {
 
+    applyEndpoint: '/api/web/prelaunch/creator',
+
     init : function () {
       accountPage.bindEvents();
       accountPage.twitterForWebsites();
@@ -41,6 +43,23 @@
           $elem.tooltip('hide');
         }, 1000);
       });
+      
+      $('#applyNow').on('click', function (event) {
+        $.post(accountPage.applyEndpoint, {
+          success: function (response) {
+            if (response.success) {
+              $('#applyNow').hide();
+              $('#applySuccess').show()
+            } else {
+              $('#applyError').show();
+            }
+          },
+          error: function (jqXHR, exception) {
+            $('#applyError').show();
+          },
+        })
+      });
+      
     },
 
     copyToClipboard: function (string) {
@@ -50,6 +69,7 @@
       document.execCommand("copy");
       $temp.remove();
     }
+
 
   };
 
