@@ -34,6 +34,11 @@ router.get(pagePathConstants.home, async function (req, res, next) {
 /* GET home page. */
 router.get('/twitter/auth', async function (req, res, next) {
 
+  if (!req.decodedParams.rd) {
+    let redirectUrl = req.url + '&rd=1';
+    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
+  }
+
   let twitterAuthenticateObj = new TwitterAuthenticate({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await twitterAuthenticateObj.perform();
 

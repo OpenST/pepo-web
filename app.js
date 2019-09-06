@@ -59,7 +59,7 @@ const basicAuthentication = function(req, res, next) {
 const csrfProtection = csrf({
   cookie: {
     key: cookieConstants.csrfCookieName,
-    maxAge: 1000 * 5 * 60, // Cookie would expire after 5 minutes
+    maxAge: 1000 * 60 * 60 * 24 * 30,
     httpOnly: true, // The cookie only accessible by the web server
     signed: true, // Indicates if the cookie should be signed
     secure: basicHelper.isProduction(), // Marks the cookie to be used with HTTPS only
