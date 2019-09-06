@@ -4,5 +4,8 @@
   },
   "account": {
     "page": "Account"
+  },
+  "doption": {
+    "page": "Double Optin"
   }
 }
