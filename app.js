@@ -54,9 +54,6 @@ const basicAuthentication = function(req, res, next) {
   }
 };
 
-/**
- * TODO CRITICAL: CSRF NOT INTEGRATED
- */
 const csrfProtection = csrf({
   cookie: {
     key: cookieConstants.csrfCookieName,
@@ -184,11 +181,6 @@ app.use(sanitizer.sanitizeBodyAndQuery, assignParams);
 
 app.use('/health-checker', elbHealthCheckerRoute);
 
-// TODO LAUNCH - remove when launched and delete oldHome.ejs file
-app.get('/', function(req, res, next) {
-  return res.status(200).render('oldHome');
-});
-
 // Add basic auth in chain
 app.use(basicAuthentication);
 
@@ -202,11 +194,9 @@ app.use(appendRequestDebugInfo, startRequestLogLine);
 // set response Headers
 app.use(setResponseHeader);
 
-// TODO LAUNCH - replace /new with /
-
 app.use(csrfProtection);
 
-app.use('/', indexRouter);
+app.use(pagePathConstants.home, indexRouter);
 app.use(pagePathConstants.account, usersRouter);
 
 // connect-assets relies on to use defaults in config
