@@ -20,7 +20,7 @@ const indexRouter = require(rootPrefix + '/routes/index'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
-  elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker');
+  elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
@@ -180,9 +180,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Sanitize request body and query params
 // NOTE: dynamic variables in URL will be sanitized in routes
-app.use(sanitizer.sanitizeBodyAndQuery);
-
-app.use(assignParams);
+app.use(sanitizer.sanitizeBodyAndQuery, assignParams);
 
 app.use('/health-checker', elbHealthCheckerRoute);
 
@@ -243,14 +241,26 @@ app.use(function(req, res, next) {
 
 // Error handler
 app.use(async function(err, req, res, next) {
-  logger.error('a_2', 'Something went wrong', err);
 
-  let errorObject = responseHelper.error({
-    internal_error_identifier: 'a_2',
-    api_error_identifier: 'something_went_wrong',
-    debug_options: {}
-  });
+  let errorObject = null;
 
+  if (err.code == 'EBADCSRFTOKEN') {
+    logger.error('a_3', 'Bad CSRF TOKEN', err);
+
+    errorObject = responseHelper.error({
+      internal_error_identifier: 'a_3',
+      api_error_identifier: 'forbidden_api_request',
+      debug_options: {}
+    });
+  } else {
+    logger.error('a_2', 'Something went wrong', err);
+
+    errorObject = responseHelper.error({
+      internal_error_identifier: 'a_2',
+      api_error_identifier: 'something_went_wrong',
+      debug_options: {}
+    });
+  }
   return responseHelper.renderApiResponse(errorObject, res, errorConfig);
 });
 

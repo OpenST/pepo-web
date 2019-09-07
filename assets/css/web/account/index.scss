@@ -11,28 +11,8 @@
     color: #2A293B;
     line-height: 1.5;
   }
-  .txt-svg{
-    height: 18px;
-    width: 18px;
-    margin-left: 6px;
-    fill: #FFFFFF;
-    -webkit-transition: fill .3s ease-in-out;
-    -moz-transition: fill .3s ease-in-out;
-    transition: fill .3s ease-in-out;
-    &.red{
-      fill: #FF5566;
-    }
-  }
   .btn{
     max-width: 200px;
-    &:hover{
-      .txt-svg{
-        fill: #FF5566;
-        &.red{
-          fill: #ffffff;
-        }
-      }
-    }
   }
 }
 

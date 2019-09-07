@@ -6,12 +6,13 @@ const rootPrefix = '..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET users account page. */
-router.get('/', async function (req, res, next) {
+router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   /** Never Uncomment and Commit This **/
   // let apiResponse = {success: true, data: {preLaunchInvite: { id: '6603',
