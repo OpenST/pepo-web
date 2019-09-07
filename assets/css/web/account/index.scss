@@ -42,38 +42,37 @@
   -webkit-backface-visibility: hidden;
 }
 
-video{
-  width: auto;
-  height: 100vh;
-}
-.mobileFrame{
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-}
-@media screen and (min-width: 767px)  {
-  video{
-    height: 600px;
-    width: 300px;
-    transform: scale(0.95);
-  }
-  .mobileFrame {
-    background-image: url(https://d3attjoi5jlede.cloudfront.net/images/web/pepo-splashpage-frame.png);
-    background-repeat: no-repeat;
-    background-size: 100%;
-    height: 600px;
-    width: 300px;
-  }
-}
+//video{
+//  width: auto;
+//  height: 100vh;
+//}
+//.mobileFrame{
+//  position: absolute;
+//  left: 0;
+//  top: 0;
+//  height: 100%;
+//  width: 100%;
+//}
+//@media screen and (min-width: 767px)  {
+//  video{
+//    height: 600px;
+//    width: 300px;
+//    transform: scale(0.95);
+//  }
+//  .mobileFrame {
+//    background-image: url(https://d3attjoi5jlede.cloudfront.net/images/web/pepo-splashpage-frame.png);
+//    background-repeat: no-repeat;
+//    background-size: 100%;
+//    height: 600px;
+//    width: 300px;
+//  }
+//}
 
 .copy-code-box{
   background-color: #ffffff;
   color: #FF5566;
   outline: 2px solid #FF5566;
   outline-offset: -3px;
-  //font-size: 80%;
   font-family: AvenirNext-Demibold;
   height: 60px;
   line-height: 60px;
