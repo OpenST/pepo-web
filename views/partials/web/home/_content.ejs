@@ -6,9 +6,7 @@
             <% if(new Date().getMonth() <= 8) { %>
             <p class="mt-6 text-uppercase" style="font-weight: 600; letter-spacing: 1px;color: #FF5566">Launching in <%= 30 - (new Date().getDate()) %> Days, <br/>By Invite Only</p>
             <% } %>
-            <a href="<%= twitterRedirectUrl %>" class="twitter-connect btn btn-primary d-flex align-items-center justify-content-center mx-auto" class="text-link btn btn-primary" title="Request Invite">Request Invite
-                <%- include ../../../partials/shared/_twitterSvg -%>
-            </a>
+            <%- include('../partials/shared/_twitterConnect', {twitterRedirectUrl: twitterRedirectUrl}) -%>
             <% if (typeof twitterSigninError != 'undefined' && twitterSigninError) { %>
                 <div class="error twitter-signin-error">Twitter Connect Failed!</div>
             <%}%>
