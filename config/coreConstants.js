@@ -35,10 +35,6 @@ class CoreConstant {
     return process.env.DEVOPS_APP_NAME;
   }
 
-  get TWITTER_OAUTH_URL() {
-    return process.env.TWITTER_OAUTH_URL;
-  }
-
   get USE_BASIC_AUTHENTICATION() {
     return process.env.PW_USE_BASIC_AUTH == '1';
   }
