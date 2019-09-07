@@ -19,7 +19,7 @@
     -webkit-transition: fill .3s ease-in-out;
     -moz-transition: fill .3s ease-in-out;
     transition: fill .3s ease-in-out;
-    &.special{
+    &.red{
       fill: #FF5566;
     }
   }
@@ -28,7 +28,7 @@
     &:hover{
       .txt-svg{
         fill: #FF5566;
-        &.special{
+        &.red{
           fill: #ffffff;
         }
       }
