@@ -13,7 +13,7 @@
             setInterval(function(){
                 $.ajax({
                     url: homePage.requestTokenEndpoint,
-                    method: "POST",
+                    method: "GET",
                     success: function (response) {
                         if (response.success) {
                             $('.twitter-connect').attr("href", response.data.twitterRedirectUrl)
