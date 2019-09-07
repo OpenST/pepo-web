@@ -53,8 +53,10 @@
                     <span><%= inviteUrl %></span>
                 </div>
                 <button class="btn btn-primary px-6" type="submit" id="copyCode" data-text-to-copy="<%= inviteUrl %>">Copy It</button>
-                <a class="btn btn-secondary px-6 ml-md-3 mt-4 mt-md-0" type="submit" title="Tweet It"
-                   href="https://twitter.com/intent/tweet?text=<%= encodeURI('Join Pepo app using my referral code!') %>&hashtags=pepo,crypto,ost&via=Pepo&url=<%= inviteUrl %>">Tweet It</a>
+                <a class="ml-md-3 mt-4 mt-md-0" title="Tweet It"
+                   href="https://twitter.com/intent/tweet?text=<%= encodeURI('Join Pepo app using my referral code!') %>&hashtags=pepo,crypto,ost&via=Pepo&url=<%= inviteUrl %>">
+                    <button class="btn btn-secondary px-6">Tweet It</button>
+                </a>
         </div>
         <div class="col-12 col-md-6 pr-md-0">
             <img class="img-fluid"
