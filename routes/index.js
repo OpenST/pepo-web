@@ -10,12 +10,13 @@ const rootPrefix = '..',
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   httpErrorCodes = require(rootPrefix + '/lib/globalConstant/httpErrorCodes'),
+  sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET home page. */
-router.get(pagePathConstants.home, async function (req, res, next) {
+router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   /** Never Uncomment and Commit This **/
   // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
@@ -43,7 +44,7 @@ router.get(pagePathConstants.home, async function (req, res, next) {
 });
 
 /* Double opt in page. */
-router.get(pagePathConstants.doubleOptIn, async function (req, res, next) {
+router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   /** Never Uncomment and Commit This **/
   // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
@@ -54,17 +55,15 @@ router.get(pagePathConstants.doubleOptIn, async function (req, res, next) {
 
 
   if (apiResponse.success) {
-    console.log("SUCCESS DOPTIN=================================================");
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: true});
   } else {
-    console.log("ERRRRRRR DOPTIN=================================================");
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: false});
   }
 
 });
 
 /* GET home page. */
-router.get('/twitter/auth', async function (req, res, next) {
+router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   if (!req.decodedParams.rd) {
     let redirectUrl = req.url + '&rd=1';
