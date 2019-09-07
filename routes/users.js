@@ -15,7 +15,21 @@ const errorConfig = basicHelper.fetchErrorConfig();
 router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   /** Never Uncomment and Commit This **/
-  // let apiResponse = {success: true, data: {preLaunchInvite: {}}}; // "/for-local-testing-only"
+  // let apiResponse = {success: true, data: {preLaunchInvite: { id: '6603',
+  //       twitterId: '1144138775435419648',
+  //       handle: 'amanostcom1',
+  //       email: 'aman@ost.com',
+  //       name: 'name',
+  //       profileImageUrl: null,
+  //       status: 'DOPTIN',
+  //       adminStatus: 'WHITELIST_PENDING',
+  //       inviteCode: '7VW9N2',
+  //       invitedUserCount: '0',
+  //       createdAt: 1567760119,
+  //       updatedAt: 1567760119,
+  //       creatorStatus: 'APPLIED',
+  //       inviteUrl: 'http://pepodev.com:8080/new?invite=7VW9N2' }
+  // }}; // "/for-local-testing-only"
 
   /** Always, uncomment and commit **/
 

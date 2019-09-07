@@ -3,9 +3,11 @@
     "page": "Home Page"
   },
   "account": {
-    "page": "Account"
+    "page": "Account",
+    "robots": "noindex, nofollow"
   },
   "doptin": {
-    "page": "Double Optin"
+    "page": "Double Optin",
+    "robots": "noindex, nofollow"
   }
 }

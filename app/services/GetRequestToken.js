@@ -92,12 +92,11 @@ class GetRequestToken extends ServiceBase {
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
-      let twitterRedirectUrl = coreConstants.TWITTER_OAUTH_URL + resp.data.oAuthToken;
 
       let twitterSigninError = (oThis.decodedParams.e && oThis.decodedParams.e.toString() == '1') ? 1 : 0;
 
       oThis.serviceResp = responseHelper.successWithData({
-        twitterRedirectUrl: twitterRedirectUrl,
+        twitterRedirectUrl: resp.data.twitterRedirectUrl,
         twitterSigninError: twitterSigninError
       });
     }
