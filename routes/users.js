@@ -28,7 +28,7 @@ router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, ne
   //       createdAt: 1567760119,
   //       updatedAt: 1567760119,
   //       creatorStatus: 'APPLIED',
-  //       inviteUrl: 'http://pepodev.com:8080/new?invite=7VW9N2' }
+  //       inviteUrl: 'http://pepodev.com:8080/?invite=7VW9N2' }
   // }}; // "/for-local-testing-only"
 
   /** Always, uncomment and commit **/
