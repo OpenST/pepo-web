@@ -3,8 +3,7 @@
   var ost = ns('ost');
   var logoutRoute   = "/api/web/prelaunch/logout";
   var logoutMethod  = "POST";
-  //TODO: FIND ME and replace me.
-  var homeUrl = "/new";
+  var homeUrl = "/";
 
   var oThis = ost.logoutUtil = {
     bind: function() {
