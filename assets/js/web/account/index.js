@@ -8,6 +8,7 @@
     init : function () {
       accountPage.bindEvents();
       accountPage.twitterForWebsites();
+      accountPage.initFormHelper();
     },
 
     twitterForWebsites: function(){
@@ -70,6 +71,17 @@
       $temp.val(string).select();
       document.execCommand("copy");
       $temp.remove();
+    },
+
+    initFormHelper: function () {
+      var jForm = $("#jEmailCapture") ;
+      jForm.formHelper({
+        success: function(res){
+          if(res && res.success){
+            $(".jEmailCaptureSuccess").show();
+          }
+        }
+      })
     }
 
 
