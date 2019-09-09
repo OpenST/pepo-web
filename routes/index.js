@@ -29,7 +29,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
   if (apiResponse.isFailure() &&
     apiResponse._fetchHttpCode(errorConfig.api_error_config || {}) == httpErrorCodes.temporaryRedirectErrorCode) {
-    responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
 
   if (apiResponse.success) {
