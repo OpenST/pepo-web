@@ -36,6 +36,18 @@
   }
 }
 
+.minHeightContainer {
+  @media screen and (min-width: 768px) and (max-width: 1440px) {
+    min-height: 95vh;
+  }
+  @media screen and (min-width: 1441px) and (max-width: 1680px) {
+    min-height: 90vh;
+  }
+  @media screen and (min-width: 1681px){
+    min-height: 65vh;
+  }
+}
+
 .meet-people-text{
   @media screen and (min-width: 1200px){
     margin: 50px 0;
@@ -110,6 +122,12 @@
   -webkit-backface-visibility: hidden;
 }
 
+.meet-people-image{
+  @media screen and (min-width: 1441px){
+    margin: 50px 0 130px;
+  }
+}
+
 .meet-people,
 .meet-people-image,
 .j-image-animation,
@@ -138,7 +156,7 @@
 }
 
 .meet-people-image{
-  animation: jumbotronImageAnimation 1s forwards  0.2s;
+  animation: jumbotronImageAnimation 1s forwards 1.5s;
 }
 
 .j-image-animation{
