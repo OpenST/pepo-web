@@ -74,7 +74,8 @@
     },
 
     initFormHelper: function () {
-      var jForm = $("#jEmailCapture") ;
+      var jForm = $("#jEmailCapture");
+      if ( !jForm.length ) { return; }
       jForm.formHelper({
         success: function(res){
           if(res && res.success){
