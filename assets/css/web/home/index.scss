@@ -34,10 +34,17 @@
       }
     }
   }
+}
+
+.minHeightContainer {
   @media screen and (min-width: 768px) and (max-width: 1440px) {
-    &.minHeightContainer {
-      min-height: 95vh
-    }
+    min-height: 95vh;
+  }
+  @media screen and (min-width: 1441px) and (max-width: 1680px) {
+    min-height: 90vh;
+  }
+  @media screen and (min-width: 1681px){
+    min-height: 65vh;
   }
 }
 
@@ -113,6 +120,12 @@
   right: 0;
   z-index: -1;
   -webkit-backface-visibility: hidden;
+}
+
+.meet-people-image{
+  @media screen and (min-width: 1441px){
+    margin: 50px 0 130px;
+  }
 }
 
 .meet-people,
