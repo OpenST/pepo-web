@@ -16,6 +16,12 @@
   }
 }
 
+@media screen and (min-width: 768px) and (max-width: 1440px) {
+  &.minHeightContainer {
+    min-height: 95vh
+  }
+}
+
 .twitter-signin-error{
   color: #dd0017;
   font-size: 13px;
