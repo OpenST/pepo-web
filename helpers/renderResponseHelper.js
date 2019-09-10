@@ -1,7 +1,8 @@
 const rootPrefix = "../";
 
 // All Requires
-const pageMetaProvider = require(rootPrefix + "/config/pageMetaProvider");
+const pageMetaProvider = require(rootPrefix + "/config/pageMetaProvider"),
+      coreConstants = require(rootPrefix + '/config/coreConstants');
 
 class ResponseRenderer {
 
@@ -17,7 +18,13 @@ class ResponseRenderer {
       locals.pageMeta = this.getPageMeta( contentPartialPath );
     }
 
-    locals._contentPartial = contentPartialPath;
+    if ( !locals._contentPartial ) {
+      locals._contentPartial = contentPartialPath;
+    }
+
+    if ( !locals._environment ) {
+      locals._environment = coreConstants.environment;
+    }
 
     response.render(layout, locals, callback);
   }
