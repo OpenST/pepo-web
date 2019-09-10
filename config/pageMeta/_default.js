@@ -16,7 +16,7 @@ module.exports = {
     "title": "Pepo",
     "description": "Meet the people shaping the crypto movement",
     "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img.png",
-    "card": 'summary_large_image',
+    "card": 'summary',
   },
   "assets": {
     // @key 'js'
