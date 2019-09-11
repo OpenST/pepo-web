@@ -338,7 +338,7 @@
       }
       oThis.validator.showErrors( errorHash );
 
-      var generalErrorMessage = response.err.display_text;
+      var generalErrorMessage = response.err.msg;
 
       if ( generalErrorMessage && showGeneralError) {
         oThis.jForm.find(".general_error")
