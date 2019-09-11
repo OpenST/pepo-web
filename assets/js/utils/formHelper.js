@@ -208,7 +208,10 @@
         , success: function (response) {
           if ( oThis.success ) {
             oThis.success.apply( oThis, arguments);
-          } else if ( response.success && oThis.jForm.data("redirect") ) {
+          }else if ( response && response.go_to && response.go_to.by_screen_name ){
+            window.location = window.redirectMap && window.redirectMap[response.go_to.by_screen_name]
+          }
+          else if ( response.success && oThis.jForm.data("redirect") ) {
             window.location = oThis.jForm.data("redirect");
           }
         }
@@ -319,17 +322,25 @@
 
     , showServerErrors: function ( response ) {
       var oThis = this;
-
+      var errorHash = {};
       var serverErrors = response.err.error_data || {};
-      if ( serverErrors instanceof Array ) {
-        //Hack for now.
-        serverErrors = serverErrors[ 0 ] || {};
+      var showGeneralError = true;
+      if ( serverErrors instanceof Array && serverErrors.length) {
+
+        var errObj = serverErrors[0];
+        if ( errObj.hasOwnProperty( 'parameter' ) && errObj.hasOwnProperty( 'msg' ) ) {
+          $(serverErrors).each(function(index, currErrObj) {
+            var parameter = currErrObj.parameter;
+            errorHash[ parameter ] = currErrObj.msg;
+            showGeneralError = false;
+          });
+        }
       }
-      oThis.validator.showErrors( serverErrors );
+      oThis.validator.showErrors( errorHash );
 
       var generalErrorMessage = response.err.display_text;
 
-      if ( generalErrorMessage ) {
+      if ( generalErrorMessage && showGeneralError) {
         oThis.jForm.find(".general_error")
           .addClass("is-invalid")
           .html( generalErrorMessage );
