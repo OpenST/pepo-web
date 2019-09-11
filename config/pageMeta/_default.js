@@ -9,14 +9,14 @@ module.exports = {
   "og": {
     "title": "Pepo",
     "description": "Meet the people shaping the crypto movement",
-    "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img.png",
+    "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img-v1.png",
     "url": "https://pepo.com",
   },
   "twitter": {
     "title": "Pepo",
     "description": "Meet the people shaping the crypto movement",
-    "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img.png",
-    "card": 'summary_large_image',
+    "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img-v1.png",
+    "card": 'summary',
   },
   "assets": {
     // @key 'js'
