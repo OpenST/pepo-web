@@ -12,7 +12,7 @@ class CoreConstant {
   }
 
   get APP_NAME() {
-    return process.env.DEVOPS_APP_NAME;
+    return process.env.DEVOPS_WEB_APP_NAME;
   }
 
   get ENV_IDENTIFIER() {
@@ -32,7 +32,7 @@ class CoreConstant {
   }
 
   get appName() {
-    return process.env.DEVOPS_APP_NAME;
+    return process.env.DEVOPS_WEB_APP_NAME;
   }
 
   get USE_BASIC_AUTHENTICATION() {
