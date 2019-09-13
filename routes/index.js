@@ -43,6 +43,16 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
 });
 
+router.get(pagePathConstants.privacy, function(req, res) {
+  // Process the data received in req.body
+  res.redirect(302, 'https://ost.com/privacy');
+});
+
+router.get(pagePathConstants.terms, function(req, res) {
+  // Process the data received in req.body
+  res.redirect(302, 'https://ost.com/terms');
+});
+
 /* Double opt in page. */
 router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
