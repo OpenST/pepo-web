@@ -1,0 +1,73 @@
+<%
+
+var twitterData = [
+  {
+    desc: "In just 6 weeks we built a Q&A platform from scratch! In this short time we integrated our own token economy powered by @OSTdotcom for rewarding good answers.",
+    handle:"@kwandaDotMe",
+    profile: "https://dxwfxs8b4lg24.cloudfront.net/ost/images/winners-twitter/kwandadotme.jpg",
+    link:"https://twitter.com/kwandaDotMe/status/1000738502345216001"
+  },
+  {
+    desc: "Being a part of the growing developer community building on OST has been amazing. #osta2 Using OST KIT, here’s a look at what dev. teams from around the world were able to create in less than six weeks [...]",
+    handle:"@Ostkidtoken",
+    profile: "https://dxwfxs8b4lg24.cloudfront.net/ost/images/winners-twitter/ostkidtoken.jpg",
+    link:"https://twitter.com/Ostkidtoken/status/1001099129358028801"
+  },
+  {
+    desc: "I'm done! https://medium.com/really-simple-store …Thank you, @OSTdotcom and @betashop ! I had such a blast working on this over the last 6 weeks. #OST #OSTa2 $OST",
+    handle:"@truedrewco",
+    profile: "https://dxwfxs8b4lg24.cloudfront.net/ost/images/winners-twitter/truedrewco.jpg",
+    link:"https://twitter.com/truedrewco/status/999336118062546944"
+
+  },
+  {
+    desc: "I'm done! https://medium.com/really-simple-store …Thank you, @OSTdotcom and @betashop ! I had such a blast working on this over the last 6 weeks. #OST #OSTa2 $OST",
+    handle:"@truedrewco",
+    profile: "https://dxwfxs8b4lg24.cloudfront.net/ost/images/winners-twitter/truedrewco.jpg",
+    link:"https://twitter.com/truedrewco/status/999336118062546944"
+  },
+  {
+    desc: "I'm done! https://medium.com/really-simple-store …Thank you, @OSTdotcom and @betashop ! I had such a blast working on this over the last 6 weeks. #OST #OSTa2 $OST",
+    handle:"@truedrewco",
+    profile: "https://dxwfxs8b4lg24.cloudfront.net/ost/images/winners-twitter/truedrewco.jpg",
+    link:"https://twitter.com/truedrewco/status/999336118062546944"
+  },
+  {
+    desc: "I'm done! https://medium.com/really-simple-store …Thank you, @OSTdotcom and @betashop ! I had such a blast working on this over the last 6 weeks. #OST #OSTa2 $OST",
+    handle:"@truedrewco",
+    profile: "https://dxwfxs8b4lg24.cloudfront.net/ost/images/winners-twitter/truedrewco.jpg",
+    link:"https://twitter.com/truedrewco/status/999336118062546944"
+  }
+];
+
+%>
+
+<div class="row container-twitter py-5">
+  <div class="col-12 px-5">
+
+    <div class="row twitter-background pt-4">
+       <div class="col-12 col-md-8 col-xl-6 mx-auto twitter-desc active">
+         <span class="description-text" style="color: #597a84"><%= twitterData[0].desc %></span>
+       </div>
+    </div>
+    <div class="twitter-carousel with-placeholder container mt-3">
+      <% twitterData.forEach(function(dat, index) { %>
+        <div class="carousel-item text-center align-self-center" data-twitter-index="<%= index %>">
+          <div class="hidden-desc d-none">
+            <%= dat.desc %>
+          </div>
+          <a  href="<%= dat.link %>" rel="noopener noreferrer nofollow" target="_blank" class="disabled twitter-link">
+            <img class="twitter-user-img mx-auto" data-lazy="<%= dat.profile %>"  />
+            <div class="twitter-handle mt-2 active" title="<%= dat.handle %>">
+              <svg class="align-middle mr-2" style="height: 20px;width: 20px;fill: #34445B">
+                <path d="M20.8333333,2.97269756 C20.0670573,3.30724861 19.2428385,3.53348715 18.3782552,3.63539063 C19.2610677,3.11433699 19.9388021,2.29013651 20.2578125,1.30763315 C19.4322917,1.78959175 18.5169271,2.13952445 17.5436198,2.32859066 C16.7636719,1.51079921 15.6529948,1 14.4238281,1 C12.063151,1 10.1497396,2.88361213 10.1497396,5.20752419 C10.1497396,5.53694802 10.1875,5.85804012 10.2604167,6.16631417 C6.70768229,5.99070692 3.55859375,4.31538807 1.45052083,1.76972377 C1.08268229,2.39139909 0.871744792,3.11433699 0.871744792,3.88534256 C0.871744792,5.34467731 1.62630208,6.63289111 2.77278646,7.38723322 C2.07226562,7.36544254 1.41341146,7.17637634 0.837239583,6.86105236 C0.836588542,6.87899763 0.836588542,6.89630199 0.836588542,6.91424726 C0.836588542,8.95295776 2.30989583,10.6532718 4.265625,11.0397359 C3.90690104,11.1358713 3.52929687,11.1871435 3.13932292,11.1871435 C2.86393229,11.1871435 2.59635417,11.1608665 2.33528646,11.1121579 C2.87890625,12.7836314 4.45768229,14.0000641 6.328125,14.0340319 C4.86523437,15.162661 3.02213542,15.8349676 1.01953125,15.8349676 C0.674479167,15.8349676 0.334635417,15.8150997 0,15.7766455 C1.89127604,16.9700058 4.13802083,17.6666667 6.55208333,17.6666667 C14.4140625,17.6666667 18.7128906,11.2550792 18.7128906,5.69525091 C18.7128906,5.51259373 18.7089844,5.33121836 18.7005208,5.15048388 C19.5358073,4.55764917 20.2604167,3.81676601 20.8333333,2.97269756" fill="#34445B"></path>
+              </svg><%= dat.handle %>
+            </div>
+          </a>
+        </div>
+      <% }); %>
+
+    </div>
+  </div>
+</div>
+
