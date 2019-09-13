@@ -1,6 +1,6 @@
 ;
 (function(window, $){
-  let home = ns('home');
+  var home = ns('home');
     home.twitter = {};
 
     home.twitter.carousel = oThis = {
@@ -38,16 +38,16 @@
             },
           ]
         });
-        let firstSlide = $('.twitter-carousel').slick('slickCurrentSlide');
+        var firstSlide = $('.twitter-carousel').slick('slickCurrentSlide');
         $(".slick-slide[data-slick-index='" + firstSlide + "'] .carousel-item .twitter-link").removeClass("disabled");
 
         $(".twitter-carousel").find("[data-twitter-index='" + firstSlide + "']").addClass("custom-slick-center");
 
         $('.twitter-carousel').on('beforeChange', function (event, slick, currentSlide, nextSlide) {
-          let tweetText = $(".slick-slide[data-slick-index='" + nextSlide + "'] .carousel-item .hidden-desc").text();
+          var tweetText = $(".slick-slide[data-slick-index='" + nextSlide + "'] .carousel-item .hidden-desc").text();
 
-          let jCurrent = $(".twitter-carousel").find("[data-twitter-index='" + currentSlide + "']");
-          let jNext = $(".twitter-carousel").find("[data-twitter-index='" + nextSlide + "']");
+          var jCurrent = $(".twitter-carousel").find("[data-twitter-index='" + currentSlide + "']");
+          var jNext = $(".twitter-carousel").find("[data-twitter-index='" + nextSlide + "']");
 
           console.log(jCurrent);
           console.log(jNext);
@@ -67,7 +67,7 @@
         });
 
         $('.twitter-carousel').on('afterChange', function (event, slick, ele) {
-          let currentSlide = $('.twitter-carousel').slick('slickCurrentSlide');
+          var currentSlide = $('.twitter-carousel').slick('slickCurrentSlide');
           $(".carousel-item .twitter-link").addClass("disabled");
           $(".slick-slide[data-slick-index='" + currentSlide + "'] .carousel-item a").removeClass("disabled");
         });
