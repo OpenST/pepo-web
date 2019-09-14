@@ -2,16 +2,22 @@
 
 var twitterData = [
   {
-    desc: "This is actually how blockchain UX should look like - Mikhail Dobrokhvalov, Linkdrop.io",
+    desc: '"This is actually how blockchain UX should look like - Mikhail Dobrokhvalov", Linkdrop.io',
     handle:"@dobrokhvalov",
     profile: "https://d3attjoi5jlede.cloudfront.net/images/pre-launch/Mikhail-Dobrokhvalov.jpg",
     link:"https://twitter.com/dobrokhvalov"
   },
   {
-    desc: "Thanks for taking the time and effort to make something for people like us. I appreciate it. - Aaron Malone, Crypto101",
+    desc: '"Thanks for taking the time and effort to make something for people like us. I appreciate it." - Aaron Malone, Crypto101',
     handle:"@PizzaMind",
     profile: "https://d3attjoi5jlede.cloudfront.net/images/pre-launch/Aaron-Malone.jpg",
     link:"https://twitter.com/PizzaMind"
+  },
+  {
+    desc: '"I\'m excited to share authentic updates about The Graph to viewers on Pepo." - Yaniv Tal, The Graph',
+    handle:"@yanivgraph",
+    profile: "https://d3attjoi5jlede.cloudfront.net/images/pre-launch/Yanivgraph.jpg",
+    link:"https://twitter.com/yanivgraph"
   }
 ];
 
@@ -22,7 +28,7 @@ var twitterData = [
 
     <div class="row twitter-background pt-4">
        <div class="col-12 col-md-8 col-xl-6 mx-auto twitter-desc active">
-         <span class="description-text" style="color: #597a84"><%= twitterData[0].desc %></span>
+         <span class="description-text"><%= twitterData[0].desc %></span>
        </div>
     </div>
     <div class="twitter-carousel with-placeholder container mt-3">
