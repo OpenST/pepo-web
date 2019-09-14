@@ -1,11 +1,17 @@
-$animation-delay : 500ms;
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+$animation-delay : 300ms;
 
 .twitter-carousel .slick-track{
   min-height: 150px;
 }
 
 .container-twitter {
-  background-color: #fff;
+  background-color: $white;
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto 50%;
@@ -38,7 +44,7 @@ $animation-delay : 500ms;
       position: relative;
       display: inline-block;
       &:after, &:before{
-        color: #597a84;
+        color: $blue-700;
         display: block;
         font-size: 80px;
         position: absolute;
@@ -86,7 +92,7 @@ $animation-delay : 500ms;
 
   .twitter-handle{
     font-size: 14px;
-    color: #34445B;
+    color: $blue-800;
     font-weight: 500;
     @media(min-width: 576px) {
       display: none;
@@ -153,7 +159,7 @@ $animation-delay : 500ms;
 
   .slick-prev, .slick-next{
     &:before{
-      color: #34445b;
+      color: $blue-800;
     }
   }
 
