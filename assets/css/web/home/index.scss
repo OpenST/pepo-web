@@ -63,25 +63,6 @@
   margin-top: 5px;
 }
 
-.uber-banner{
-  &:after{
-    content: "";
-    height: 1px;
-    background: linear-gradient(to right, #fff, #ffd5d5, #fff);
-    width: 100%;
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    border-radius: 2px;
-  }
-  a{
-    color: #FF5566;
-    &:hover{
-      text-decoration: none;
-    }
-  }
-}
-
 .edge--top--reverse:before {
   top: 0;
   -webkit-transform: skewY(-3.5deg);
@@ -130,8 +111,7 @@
 
 .meet-people,
 .meet-people-image,
-.j-image-animation,
-.uber-banner{
+.j-image-animation{
   opacity: 0;
 }
 
@@ -147,10 +127,6 @@
   transform: scale( $by );  /* Firefox 16+, IE 10+, Opera */
 }
 
-
-.uber-banner{
-  animation: jumbotronAnimation 1s forwards 0.2s;
-}
 .meet-people{
   animation: jumbotronAnimation 1s forwards 0.2s;
 }
