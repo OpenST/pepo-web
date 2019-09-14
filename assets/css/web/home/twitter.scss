@@ -33,7 +33,39 @@ $animation-delay : 500ms;
       &.active {
         opacity: 1;
       }
-
+    }
+    .description-text{
+      position: relative;
+      display: inline-block;
+      &:after, &:before{
+        color: #597a84;
+        display: block;
+        font-size: 80px;
+        position: absolute;
+        font-family: Georgia, serif;
+      }
+      &:before{
+        content: "\201C";
+        left: -30px;
+        @media(min-width: 1200px){
+          left: -20px;
+        }
+        @media(min-width: 1600px){
+          left: -50px;
+        }
+        top: -30px;
+      }
+      &:after{
+        content: "\201D";
+        right: -30px;
+        @media(min-width: 1200px){
+          right: -20px;
+        }
+        @media(min-width: 1600px){
+          right: -50px;
+        }
+        top: -30px;
+      }
     }
   }
 
