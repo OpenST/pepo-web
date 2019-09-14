@@ -23,14 +23,23 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
     success: true,
     data: {redemptionProducts: [
         {
-          k1: 1
+          id: 1,
+          kind: "AMAZON",
+          status: "ACTIVE",
+          uts: parseInt(Date.now() / 1000)
+        },
+        {
+          id: 2,
+          kind: "STARBUCKS",
+          status: "ACTIVE",
+          uts: parseInt(Date.now() / 1000)
         }
       ]
     }
   };
 
   if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemptionProduction', apiResponse.data.redemptionProducts);
+    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemptionProduction', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
