@@ -94,8 +94,15 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //       available_balance: '1748840000000000000000',
   //       unsettled_debit: '0',
   //       updated_timestamp: 1568311829 },
-  //
-  //     balance_in_higer_unit: '123'
+  //     balance_in_higer_unit: '123',
+  //     price_points: {
+  //       OST: {
+  //         USD: "0.0109763064",
+  //         EUR: "0.0099645654",
+  //         GBP: "0.0088206916",
+  //         decimals: 18
+  //       }
+  //     }
   //   }
   // };
 
