@@ -6,6 +6,7 @@
     jBackArrow : $('#backArrowAction'),
     productImgWrapper : $('.product-img'),
     productDetail : $('.product-detail'),
+    pricePoint : $('#pricePoint').val(),
 
     currentProductId : null,
 
@@ -13,7 +14,7 @@
       oThis.redemptionPagedata = data;
       oThis.productClick();
       
-      $("#requestRedemption").on('click', function () {
+      $("#requestRedemptionBtn").on('click', function () {
         oThis.requestAction();
       });
 
@@ -22,6 +23,7 @@
        oThis.productDetail.hide();
        $('.products').show();
        $('.redemption-message').hide();
+        $("#requestRedemptionBtn").show();
       });
     },
 
@@ -41,10 +43,11 @@
       $.ajax({
         url: requestRoute,
         method: requestMethod,
-        data: {"product_id": oThis.currentProductId},
+        data: {"product_id": oThis.currentProductId, "price_point": oThis.pricePoint},
         success: function (response) {
           if ( response.success ) {
             $('#redemptionSuccess').show();
+            $("#requestRedemptionBtn").hide();
           } else {
             $('#redemptionFailure').show();
           }
