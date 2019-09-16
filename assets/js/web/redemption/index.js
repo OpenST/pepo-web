@@ -30,6 +30,7 @@
     productClick: function () {
       oThis.productImgWrapper.on('click', function(){
         oThis.currentProductId = $(this).data("product-id");
+        oThis.currentPepoAmountInWei = $(this).data("pepo-amount-in-wei");
         oThis.jBackArrow.show();
         $(this).closest('.products').hide();
         oThis.productDetail.fadeIn('slow');
@@ -43,7 +44,7 @@
       $.ajax({
         url: requestRoute,
         method: requestMethod,
-        data: {"product_id": oThis.currentProductId, "price_point": oThis.pricePoint},
+        data: {"product_id": oThis.currentProductId, "price_point": oThis.pricePoint, "pepo_amount_in_wei": oThis.currentPepoAmountInWei},
         success: function (response) {
           if ( response.success ) {
             $('#redemptionSuccess').show();
