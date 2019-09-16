@@ -35,7 +35,7 @@ class GetAccount extends ServiceBase {
 
     await oThis._fetchProducts();
 
-    oThis.serviceResp.data.balance_in_higer_unit = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance_in_wei).toString(10);
+    oThis.serviceResp.data.balance_in_higer_unit = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance.available_balance).toString(10);
 
     return Promise.resolve(oThis.serviceResp);
   }

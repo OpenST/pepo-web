@@ -83,7 +83,11 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         },
   //         dollar_value: 10
   //       } ],
-  //     balance_in_higer_unit: '112'
+  //     balance: { user_id: 'ca9cd73b-c79e-4d0b-b55b-6d95ee7a8d54',
+  //       total_balance: '1748840000000000000000',
+  //       available_balance: '1748840000000000000000',
+  //       unsettled_debit: '0',
+  //       updated_timestamp: 1568311829 }
   //   }
   // };
 
