@@ -7,10 +7,14 @@
     init : function (data) {
       oThis.redemptionPagedata = data;
       oThis.productClick();
+      
       $("#requestRedemption").on('click', function () {
         oThis.requestAction();
       });
-      // console.log("redemptionPagedata",oThis.redemptionPagedata)
+      
+      $('#backArrowAction').on('click', function () {
+        alert('lolwa');
+      });
     },
 
     productClick: function () {
