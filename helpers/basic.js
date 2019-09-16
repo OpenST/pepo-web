@@ -91,7 +91,7 @@ class BasicHelper {
       usdInOnePepo = new BigNumber(ostInOnePepo).mul(new BigNumber(usdInOneOst)),
       totalUSDBn = new BigNumber(usdInOnePepo).mul(new BigNumber(amountPepo));
 
-    return totalUSDBn.toString(10);
+    return totalUSDBn.round(2).toString(10);
   }
 }
 
