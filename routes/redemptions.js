@@ -31,29 +31,59 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //       { id: '2',
   //         status: 'ACTIVE',
   //         kind: 'STARBUCKS',
-  //         createdAt: 1568608359,
-  //         updatedAt: 1568608359 },
+  //         created_at: 1568608359,
+  //         updated_at: 1568608359,
+  //         images: {
+  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-1x1.png",
+  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-16x9.png"
+  //         },
+  //         dollar_value: 10
+  //       },
   //       { id: '3',
   //         status: 'ACTIVE',
   //         kind: 'NETFLIX',
   //         createdAt: 1568608359,
-  //         updatedAt: 1568608359 },
+  //         updatedAt: 1568608359,
+  //         images: {
+  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-netflix-1x1.png",
+  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-netflix-16x9.png"
+  //         },
+  //         dollar_value: 10
+  //       },
   //       { id: '4',
   //         status: 'ACTIVE',
   //         kind: 'AIRBNB',
   //         createdAt: 1568608359,
-  //         updatedAt: 1568608359 },
+  //         updatedAt: 1568608359,
+  //         images: {
+  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-airbnb-1x1.png",
+  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-airbnb-16x9.png"
+  //         },
+  //         dollar_value: 10
+  //       },
   //       { id: '5',
   //         status: 'ACTIVE',
   //         kind: 'CREATOR_PARTNERS',
   //         createdAt: 1568608359,
-  //         updatedAt: 1568608359 },
+  //         updatedAt: 1568608359,
+  //         images: {
+  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-1x1.png",
+  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-16x9.png"
+  //         },
+  //         dollar_value: 10
+  //       },
   //       { id: '6',
   //         status: 'ACTIVE',
   //         kind: 'UBER',
   //         createdAt: 1568608359,
-  //         updatedAt: 1568608359 } ],
-  //     balance: '1123000000000000'
+  //         updatedAt: 1568608359,
+  //         images: {
+  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-uber-1x1.png",
+  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-uber-16x9.png"
+  //         },
+  //         dollar_value: 10
+  //       } ],
+  //     balance_in_higer_unit: '112'
   //   }
   // };
 

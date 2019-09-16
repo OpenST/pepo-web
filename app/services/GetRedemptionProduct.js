@@ -2,6 +2,7 @@ const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   RedemptionApi = require(rootPrefix + '/lib/pepoApi/Redemption'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  basicHelper = require(rootPrefix + '/helpers/basic'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants');
@@ -33,6 +34,8 @@ class GetAccount extends ServiceBase {
     const oThis = this;
 
     await oThis._fetchProducts();
+
+    oThis.serviceResp.data.balance_in_higer_unit = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance).toString(10);
 
     return Promise.resolve(oThis.serviceResp);
   }
