@@ -1,0 +1,17 @@
+
+<div class="container">
+<h4 class="text-center mt-3">Pepo Store </h4>
+<p class="text-center">Pepos to send 1898 ~ 400.0 </p>
+<hr class="header-line">
+
+<div class="row mx-auto">
+<% for(var i=0; i < redemption_products.length; i++) {
+
+console.log(redemption_products[i]);
+%>
+    <div class="col-6">
+       <img class="img-fluid" title="<%= redemption_products[i].kind %>" style="object-fit: cover;" src="https://via.placeholder.com/150" />
+    </div>
+<% } %>
+</div>
+</div>
