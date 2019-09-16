@@ -73,6 +73,16 @@ class BasicHelper {
       api_error_config: apiErrorConfig
     };
   }
+
+  getPepoAmountForUSD(usdInOneOst, amountUSD){
+    let pepoInOneOST = 1;
+
+    let ostInOneUSD = new BigNumber(1).div(new BigNumber(usdInOneOst)),
+      pepoInOneUSD = new BigNumber(ostInOneUSD).mul(new BigNumber(pepoInOneOST)),
+      totalPepoBn = new BigNumber(pepoInOneUSD).mul(new BigNumber(amountUSD));
+
+    return totalPepoBn.toString(10);
+  }
 }
 
 module.exports = new BasicHelper();
