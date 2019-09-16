@@ -35,7 +35,10 @@ class GetAccount extends ServiceBase {
 
     await oThis._fetchProducts();
 
-    oThis.serviceResp.data.balance_in_higer_unit = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance.available_balance).toString(10);
+    let pepoBalance = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance.available_balance).toString(10),
+      pricePoint = oThis.serviceResp.data.price_point;
+    oThis.serviceResp.data.balance_in_higer_unit = pepoBalance;
+    oThis.serviceResp.data.usd_amount = basicHelper.getUSDAmountForPepo(pricePoint['OST']['USD'], pepoBalance);
 
     return Promise.resolve(oThis.serviceResp);
   }
