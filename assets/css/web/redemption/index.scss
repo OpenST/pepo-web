@@ -1,7 +1,45 @@
-.header-line{
-  border-top: 2px solid #ff5566;
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+h4,
+p{
+  color: $valhalla;
+  text-align: center;
+  font-family: AvenirNext-Medium;
 }
-.img-dimensions{
-  height: 100px;
-  width:100px;
+h4{
+  letter-spacing: 1px;
+}
+.header-line{
+  height: 3px;
+  background: linear-gradient(-45deg, $wildWatermelon 0%, $ticklePink 100%);
+}
+.btn-gradient{
+  font-size: 18px;
+  border: none!important;
+  background: linear-gradient(-45deg, $wildWatermelon 0%, $ticklePink 100%);
+}
+
+.success-message{
+  &.gradient-line{
+    padding: 1px;
+    border-radius: 10px;
+    background: linear-gradient(to right, $ticklePink, $wildWatermelon);
+  }
+  .gradient-line-inner{
+    border-radius: 10px;
+    background-color: $white;
+  }
+  .text-msg{
+    font-size: 14px;
+    color: rgba(42, 41, 59, 0.7);
+  }
+}
+
+.error-message{
+  font-size: 14px;
+  color: $wildWatermelon;
 }
