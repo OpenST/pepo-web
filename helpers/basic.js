@@ -75,13 +75,23 @@ class BasicHelper {
   }
 
   getPepoAmountForUSD(usdInOneOst, amountUSD){
-    let pepoInOneOST = 1;
+    const oThis = this;
 
-    let ostInOneUSD = new BigNumber(1).div(new BigNumber(usdInOneOst)),
-      pepoInOneUSD = new BigNumber(ostInOneUSD).mul(new BigNumber(pepoInOneOST)),
+    let usdInOnePepo = oThis.getUSDAmountForPepo(usdInOneOst, '1'),
+      pepoInOneUSD = new BigNumber(1).div(new BigNumber(usdInOnePepo)),
       totalPepoBn = new BigNumber(pepoInOneUSD).mul(new BigNumber(amountUSD));
 
     return totalPepoBn.toString(10);
+  }
+
+  getUSDAmountForPepo(usdInOneOst, amountPepo){
+    let pepoInOneOST = 1;
+
+    let ostInOnePepo = new BigNumber(1).div(new BigNumber(pepoInOneOST)),
+      usdInOnePepo = new BigNumber(ostInOnePepo).mul(new BigNumber(usdInOneOst)),
+      totalUSDBn = new BigNumber(usdInOnePepo).mul(new BigNumber(amountPepo));
+
+    return totalUSDBn.toString(10);
   }
 }
 
