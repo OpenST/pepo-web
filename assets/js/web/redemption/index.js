@@ -3,6 +3,11 @@
   var ost = ns('ost');
   var oThis = ost.redemptionPage =  {
     redemptionPagedata : null,
+    jBackArrow : $('#backArrowAction'),
+    productImgWrapper : $('.product-img'),
+    productDetail : $('.product-detail'),
+
+    currentProductId : null,
 
     init : function (data) {
       oThis.redemptionPagedata = data;
@@ -11,19 +16,22 @@
       $("#requestRedemption").on('click', function () {
         oThis.requestAction();
       });
-      
-      $('#backArrowAction').on('click', function () {
-        alert('lolwa');
+
+      oThis.jBackArrow.on('click', function () {
+       $(this).hide();
+       oThis.productDetail.hide();
+       $('.products').show();
+       $('.redemption-message').hide();
       });
     },
 
     productClick: function () {
-      var productImg = $('.product-img');
-      var productDetail = $('.product-detail');
-      productImg.on('click', function(){
+      oThis.productImgWrapper.on('click', function(){
+        oThis.currentProductId = $(this).data("product-id");
+        oThis.jBackArrow.show();
         $(this).closest('.products').hide();
-        productDetail.fadeIn('slow');
-        productDetail.find('.landscape-img').attr('src', $(this).data('src'));
+        oThis.productDetail.fadeIn('slow');
+        oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
       })
     },
 
@@ -33,17 +41,17 @@
       $.ajax({
         url: requestRoute,
         method: requestMethod,
-        data: {"product_id": 1},
+        data: {"product_id": oThis.currentProductId},
         success: function (response) {
-          if ( !response || !response.data || !response.data.success ) {
-
+          if ( response.success ) {
+            $('#redemptionSuccess').show();
           } else {
-
+            $('#redemptionFailure').show();
           }
         },
-        error: function() {
-
-        }
+        error: function (jqXHR, exception) {
+          $('#requestError').show();
+        },
       })
     }
 
