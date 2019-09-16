@@ -27,15 +27,21 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //       status: 'ACTIVE',
   //       kind: 'AMAZON',
   //       createdAt: 1568608359,
-  //       updatedAt: 1568608359 },
+  //       updatedAt: 1568608359,
+  //       images: {
+  //         square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-1x1.png",
+  //         landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-16x9.png"
+  //       },
+  //       dollar_value: 10
+  //     },
   //       { id: '2',
   //         status: 'ACTIVE',
   //         kind: 'STARBUCKS',
   //         created_at: 1568608359,
   //         updated_at: 1568608359,
   //         images: {
-  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-1x1.png",
-  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-16x9.png"
+  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-starbucks-1x1.png",
+  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-starbucks-16x9.png"
   //         },
   //         dollar_value: 10
   //       },
@@ -67,8 +73,8 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         createdAt: 1568608359,
   //         updatedAt: 1568608359,
   //         images: {
-  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-1x1.png",
-  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-16x9.png"
+  //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-1x1-.png",
+  //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-16x9-.png"
   //         },
   //         dollar_value: 10
   //       },
@@ -87,7 +93,9 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //       total_balance: '1748840000000000000000',
   //       available_balance: '1748840000000000000000',
   //       unsettled_debit: '0',
-  //       updated_timestamp: 1568311829 }
+  //       updated_timestamp: 1568311829 },
+  //
+  //     balance_in_higer_unit: '123'
   //   }
   // };
 

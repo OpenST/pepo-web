@@ -33,6 +33,7 @@
       $.ajax({
         url: requestRoute,
         method: requestMethod,
+        data: {"product_id": 1},
         success: function (response) {
           if ( !response || !response.data || !response.data.success ) {
 
