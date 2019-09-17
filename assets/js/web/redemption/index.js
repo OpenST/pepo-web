@@ -2,28 +2,36 @@
 (function (window,$) {
   var ost = ns('ost');
   var oThis = ost.redemptionPage =  {
+
     redemptionPagedata : null,
     jBackArrow : $('#backArrowAction'),
     productImgWrapper : $('.product-img'),
     productDetail : $('.product-detail'),
     pricePoint : $('#pricePoint').val(),
-
+    requestRedemptionBtn: $('#requestRedemptionBtn'),
     currentProductId : null,
 
     init : function (data) {
+      $('.app-footer').hide();
       oThis.redemptionPagedata = data;
-      oThis.productClick();
+      setTimeout(function () {
+        oThis.productClick();
+      });
       
-      $("#requestRedemptionBtn").on('click', function () {
-        oThis.requestAction();
+      oThis.requestRedemptionBtn.on('click', function () {
+        $(this).text('Requesting...').prop('disabled', true);
+        setTimeout(function () {
+          oThis.requestAction();
+        }, 1000);
       });
 
       oThis.jBackArrow.on('click', function () {
-       $(this).hide();
-       oThis.productDetail.hide();
-       $('.products').show();
-       $('.redemption-message').hide();
-        $("#requestRedemptionBtn").show();
+        $(this).hide();
+        oThis.productDetail.hide();
+        $('.products').fadeIn('slow').show();
+        $('.redemption-message').hide();
+        $('#requestError').hide();
+        oThis.requestRedemptionBtn.show();
       });
     },
 
@@ -31,10 +39,10 @@
       oThis.productImgWrapper.on('click', function(){
         oThis.currentProductId = $(this).data("product-id");
         oThis.currentPepoAmountInWei = $(this).data("pepo-amount-in-wei");
-        oThis.jBackArrow.show();
+        oThis.jBackArrow.fadeIn('slow').show();
         $(this).closest('.products').hide();
-        oThis.productDetail.fadeIn('slow');
         oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
+        oThis.productDetail.fadeIn('slow');
       })
     },
 
@@ -44,18 +52,25 @@
       $.ajax({
         url: requestRoute,
         method: requestMethod,
-        data: {"product_id": oThis.currentProductId, "price_point": oThis.pricePoint, "pepo_amount_in_wei": oThis.currentPepoAmountInWei},
+        data: {
+          "product_id": oThis.currentProductId,
+          "price_point": oThis.pricePoint,
+          "pepo_amount_in_wei": oThis.currentPepoAmountInWei
+        },
         success: function (response) {
           if ( response.success ) {
             $('#redemptionSuccess').show();
-            $("#requestRedemptionBtn").hide();
+            oThis.requestRedemptionBtn.hide();
           } else {
             $('#redemptionFailure').show();
           }
         },
         error: function (jqXHR, exception) {
-          $('#requestError').show();
+          $('#requestError').show().addClass('');
         },
+        complete: function (response) {
+          oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
+        }
       })
     }
 
