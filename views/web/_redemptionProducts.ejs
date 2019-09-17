@@ -19,12 +19,13 @@
     <div class="row no-gutters">
         <% redemption_products.forEach(function(dat, index) { %>
             <div class="col-6 form-group <%= index % 2 ? 'pl-2' : 'pr-2' %>">
-                <div class="col-12 embed-responsive embed-responsive-1by1 product-img-wrapper"">
+                <div class="col-12 embed-responsive embed-responsive-1by1 product-img-wrapper">
                     <img src="<%= dat.images.square%>"
                          data-src="<%= dat.images.landscape%>"
                          class="embed-responsive-item product-img"
                          alt="1x1 image"
                          data-product-id="<%= dat.id %>"
+                         data-product-kind="<%= dat.kind %>"
                          data-pepo-amount-in-wei="<%= dat.pepoAmountInWei %>"
                     />
                 </div>
@@ -37,7 +38,7 @@
     <div class="col-12 embed-responsive embed-responsive-16by9">
         <img class="embed-responsive-item landscape-img" src="" alt="16x9 image"/>
     </div>
-    <p style="font-size: 18px" class="my-3">Amazon gift Card</p>
+    <p style="font-size: 18px" class="my-3" id="productKind"></p>
     <button id="requestRedemptionBtn" class="btn btn-primary w-100 btn-gradient text-capitalize mb-2" type="submit">Request</button>
     <div id="requestError" class="text-center error-message animationBounceText" style="display: none;">Something went wrong!</div>
 

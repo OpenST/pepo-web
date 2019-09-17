@@ -10,6 +10,8 @@
     pricePoint : $('#pricePoint').val(),
     requestRedemptionBtn: $('#requestRedemptionBtn'),
     currentProductId : null,
+    currentPepoAmountInWei: null,
+    currentProductKind: null,
 
     init : function (data) {
       $('.app-footer').hide();
@@ -32,6 +34,8 @@
         $('.redemption-message').hide();
         $('#requestError').hide();
         oThis.requestRedemptionBtn.show();
+        $('.landscape-img').attr('src', '');
+        $('#productKind').text('');
       });
     },
 
@@ -39,10 +43,12 @@
       oThis.productImgWrapper.on('click', function(){
         oThis.currentProductId = $(this).data("product-id");
         oThis.currentPepoAmountInWei = $(this).data("pepo-amount-in-wei");
+        oThis.currentProductKind = $(this).data("product-kind");
         oThis.jBackArrow.fadeIn('slow').show();
         $(this).closest('.products').hide();
         oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
         oThis.productDetail.fadeIn('slow');
+        $('#productKind').text(oThis.currentProductKind.toLowerCase() + " Gift Card");
       })
     },
 
