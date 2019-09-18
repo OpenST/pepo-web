@@ -45,12 +45,12 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
 router.get(pagePathConstants.privacy, function(req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://ost.com/privacy');
+  res.redirect(302, 'https://www.dropbox.com/s/yg4zq9z4cz2zynb/Pepo%2520Privacy%2520Policy.pdf?dl=0');
 });
 
 router.get(pagePathConstants.terms, function(req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://ost.com/terms');
+  res.redirect(302, 'https://www.dropbox.com/s/v9e7hsdx9yc3eg7/Pepo%20Terms%20of%20Service.pdf?dl=0');
 });
 
 /* Double opt in page. */
