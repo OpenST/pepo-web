@@ -13,7 +13,6 @@ const express = require('express'),
 
 const indexRouter = require(rootPrefix + '/routes/index'),
   usersRouter = require(rootPrefix + '/routes/users'),
-  redemptionsRouter = require(rootPrefix + '/routes/redemptions'),
   supportRouter = require(rootPrefix + '/routes/support'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
