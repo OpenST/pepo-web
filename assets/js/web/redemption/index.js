@@ -53,7 +53,7 @@
     },
 
     requestAction: function () {
-      var requestRoute   = "/api/v1/redemptions";
+      var requestRoute   = "/api/web/redemptions";
       var requestMethod  = "POST";
       $.ajax({
         url: requestRoute,
