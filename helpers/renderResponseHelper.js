@@ -26,6 +26,10 @@ class ResponseRenderer {
       locals._environment = coreConstants.environment;
     }
 
+    if ( !locals._supportWidgetAppId ) {
+      locals._supportWidgetAppId = coreConstants.SUPPORT_WIDGET_APP_ID;
+    }
+
     response.render(layout, locals, callback);
   }
 

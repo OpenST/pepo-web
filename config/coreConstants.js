@@ -59,6 +59,10 @@ class CoreConstant {
     return process.env.PW_CLOUD_FRONT_BASE_DOMAIN;
   }
 
+  get SUPPORT_WIDGET_APP_ID() {
+    return process.env.PW_SUPPORT_WIDGET_APP_ID;
+  }
+
 }
 
 module.exports = new CoreConstant();

@@ -14,13 +14,17 @@ const errorConfig = basicHelper.fetchErrorConfig();
 /* GET users account page. */
 router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  //NEVER UNCOMMENT AND COMMIT BELOW TWO LINES
+  // renderResponseHelper.renderWithLayout(req, res, 'support', 'web/_support', {});
+  // return;
+
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
   let getSupportDetailsObj = new GetSupportDetails({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getSupportDetailsObj.perform();
   cookieHelper.setNewCookies(req, res);
 
   if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_support', apiResponse.data);
+    renderResponseHelper.renderWithLayout(req, res, 'support', 'web/_support', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
