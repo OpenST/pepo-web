@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const rootPrefix = '..',
+  deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
@@ -91,6 +92,24 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
     renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
   }
 
+});
+
+/* GET Deep linking for android. */
+router.get('/.well-known/assetlinks.json', async function (req, res) {
+  
+  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.androidDeviceType);
+  
+  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
+  
+});
+
+/* GET Deep linking for ios. */
+router.get('/apple-app-site-association', async function (req, res) {
+  
+  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.iosDeviceType);
+  
+  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
+  
 });
 
 

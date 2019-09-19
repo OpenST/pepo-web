@@ -48,6 +48,24 @@ class BasicHelper {
   isProduction() {
     return coreConstants.environment === 'production';
   }
+  
+  /**
+   * Check if environment is sandbox.
+   *
+   * @return {boolean}
+   */
+  isSandbox() {
+    return coreConstants.environment === 'sandbox';
+  }
+  
+  /**
+   * Check if environment is staging.
+   *
+   * @return {boolean}
+   */
+  isStaging() {
+    return coreConstants.environment === 'staging';
+  }
 
   /**
    * Log date format.
