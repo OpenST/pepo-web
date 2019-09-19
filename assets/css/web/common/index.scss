@@ -1,0 +1,22 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.circleFill {
+  color: $valhalla;
+  &:before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin: 0 5px;
+    border-radius: 6px;
+    background-color: $valhalla;
+    display: inline-block;
+  }
+  &:hover{
+    color: $wildWatermelon;
+    text-decoration: none;
+  }
+}
