@@ -5,8 +5,8 @@
   var intercomAppId = "<%= _supportWidgetAppId %>";
   var intercomWidgetUrl = 'https://widget.intercom.io/widget/' + intercomAppId;
   var user_id = null;
-  <% if (typeof support_widget_user_id !== 'undefined') { %>
-  user_id = "<%= support_widget_user_id%>" ;
+  <% if (typeof external_user_id !== 'undefined') { %>
+  user_id = "<%= external_user_id%>" ;
   <% } %>
   var intercomSettingsObj = {
     app_id: intercomAppId

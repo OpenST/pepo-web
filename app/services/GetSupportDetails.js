@@ -1,6 +1,7 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   SupportApi = require(rootPrefix + '/lib/pepoApi/Support'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
 
 class GetSupportDetails extends ServiceBase {
@@ -49,7 +50,8 @@ class GetSupportDetails extends ServiceBase {
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
-      oThis.serviceResp = resp
+      oThis.serviceResp = resp;
+      oThis.serviceResp.data['_supportWidgetAppId'] = coreConstants.SUPPORT_WIDGET_APP_ID;
     }
 
     return responseHelper.successWithData({});
