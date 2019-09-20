@@ -2,8 +2,8 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "com.ost.ostwallet",
+    "package_name": "com.pepo.v2.production",
     "sha256_cert_fingerprints":
-    ["7F:2C:93:D2:12:85:11:C1:67:5E:A8:17:8C:FE:33:F0:92:E8:2C:BA:C7:FE:FA:71:58:8A:8E:28:A2:C3:D0:40"]
+    ["40:A2:65:FD:C3:91:B1:A4:DC:BA:D6:40:5F:19:06:44:70:64:72:1F:60:09:72:10:DF:F3:0E:65:43:81:08:26"]
   }
 }]
