@@ -13,6 +13,7 @@ const express = require('express'),
 
 const indexRouter = require(rootPrefix + '/routes/index'),
   usersRouter = require(rootPrefix + '/routes/users'),
+  redemptionsRouter = require(rootPrefix + '/routes/redemptions'),
   supportRouter = require(rootPrefix + '/routes/support'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
@@ -165,6 +166,7 @@ app.use(
 
 // Helmet helps secure Express apps by setting various HTTP headers.
 app.use(helmet());
+app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -199,6 +201,7 @@ app.use(csrfProtection);
 
 app.use(pagePathConstants.home, indexRouter);
 app.use(pagePathConstants.account, usersRouter);
+app.use(pagePathConstants.redemptions, redemptionsRouter);
 app.use(pagePathConstants.support, supportRouter);
 
 // connect-assets relies on to use defaults in config

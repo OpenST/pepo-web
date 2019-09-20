@@ -12,19 +12,19 @@ class CoreConstant {
   }
 
   get APP_NAME() {
-    return process.env.DEVOPS_WEB_APP_NAME;
+    return process.env.PW_DEVOPS_WEB_APP_NAME;
   }
 
   get ENV_IDENTIFIER() {
-    return process.env.DEVOPS_ENV_ID;
+    return process.env.PW_DEVOPS_ENV_ID;
   }
 
   get IP_ADDRESS() {
-    return process.env.DEVOPS_IP_ADDRESS;
+    return process.env.PW_DEVOPS_IP_ADDRESS;
   }
 
   get WS_SERVER_IDENTIFIER() {
-    return process.env.DEVOPS_SERVER_IDENTIFIER;
+    return process.env.PW_DEVOPS_SERVER_IDENTIFIER;
   }
 
   get COOKIE_DOMAIN() {

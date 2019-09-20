@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const rootPrefix = '..',
+  deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
@@ -45,12 +46,12 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
 router.get(pagePathConstants.privacy, function(req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://ost.com/privacy');
+  res.redirect(302, 'https://www.dropbox.com/s/yg4zq9z4cz2zynb/Pepo%2520Privacy%2520Policy.pdf?dl=0');
 });
 
 router.get(pagePathConstants.terms, function(req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://ost.com/terms');
+  res.redirect(302, 'https://www.dropbox.com/s/v9e7hsdx9yc3eg7/Pepo%20Terms%20of%20Service.pdf?dl=0');
 });
 
 /* Double opt in page. */
@@ -91,6 +92,24 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
     renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
   }
 
+});
+
+/* GET Deep linking for android. */
+router.get('/.well-known/assetlinks.json', async function (req, res) {
+  
+  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.androidDeviceType);
+  
+  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
+  
+});
+
+/* GET Deep linking for ios. */
+router.get('/apple-app-site-association', async function (req, res) {
+  
+  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.iosDeviceType);
+  
+  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
+  
 });
 
 
