@@ -45,7 +45,7 @@ class GetAccount extends ServiceBase {
     for(let i = 0; i < oThis.serviceResp.data.redemption_products.length; i ++) {
       let currProduct = oThis.serviceResp.data.redemption_products[i];
 
-      currProduct.pepoAmountInWei = basicHelper.getPepoAmountForUSD(pricePoint, currProduct.dollar_value);
+      currProduct.pepoAmountInWei = basicHelper.getPepoAmountForUSD(pricePoint, currProduct.dollarValue);
     }
 
     return Promise.resolve(oThis.serviceResp);
