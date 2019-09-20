@@ -94,23 +94,4 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
 
 });
 
-/* GET Deep linking for android. */
-router.get('/.well-known/assetlinks.json', async function (req, res) {
-  
-  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.androidDeviceType);
-  
-  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
-  
-});
-
-/* GET Deep linking for ios. */
-router.get('/apple-app-site-association', async function (req, res) {
-  
-  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.iosDeviceType);
-  
-  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
-  
-});
-
-
 module.exports = router;

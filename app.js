@@ -23,6 +23,7 @@ const indexRouter = require(rootPrefix + '/routes/index'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker'),
+  staticContentsRoute = require(rootPrefix + '/routes/staticContents'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
@@ -183,6 +184,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sanitizer.sanitizeBodyAndQuery, assignParams);
 
 app.use('/health-checker', elbHealthCheckerRoute);
+
+// These are static routes without basic auth.
+app.use('/', staticContentsRoute);
 
 // Add basic auth in chain
 app.use(basicAuthentication);
