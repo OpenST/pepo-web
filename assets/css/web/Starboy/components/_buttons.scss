@@ -43,4 +43,13 @@
       background-color: $blue-900;
     }
   }
+  &.btn-gradient{
+    font-size: 18px;
+    color: $white !important;
+    border: none!important;
+    background: linear-gradient(-45deg, $wildWatermelon 0%, #ff7499 100%);
+    :hover, :active, :focus{
+      color: $white;
+    }
+  }
 }
