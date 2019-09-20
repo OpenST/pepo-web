@@ -38,6 +38,7 @@ class GetAccount extends ServiceBase {
     let pepoBalance = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance.available_balance).toString(10),
       pricePoint = oThis.serviceResp.data.price_points['OST']['USD'];
 
+    logger.log('oThis.serviceResp ===========', oThis.serviceResp);
     oThis.serviceResp.data.balance_in_higer_unit = pepoBalance;
     oThis.serviceResp.data.usd_amount = basicHelper.getUSDAmountForPepoForDisplay(pricePoint, pepoBalance);
 
