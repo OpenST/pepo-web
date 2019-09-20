@@ -13,7 +13,7 @@ router.get('/.well-known/assetlinks.json', async function (req, res) {
 
   let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.androidDeviceType);
 
-  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
+  return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
 
 });
 
@@ -22,7 +22,7 @@ router.get('/apple-app-site-association', async function (req, res) {
 
   let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.iosDeviceType);
 
-  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
+  return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
 
 });
 
