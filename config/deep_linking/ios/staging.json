@@ -1,13 +1,1 @@
-{
-  "applinks": {
-    "apps": [],
-    "details": [
-      {
-        "appID": "N83K86W6P4.com.pepo.staging",
-        "paths": [
-          "/*"
-        ]
-      }
-    ]
-  }
-}
+{"applinks":{"apps":[],"details":[{"appID":"N83K86W6P4.com.pepo.staging","paths":["/*"]}]}}
