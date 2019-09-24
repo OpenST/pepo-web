@@ -3,7 +3,6 @@
   var ost = ns('ost');
   var oThis = ost.redemptionPage =  {
 
-    redemptionPagedata : null,
     jBackArrow : $('#backArrowAction'),
     productImgWrapper : $('.product-img'),
     productDetail : $('.product-detail'),
@@ -13,9 +12,8 @@
     currentPepoAmountInWei: null,
     currentProductKind: null,
 
-    init : function (data) {
+    init : function () {
       $('.app-footer').hide();
-      oThis.redemptionPagedata = data;
       setTimeout(function () {
         oThis.productClick();
       });

@@ -95,6 +95,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //       unsettled_debit: '0',
   //       updated_timestamp: 1568311829 },
   //     balance_in_higer_unit: '123',
+  //     usd_amount: '1',
   //     price_points: {
   //       OST: {
   //         USD: "0.0109763064",
