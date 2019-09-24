@@ -44,12 +44,12 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
 });
 
-router.get(pagePathConstants.privacy, function(req, res) {
+router.get(pagePathConstants.privacy, function (req, res) {
   // Process the data received in req.body
   res.redirect(302, 'https://www.dropbox.com/s/yg4zq9z4cz2zynb/Pepo%2520Privacy%2520Policy.pdf?dl=0');
 });
 
-router.get(pagePathConstants.terms, function(req, res) {
+router.get(pagePathConstants.terms, function (req, res) {
   // Process the data received in req.body
   res.redirect(302, 'https://www.dropbox.com/s/v9e7hsdx9yc3eg7/Pepo%20Terms%20of%20Service.pdf?dl=0');
 });
@@ -77,7 +77,11 @@ router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, as
 router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   if (!req.decodedParams.rd) {
-    let redirectUrl = req.url + '&rd=1';
+    if (!req.decodedParams.oauth_token || !req.decodedParams.oauth_verifier) {
+      return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    }
+
+    let redirectUrl = req.path + `?oauth_token=${escape(req.decodedParams.oauth_token)}&oauth_verifier=${escape(req.decodedParams.oauth_verifier)}&rd=1`;
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
   }
 
@@ -87,7 +91,11 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
   cookieHelper.setNewCookies(req, res);
 
   if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: pagePathConstants.account});
+    let redirectUrl = pagePathConstants.account;
+    if (apiResponse.data['newSignup']) {
+      redirectUrl = redirectUrl + '#new'
+    }
+    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
   } else {
     renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
   }
