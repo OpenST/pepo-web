@@ -6,6 +6,7 @@ const rootPrefix = '..',
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
+  apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
@@ -86,8 +87,6 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
 
   cookieHelper.setNewCookies(req, res);
 
-  console.log('====apiResponse==========', apiResponse);
-
   if (apiResponse.success) {
     let redirectUrl = pagePathConstants.account;
     if (apiResponse.data['newSignup']) {
@@ -95,7 +94,12 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
     }
     renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
   } else {
-    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    const parsedResponse = apiResponse.getDebugData();
+    if (parsedResponse.err.internal_id === apiInternalCodesConstants.alreadyRegisteredUserInApp) {
+      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=2`});
+    } else {
+      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    }
   }
 
 });

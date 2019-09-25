@@ -62,7 +62,6 @@ class TwitterAuthenticate extends ServiceBase {
 
       if (resp.isFailure()) {
         const blah = resp.getDebugData();
-        console.log('=====blah======22222=======', blah);
         if (blah.err.internal_id === apiInternalCodesConstants.alreadyRegisteredUserInApp) {
           return Promise.reject(resp);
         }
