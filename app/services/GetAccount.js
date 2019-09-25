@@ -62,7 +62,8 @@ class GetAccount extends ServiceBase {
     }
 
     let preLaunchInvite = oThis.serviceResp.data.preLaunchInvite;
-    preLaunchInvite['inviteUrl'] = pagePathConstants.inviteFullUrl(preLaunchInvite.inviteCode);
+    let inviteCode = oThis.serviceResp.data.inviteCode;
+    preLaunchInvite['inviteUrl'] = pagePathConstants.inviteFullUrl(inviteCode.code);
 
     logger.log('End::_fetchAccountInfo');
 
