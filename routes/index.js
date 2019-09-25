@@ -85,6 +85,8 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
 
   cookieHelper.setNewCookies(req, res);
 
+  console.log('====apiResponse==========', apiResponse);
+
   if (apiResponse.success) {
     let redirectUrl = pagePathConstants.account;
     if (apiResponse.data['newSignup']) {

@@ -1,5 +1,6 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
+  apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
@@ -60,6 +61,12 @@ class TwitterAuthenticate extends ServiceBase {
       let resp = await PreLaunchInviteObj.twitterLogin(oThis.decodedParams);
 
       if (resp.isFailure()) {
+        const blah = resp.getDebugData();
+        console.log('=====blah======22222=======', blah);
+        if (blah.err.internal_id === apiInternalCodesConstants.alreadyRegisteredUserInApp) {
+          return Promise.reject(resp);
+        }
+
         return Promise.reject(responseHelper.error({
           internal_error_identifier: 'r_i_ta_1',
           api_error_identifier: 'unauthorized_api_request',
