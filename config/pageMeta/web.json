@@ -9,5 +9,9 @@
   "doptin": {
     "page": "Double Optin",
     "robots": "noindex, nofollow"
+  },
+  "support": {
+    "page" : "Support",
+    "robots": "noindex, nofollow"
   }
 }

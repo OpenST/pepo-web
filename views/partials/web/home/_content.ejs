@@ -4,21 +4,24 @@
             <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-logo.png" alt="Pepo Logo" class="img-fluid mb-5" width="179"/>
             <h1 class="mb-3">Meet the people shaping the crypto movement</h1>
             <% if(new Date().getMonth() <= 8) { %>
-            <p class="mt-6 text-uppercase" style="font-weight: 600; letter-spacing: 1px;color: #FF5566">Launching in <%= 30 - (new Date().getDate()) %> Days, <br/>By Invite Only</p>
+            <p class="mt-6 text-uppercase" style="font-weight: 600; letter-spacing: 1px;color: #FF5566">Private Beta Now Live!</p>
             <% } %>
             <%- include('../partials/shared/_twitterConnect', {twitterRedirectUrl: twitterRedirectUrl}) -%>
-            <% if (typeof twitterSigninError != 'undefined' && twitterSigninError) { %>
+            <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '1') { %>
                 <div class="error twitter-signin-error">Twitter Connect Failed!</div>
+            <%}%>
+            <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '2') { %>
+                <div class="error twitter-signin-error">Hey, you are already registered in our app!</div>
             <%}%>
         </div>
         <div class="col-12 col-md-6 px-0 pt-6 pt-md-0">
             <video autoplay loop muted playsinline
-                   poster="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/OurielOhayon-hp-video-poster-image.png"
+                   poster="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-animation-home-page-scrollups.png"
                    style="width: 300px"
             >
-                <source src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-pre-launch-OurielOhayon-v2.mp4" type="video/mp4">
-                <source src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-pre-launch-OurielOhayon-v2.ogg" type="video/ogg">
-                <source src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-pre-launch-OurielOhayon-v2.webm" type="video/webm">
+                <source src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-animation-home-page-scrollups.mp4" type="video/mp4">
+                <source src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-animation-home-page-scrollups.ogg" type="video/ogg">
+                <source src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-animation-home-page-scrollups.webm" type="video/webm">
             </video>
         </div>
     </div>
@@ -49,9 +52,6 @@
     <div class="row align-items-center side-by-side py-6">
         <div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto text-left">
             <h2 class="mb-3 text-center">PEPO IS NOT JUST ANOTHER <br/>CRYPTO APP</h2>
-            <p class="mb-0">Until now, crypto has mostly been a solution looking for a problem.</p>
-            <p>We flipped the coin and went looking for good problems to solve, with crypto.</p>
-            <p>We interviewed hundreds of people about their online behaviors, looking for gaps where crypto could move the needle in a big way. We learned that  communities need better ways to connect with creators.</p>
             <p>Pepo is the best crypto user experience ever made. It’s blazing fast. Simple. Human. Pepo removes many of the icky bits that have limited crypto mass-adoption, while making crypto about the people, not just the technology. It’s an app the entire movement can get behind.</p>
             <p>Pepo is so fast, so easy to use, that you’ll reimagine what’s possible with crypto.</p>
         </div>

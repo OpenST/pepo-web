@@ -6,6 +6,7 @@ const rootPrefix = '..',
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
+  apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
@@ -97,28 +98,14 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
     }
     renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
   } else {
-    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    const parsedResponse = apiResponse.getDebugData();
+    if (parsedResponse.err.code === apiInternalCodesConstants.alreadyRegisteredUserInApp) {
+      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=2`});
+    } else {
+      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    }
   }
 
 });
-
-/* GET Deep linking for android. */
-router.get('/.well-known/assetlinks.json', async function (req, res) {
-  
-  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.androidDeviceType);
-  
-  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
-  
-});
-
-/* GET Deep linking for ios. */
-router.get('/apple-app-site-association', async function (req, res) {
-  
-  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.iosDeviceType);
-  
-  return responseHelper.renderApiResponse(responseHelper.successWithData(apiResponse), res, errorConfig);
-  
-});
-
 
 module.exports = router;
