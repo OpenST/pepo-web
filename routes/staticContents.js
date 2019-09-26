@@ -17,6 +17,15 @@ router.get('/.well-known/assetlinks.json', async function (req, res) {
 
 });
 
+/* GET Deep linking for ios under well-known. */
+router.get('/.well-known/apple-app-site-association', async function (req, res) {
+  
+  let apiResponse = deepLinkingConstants.getConfigFor(deepLinkingConstants.iosDeviceType);
+  
+  return res.status(200).json(apiResponse);
+  
+});
+
 /* GET Deep linking for ios. */
 router.get('/apple-app-site-association', async function (req, res) {
 
