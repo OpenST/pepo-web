@@ -17,5 +17,9 @@
       "js_manifest": false,
       "css_manifest": false
     }
+  },
+  "support": {
+    "page" : "Support",
+    "robots": "noindex, nofollow"
   }
 }

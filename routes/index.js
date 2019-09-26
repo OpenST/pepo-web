@@ -2,15 +2,18 @@ const express = require('express');
 const router = express.Router();
 
 const rootPrefix = '..',
+  deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
+  apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   httpErrorCodes = require(rootPrefix + '/lib/globalConstant/httpErrorCodes'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -53,6 +56,11 @@ router.get(pagePathConstants.terms, function (req, res) {
   res.redirect(302, 'https://www.dropbox.com/s/v9e7hsdx9yc3eg7/Pepo%20Terms%20of%20Service.pdf?dl=0');
 });
 
+/* Redirect videos */
+router.get('/videos/:id', function (req, res) {
+  return res.redirect(302, coreConstants.PEPO_DOMAIN);
+});
+
 /* Double opt in page. */
 router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
@@ -76,7 +84,11 @@ router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, as
 router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   if (!req.decodedParams.rd) {
-    let redirectUrl = req.url + '&rd=1';
+    if (!req.decodedParams.oauth_token || !req.decodedParams.oauth_verifier) {
+      return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    }
+
+    let redirectUrl = req.path + `?oauth_token=${escape(req.decodedParams.oauth_token)}&oauth_verifier=${escape(req.decodedParams.oauth_verifier)}&rd=1`;
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
   }
 
@@ -92,7 +104,12 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
     }
     renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
   } else {
-    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    const parsedResponse = apiResponse.getDebugData();
+    if (parsedResponse.err.code === apiInternalCodesConstants.alreadyRegisteredUserInApp) {
+      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=2`});
+    } else {
+      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    }
   }
 
 });

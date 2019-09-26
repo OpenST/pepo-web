@@ -13,6 +13,8 @@ const express = require('express'),
 
 const indexRouter = require(rootPrefix + '/routes/index'),
   usersRouter = require(rootPrefix + '/routes/users'),
+  redemptionsRouter = require(rootPrefix + '/routes/redemptions'),
+  supportRouter = require(rootPrefix + '/routes/support'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
@@ -21,6 +23,7 @@ const indexRouter = require(rootPrefix + '/routes/index'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker'),
+  staticContentsRoute = require(rootPrefix + '/routes/staticContents'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
@@ -164,6 +167,7 @@ app.use(
 
 // Helmet helps secure Express apps by setting various HTTP headers.
 app.use(helmet());
+app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -180,6 +184,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sanitizer.sanitizeBodyAndQuery, assignParams);
 
 app.use('/health-checker', elbHealthCheckerRoute);
+
+// These are static routes without basic auth.
+app.use('/', staticContentsRoute);
 
 // Add basic auth in chain
 app.use(basicAuthentication);
@@ -198,6 +205,8 @@ app.use(csrfProtection);
 
 app.use(pagePathConstants.home, indexRouter);
 app.use(pagePathConstants.account, usersRouter);
+app.use(pagePathConstants.redemptions, redemptionsRouter);
+app.use(pagePathConstants.support, supportRouter);
 
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {

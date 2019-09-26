@@ -93,7 +93,16 @@ class GetRequestToken extends ServiceBase {
       return Promise.reject(resp);
     } else {
 
-      let twitterSigninError = (oThis.decodedParams.e && oThis.decodedParams.e.toString() == '1') ? 1 : 0;
+      let twitterSigninError = 0;
+
+      if (oThis.decodedParams.e) {
+        if (oThis.decodedParams.e.toString() === '1') {
+          twitterSigninError = 1;
+        }
+        else if (oThis.decodedParams.e.toString() === '2') {
+          twitterSigninError = 2;
+        }
+      }
 
       oThis.serviceResp = responseHelper.successWithData({
         twitterRedirectUrl: resp.data.twitterRedirectUrl,
