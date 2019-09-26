@@ -77,7 +77,11 @@ router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, as
 router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   if (!req.decodedParams.rd) {
-    let redirectUrl = req.url + '&rd=1';
+    if (!req.decodedParams.oauth_token || !req.decodedParams.oauth_verifier) {
+      return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
+    }
+
+    let redirectUrl = req.path + `?oauth_token=${escape(req.decodedParams.oauth_token)}&oauth_verifier=${escape(req.decodedParams.oauth_verifier)}&rd=1`;
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
   }
 
