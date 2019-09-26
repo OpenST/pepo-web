@@ -12,7 +12,7 @@ export PW_DEVOPS_SERVER_IDENTIFIER='1111';
 export PW_COOKIE_DOMAIN='.pepodev.com';
 
 # basic auth env vars
-export PW_USE_BASIC_AUTH='1'
+export PW_USE_BASIC_AUTH='0'
 export PW_BASIC_AUTH_USERNAME='test'
 export PW_BASIC_AUTH_PASSWORD='testpasswd'
 
