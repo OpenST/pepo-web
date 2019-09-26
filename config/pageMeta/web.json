@@ -9,5 +9,13 @@
   "doptin": {
     "page": "Double Optin",
     "robots": "noindex, nofollow"
+  },
+  "content_terms": {
+    "page": "Content Terms",
+    "robots": "noindex, nofollow",
+    "assets": {
+      "js_manifest": false,
+      "css_manifest": false
+    }
   }
 }

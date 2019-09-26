@@ -97,5 +97,8 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
 
 });
 
+router.get(pagePathConstants.contentTerms, function (req, res) {
+  renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_content_terms');
+});
 
 module.exports = router;
