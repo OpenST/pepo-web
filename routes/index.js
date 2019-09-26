@@ -13,6 +13,7 @@ const rootPrefix = '..',
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   httpErrorCodes = require(rootPrefix + '/lib/globalConstant/httpErrorCodes'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -53,6 +54,11 @@ router.get(pagePathConstants.privacy, function (req, res) {
 router.get(pagePathConstants.terms, function (req, res) {
   // Process the data received in req.body
   res.redirect(302, 'https://www.dropbox.com/s/v9e7hsdx9yc3eg7/Pepo%20Terms%20of%20Service.pdf?dl=0');
+});
+
+/* Redirect videos */
+router.get('/videos/:id', function (req, res) {
+  return res.redirect(302, coreConstants.PEPO_DOMAIN);
 });
 
 /* Double opt in page. */
