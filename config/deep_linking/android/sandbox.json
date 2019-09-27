@@ -1,0 +1,20 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.pepo.sandbox",
+      "sha256_cert_fingerprints":
+      ["85:E4:D0:86:3C:D0:22:6A:8D:8D:7D:3C:3A:D9:F7:55:78:C7:FB:9A:73:D5:90:84:AF:FF:59:62:28:3B:93:E8"]
+    }
+  },
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.pepo.v2.sandbox",
+      "sha256_cert_fingerprints":
+      ["77:3D:20:89:68:1B:F4:5F:EF:A8:17:F5:AC:81:FC:AB:DD:4A:B3:6B:DD:3D:FF:A3:69:47:BA:51:C7:FC:7A:82"]
+    }
+  }
+]

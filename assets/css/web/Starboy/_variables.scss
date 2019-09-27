@@ -3,6 +3,10 @@
 // Variables should follow the `$component-state-property-size` formula for
 // consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
 
+//
+// img bg color
+//
+img{ background-color: transparent }
 
 //
 // Color system
@@ -10,6 +14,7 @@
 
 $wildWatermelon: #FF5566;
 $valhalla: #2A293B;
+$ticklePink: #FF7499;
 
 // stylelint-disable
 $white:    #fff !default;

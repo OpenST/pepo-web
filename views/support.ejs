@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+   <%- include partials/shared/_header -%>
+   <%- include partials/shared/_css -%>
+   <%- include partials/shared/_csrf -%>
+   <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
+  </head>
+  <body contenteditable="false">
+
+    <%- include(_contentPartial) -%>
+
+    <%- include partials/shared/_script %>
+
+    <%- include partials/shared/_support %> 
+  </body>
+</html>

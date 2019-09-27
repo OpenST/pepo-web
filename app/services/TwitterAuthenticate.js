@@ -1,6 +1,8 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
+  apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
+  basicHelper = require(rootPrefix + '/helpers/basic'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
@@ -60,8 +62,19 @@ class TwitterAuthenticate extends ServiceBase {
       let resp = await PreLaunchInviteObj.twitterLogin(oThis.decodedParams);
 
       if (resp.isFailure()) {
+        const responseDebugData = resp.getDebugData();
+        if (responseDebugData.err.code === apiInternalCodesConstants.alreadyRegisteredUserInApp) {
+          errRedirectUrl = `${pagePathConstants.home}?e=2`;
+          return Promise.reject(responseHelper.error({
+            internal_error_identifier: 'r_i_ta_1',
+            api_error_identifier: 'already_registered_in_app',
+            error_config: basicHelper.fetchErrorConfig(),
+            debug_options: {redirectUrl: errRedirectUrl}
+          }));
+        }
+
         return Promise.reject(responseHelper.error({
-          internal_error_identifier: 'r_i_ta_1',
+          internal_error_identifier: 'r_i_ta_2',
           api_error_identifier: 'unauthorized_api_request',
           debug_options: {redirectUrl: errRedirectUrl}
         }));
@@ -71,7 +84,7 @@ class TwitterAuthenticate extends ServiceBase {
 
     } else {
       return Promise.reject(responseHelper.error({
-        internal_error_identifier: 'r_i_ta_2',
+        internal_error_identifier: 'r_i_ta_3',
         api_error_identifier: 'unauthorized_api_request',
         debug_options: {redirectUrl: errRedirectUrl}
       }));
