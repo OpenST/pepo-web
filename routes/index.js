@@ -57,7 +57,7 @@ router.get(pagePathConstants.terms, function (req, res) {
 });
 
 /* Redirect videos */
-router.get('/videos/:id', function (req, res) {
+router.get('/video/:id', function (req, res) {
   return res.redirect(302, coreConstants.PEPO_DOMAIN);
 });
 
