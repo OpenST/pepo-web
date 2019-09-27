@@ -22,4 +22,4 @@ export PW_COOKIE_SECRET='aa5298d3a3fe181a3a52d085ee1525df5asa498337f8f3b76ca7df0
 export PW_CLOUD_FRONT_BASE_DOMAIN='https://d3attjoi5jlede.cloudfront.net/'
 
 #Intercom App-Id (Support Widget).
-export PW_SUPPORT_WIDGET_APP_ID='k6k20ffn'
+export PW_SUPPORT_WIDGET_APP_ID='br2f1kzm'

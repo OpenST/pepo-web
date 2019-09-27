@@ -130,6 +130,12 @@ class BasicHelper {
 
     return oThis.convertToBigNumber(oThis.getUSDAmountForPepo(usdInOneOst, amountPepo)).round(2).toString(10);
   }
+
+  roundAmountForDisplay(amount){
+    const oThis = this;
+
+    return oThis.convertToBigNumber(amount).round(2).toString(10);
+  }
 }
 
 module.exports = new BasicHelper();
