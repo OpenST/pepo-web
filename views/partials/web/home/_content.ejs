@@ -2,17 +2,22 @@
     <div class="row align-items-center side-by-side py-6 py-lg-0 minHeightContainer">
         <div class="col-12 col-md-6 col-lg-5 col-xl-4 ml-auto meet-people">
             <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-logo.png" alt="Pepo Logo" class="img-fluid mb-5" width="179"/>
-            <h1 class="mb-3">Meet the people shaping the crypto movement</h1>
-            <% if(new Date().getMonth() <= 8) { %>
-            <p class="mt-6 text-uppercase" style="font-weight: 600; letter-spacing: 1px;color: #FF5566">Private Beta Now Live!</p>
-            <% } %>
-            <%- include('../partials/shared/_twitterConnect', {twitterRedirectUrl: twitterRedirectUrl}) -%>
-            <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '1') { %>
-                <div class="error twitter-signin-error">Twitter Connect Failed!</div>
-            <%}%>
-            <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '2') { %>
-                <div class="error twitter-signin-error">Hey, you are already registered in our app!</div>
-            <%}%>
+            <h1 class="mb-6">Meet the people shaping the crypto movement</h1>
+            <a href="javascript:void(0)" target="_blank" title="Download Pepo App - iOS">
+                <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/app-store.png" alt="App Store" class="img-fluid" width="175"/>
+            </a>
+            <a href="javascript:void(0)" target="_blank" title="Download Pepo App - Android" class="ml-lg-3 mt-4 mt-lg-0 d-inline-block">
+                <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/google-play.png" alt="Google Play" class="img-fluid" width="175"/>
+            </a>
+            <div class="mt-6">
+                <%- include('../partials/shared/_twitterConnect', {twitterRedirectUrl: twitterRedirectUrl}) -%>
+                <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '1') { %>
+                    <div class="error twitter-signin-error">Twitter Connect Failed!</div>
+                <%}%>
+                <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '2') { %>
+                    <div class="error twitter-signin-error">Hey, you are already registered in our app!</div>
+                <%}%>
+            </div>
         </div>
         <div class="col-12 col-md-6 px-0 pt-6 pt-md-0">
             <video autoplay loop muted playsinline
