@@ -23,3 +23,10 @@ export PW_CLOUD_FRONT_BASE_DOMAIN='https://d3attjoi5jlede.cloudfront.net/'
 
 #Intercom App-Id (Support Widget).
 export PW_SUPPORT_WIDGET_APP_ID='br2f1kzm'
+
+# Pepo Economy related
+export PW_VIEW_WEB_ROOT='https://ost:Ax23!sdQ*kN-201~96@view.stagingost.com/testnet';
+export PW_CHAIN_ID='197';
+export PW_UBT_ADDRESS='0xf3e67271386fe994eb994c713b52556a38bba094';
+export PW_ETHERSCAN_WEB_ROOT='https://etherscan.io';
+export PW_BT_CONTRACT_ADDRESS='0x8d3d262fb1139d5d55d9ccbe7fff5fc45f242184';

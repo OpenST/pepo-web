@@ -64,13 +64,12 @@ router.get('/video/:id', function (req, res) {
 /* Double opt in page. */
 router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
-  /** Never Uncomment and Commit This **/
-  // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
-
   /** Always, uncomment and commit **/
   let doubleOptInObj = new DoubleOptIn({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await doubleOptInObj.perform();
 
+  /** Never Uncomment and Commit This **/
+  // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
 
   if (apiResponse.success) {
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: true});
@@ -112,6 +111,28 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
     }
   }
 
+});
+
+router.get(pagePathConstants.contentTerms, function (req, res) {
+  renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_content_terms');
+});
+
+router.get(pagePathConstants.about, function (req, res) {
+  renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_about',
+    {
+      view_endpoint :`${coreConstants.VIEW_WEB_ROOT}`,
+      etherscan_endpoint : `${coreConstants.ETHERSCAN_WEB_ROOT}`,
+      chain_id : `${coreConstants.CHAIN_ID}`,
+      ubt_address : `${coreConstants.UBT_ADDRESS}`,
+      etherscan_address : `${coreConstants.BT_CONTRACT_ADDRESS}`,
+      app_version : req.headers["x-pepo-app-version"] || '',
+      build_number : req.headers["x-pepo-build-number"] || '',
+    }
+  );
+});
+
+router.get(pagePathConstants.faqs, function (req, res) {
+  res.redirect(302, 'https://intercom.help/pepo');
 });
 
 module.exports = router;
