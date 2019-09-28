@@ -109,7 +109,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
 
 
   if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemptionProducts', apiResponse.data);
+    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemption', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }

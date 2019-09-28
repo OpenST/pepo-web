@@ -10,8 +10,31 @@
     "page": "Double Optin",
     "robots": "noindex, nofollow"
   },
+  "content_terms": {
+    "page": "Content Terms",
+    "robots": "noindex, nofollow",
+    "assets": {
+      "js_manifest": false,
+      "css_manifest": false
+    }
+  },
   "support": {
     "page" : "Support",
-    "robots": "noindex, nofollow"
+    "robots": "noindex, nofollow",
+    "faqs" : {
+      "page" : "FAQS",
+      "robots": "noindex, nofollow"
+    }
+  },
+  "about":{
+    "page" : "About",
+    "robots" : "noindex, nofollow",
+    "assets": {
+      "js_manifest" : false,
+      "css_manifest" : false
+    }
+  },
+  "redemption": {
+    "page": "Redemption"
   }
 }
