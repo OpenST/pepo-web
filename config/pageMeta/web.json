@@ -20,6 +20,18 @@
   },
   "support": {
     "page" : "Support",
-    "robots": "noindex, nofollow"
+    "robots": "noindex, nofollow",
+    "faqs" : {
+      "page" : "FAQS",
+      "robots": "noindex, nofollow"
+    }
+  },
+  "about":{
+    "page" : "About",
+    "robots" : "noindex, nofollow",
+    "assets": {
+      "js_manifest" : false,
+      "css_manifest" : false
+    }
   }
 }
