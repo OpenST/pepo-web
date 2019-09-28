@@ -7,6 +7,12 @@
         "paths": [
           "/*"
         ]
+      },
+      {
+        "appID": "N83K86W6P4.com.pepo.v2.sandbox",
+        "paths": [
+          "/*"
+        ]
       }
     ]
   }

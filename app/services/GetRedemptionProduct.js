@@ -3,9 +3,7 @@ const rootPrefix = '../..',
   RedemptionApi = require(rootPrefix + '/lib/pepoApi/Redemption'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
-  coreConstants = require(rootPrefix + '/config/coreConstants');
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
 
 class GetAccount extends ServiceBase {
   /**
@@ -38,8 +36,7 @@ class GetAccount extends ServiceBase {
     let pepoBalance = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance.available_balance).toString(10),
       pricePoint = oThis.serviceResp.data.price_points['OST']['USD'];
 
-    logger.log('oThis.serviceResp ===========', oThis.serviceResp);
-    oThis.serviceResp.data.balance_in_higer_unit = pepoBalance;
+    oThis.serviceResp.data.balance_in_higher_unit = basicHelper.roundAmountForDisplay(pepoBalance);
     oThis.serviceResp.data.usd_amount = basicHelper.getUSDAmountForPepoForDisplay(pricePoint, pepoBalance);
 
     for(let i = 0; i < oThis.serviceResp.data.redemption_products.length; i ++) {

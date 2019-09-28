@@ -53,11 +53,11 @@ router.get(pagePathConstants.privacy, function (req, res) {
 
 router.get(pagePathConstants.terms, function (req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://www.dropbox.com/s/v9e7hsdx9yc3eg7/Pepo%20Terms%20of%20Service.pdf?dl=0');
+  res.redirect(302, 'https://www.dropbox.com/s/ur7kp3xudd7ncus/Pepo%20Terms%20of%20Service.pdf?dl=0');
 });
 
 /* Redirect videos */
-router.get('/videos/:id', function (req, res) {
+router.get('/video/:id', function (req, res) {
   return res.redirect(302, coreConstants.PEPO_DOMAIN);
 });
 
