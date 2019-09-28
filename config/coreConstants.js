@@ -63,6 +63,27 @@ class CoreConstant {
     return process.env.PW_SUPPORT_WIDGET_APP_ID;
   }
 
+  get VIEW_WEB_ROOT(){
+    return process.env.PW_VIEW_WEB_ROOT;
+  }
+
+  get CHAIN_ID(){
+    return process.env.PW_CHAIN_ID;
+  }
+
+  get UBT_ADDRESS(){
+    return process.env.PW_UBT_ADDRESS;
+  }
+
+  get ETHERSCAN_WEB_ROOT(){
+    return process.env.PW_ETHERSCAN_WEB_ROOT;
+  }
+
+  get BT_CONTRACT_ADDRESS(){
+    return process.env.PW_ETHERSCAN_ADDRESS;
+  }
+
+
 }
 
 module.exports = new CoreConstant();
