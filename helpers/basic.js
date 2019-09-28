@@ -16,7 +16,7 @@ class BasicHelper {
    * @return {string}
    */
   decodeHtmlEntity(escapedString) {
-    return decode(escapedString, 'extras');
+    return decode(escapedString);
   }
 
   /**
