@@ -80,7 +80,7 @@ class CoreConstant {
   }
 
   get BT_CONTRACT_ADDRESS(){
-    return process.env.PW_ETHERSCAN_ADDRESS;
+    return process.env.PW_BT_CONTRACT_ADDRESS;
   }
 
 
