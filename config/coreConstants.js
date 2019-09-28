@@ -31,10 +31,6 @@ class CoreConstant {
     return process.env.PW_COOKIE_DOMAIN;
   }
 
-  get appName() {
-    return process.env.DEVOPS_WEB_APP_NAME;
-  }
-
   get USE_BASIC_AUTHENTICATION() {
     return process.env.PW_USE_BASIC_AUTH == '1';
   }
