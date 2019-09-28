@@ -217,7 +217,7 @@ const connectAssetConfig = {
 };
 
 if (coreConstants.environment !== 'development') {
-  connectAssetConfig.servePath = coreConstants.CLOUD_FRONT_BASE_DOMAIN + coreConstants.appName + '/js-css';
+  connectAssetConfig.servePath = coreConstants.CLOUD_FRONT_BASE_DOMAIN + coreConstants.APP_NAME + '/js-css';
   connectAssetConfig.bundle = true;
   connectAssetConfig.compress = true;
 }
