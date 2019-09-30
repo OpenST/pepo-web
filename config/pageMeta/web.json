@@ -4,15 +4,18 @@
   },
   "account": {
     "page": "Account",
+    "canonical": "https://pepo.com/account",
     "robots": "noindex, nofollow"
   },
   "doptin": {
     "page": "Double Optin",
+    "canonical": "https://pepo.com/doptin",
     "robots": "noindex, nofollow"
   },
   "content_terms": {
     "page": "Content Terms",
     "robots": "noindex, nofollow",
+    "canonical": "https://pepo.com/content-terms",
     "assets": {
       "js_manifest": false,
       "css_manifest": false
@@ -20,6 +23,7 @@
   },
   "support": {
     "page" : "Support",
+    "canonical": "https://pepo.com/support",
     "robots": "noindex, nofollow",
     "faqs" : {
       "page" : "FAQS",
@@ -28,13 +32,15 @@
   },
   "about":{
     "page" : "About",
+    "canonical": "https://pepo.com/about",
     "robots" : "noindex, nofollow",
     "assets": {
       "js_manifest" : false,
-      "css_manifest" : false
+      "css_manifest" : true
     }
   },
   "redemption": {
-    "page": "Redemption"
+    "page": "Redemption",
+    "canonical": "https://pepo.com/redemptions/products"
   }
 }
