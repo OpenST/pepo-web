@@ -1,18 +1,29 @@
-<div class="text-left px-4" style="min-height: 85%">
+<div class="text-left px-4 about-container" style="min-height: 85%">
 
         <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-logo.png"
              alt="Pepo Logo" width="179"
              style="background-color: #fff"
              class="img-fluid mb-4 pt-6 ml-0" />
 
-        <h2 style="color: #FF5566;" class="mb-4 ml-">About</h2>
-        <p style="color: #2a293b;font-size: 18px; text-align: left ">Pepo is where the crypto community comes together, with short video updates and tokens of appreciation.</p>
+        <p class="text-left">
+                Pepo is where the crypto community comes together, with short video updates and tokens of appreciation.
+        </p>
         <% if(build_number && app_version) { %><p class="text-left">Build Version  :<b>  <%= `v${app_version} (${build_number})` %></b></p><% } %>
-        <p class="text-left">Staked Currency :<b><a style="color: #FF5566 " href="<%= etherscan_endpoint %>/address/<%= etherscan_address %>#tokentxns" target="_blank"> $OST</a></b> </p>
-        <p class="text-left">Conversion ratio :<b> 1 Pepo Coin = 1 $OST</b></p>
-        <p class="text-left">Block Explorer :<b><a style="color: #FF5566 " href="<%= view_endpoint%>/token/ec-<%= chain_id %>-<%= ubt_address%>" target="_blank"> Pepo</a></b></p>
-        <p class="text-left">OST Mainnet Usage Stats : <b><a style="color: #FF5566 " target="_blank" href="https://ostwatch.com/"> OSTWatch</a></b></p>
-        <p class="text-left">Want to know more?</p>
-        <a class="text-left" style="color: #FF5566 " href="/support/faqs">Check the FAQs</a>
+        <p class="text-left">Staked Currency :
+                <a  href="<%= etherscan_endpoint %>/address/<%= etherscan_address %>#tokentxns" target="_blank"> <u>$OST</u></a>
+        </p>
+        <p class="text-left">Conversion ratio :
+                <span class="conversion-pepo-ost">1 Pepo Coin = 1 $OST</span>
+        </p>
+        <p class="text-left">Block Explorer :
+                <a  href="<%= view_endpoint%>/token/ec-<%= chain_id %>-<%= ubt_address%>" target="_blank"> <u>Pepo</u></a>
+        </p>
+        <p class="text-left">OST Mainnet Stats :
+                <a  target="_blank" href="https://ostwatch.com/"><u> OSTWatch </u> </a>
+        </p>
+        <p class="text-left">
+                Want to know more?
+                <a class="text-left"  href="/support/faqs"><u>Check the FAQs</u></a>
+        </p>
 
 </div>
