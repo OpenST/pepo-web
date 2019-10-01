@@ -53,7 +53,7 @@ router.get(pagePathConstants.privacy, function (req, res) {
 
 router.get(pagePathConstants.terms, function (req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://www.dropbox.com/s/ur7kp3xudd7ncus/Pepo%20Terms%20of%20Service.pdf?dl=0');
+  res.redirect(302, 'https://www.dropbox.com/s/en5qcpd9ntvbdde/Pepo%20Terms%20of%20Service%20-%2020190930.pdf?dl=0');
 });
 
 /* Redirect videos */
