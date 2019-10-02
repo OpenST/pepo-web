@@ -1,0 +1,17 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.about-container{
+  p {
+    font-size: 14px;
+  }
+  a{
+    color: $wildWatermelon;
+  }
+  .conversion-pepo-ost{
+    font-weight: 600;
+  }
+}
