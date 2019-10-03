@@ -17,7 +17,7 @@
       setTimeout(function () {
         oThis.productClick();
       });
-      
+
       oThis.requestRedemptionBtn.on('click', function () {
         $(this).text('Requesting...').prop('disabled', true);
         setTimeout(function () {
@@ -66,6 +66,16 @@
             $('#redemptionSuccess').show();
             oThis.requestRedemptionBtn.hide();
           } else {
+            var errorData = response.err && response.err.error_data ,
+                errMsg;
+            if( errorData && errorData.length > 0  ) {
+              errMsg = errorData[0]['msg'];
+            }else {
+              errMsg = response.err &&  response.err.msg;
+            }
+            if(errMsg) {
+              $('#redemptionFailure').find('.error-message').text(errMsg);
+            }
             $('#redemptionFailure').show();
           }
         },
