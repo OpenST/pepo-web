@@ -48,12 +48,12 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
 router.get(pagePathConstants.privacy, function (req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://www.dropbox.com/s/yg4zq9z4cz2zynb/Pepo%2520Privacy%2520Policy.pdf?dl=0');
+  res.redirect(302, 'https://drive.google.com/file/d/1si1J9PXkW7mLplUy_CJTNXTsi1OtNRiD/view?usp=sharing');
 });
 
 router.get(pagePathConstants.terms, function (req, res) {
   // Process the data received in req.body
-  res.redirect(302, 'https://www.dropbox.com/s/en5qcpd9ntvbdde/Pepo%20Terms%20of%20Service%20-%2020190930.pdf?dl=0');
+  res.redirect(302, 'https://drive.google.com/file/d/1LCQ7v1BOrwwbMfHM0xjWwefDpSNu0BlG/view?usp=sharing');
 });
 
 /* Redirect videos */
