@@ -56,6 +56,16 @@ router.get(pagePathConstants.terms, function (req, res) {
   res.redirect(302, 'https://drive.google.com/file/d/1LCQ7v1BOrwwbMfHM0xjWwefDpSNu0BlG/view?usp=sharing');
 });
 
+router.get(pagePathConstants.imprint, function (req, res) {
+  // Process the data received in req.body
+  res.redirect(302, 'https://drive.google.com/file/d/1oj1BvXqmaBgTTi8HwQgFCCGWtVOZiSTU/view?usp=sharing');
+});
+
+router.get(pagePathConstants.mediaKit, function (req, res) {
+  // Process the data received in req.body
+  res.redirect(302, 'https://www.dropbox.com/sh/3r5zr84dyp3dvv0/AACuKAhLTNHaPcn6TttbY_BOa?dl=0');
+});
+
 /* Redirect videos */
 router.get('/video/:id', function (req, res) {
   return res.redirect(302, coreConstants.PEPO_DOMAIN);
