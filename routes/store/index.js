@@ -7,6 +7,7 @@ const router = express.Router(),
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   homeRouter = require(rootPrefix + '/routes/store/home'),
+  redemptionsRouter = require(rootPrefix + '/routes/store/redemptions'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
@@ -61,6 +62,8 @@ router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 router.use(csrfProtection);
 
 router.use(pagePathConstants.home, homeRouter);
+
+router.use(pagePathConstants.redemptions, redemptionsRouter);
 
 
 module.exports = router;
