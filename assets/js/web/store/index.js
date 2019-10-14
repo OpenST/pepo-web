@@ -40,8 +40,7 @@
     productClick: function () {
       oThis.productImgWrapper.on('click', function(){
         oThis.currentProductId = $(this).data("product-id");
-        oThis.currentPepoAmountInWei = $(this).data("pepo-amount-in-wei");
-        oThis.currentProductKind = $(this).data("product-kind");
+        oThis.dollorAmount = $(this).data("dollor-amount");
         oThis.jBackArrow.fadeIn('slow').show();
         $(this).closest('.products').hide();
         oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
@@ -52,15 +51,14 @@
     },
 
     requestAction: function () {
-      var requestRoute   = "/api/web/redemptions";
+      var requestRoute   = "/api/web/redemptions/request";
       var requestMethod  = "POST";
       $.ajax({
         url: requestRoute,
         method: requestMethod,
         data: {
           "product_id": oThis.currentProductId,
-          "price_point": oThis.pricePoint,
-          "pepo_amount_in_wei": oThis.currentPepoAmountInWei
+          "dollorAmount": oThis.dollorAmount,
         },
         success: function (response) {
           if ( response.success ) {
