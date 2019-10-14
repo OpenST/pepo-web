@@ -40,7 +40,7 @@
     productClick: function () {
       oThis.productImgWrapper.on('click', function(){
         oThis.currentProductId = $(this).data("product-id");
-        oThis.dollorAmount = $(this).data("dollor-amount");
+        oThis.dollarAmount = $(this).data("dollar-amount");
         oThis.jBackArrow.fadeIn('slow').show();
         $(this).closest('.products').hide();
         oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
@@ -58,7 +58,7 @@
         method: requestMethod,
         data: {
           "product_id": oThis.currentProductId,
-          "dollorAmount": oThis.dollorAmount,
+          "dollar_amount": oThis.dollarAmount,
         },
         success: function (response) {
           if ( response.success ) {
