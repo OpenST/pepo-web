@@ -6,6 +6,7 @@ const express = require('express'),
   morgan = require('morgan'),
   helmet = require('helmet'),
   customUrlParser = require('url'),
+  URL = require('url').URL,
   createNamespace = require('continuation-local-storage').createNamespace;
 
 const elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker'),
