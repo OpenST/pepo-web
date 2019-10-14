@@ -47,6 +47,10 @@ class CoreConstant {
     return process.env.PEPO_DOMAIN;
   }
 
+  get PEPO_STORE_DOMAIN() {
+    return process.env.PEPO_STORE_DOMAIN;
+  }
+
   get WEB_COOKIE_SECRET() {
     return process.env.PW_COOKIE_SECRET;
   }

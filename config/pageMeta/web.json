@@ -41,6 +41,10 @@
   },
   "redemption": {
     "page": "Redemption",
-    "canonical": "https://pepo.com/redemptions/products"
+    "robots": "noindex, nofollow"
+  },
+  "store": {
+    "page": "Pepo Store",
+    "robots": "noindex, nofollow"
   }
 }

@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
 
-const rootPrefix = '..',
+const rootPrefix = '../..',
   deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
-  basicHelper = require(rootPrefix + '/helpers/basic'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response');
+  basicHelper = require(rootPrefix + '/helpers/basic');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 

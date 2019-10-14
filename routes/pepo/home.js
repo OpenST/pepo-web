@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const rootPrefix = '..',
-  deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
+const rootPrefix = '../..',
   GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),

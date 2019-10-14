@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const rootPrefix = '..',
+const rootPrefix = '../..',
   GetRedemptionProduct = require(rootPrefix + '/app/services/GetRedemptionProduct'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
