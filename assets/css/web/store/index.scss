@@ -92,6 +92,11 @@ p{
 .input-group-text{
   background-color: $white;
   border: 2px solid #ccd3cd;
+  font-size: 24px;
+  height: 54px;
+  line-height: 50px;
+  display: inline-block;
+  border-bottom-left-radius: 0;
 }
 
 label{
@@ -101,13 +106,29 @@ label{
 
 .form-control{
   border: 2px solid #ccd3cd;
-  border-left: 2px solid #ccd3cd;
+  border-left: none;
   margin-left: -2px;
+  height: 54px;
+  font-size: 22px;
+  color: #2a293b;
+  letter-spacing: 1px;
+  border-bottom-right-radius: 0;
   &:focus{
     box-shadow: none;
-    border-color: #ced4da;
-    border-left-color: $white;
+    border-color: #ccd3cd;
+    border-left-color: transparent;
   }
+}
+
+.converted-value{
+  background-color: #ccd3cd;
+  padding: 3px 0;
+  color: #2a293b;
+  margin-top: -2px;
+  text-align: center;
+  border-bottom-left-radius: 5px;
+  font-size: 14px;
+  border-bottom-right-radius: 5px;
 }
 
 .success-message{
