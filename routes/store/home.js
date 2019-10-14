@@ -121,7 +121,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //       unsettled_debit: '0',
   //       updated_timestamp: 1568311829
   //     },
-  //     balance_in_higher_unit: '123',
+  //     pepocorn_balance: '123',
   //     usd_amount: '1',
   //     price_points: {
   //       OST: {
