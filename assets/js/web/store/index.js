@@ -1,7 +1,7 @@
 ;
 (function (window,$) {
   var ost = ns('ost');
-  var oThis = ost.redemptionPage =  {
+  var oThis = ost.storePage =  {
 
     jBackArrow : $('#backArrowAction'),
     productImgWrapper : $('.product-img'),
@@ -16,6 +16,8 @@
       setTimeout(function () {
         oThis.productClick();
       });
+
+      oThis.pepoCornsPooling();
 
       oThis.requestRedemptionBtn.on('click', function () {
         $(this).text('Requesting...').prop('disabled', true);
@@ -35,6 +37,28 @@
         $('#productKind').text('');
         $('.approved-video').show();
       });
+    },
+
+    pepoCornsPooling: function() {
+      const pepoCornsPoolingUrl =  '/api/web/prelaunch/twitter/request_token';
+
+      const startTime = new Date().getTime();
+
+      let interval = setInterval(function(){
+        if(new Date().getTime() - startTime > 60000){
+          clearInterval(interval);
+          return;
+        }
+        $.ajax({
+          url: pepoCornsPoolingUrl,
+          method: "GET",
+          success: function (response) {
+            if (response.success) {
+              $('#pepoCornBalance').text(response.data.pepocorn_balance.balance)
+            }
+          }
+        })
+      }, 10000);
     },
 
     productClick: function () {
@@ -87,7 +111,7 @@
       })
     }
 
-  }
+    }
 
   $(document).ready(function () {
     $('.app-footer').hide();
