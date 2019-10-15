@@ -64,17 +64,6 @@
       })
     },
 
-    // dollarAmountEdit: function() {
-    //   $("input#usd-amount").on('keyup', function (e) {
-    //     var dollarValue = $(this).val();
-    //     var pepocornPerDollar = +$(this).data('pepocorn-per-dollar');
-    //     var pepocorns = Math.floor(dollarValue * pepocornPerDollar);
-    //
-    //     $('#converted-pepocorns').text(pepocorns);
-    //     $(this).val(dollarValue);
-    //   });
-    // },
-
     dollarAmountEdit: function() {
       var blackListedKeys = [".", ",", " "];
       $("input#usd-amount").on('keyup', function (e) {

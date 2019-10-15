@@ -1,6 +1,6 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  RedemptionApi = require(rootPrefix + '/lib/pepoApi/Redemption'),
+  StoreRedemptionApi = require(rootPrefix + '/lib/pepoApi/StoreRedemption'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
@@ -51,7 +51,7 @@ class GetStoreProducts extends ServiceBase {
   async _fetchProducts() {
     const oThis = this;
 
-    let redemptionApiObj = new RedemptionApi(oThis.headers);
+    let redemptionApiObj = new StoreRedemptionApi(oThis.headers);
     let resp = await redemptionApiObj.getProductList(oThis.decodedParams);
 
     if (resp.isFailure()) {
