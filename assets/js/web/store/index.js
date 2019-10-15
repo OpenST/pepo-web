@@ -24,7 +24,7 @@
       oThis.pepoCornsPooling();
       console.log('-------init------oThis.requestRedemptionBtn-------click');
 
-      oThis.requestRedemptionBtn.on('click', function () {
+      oThis.requestRedemptionBtn.off("click").on('click', function () {
         console.log('-------------oThis.requestRedemptionBtn-------click');
         $(this).text('Requesting...').prop('disabled', true);
         setTimeout(function () {
@@ -141,7 +141,6 @@
 
   $(document).ready(function () {
     $('.app-footer').hide();
-    oThis.init();
   });
 
 })(window,jQuery);
