@@ -8,8 +8,8 @@
     productDetail : $('.product-detail'),
     pricePoint : $('#pricePoint').val(),
     requestRedemptionBtn: $('#requestRedemptionBtn'),
+    approvedVideo: $('.approved-video'),
     currentProductId : null,
-    currentPepoAmountInWei: null,
     currentProductKind: null,
     pollingInterval: 10000,
     maxPollingInterval: 60000,
@@ -17,7 +17,9 @@
     pepoCornsPoolingUrl: "/api/web/redemptions/pepocorn-balance",
 
     init : function () {
+
       oThis.productClick();
+      oThis.backClick();
       oThis.pepoCornsPooling();
 
       oThis.requestRedemptionBtn.on('click', function () {
@@ -27,17 +29,34 @@
         }, 1000);
       });
 
+    },
+
+    productClick: function () {
+      oThis.productImgWrapper.on('click', function(){
+        $(this).closest('.products').hide();
+        oThis.productDetail.fadeIn( 400 );
+        oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
+        oThis.jBackArrow.fadeIn( 400 );
+        $('#productKind').text(oThis.currentProductKind.toLowerCase() + " Gift Card");
+        oThis.approvedVideo.hide();
+        oThis.currentProductId = $(this).data("product-id");
+        oThis.currentProductKind = $(this).data("product-kind")
+        oThis.dollarAmount = $(this).data("dollar-amount");
+
+      })
+    },
+
+    backClick: function () {
       oThis.jBackArrow.on('click', function () {
         $(this).hide();
         oThis.productDetail.hide();
-        $('.products').fadeIn('slow').show();
+        $('.products').fadeIn( 400 );
+        oThis.approvedVideo.show();
+        $('#productKind').text('');
+        $('.landscape-img').attr('src', '');
         $('.redemption-message').hide();
         $('#requestError').hide();
-        oThis.requestRedemptionBtn.show();
-        $('.landscape-img').attr('src', '');
-        $('#productKind').text('');
-        $('.approved-video').show();
-      });
+      })
     },
 
     pepoCornsPooling: function() {
@@ -59,19 +78,6 @@
           }
         })
       }, oThis.pollingInterval);
-    },
-
-    productClick: function () {
-      oThis.productImgWrapper.on('click', function(){
-        oThis.currentProductId = $(this).data("product-id");
-        oThis.dollarAmount = $(this).data("dollar-amount");
-        oThis.jBackArrow.fadeIn('slow').show();
-        $(this).closest('.products').hide();
-        oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
-        oThis.productDetail.fadeIn('slow');
-        $('#productKind').text(oThis.currentProductKind.toLowerCase() + " Gift Card");
-        $('.approved-video').hide();
-      })
     },
 
     requestAction: function () {
