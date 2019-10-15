@@ -40,11 +40,12 @@
     },
 
     pepoCornsPooling: function() {
-      const pepoCornsPoolingUrl =  '/api/web/redemptions/pepocorn-balance';
 
-      const startTime = new Date().getTime();
+      var pepoCornsPoolingUrl =  '/api/web/redemptions/pepocorn-balance';
 
-      let interval = setInterval(function(){
+      var startTime = new Date().getTime();
+
+      var interval = setInterval(function(){
         if(new Date().getTime() - startTime > 60000){
           clearInterval(interval);
           return;
@@ -111,10 +112,12 @@
       })
     }
 
-    }
+    };
 
   $(document).ready(function () {
     $('.app-footer').hide();
+
+    oThis.init();
   });
 
 })(window,jQuery);
