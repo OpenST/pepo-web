@@ -37,7 +37,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //       dollar_value: 10,
   //       min_dollar_value: 10,
   //       dollar_step: 1,
-  //       pepocorn_per_dollar_step: 1
+  //       pepocorn_per_dollar: 1
   //     },
   //       {
   //         id: '2',
@@ -52,7 +52,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '3',
@@ -67,7 +67,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '4',
@@ -82,7 +82,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '5',
@@ -97,7 +97,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '6',
@@ -112,7 +112,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       }],
   //     balance: {
   //       user_id: 'ca9cd73b-c79e-4d0b-b55b-6d95ee7a8d54',

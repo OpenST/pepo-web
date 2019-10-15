@@ -43,12 +43,10 @@
         oThis.approvedVideo.hide();
         oThis.currentProductId = $(this).data("product-id");
         oThis.dollarAmount = $(this).data("dollar-amount");
-        oThis.dollarStep = $(this).data("dollar-step");
-        oThis.pepocornPerDollarStep = $(this).data("pepocorn-per-dollar-step");
+        oThis.pepocornPerDollar = $(this).data("pepocorn-per-dollar");
 
         $('#usd-amount').attr({
-          'data-dollar-step': oThis.dollarStep,
-          'data-pepocorn-per-dollar-step': oThis.pepocornPerDollarStep
+          'data-pepocorn-per-dollar': oThis.pepocornPerDollar
         });
       })
     },
@@ -69,9 +67,8 @@
     dollarAmountEdit: function() {
       $("input#usd-amount").on('keyup', function (e) {
         var dollarValue = $(this).val();
-        var dollarStep = +$(this).data('dollar-step');
-        var pepocornPerDollarStep = +$(this).data('pepocorn-per-dollar-step');
-        var pepocorns = Math.floor(dollarValue * pepocornPerDollarStep/dollarStep);
+        var pepocornPerDollar = +$(this).data('pepocorn-per-dollar');
+        var pepocorns = Math.floor(dollarValue * pepocornPerDollar);
 
         $('#converted-pepocorns').text(pepocorns);
         $(this).val(dollarValue);
