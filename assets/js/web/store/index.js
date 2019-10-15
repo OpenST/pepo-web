@@ -102,7 +102,7 @@
     },
 
     requestAction: function () {
-      const dollarAmount = $("#storeDollarValue").val();
+      const dollarAmount = $("#usd-amount").val();
       $.ajax({
         url: oThis.requestRoute,
         method: "POST",
