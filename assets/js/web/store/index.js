@@ -20,6 +20,7 @@
 
       oThis.productClick();
       oThis.backClick();
+      oThis.dollarAmountEdit();
       oThis.pepoCornsPooling();
       console.log('-------init------oThis.requestRedemptionBtn-------click');
 
@@ -43,7 +44,14 @@
         $('#productKind').text(oThis.currentProductKind.toLowerCase() + " Gift Card");
         oThis.approvedVideo.hide();
         oThis.currentProductId = $(this).data("product-id");
+        oThis.dollarAmount = $(this).data("dollar-amount");
+        oThis.dollarStep = $(this).data("dollar-step");
+        oThis.pepocornPerDollarStep = $(this).data("pepocorn-per-dollar-step");
 
+        $('#usd-amount').attr({
+          'data-dollar-step': oThis.dollarStep,
+          'data-pepocorn-per-dollar-step': oThis.pepocornPerDollarStep
+        });
       })
     },
 
@@ -58,6 +66,18 @@
         $('.redemption-message').hide();
         $('#requestError').hide();
       })
+    },
+
+    dollarAmountEdit: function() {
+      $("input#usd-amount").on('keyup', function (e) {
+        var dollarValue = $(this).val();
+        var dollarStep = +$(this).data('dollar-step');
+        var pepocornPerDollarStep = +$(this).data('pepocorn-per-dollar-step');
+        var pepocorns = Math.floor(dollarValue * pepocornPerDollarStep/dollarStep);
+
+        $('#converted-pepocorns').text(pepocorns);
+        $(this).val(dollarValue);
+      });
     },
 
     pepoCornsPooling: function() {

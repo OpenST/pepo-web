@@ -31,6 +31,8 @@
                          data-product-id="<%= dat.id %>"
                          data-product-kind="<%= dat.kind %>"
                          data-dollar-amount="<%= dat.dollarValue %>"
+                         data-dollar-step="<%= dat.dollarStep %>"
+                         data-pepocorn-per-dollar-step="<%= dat.pepocornPerDollarStep %>"
                     />
                 </div>
             </div>
@@ -48,10 +50,10 @@
         <div class="input-group-prepend">
             <span class="input-group-text py-0">$</span>
         </div>
-        <input id="storeDollarValue" type="number" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
+        <input type="number" id="usd-amount" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
     </div>
     <div class="converted-value">
-        Value in 670
+        Value in <span id="converted-pepocorns">0</span>
     </div>
     <button id="requestRedemptionBtn" class="btn btn-primary w-100 btn-gradient text-capitalize mb-2 mt-4" type="submit">Request</button>
     <div id="requestError" class="text-center error-message animationBounceText" style="display: none;">Something went wrong!</div>
