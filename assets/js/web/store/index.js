@@ -21,8 +21,10 @@
       oThis.productClick();
       oThis.backClick();
       oThis.pepoCornsPooling();
+      console.log('-------init------oThis.requestRedemptionBtn-------click');
 
       oThis.requestRedemptionBtn.on('click', function () {
+        console.log('-------------oThis.requestRedemptionBtn-------click');
         $(this).text('Requesting...').prop('disabled', true);
         setTimeout(function () {
           oThis.requestAction();
@@ -41,7 +43,6 @@
         $('#productKind').text(oThis.currentProductKind.toLowerCase() + " Gift Card");
         oThis.approvedVideo.hide();
         oThis.currentProductId = $(this).data("product-id");
-        oThis.dollarAmount = $(this).data("dollar-amount");
 
       })
     },
@@ -81,12 +82,13 @@
     },
 
     requestAction: function () {
+      const dollarAmount = $("#storeDollarValue").val();
       $.ajax({
         url: oThis.requestRoute,
         method: "POST",
         data: {
           "product_id": oThis.currentProductId,
-          "dollar_amount": oThis.dollarAmount,
+          "dollar_amount": dollarAmount,
         },
         success: function (response) {
           if ( response.success ) {
