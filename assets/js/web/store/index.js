@@ -37,10 +37,10 @@
         oThis.productDetail.fadeIn( 400 );
         oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
         oThis.jBackArrow.fadeIn( 400 );
+        oThis.currentProductKind = $(this).data("product-kind");
         $('#productKind').text(oThis.currentProductKind.toLowerCase() + " Gift Card");
         oThis.approvedVideo.hide();
         oThis.currentProductId = $(this).data("product-id");
-        oThis.currentProductKind = $(this).data("product-kind")
         oThis.dollarAmount = $(this).data("dollar-amount");
 
       })
