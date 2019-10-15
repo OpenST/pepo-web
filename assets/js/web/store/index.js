@@ -40,7 +40,7 @@
     },
 
     pepoCornsPooling: function() {
-      const pepoCornsPoolingUrl =  '/api/web/prelaunch/twitter/request_token';
+      const pepoCornsPoolingUrl =  '/api/web/redemptions/pepocorn-balance';
 
       const startTime = new Date().getTime();
 
