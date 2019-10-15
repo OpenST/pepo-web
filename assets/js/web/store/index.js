@@ -24,7 +24,7 @@
       oThis.pepoCornsPooling();
       console.log('-------init------oThis.requestRedemptionBtn-------click');
 
-      oThis.requestRedemptionBtn.off("click").on('click', function () {
+      oThis.requestRedemptionBtn.off("click.storePage").on('click.storePage', function () {
         console.log('-------------oThis.requestRedemptionBtn-------click');
         $(this).text('Requesting...').prop('disabled', true);
         setTimeout(function () {
