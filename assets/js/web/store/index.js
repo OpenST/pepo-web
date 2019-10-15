@@ -11,12 +11,13 @@
     currentProductId : null,
     currentPepoAmountInWei: null,
     currentProductKind: null,
+    pollingInterval: 10000,
+    maxPollingInterval: 60000,
+    requestRoute: "/api/web/redemptions/request",
+    pepoCornsPoolingUrl: "/api/web/redemptions/pepocorn-balance",
 
     init : function () {
-      setTimeout(function () {
-        oThis.productClick();
-      });
-
+      oThis.productClick();
       oThis.pepoCornsPooling();
 
       oThis.requestRedemptionBtn.on('click', function () {
@@ -41,17 +42,15 @@
 
     pepoCornsPooling: function() {
 
-      var pepoCornsPoolingUrl =  '/api/web/redemptions/pepocorn-balance';
-
       var startTime = new Date().getTime();
 
       var interval = setInterval(function(){
-        if(new Date().getTime() - startTime > 60000){
+        if((new Date().getTime() - startTime) > oThis.maxPollingInterval){
           clearInterval(interval);
           return;
         }
         $.ajax({
-          url: pepoCornsPoolingUrl,
+          url: oThis.pepoCornsPoolingUrl,
           method: "GET",
           success: function (response) {
             if (response.success) {
@@ -59,7 +58,7 @@
             }
           }
         })
-      }, 10000);
+      }, oThis.pollingInterval);
     },
 
     productClick: function () {
@@ -76,11 +75,9 @@
     },
 
     requestAction: function () {
-      var requestRoute   = "/api/web/redemptions/request";
-      var requestMethod  = "POST";
       $.ajax({
-        url: requestRoute,
-        method: requestMethod,
+        url: oThis.requestRoute,
+        method: "POST",
         data: {
           "product_id": oThis.currentProductId,
           "dollar_amount": oThis.dollarAmount,
@@ -116,7 +113,6 @@
 
   $(document).ready(function () {
     $('.app-footer').hide();
-
     oThis.init();
   });
 
