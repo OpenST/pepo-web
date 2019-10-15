@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 
 const rootPrefix = '../..',
-  GetRedemptionProduct = require(rootPrefix + '/app/services/GetRedemptionProduct'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
@@ -15,8 +14,7 @@ const errorConfig = basicHelper.fetchErrorConfig();
 router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
-  let getRedemptionProductObj = new GetRedemptionProduct({headers: req.headers, decodedParams: req.decodedParams});
-  let apiResponse = await getRedemptionProductObj.perform();
+
   cookieHelper.setNewCookies(req, res);
 
   // Un-comment only for local development of pepo-web. DO NOT COMMIT UNCOMMENTED.
@@ -126,11 +124,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   // };
 
 
-  if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemption', apiResponse.data);
-  } else {
-    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
-  }
+  renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemption', {});
 });
 
 module.exports = router;
