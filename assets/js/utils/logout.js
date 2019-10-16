@@ -3,7 +3,7 @@
   var ost = ns('ost');
   var logoutRoute   = "/api/web/prelaunch/logout";
   var logoutMethod  = "POST";
-  var homeUrl = "stagingpepo.com";
+  var homeUrl = "/";
 
   var oThis = ost.logoutUtil = {
     bind: function() {
