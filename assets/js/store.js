@@ -1,2 +1,2 @@
-//= require numeral/numeral.js
+//= require plugins/numeral-js/numeral
 //= require web/store/index

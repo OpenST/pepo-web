@@ -1,12 +1,11 @@
-const numeral = require('numeral');
-
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   StoreRedemptionApi = require(rootPrefix + '/lib/pepoApi/StoreRedemption'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
+  numeral = require(rootPrefix + '/assets/js/plugins/numeral-js/numeral.js');
 
 class GetStoreProducts extends ServiceBase {
   /**
