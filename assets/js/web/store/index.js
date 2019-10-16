@@ -59,6 +59,7 @@
         oThis.approvedVideo.show();
         $('#productKind').text('');
         $('.landscape-img').attr('src', '');
+        $("#usd-amount").val('');
         $('.redemption-message').hide();
         $('#requestError').hide();
       })
@@ -137,6 +138,7 @@
         complete: function (response) {
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
           $("#usd-amount").val('');
+          $('#requestSection').show();
         }
       })
     }
