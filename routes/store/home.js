@@ -8,12 +8,25 @@ const rootPrefix = '../..',
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  cookieGlobalConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
+const primaryAuthCheck = function (req, res, next) {
+  const hasLoginCookie = req.headers['cookie'] ?
+    req.headers['cookie'].includes(`${cookieGlobalConstants.loginFromWebviewCookieName}=`) :
+    false;
+
+  if (!req.decodedParams.rt && !hasLoginCookie) {
+    return res.status(401).render(`error/401`);
+  } else {
+    next();
+  }
+};
+
 /* GET home page. */
-router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, primaryAuthCheck, async function (req, res, next) {
 
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
   let getStoreProductObj = new GetStoreProduct({ headers: req.headers, decodedParams: req.decodedParams });
