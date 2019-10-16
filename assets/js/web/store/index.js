@@ -99,7 +99,7 @@
           method: "GET",
           success: function (response) {
             if (response.success) {
-              let val = numeral(response.data.pepocorn_balance.balance).format("0[.]00", Math.floor);
+              var val = numeral(response.data.pepocorn_balance.balance).format("0[.]00", Math.floor);
               $('#pepoCornBalance').text(val);
               $('#dollarBalance').text(val);
             }
