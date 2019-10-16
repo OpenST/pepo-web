@@ -204,7 +204,7 @@ app.use(setResponseHeader);
 app.use(csrfProtection);
 
 app.use(pagePathConstants.home, indexRouter);
-app.use(pagePathConstants.account, usersRouter);
+// app.use(pagePathConstants.account, usersRouter);
 app.use(pagePathConstants.redemptions, redemptionsRouter);
 app.use(pagePathConstants.support, supportRouter);
 

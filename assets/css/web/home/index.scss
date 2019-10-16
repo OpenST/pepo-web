@@ -1,3 +1,23 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.uber-banner{
+  background: linear-gradient(80deg, $ticklePink 0%, $wildWatermelon 100%);
+  padding: 10px 0;
+  letter-spacing: 0.6px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  &:hover, &:focus{
+    text-decoration: none;
+    color: $white;
+  }
+}
+
 .side-by-side{
   h1{
     font-size: 36px;

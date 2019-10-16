@@ -21,28 +21,34 @@ const errorConfig = basicHelper.fetchErrorConfig();
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
-  /** Never Uncomment and Commit This **/
-  // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home',{
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0
+  });
 
-  /** Always, uncomment and commit **/
-  let getRequestTokenObj = new GetRequestToken({headers: req.headers, decodedParams: req.decodedParams});
-  let apiResponse = await getRequestTokenObj.perform();
 
-  cookieHelper.setNewCookies(req, res);
-
-  if (apiResponse.isFailure() &&
-    apiResponse._fetchHttpCode(errorConfig.api_error_config || {}) == httpErrorCodes.temporaryRedirectErrorCode) {
-    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
-  }
-
-  if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', apiResponse.data);
-  } else {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
-      twitterRedirectUrl: '#',
-      twitterSigninError: 0
-    });
-  }
+  // /** Never Uncomment and Commit This **/
+  // // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
+  //
+  // /** Always, uncomment and commit **/
+  // let getRequestTokenObj = new GetRequestToken({headers: req.headers, decodedParams: req.decodedParams});
+  // let apiResponse = await getRequestTokenObj.perform();
+  //
+  // cookieHelper.setNewCookies(req, res);
+  //
+  // if (apiResponse.isFailure() &&
+  //   apiResponse._fetchHttpCode(errorConfig.api_error_config || {}) == httpErrorCodes.temporaryRedirectErrorCode) {
+  //   return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  // }
+  //
+  // if (apiResponse.success) {
+  //   renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', apiResponse.data);
+  // } else {
+  //   renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  //     twitterRedirectUrl: '#',
+  //     twitterSigninError: 0
+  //   });
+  // }
 
 });
 
