@@ -98,7 +98,7 @@
           method: "GET",
           success: function (response) {
             if (response.success) {
-              $('#pepoCornBalance').text(response.data.pepocorn_balance.balance)
+              $('#pepoCornBalance').text(numeral(response.data.pepocorn_balance.balance).format("0[.]00", Math.floor))
             }
           }
         })

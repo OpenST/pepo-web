@@ -160,7 +160,7 @@ app.use('/', function(request, response, next){
 
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {
-  paths: [path.join(__dirname, 'assets/css'), path.join(__dirname, 'assets/js')],
+  paths: [path.join(__dirname, 'assets/css'), path.join(__dirname, 'assets/js'), path.join(__dirname, 'node_modules')],
   buildDir: path.join(__dirname, 'builtAssets'),
   fingerprinting: true,
   servePath: 'assets'

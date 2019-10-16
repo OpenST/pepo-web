@@ -53,8 +53,9 @@ const csrfProtection = csrf({
   }
 });
 
+// NOTE:- AS Pepo-STORE urls are already protected, so no need to have basic auth.
 // Add basic auth in chain
-router.use(basicAuthentication);
+//router.use(basicAuthentication);
 
 router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 

@@ -1,3 +1,5 @@
+const numeral = require('numeral');
+
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   StoreRedemptionApi = require(rootPrefix + '/lib/pepoApi/StoreRedemption'),
@@ -37,7 +39,8 @@ class GetStoreProducts extends ServiceBase {
     let pepoBalance = basicHelper.convertWeiToNormal(oThis.serviceResp.data.balance.available_balance).toString(10),
       pricePoint = oThis.serviceResp.data.price_points['OST']['USD'];
 
-    oThis.serviceResp.data.pepocorn_balance = oThis.serviceResp.data.pepocorn_balance;
+    oThis.serviceResp.data.pepocorn_balance = numeral(oThis.serviceResp.data.pepocorn_balance).format("0[.]00", Math.floor);
+
     oThis.serviceResp.data.usd_amount = basicHelper.getUSDAmountForPepoForDisplay(pricePoint, pepoBalance);
 
     return Promise.resolve(oThis.serviceResp);
