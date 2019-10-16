@@ -50,10 +50,10 @@
             <div class="input-group-prepend">
                 <span class="input-group-text py-0">$</span>
             </div>
-            <input type="number" id="usd-amount" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
+            <input type="number" id="usd-amount" data-default-dollar-amount="<%= default_usd_amount %>" value="<%= default_usd_amount %>" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
         </div>
         <div class="converted-value">
-            That'll cost <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="18"/> <span id="converted-pepocorns">0</span>
+            That'll cost <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="18"/> <span id="converted-pepocorns"><%= default_usd_amount %></span>
         </div>
         <button id="requestRedemptionBtn" class="btn btn-primary w-100 btn-gradient text-capitalize mb-2 mt-4" type="submit">Request</button>
     </div>

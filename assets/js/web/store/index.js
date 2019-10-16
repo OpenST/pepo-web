@@ -15,6 +15,7 @@
     maxPollingInterval: 60000,
     requestRoute: "/api/web/redemptions/request",
     pepoCornsPoolingUrl: "/api/web/redemptions/pepocorn-balance",
+    defaultDollarAmount: $("#usd-amount").attr('data-default-dollar-amount'),
 
     init : function () {
 
@@ -59,10 +60,10 @@
         oThis.approvedVideo.show();
         $('#productKind').text('');
         $('.landscape-img').attr('src', '');
-        $("#usd-amount").val('');
+        $("#usd-amount").val(oThis.defaultDollarAmount);
         $('.redemption-message').hide();
         $('#requestError').hide();
-        $("#converted-pepocorns").text(0);
+        $("#converted-pepocorns").text(oThis.defaultDollarAmount);
       })
     },
 
@@ -141,8 +142,8 @@
         },
         complete: function (response) {
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
-          $("#usd-amount").val('');
-          $("#converted-pepocorns").text(0);
+          $("#usd-amount").val(oThis.defaultDollarAmount);
+          $("#converted-pepocorns").text(oThis.defaultDollarAmount);
         }
       })
     }
