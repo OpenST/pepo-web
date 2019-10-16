@@ -44,17 +44,19 @@
     <div class="col-12 embed-responsive embed-responsive-16by9 mb-5">
         <img class="embed-responsive-item landscape-img" src="" alt="16x9 image"/>
     </div>
-    <label>Choose your Card Value</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text py-0">$</span>
+    <div id="requestSection">
+        <label>Choose your Card Value</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text py-0">$</span>
+            </div>
+            <input type="number" id="usd-amount" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
         </div>
-        <input type="number" id="usd-amount" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
+        <div class="converted-value">
+            Value in <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="18"/> <span id="converted-pepocorns">0</span>
+        </div>
+        <button id="requestRedemptionBtn" class="btn btn-primary w-100 btn-gradient text-capitalize mb-2 mt-4" type="submit">Request</button>
     </div>
-    <div class="converted-value">
-        Value in <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="18"/> <span id="converted-pepocorns">0</span>
-    </div>
-    <button id="requestRedemptionBtn" class="btn btn-primary w-100 btn-gradient text-capitalize mb-2 mt-4" type="submit">Request</button>
     <div id="requestError" class="text-center error-message animationBounceText" style="display: none;">Something went wrong!</div>
 
     <div class="col-12 col-md-6">
