@@ -44,7 +44,7 @@
         oThis.currentProductId = $(this).data("product-id");
         oThis.dollarAmount = $(this).data("dollar-amount");
         oThis.pepocornPerDollar = $(this).data("pepocorn-per-dollar");
-
+        $('#requestSection').show();
         $('#usd-amount').attr({
           'data-pepocorn-per-dollar': oThis.pepocornPerDollar
         });
@@ -62,6 +62,7 @@
         $("#usd-amount").val('');
         $('.redemption-message').hide();
         $('#requestError').hide();
+        $("#converted-pepocorns").text(0);
       })
     },
 
@@ -139,7 +140,7 @@
         complete: function (response) {
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
           $("#usd-amount").val('');
-          // $('#requestSection').hide();
+          $("#converted-pepocorns").text(0);
         }
       })
     }
