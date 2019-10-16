@@ -116,7 +116,7 @@
         success: function (response) {
           if ( response.success ) {
             $('#redemptionSuccess').show();
-            oThis.requestSection.hide();
+            $('#requestSection').hide();
           } else {
             var errorData = response.err && response.err.error_data ,
                 errMsg;
