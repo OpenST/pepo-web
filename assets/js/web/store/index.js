@@ -95,18 +95,22 @@
           clearInterval(interval);
           return;
         }
-        $.ajax({
-          url: oThis.pepoCornsPoolingUrl,
-          method: "GET",
-          success: function (response) {
-            if (response.success) {
-              var val = numeral(response.data.pepocorn_balance.balance).format("0[.]00", Math.floor);
-              $('#pepoCornBalance').text(val);
-              $('#dollarBalance').text(val);
-            }
-          }
-        })
+        oThis.fetchBalanceRequest()
       }, oThis.pollingInterval);
+    },
+
+    fetchBalanceRequest: function() {
+      $.ajax({
+        url: oThis.pepoCornsPoolingUrl,
+        method: "GET",
+        success: function (response) {
+          if (response.success) {
+            var val = numeral(response.data.pepocorn_balance.balance).format("0[.]00", Math.floor);
+            $('#pepoCornBalance').text(val);
+            $('#dollarBalance').text(val);
+          }
+        }
+      })
     },
 
     requestAction: function () {
@@ -144,6 +148,7 @@
           $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         },
         complete: function (response) {
+          oThis.fetchBalanceRequest();
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
           // $("#usd-amount").val(oThis.defaultDollarAmount);
           // $("#converted-pepocorns").text(oThis.defaultDollarAmount);
