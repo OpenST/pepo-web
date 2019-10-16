@@ -136,6 +136,7 @@
         },
         complete: function (response) {
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
+          $("#usd-amount").val('');
         }
       })
     }
