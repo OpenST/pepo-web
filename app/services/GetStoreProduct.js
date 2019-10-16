@@ -3,6 +3,7 @@ const rootPrefix = '../..',
   StoreRedemptionApi = require(rootPrefix + '/lib/pepoApi/StoreRedemption'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
 
 class GetStoreProducts extends ServiceBase {
@@ -38,6 +39,7 @@ class GetStoreProducts extends ServiceBase {
 
     oThis.serviceResp.data.pepocorn_balance = oThis.serviceResp.data.pepocorn_balance;
     oThis.serviceResp.data.usd_amount = basicHelper.getUSDAmountForPepoForDisplay(pricePoint, pepoBalance);
+    oThis.serviceResp.data.homeRedirectUrl = coreConstants.PEPO_DOMAIN;
 
     return Promise.resolve(oThis.serviceResp);
   }
