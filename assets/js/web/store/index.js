@@ -145,8 +145,8 @@
         },
         complete: function (response) {
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
-          $("#usd-amount").val(oThis.defaultDollarAmount);
-          $("#converted-pepocorns").text(oThis.defaultDollarAmount);
+          // $("#usd-amount").val(oThis.defaultDollarAmount);
+          // $("#converted-pepocorns").text(oThis.defaultDollarAmount);
         }
       })
     }
