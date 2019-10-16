@@ -118,6 +118,7 @@
           if ( response.success ) {
             $('#redemptionSuccess').show();
             $('#requestSection').hide();
+            $('#redemptionFailure').hide();
           } else {
             var errorData = response.err && response.err.error_data ,
                 errMsg;
@@ -138,7 +139,7 @@
         complete: function (response) {
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
           $("#usd-amount").val('');
-          $('#requestSection').show();
+          // $('#requestSection').hide();
         }
       })
     }
