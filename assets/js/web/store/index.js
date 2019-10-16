@@ -123,6 +123,7 @@
             $('#redemptionSuccess').show();
             $('#requestSection').hide();
             $('#redemptionFailure').hide();
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
           } else {
             var errorData = response.err && response.err.error_data ,
                 errMsg;
@@ -135,10 +136,12 @@
               $('#redemptionFailure').find('.error-message').text(errMsg);
             }
             $('#redemptionFailure').show();
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
           }
         },
         error: function (jqXHR, exception) {
           $('#requestError').show().addClass('');
+          $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         },
         complete: function (response) {
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
