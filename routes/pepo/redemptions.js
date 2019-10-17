@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
-const rootPrefix = '..',
+const rootPrefix = '../..',
   GetRedemptionProduct = require(rootPrefix + '/app/services/GetRedemptionProduct'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
@@ -11,7 +11,7 @@ const rootPrefix = '..',
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
-/* GET users account page. */
+/* GET redemption products. */
 router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
@@ -32,7 +32,10 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-1x1.png",
   //         landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-amazon-16x9.png"
   //       },
-  //       dollar_value: 10
+  //       dollar_value: 10,
+  //       min_dollar_value: 10,
+  //       dollar_step: 1,
+  //       pepocorn_per_dollar: 1
   //     },
   //       { id: '2',
   //         status: 'ACTIVE',
@@ -43,7 +46,10 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-starbucks-1x1.png",
   //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-starbucks-16x9.png"
   //         },
-  //         dollar_value: 10
+  //         dollar_value: 10,
+  //         min_dollar_value: 10,
+  //         dollar_step: 1,
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '3',
   //         status: 'ACTIVE',
@@ -54,7 +60,10 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-netflix-1x1.png",
   //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-netflix-16x9.png"
   //         },
-  //         dollar_value: 10
+  //         dollar_value: 10,
+  //         min_dollar_value: 10,
+  //         dollar_step: 1,
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '4',
   //         status: 'ACTIVE',
@@ -65,7 +74,10 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-airbnb-1x1.png",
   //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-airbnb-16x9.png"
   //         },
-  //         dollar_value: 10
+  //         dollar_value: 10,
+  //         min_dollar_value: 10,
+  //         dollar_step: 1,
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '5',
   //         status: 'ACTIVE',
@@ -76,7 +88,10 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-1x1-.png",
   //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-creator-partners-16x9-.png"
   //         },
-  //         dollar_value: 10
+  //         dollar_value: 10,
+  //         min_dollar_value: 10,
+  //         dollar_step: 1,
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '6',
   //         status: 'ACTIVE',
@@ -87,7 +102,10 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //           square:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-uber-1x1.png",
   //           landscape:"https://d3attjoi5jlede.cloudfront.net/images/web/redemption/redemption-uber-16x9.png"
   //         },
-  //         dollar_value: 10
+  //         dollar_value: 10,
+  //         min_dollar_value: 10,
+  //         dollar_step: 1,
+  //         pepocorn_per_dollar: 1
   //       } ],
   //     balance: { user_id: 'ca9cd73b-c79e-4d0b-b55b-6d95ee7a8d54',
   //       total_balance: '1748840000000000000000',

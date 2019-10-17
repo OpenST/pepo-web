@@ -2,73 +2,26 @@ const rootPrefix = '.';
 
 const express = require('express'),
   path = require('path'),
-  cookieParser = require('cookie-parser'),
-  csrf = require('csurf'),
-  basicAuth = require('basic-auth'),
   bodyParser = require('body-parser'),
   morgan = require('morgan'),
   helmet = require('helmet'),
   customUrlParser = require('url'),
+  URL = require('url').URL,
   createNamespace = require('continuation-local-storage').createNamespace;
 
-const indexRouter = require(rootPrefix + '/routes/index'),
-  usersRouter = require(rootPrefix + '/routes/users'),
-  redemptionsRouter = require(rootPrefix + '/routes/redemptions'),
-  supportRouter = require(rootPrefix + '/routes/support'),
+const elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker'),
+  pepoRoutes = require(rootPrefix + '/routes/pepo/index'),
+  storeRoutes = require(rootPrefix + '/routes/store/index'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
-  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
-  elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker'),
-  staticContentsRoute = require(rootPrefix + '/routes/staticContents'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
 
 const errorConfig = basicHelper.fetchErrorConfig();
-
-const basicAuthentication = function(req, res, next) {
-  if (!coreConstants.USE_BASIC_AUTHENTICATION) {
-    return next();
-  }
-
-  function unauthorized(res) {
-    res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
-
-    return res.status(401).render(`error/401`);
-  }
-
-  let user = basicAuth(req);
-
-  if (!user || !user.name || !user.pass) {
-    return unauthorized(res);
-  }
-
-  if (
-    user.name === coreConstants.BASIC_AUTHENTICATION_USERNAME &&
-    user.pass === coreConstants.BASIC_AUTHENTICATION_PASSWORD
-  ) {
-    return next();
-  } else {
-    return unauthorized(res);
-  }
-};
-
-const csrfProtection = csrf({
-  cookie: {
-    key: cookieConstants.csrfCookieName,
-    maxAge: 1 * 60 * 60 * 24 * 30,
-    httpOnly: true, // The cookie only accessible by the web server
-    signed: true, // Indicates if the cookie should be signed
-    secure: basicHelper.isProduction(), // Marks the cookie to be used with HTTPS only
-    path: '/',
-    sameSite: 'strict', // sets the same site policy for the cookie
-    domain: coreConstants.COOKIE_DOMAIN
-  }
-});
 
 morgan.token('id', function getId(req) {
   return req.id;
@@ -148,6 +101,9 @@ const setResponseHeader = async function(req, res, next) {
   next();
 };
 
+const pepoHostName = new URL(coreConstants.PEPO_DOMAIN).hostname;
+const pepoStoreHostName = new URL(coreConstants.PEPO_STORE_DOMAIN).hostname;
+
 // Set worker process title
 process.title = 'Pepo Web node worker';
 
@@ -185,28 +141,22 @@ app.use(sanitizer.sanitizeBodyAndQuery, assignParams);
 
 app.use('/health-checker', elbHealthCheckerRoute);
 
-// These are static routes without basic auth.
-app.use('/', staticContentsRoute);
-
-// Add basic auth in chain
-app.use(basicAuthentication);
-
-app.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
-
-app.use(express.static(path.join(__dirname, 'public')));
-
 // Start Request logging. Placed below static and health check to reduce logs
 app.use(appendRequestDebugInfo, startRequestLogLine);
 
 // set response Headers
 app.use(setResponseHeader);
 
-app.use(csrfProtection);
+app.use('/', function(request, response, next){
 
-app.use(pagePathConstants.home, indexRouter);
-app.use(pagePathConstants.account, usersRouter);
-app.use(pagePathConstants.redemptions, redemptionsRouter);
-app.use(pagePathConstants.support, supportRouter);
+  if(request.hostname === pepoHostName){
+    pepoRoutes(request, response, next);
+  }else if(request.hostname === pepoStoreHostName){
+    storeRoutes(request, response, next);
+  }else{
+    next();
+  }
+});
 
 // connect-assets relies on to use defaults in config
 const connectAssetConfig = {

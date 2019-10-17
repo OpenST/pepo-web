@@ -41,6 +41,6 @@
   };
 
   // Auto-Bind
-  $( ost.logoutUtil.bind );  
+  $( ost.logoutUtil.bind );
 
 })(window, jQuery);
