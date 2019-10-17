@@ -8,23 +8,44 @@
 
         oThis.initCarousal();
         oThis.handleAchorTag();
+        oThis.muteAll();
+        oThis.bindVideoClicks();
 
-        $("video").prop('muted', true);
+      },
 
-        $("#videoMuteUnMute").on('click', function (){
-          $(this).toggleClass('mute');
-          if( $("video").prop('muted') ) {
-            $("video").prop('muted', false);
-            $(this).hover(function(e) {
-              $(e.currentTarget).attr('title', 'Click to Mute');
-            });
-          } else {
-            $("video").prop('muted', true);
-            $(this).hover(function(e) {
-              $(e.currentTarget).attr('title', 'Click to Unmute');
-            });
-          }
+      bindVideoClicks: function(){
+        $(".videoWrapper").on("click", function(){
+          oThis.toggleVideoMuteOthers(this);
         });
+      },
+
+      muteAll: function(){
+        var jqVideoMuteUnMute = $(".videoWrapper .videoMuteUnMute");
+        $("video").prop('muted', true);
+        jqVideoMuteUnMute.addClass('mute');
+        jqVideoMuteUnMute.attr('title', 'Click to Unmute');
+      },
+
+      toggleVideoMuteOthers: function(jqVideo){
+        var jqVideoElem = $(jqVideo).find("video");
+        var jqVideoMuteUnMute = $(jqVideo).find(".videoMuteUnMute");
+        var muted = false;
+
+        if( $(jqVideoElem).prop('muted') ) {
+          muted = true;
+        }
+
+        oThis.muteAll();
+
+        if(muted){
+          $(jqVideoElem).prop('muted', false);
+          jqVideoMuteUnMute.removeClass('mute');
+          jqVideoMuteUnMute.attr('title', 'Click to Mute');
+        } else {
+          $(jqVideoElem).prop('muted', true);
+          jqVideoMuteUnMute.addClass('mute');
+          jqVideoMuteUnMute.attr('title', 'Click to Unmute');
+        }
 
       },
 
