@@ -2,17 +2,15 @@ const express = require('express');
 const router = express.Router();
 
 const rootPrefix = '../..',
-  GetRequestToken = require(rootPrefix + '/app/services/GetRequestToken'),
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
-  httpErrorCodes = require(rootPrefix + '/lib/globalConstant/httpErrorCodes'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+  appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -20,9 +18,11 @@ const errorConfig = basicHelper.fetchErrorConfig();
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home',{
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
-    twitterSigninError: 0
+    twitterSigninError: 0,
+    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+    iosAppLink: appUpdateLinksConstants.iosUpdateLink
   });
 
 

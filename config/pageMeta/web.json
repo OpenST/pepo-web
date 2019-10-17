@@ -39,10 +39,6 @@
       "css_manifest" : true
     }
   },
-  "redemption": {
-    "page": "Redemption",
-    "robots": "noindex, nofollow"
-  },
   "store": {
     "page": "Store",
     "robots": "noindex, nofollow"
