@@ -53,11 +53,12 @@ class GetFirebaseInviteUrl extends ServiceBase {
     // Assign all url params
     oThis.urlParams = {
       link: `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}`,
-      apn: 'com.pepo.staging',
-      afl: 'http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/Android/pepo/staging/current/app-release.apk',
-      ibi: 'com.pepo.staging',
-      ifl: 'http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/DownloadPepoNew.html?b=staging',
-      isi: '1161312313',
+      apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
+      afl: coreConstants.PEPO_ANDROID_APP_LINK,
+      ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
+      ifl: coreConstants.PEPO_IOS_APP_LINK,
+      isi: coreConstants.PEPO_IOS_APP_ID,
+      ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       efr: '1',
       st: 'Pepo',
       sd: 'best crypto app',
