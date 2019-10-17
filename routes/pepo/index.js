@@ -65,7 +65,7 @@ router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 router.use(csrfProtection);
 
 router.use(pagePathConstants.home, homeRouter);
-router.use(pagePathConstants.account, usersRouter);
+// router.use(pagePathConstants.account, usersRouter);
 router.use(pagePathConstants.redemptions, redemptionsRouter);
 router.use(pagePathConstants.support, supportRouter);
 

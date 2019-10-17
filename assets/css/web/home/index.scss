@@ -1,3 +1,87 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.uber-banner{
+  background: linear-gradient(80deg, $ticklePink 0%, $wildWatermelon 100%);
+  padding: 10px 0;
+  letter-spacing: 0.6px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  &:hover, &:focus{
+    text-decoration: none;
+    color: $white;
+  }
+}
+
+.videoSpeaker {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+
+  span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: $wildWatermelon;
+    margin: 11px 0 0 2px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: transparent $wildWatermelon transparent transparent;
+      border-width: 10px 14px 10px 15px;
+      left: -13px;
+      top: 5px;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+      border-radius: 0 50px 0 0;
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-style: double;
+      border-color: $wildWatermelon;
+      border-width: 7px 7px 0 0;
+      left: 18px;
+      top: 9px;
+      transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      -webkit-transition: all 0.2s ease-out;
+    }
+  }
+
+  &:hover {
+
+    span:before {
+      transform: scale(.8) translate(-3px, 0) rotate(42deg);
+      -moz-transform: scale(.8) translate(-3px, 0) rotate(42deg);
+      -webkit-transform: scale(.8) translate(-3px, 0) rotate(42deg);
+    }
+  }
+
+  &.mute {
+    span:before {
+      opacity: 0;
+      transform: scale(.5) translate(-15px, 0) rotate(36deg);
+      -moz-transform: scale(.5) translate(-15px, 0) rotate(36deg);
+      -webkit-transform: scale(.5) translate(-15px, 0) rotate(36deg);
+    }
+  }
+}
+
+
 .side-by-side{
   h1{
     font-size: 36px;
