@@ -125,12 +125,19 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   // };
 
 
-  let appUpdateLinks = {
-    androidAppUpdateLink: appUpdateLinksConstants.android,
-    iosAppUpdateLink: appUpdateLinksConstants.ios
-  };
+  let appUpdateLink;
 
-  renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemption', appUpdateLinks);
+  if(req.decodedParams.pdo) {
+    let pepoDeviceOs = req.decodedParams.pdo;
+
+    if(pepoDeviceOs == appUpdateLinksConstants.androidDeviceOs) {
+      appUpdateLink = appUpdateLinksConstants.androidUpdateLink;
+    } else if(pepoDeviceOs == appUpdateLinksConstants.iosDeviceOs)  {
+      appUpdateLink = appUpdateLinksConstants.iosUpdateLink;
+    }
+  }
+
+  renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemption', {appUpdateLink: appUpdateLink});
 });
 
 module.exports = router;

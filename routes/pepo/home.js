@@ -13,6 +13,7 @@ const rootPrefix = '../..',
   httpErrorCodes = require(rootPrefix + '/lib/globalConstant/httpErrorCodes'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+    appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -22,7 +23,9 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home',{
     twitterRedirectUrl: '#',
-    twitterSigninError: 0
+    twitterSigninError: 0,
+    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+    iosAppLink: appUpdateLinksConstants.iosUpdateLink
   });
 
 
