@@ -154,7 +154,7 @@ app.use('/', function(request, response, next){
   }else if(request.hostname === pepoStoreHostName){
     storeRoutes(request, response, next);
   }else{
-  //  do nothing
+    next();
   }
 });
 

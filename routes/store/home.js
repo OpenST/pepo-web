@@ -7,13 +7,27 @@ const rootPrefix = '../..',
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  cookieGlobalConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
+const primaryAuthCheck = function (req, res, next) {
+  const hasLoginCookie = req.headers['cookie'] ?
+    req.headers['cookie'].includes(`${cookieGlobalConstants.loginFromWebviewCookieName}=`) :
+    false;
+
+  if (!req.decodedParams.rt && !hasLoginCookie) {
+    return res.status(401).render(`error/401`, { redirectUrl: coreConstants.PEPO_DOMAIN });
+  } else {
+    next();
+  }
+};
+
 /* GET home page. */
-router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, primaryAuthCheck, async function (req, res, next) {
 
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
   let getStoreProductObj = new GetStoreProduct({ headers: req.headers, decodedParams: req.decodedParams });
@@ -37,7 +51,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //       dollar_value: 10,
   //       min_dollar_value: 10,
   //       dollar_step: 1,
-  //       pepocorn_per_dollar_step: 1
+  //       pepocorn_per_dollar: 1
   //     },
   //       {
   //         id: '2',
@@ -52,7 +66,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '3',
@@ -67,7 +81,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '4',
@@ -82,7 +96,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '5',
@@ -97,7 +111,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       {
   //         id: '6',
@@ -112,7 +126,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       }],
   //     balance: {
   //       user_id: 'ca9cd73b-c79e-4d0b-b55b-6d95ee7a8d54',

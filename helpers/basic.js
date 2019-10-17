@@ -1,4 +1,5 @@
 const BigNumber = require('bignumber.js');
+const decode = require('unescape');
 
 const rootPrefix = '..',
   apiErrorConfig = require(rootPrefix + '/config/error/api'),
@@ -6,6 +7,17 @@ const rootPrefix = '..',
   paramErrorConfig = require(rootPrefix + '/config/error/param');
 
 class BasicHelper {
+
+  /**
+   * Unescape String.
+   *
+   * @param {string} escapedString
+   *
+   * @return {string}
+   */
+  decodeHtmlEntity(escapedString) {
+    return decode(escapedString);
+  }
 
   /**
    * Convert wei value to un wei (normal).
@@ -48,7 +60,7 @@ class BasicHelper {
   isProduction() {
     return coreConstants.environment === 'production';
   }
-  
+
   /**
    * Check if environment is sandbox.
    *
@@ -57,7 +69,7 @@ class BasicHelper {
   isSandbox() {
     return coreConstants.environment === 'sandbox';
   }
-  
+
   /**
    * Check if environment is staging.
    *
@@ -103,7 +115,7 @@ class BasicHelper {
     };
   }
 
-  getPepoAmountForUSD(usdInOneOst, amountUSD){
+  getPepoAmountForUSD(usdInOneOst, amountUSD) {
     const oThis = this;
 
     let usdInOnePepo = oThis.getUSDAmountForPepo(usdInOneOst, '1'),
@@ -113,7 +125,7 @@ class BasicHelper {
     return oThis.convertToWei(totalPepoBn).round(0).toString(10);
   }
 
-  getUSDAmountForPepo(usdInOneOst, amountPepo){
+  getUSDAmountForPepo(usdInOneOst, amountPepo) {
     const oThis = this;
 
     let pepoInOneOST = 1;
@@ -125,7 +137,7 @@ class BasicHelper {
     return totalUSDBn.toString(10);
   }
 
-  getUSDAmountForPepoForDisplay(usdInOneOst, amountPepo){
+  getUSDAmountForPepoForDisplay(usdInOneOst, amountPepo) {
     const oThis = this;
 
     return oThis.convertToBigNumber(oThis.getUSDAmountForPepo(usdInOneOst, amountPepo)).round(2).toString(10);

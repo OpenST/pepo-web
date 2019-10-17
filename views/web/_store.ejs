@@ -9,11 +9,14 @@
         <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-store-logo.png"
              alt="Pepo Store Logo" class="img-fluid" width="222"/>
     </div>
-    <p class="mt-3 mb-0 to-spend" style="">Pepocorns to spend
-        <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="15.375"/>
-        <span id="pepoCornBalance"><%= pepocorn_balance %></span>
+    <p class="mt-3 mb-0 to-spend" style="">Your Balance:
+        <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="18"/>
+        <span id="pepoCornBalance"><%= pepocorn_balance %></span> = $<span id="dollarBalance"><%= pepocorn_balance %></span>
     </p>
-    <p class="mb-0 approved-video">1 approved video required before redeeming</p>
+    <p class="mb-0 approved-video">Minimum 10 Unicorns and 1 approved video required before redeeming.</p>
+    <p class="mb-0 approved-video">
+        <a href="https://intercom.help/pepo/en/articles/3418202-what-are-pepo-unicorns" class="owningUnicornsLearn" target="_blank" rel="noopener noreferrer nofollow">Learn</a> all about the benefits of owning Unicorns.
+    </p>
     <div class="header-line my-3"></div>
 </div>
 
@@ -31,6 +34,7 @@
                          data-product-id="<%= dat.id %>"
                          data-product-kind="<%= dat.kind %>"
                          data-dollar-amount="<%= dat.dollarValue %>"
+                         data-pepocorn-per-dollar="<%= dat.pepocornPerDollar %>"
                     />
                 </div>
             </div>
@@ -43,17 +47,19 @@
     <div class="col-12 embed-responsive embed-responsive-16by9 mb-5">
         <img class="embed-responsive-item landscape-img" src="" alt="16x9 image"/>
     </div>
-    <label>Choose your Card Value</label>
-    <div class="input-group">
-        <div class="input-group-prepend">
-            <span class="input-group-text py-0">$</span>
+    <div id="requestSection">
+        <label>Choose value</label>
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text py-0">$</span>
+            </div>
+            <input type="number" id="usd-amount" data-default-dollar-amount="<%= default_usd_amount %>" value="<%= default_usd_amount %>" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
         </div>
-        <input type="number" class="form-control pl-0" aria-label="Amount (to the nearest dollar)">
+        <div class="converted-value">
+            That'll cost <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="18"/> <span id="converted-pepocorns"><%= default_usd_amount %></span>
+        </div>
+        <button id="requestRedemptionBtn" class="btn btn-primary w-100 btn-gradient text-capitalize mb-2 mt-4" type="submit">Request</button>
     </div>
-    <div class="converted-value">
-        Value in 670
-    </div>
-    <button id="requestRedemptionBtn" class="btn btn-primary w-100 btn-gradient text-capitalize mb-2 mt-4" type="submit">Request</button>
     <div id="requestError" class="text-center error-message animationBounceText" style="display: none;">Something went wrong!</div>
 
     <div class="col-12 col-md-6">
@@ -85,7 +91,7 @@
                         </g>
                     </g>
                 </svg>
-                <span class="ml-2 text-msg">We have registered your request, our team will get in touch with you soon.</span>
+                <span class="ml-2 text-msg">We have received your cash-out request. Our team will reach out to you on the email address of your Twitter account.</span>
             </div>
         </div>
 
@@ -108,14 +114,13 @@
                         <path d="M21.844 28.562l-.343-4.164c-.114-1.116-.393-3.232-.836-6.348-.443-3.116-.665-4.933-.665-5.45 0-2.15.715-3.225 2.145-3.225 1.43 0 2.144 1.048 2.144 3.143 0 .218-.014.456-.043.715-.028.258-.043.47-.043.633l-1.801 14.696h-.558zM20 33.706c0-1.388.73-2.082 2.188-2.082 1.458 0 2.187.667 2.187 2 0 1.334-.73 2.001-2.188 2.001-1.458 0-2.187-.64-2.187-1.919z" fill="url(#b)"/>
                     </g>
                 </svg>
-                <span class="ml-2 error-message">Minimum redemption is $10. Please try again when you have more Pepo Coins.</span>
+                <span class="ml-2 error-message">Minimum purchase is $10. Please try again when you have more Unicorns.</span>
             </div>
         </div>
 
     </div>
 
 </div>
-
 
 <script type="text/javascript">
   window.onload = function() {

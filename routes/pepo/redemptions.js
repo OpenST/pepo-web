@@ -33,7 +33,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //       dollar_value: 10,
   //       min_dollar_value: 10,
   //       dollar_step: 1,
-  //       pepocorn_per_dollar_step: 1
+  //       pepocorn_per_dollar: 1
   //     },
   //       { id: '2',
   //         status: 'ACTIVE',
@@ -47,7 +47,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '3',
   //         status: 'ACTIVE',
@@ -61,7 +61,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '4',
   //         status: 'ACTIVE',
@@ -75,7 +75,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '5',
   //         status: 'ACTIVE',
@@ -89,7 +89,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       },
   //       { id: '6',
   //         status: 'ACTIVE',
@@ -103,7 +103,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
   //         dollar_value: 10,
   //         min_dollar_value: 10,
   //         dollar_step: 1,
-  //         pepocorn_per_dollar_step: 1
+  //         pepocorn_per_dollar: 1
   //       } ],
   //     balance: { user_id: 'ca9cd73b-c79e-4d0b-b55b-6d95ee7a8d54',
   //       total_balance: '1748840000000000000000',
