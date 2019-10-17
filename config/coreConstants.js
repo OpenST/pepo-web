@@ -83,6 +83,14 @@ class CoreConstant {
     return process.env.PW_BT_CONTRACT_ADDRESS;
   }
 
+  get PEPO_ANDROID_APP_LINK(){
+    return process.env.PEPO_ANDROID_APP_LINK;
+  }
+
+  get PEPO_IOS_APP_LINK(){
+    return process.env.PEPO_IOS_APP_LINK;
+  }
+
 
 }
 
