@@ -84,11 +84,11 @@ class CoreConstant {
   }
 
   get PEPO_ANDROID_APP_LINK(){
-    return process.env.PEPO_ANDROID_APP_LINK;
+    return process.env.PW_ANDROID_APP_LINK;
   }
 
   get PEPO_IOS_APP_LINK(){
-    return process.env.PEPO_IOS_APP_LINK;
+    return process.env.PW_IOS_APP_LINK;
   }
 
 

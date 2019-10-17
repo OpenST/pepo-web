@@ -32,5 +32,5 @@ export PW_UBT_ADDRESS='0xf3e67271386fe994eb994c713b52556a38bba094';
 export PW_ETHERSCAN_WEB_ROOT='https://etherscan.io';
 export PW_BT_CONTRACT_ADDRESS='0x8d3d262fb1139d5d55d9ccbe7fff5fc45f242184';
 
-export PEPO_ANDROID_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/Android/pepo/staging/current/app-release.apk';
-export PEPO_IOS_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/DownloadPepoNew.html?b=staging';
+export PW_ANDROID_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/Android/pepo/staging/current/app-release.apk';
+export PW_IOS_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/DownloadPepoNew.html?b=staging';
