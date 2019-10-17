@@ -131,6 +131,16 @@ label{
   border-bottom-right-radius: 5px;
 }
 
+.owningUnicornsLearn{
+  color: $wildWatermelon;
+  text-decoration: none;
+  &:hover, &:focus{
+    outline: none;
+    text-decoration: none;
+    color: $wildWatermelon;
+  }
+}
+
 .success-message{
   &.gradient-line{
     padding: 1px;

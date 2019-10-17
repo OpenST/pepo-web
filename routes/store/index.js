@@ -21,7 +21,7 @@ const basicAuthentication = function(req, res, next) {
   function unauthorized(res) {
     res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
 
-    return res.status(401).render(`error/401`);
+    return res.status(401).render(`error/401`, { redirectUrl: coreConstants.PEPO_DOMAIN });
   }
 
   let user = basicAuth(req);
@@ -53,8 +53,9 @@ const csrfProtection = csrf({
   }
 });
 
+// NOTE:- AS Pepo-STORE urls are already protected, so no need to have basic auth.
 // Add basic auth in chain
-router.use(basicAuthentication);
+//router.use(basicAuthentication);
 
 router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 
