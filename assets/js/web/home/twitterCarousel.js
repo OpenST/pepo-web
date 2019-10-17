@@ -9,6 +9,23 @@
         oThis.initCarousal();
         oThis.handleAchorTag();
 
+        $("video").prop('muted', true);
+
+        $("#videoMuteUnMute").on('click', function (){
+          $(this).toggleClass('mute');
+          if( $("video").prop('muted') ) {
+            $("video").prop('muted', false);
+            $(this).hover(function(e) {
+              $(e.currentTarget).attr('title', 'Click to Mute');
+            });
+          } else {
+            $("video").prop('muted', true);
+            $(this).hover(function(e) {
+              $(e.currentTarget).attr('title', 'Click to Unmute');
+            });
+          }
+        });
+
       },
 
       initCarousal: function () {
