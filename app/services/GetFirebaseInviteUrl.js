@@ -110,3 +110,4 @@ class GetFirebaseInviteUrl extends ServiceBase {
   }
 
 }
+module.exports = GetFirebaseInviteUrl;
