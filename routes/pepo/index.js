@@ -23,7 +23,7 @@ const basicAuthentication = function(req, res, next) {
   function unauthorized(res) {
     res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
 
-    return res.status(401).render(`error/401`);
+    return res.status(401).render(`error/401`, { redirectUrl: coreConstants.PEPO_DOMAIN });
   }
 
   let user = basicAuth(req);
@@ -65,7 +65,7 @@ router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 router.use(csrfProtection);
 
 router.use(pagePathConstants.home, homeRouter);
-router.use(pagePathConstants.account, usersRouter);
+// router.use(pagePathConstants.account, usersRouter);
 router.use(pagePathConstants.redemptions, redemptionsRouter);
 router.use(pagePathConstants.support, supportRouter);
 

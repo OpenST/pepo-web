@@ -1,6 +1,7 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   SupportApi = require(rootPrefix + '/lib/pepoApi/Support'),
+  basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
 
@@ -52,6 +53,12 @@ class GetSupportDetails extends ServiceBase {
     } else {
       oThis.serviceResp = resp;
       oThis.serviceResp.data['_supportWidgetAppId'] = coreConstants.SUPPORT_WIDGET_APP_ID;
+      let userName = oThis.serviceResp.data['user_name'];
+      if (userName) {
+        oThis.serviceResp.data['unescaped_user_name'] = basicHelper.decodeHtmlEntity(userName);
+      } else {
+        oThis.serviceResp.data['unescaped_user_name'] = userName;
+      }
     }
 
     return responseHelper.successWithData({});

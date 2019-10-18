@@ -15,6 +15,7 @@
     maxPollingInterval: 60000,
     requestRoute: "/api/web/redemptions/request",
     pepoCornsPoolingUrl: "/api/web/redemptions/pepocorn-balance",
+    defaultDollarAmount: $("#usd-amount").attr('data-default-dollar-amount'),
 
     init : function () {
 
@@ -44,7 +45,7 @@
         oThis.currentProductId = $(this).data("product-id");
         oThis.dollarAmount = $(this).data("dollar-amount");
         oThis.pepocornPerDollar = $(this).data("pepocorn-per-dollar");
-
+        $('#requestSection').show();
         $('#usd-amount').attr({
           'data-pepocorn-per-dollar': oThis.pepocornPerDollar
         });
@@ -59,9 +60,10 @@
         oThis.approvedVideo.show();
         $('#productKind').text('');
         $('.landscape-img').attr('src', '');
-        $("#usd-amount").val('');
+        $("#usd-amount").val(oThis.defaultDollarAmount);
         $('.redemption-message').hide();
         $('#requestError').hide();
+        $("#converted-pepocorns").text(oThis.defaultDollarAmount);
       })
     },
 
@@ -93,16 +95,22 @@
           clearInterval(interval);
           return;
         }
-        $.ajax({
-          url: oThis.pepoCornsPoolingUrl,
-          method: "GET",
-          success: function (response) {
-            if (response.success) {
-              $('#pepoCornBalance').text(numeral(response.data.pepocorn_balance.balance).format("0[.]00", Math.floor))
-            }
-          }
-        })
+        oThis.fetchBalanceRequest()
       }, oThis.pollingInterval);
+    },
+
+    fetchBalanceRequest: function() {
+      $.ajax({
+        url: oThis.pepoCornsPoolingUrl,
+        method: "GET",
+        success: function (response) {
+          if (response.success) {
+            var val = numeral(response.data.pepocorn_balance.balance).format("0[.]00", Math.floor);
+            $('#pepoCornBalance').text(val);
+            $('#dollarBalance').text(val);
+          }
+        }
+      })
     },
 
     requestAction: function () {
@@ -118,6 +126,8 @@
           if ( response.success ) {
             $('#redemptionSuccess').show();
             $('#requestSection').hide();
+            $('#redemptionFailure').hide();
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
           } else {
             var errorData = response.err && response.err.error_data ,
                 errMsg;
@@ -130,15 +140,18 @@
               $('#redemptionFailure').find('.error-message').text(errMsg);
             }
             $('#redemptionFailure').show();
+            $("html, body").animate({ scrollTop: $(document).height() }, 1000);
           }
         },
         error: function (jqXHR, exception) {
           $('#requestError').show().addClass('');
+          $("html, body").animate({ scrollTop: $(document).height() }, 1000);
         },
         complete: function (response) {
+          oThis.fetchBalanceRequest();
           oThis.requestRedemptionBtn.text('Request').prop('disabled', false);
-          $("#usd-amount").val('');
-          $('#requestSection').show();
+          // $("#usd-amount").val(oThis.defaultDollarAmount);
+          // $("#converted-pepocorns").text(oThis.defaultDollarAmount);
         }
       })
     }

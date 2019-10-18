@@ -7,6 +7,7 @@ const rootPrefix = '../..',
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   cookieGlobalConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
@@ -19,7 +20,7 @@ const primaryAuthCheck = function (req, res, next) {
     false;
 
   if (!req.decodedParams.rt && !hasLoginCookie) {
-    return res.status(401).render(`error/401`);
+    return res.status(401).render(`error/401`, { redirectUrl: coreConstants.PEPO_DOMAIN });
   } else {
     next();
   }

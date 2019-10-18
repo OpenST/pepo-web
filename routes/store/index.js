@@ -21,7 +21,7 @@ const basicAuthentication = function(req, res, next) {
   function unauthorized(res) {
     res.set('WWW-Authenticate', 'Basic realm=Authorization Required');
 
-    return res.status(401).render(`error/401`);
+    return res.status(401).render(`error/401`, { redirectUrl: coreConstants.PEPO_DOMAIN });
   }
 
   let user = basicAuth(req);
