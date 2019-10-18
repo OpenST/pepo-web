@@ -107,7 +107,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
     }
     url.search = searchParams;
 
-    return encodeURI(url.href);
+    return url.href
   }
 
 }
