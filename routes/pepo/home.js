@@ -36,8 +36,6 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     pageMeta: {
       title: 'What grinds my gears',
-      page: '',
-      canonical: 'https://pepo.com',
       robots: 'noindex, nofollow'
     }
   });
@@ -53,8 +51,6 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     pageMeta: {
       title: 'Epicenter',
-      page: '',
-      canonical: 'https://pepo.com',
       robots: 'noindex, nofollow'
     }
   });
