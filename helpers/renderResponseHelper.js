@@ -16,6 +16,8 @@ class ResponseRenderer {
 
     if ( !locals.pageMeta ) {
       locals.pageMeta = this.getPageMeta( contentPartialPath );
+    } else {
+      locals.pageMeta = Object.assign({}, this.getPageMeta( contentPartialPath ), locals.pageMeta)
     }
 
     if ( !locals._contentPartial ) {
