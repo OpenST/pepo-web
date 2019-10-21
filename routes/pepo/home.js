@@ -24,31 +24,36 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink
   });
+});
 
+/* GET home page. */
+router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
-  // /** Never Uncomment and Commit This **/
-  // // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
-  //
-  // /** Always, uncomment and commit **/
-  // let getRequestTokenObj = new GetRequestToken({headers: req.headers, decodedParams: req.decodedParams});
-  // let apiResponse = await getRequestTokenObj.perform();
-  //
-  // cookieHelper.setNewCookies(req, res);
-  //
-  // if (apiResponse.isFailure() &&
-  //   apiResponse._fetchHttpCode(errorConfig.api_error_config || {}) == httpErrorCodes.temporaryRedirectErrorCode) {
-  //   return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
-  // }
-  //
-  // if (apiResponse.success) {
-  //   renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', apiResponse.data);
-  // } else {
-  //   renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
-  //     twitterRedirectUrl: '#',
-  //     twitterSigninError: 0
-  //   });
-  // }
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    pageMeta: {
+      title: 'Pepo | What grinds my gears',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
 
+/* GET home page. */
+router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    pageMeta: {
+      title: 'Pepo | Epicenter',
+      robots: 'noindex, nofollow'
+    }
+  });
 });
 
 router.get(pagePathConstants.privacy, function (req, res) {
