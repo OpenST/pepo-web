@@ -35,7 +35,7 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     pageMeta: {
-      title: 'What grinds my gears',
+      title: 'Pepo | What grinds my gears',
       robots: 'noindex, nofollow'
     }
   });
@@ -50,7 +50,7 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     pageMeta: {
-      title: 'Epicenter',
+      title: 'Pepo | Epicenter',
       robots: 'noindex, nofollow'
     }
   });
