@@ -52,7 +52,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     // Assign all url params
     oThis.urlParams = {
-      link: `${coreConstants.PEPO_INVITE_DOMAIN}?${oThis.inviteCode}`,
+      link: `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}`,
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
       afl: coreConstants.PEPO_ANDROID_APP_LINK,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
