@@ -41,7 +41,6 @@ class GetStoreProducts extends ServiceBase {
     oThis.serviceResp.data.pepocorn_balance = numeral(oThis.serviceResp.data.pepocorn_balance).format("0[.]00", Math.floor);
 
     oThis.serviceResp.data.usd_amount = basicHelper.getUSDAmountForPepoForDisplay(pricePoint, pepoBalance);
-    oThis.serviceResp.data.default_usd_amount = 10;
 
     return Promise.resolve(oThis.serviceResp);
   }
