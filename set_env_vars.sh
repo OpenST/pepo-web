@@ -18,6 +18,8 @@ export PW_BASIC_AUTH_PASSWORD='testpasswd'
 
 export PEPO_DOMAIN='http://pepodev.com:8080';
 export PEPO_STORE_DOMAIN='http://store.pepodev.com:8080';
+export PW_INVITE_DOMAIN='http://invite.pepodev.com:8080';
+export PW_FIREBASE_DOMAIN='http://app.pepodev.com:8080';
 export PW_COOKIE_SECRET='aa5298d3a3fe181a3a52d085ee1525df5asa498337f8f3b76ca7df0a5de32124'
 
 export PW_CLOUD_FRONT_BASE_DOMAIN='https://d3attjoi5jlede.cloudfront.net/'
@@ -32,5 +34,8 @@ export PW_UBT_ADDRESS='0xf3e67271386fe994eb994c713b52556a38bba094';
 export PW_ETHERSCAN_WEB_ROOT='https://etherscan.io';
 export PW_BT_CONTRACT_ADDRESS='0x8d3d262fb1139d5d55d9ccbe7fff5fc45f242184';
 
+export PW_ANDROID_PACKAGE_NAME='com.pepo.staging';
 export PW_ANDROID_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/Android/pepo/staging/current/app-release.apk';
+export PW_IOS_PACKAGE_NAME='com.pepo.staging';
 export PW_IOS_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/DownloadPepoNew.html?b=staging';
+export PW_IOS_APP_ID='1161312313';
