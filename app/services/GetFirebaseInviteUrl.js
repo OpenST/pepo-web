@@ -1,6 +1,7 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants');
 
 const urlParser = require('url');
@@ -28,7 +29,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
   async _asyncPerform() {
     const oThis = this;
 
-    if(!oThis.inviteCode){
+    if (!oThis.inviteCode) {
       return responseHelper.error({
         internal_error_identifier: 'a_s_gfiu_1',
         api_error_identifier: 'resource_not_found',
@@ -54,17 +55,25 @@ class GetFirebaseInviteUrl extends ServiceBase {
     oThis.urlParams = {
       link: `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}`,
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
-      afl: coreConstants.PEPO_ANDROID_APP_LINK,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      ifl: coreConstants.PEPO_IOS_APP_LINK,
       isi: coreConstants.PEPO_IOS_APP_ID,
       ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      efr: '1',
-      st: 'Pepo',
-      sd: 'best crypto app',
-      si: 'https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img-v1.png',
+      efr: '0',
+      st: 'Pepo - Meet the people shaping the crypto movement',
+      sd: 'Keep the check in the box below to automatically apply the invite code in the App!',
+      si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: coreConstants.PEPO_DOMAIN
     };
+
+
+    if (!basicHelper.isProduction()) {
+      const s3UrlParams = {
+        afl: coreConstants.PEPO_ANDROID_APP_LINK,
+        ifl: coreConstants.PEPO_IOS_APP_LINK
+      };
+
+      Object.assign(oThis.urlParams, s3UrlParams);
+    }
 
     oThis._appendUtmParams();
 
@@ -101,7 +110,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
     const oThis = this;
 
     const searchParams = new urlParser.URLSearchParams(url.searchParams);
-    for(let key in oThis.urlParams){
+    for (let key in oThis.urlParams) {
       let val = oThis.urlParams[key];
       searchParams.append(key, val);
     }
@@ -111,4 +120,5 @@ class GetFirebaseInviteUrl extends ServiceBase {
   }
 
 }
+
 module.exports = GetFirebaseInviteUrl;
