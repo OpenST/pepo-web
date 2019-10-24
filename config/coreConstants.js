@@ -51,6 +51,14 @@ class CoreConstant {
     return process.env.PEPO_STORE_DOMAIN;
   }
 
+  get PEPO_INVITE_DOMAIN() {
+    return process.env.PW_INVITE_DOMAIN;
+  }
+
+  get PEPO_FIREBASE_DOMAIN() {
+    return process.env.PW_FIREBASE_DOMAIN;
+  }
+
   get WEB_COOKIE_SECRET() {
     return process.env.PW_COOKIE_SECRET;
   }
@@ -83,14 +91,25 @@ class CoreConstant {
     return process.env.PW_BT_CONTRACT_ADDRESS;
   }
 
+  get PEPO_ANDROID_PACKAGE_NAME(){
+    return process.env.PW_ANDROID_PACKAGE_NAME;
+  }
+
   get PEPO_ANDROID_APP_LINK(){
     return process.env.PW_ANDROID_APP_LINK;
+  }
+
+  get PEPO_IOS_PACKAGE_NAME(){
+    return process.env.PW_IOS_PACKAGE_NAME;
   }
 
   get PEPO_IOS_APP_LINK(){
     return process.env.PW_IOS_APP_LINK;
   }
 
+  get PEPO_IOS_APP_ID(){
+    return process.env.PW_IOS_APP_ID;
+  }
 
 }
 
