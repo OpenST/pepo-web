@@ -81,6 +81,11 @@ router.get('/video/:id', function (req, res) {
   return res.redirect(302, coreConstants.PEPO_DOMAIN);
 });
 
+/* Redirect tag pages */
+router.get('/tags/', function (req, res) {
+  return res.redirect(302, coreConstants.PEPO_DOMAIN);
+});
+
 /* Double opt in page. */
 router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
