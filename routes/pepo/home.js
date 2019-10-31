@@ -82,7 +82,7 @@ router.get('/video/:id', function (req, res) {
 });
 
 /* Redirect tag pages */
-router.get('/tags/', function (req, res) {
+router.get('/tags/:tagname', function (req, res) {
   return res.redirect(302, coreConstants.PEPO_DOMAIN);
 });
 
