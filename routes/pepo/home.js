@@ -56,6 +56,21 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
   });
 });
 
+/* GET home page. */
+router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    pageMeta: {
+      title: 'Pepo | Brave',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
 router.get(pagePathConstants.privacy, function (req, res) {
   // Process the data received in req.body
   res.redirect(302, 'https://drive.google.com/file/d/1si1J9PXkW7mLplUy_CJTNXTsi1OtNRiD/view?usp=sharing');
