@@ -51,7 +51,11 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let url = new urlParser.URL(coreConstants.PEPO_FIREBASE_DOMAIN);
 
-    let oflLink = oThis.inviteCode.toLowerCase() == 'brave' ? coreConstants.PEPO_DOMAIN + "/brave" : coreConstants.PEPO_DOMAIN;
+    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google'],
+      inviteCode = (oThis.inviteCode || '').toLowerCase()
+    ;
+
+    let oflLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
 
     // Assign all url params
     oThis.urlParams = {
