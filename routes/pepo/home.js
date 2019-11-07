@@ -63,8 +63,8 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, re
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: 'https://join.pepo.com/brave',
-    iosAppLink: 'https://join.pepo.com/brave',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
     pageMeta: {
       title: 'Pepo | Brave',
       robots: 'noindex, nofollow'
@@ -79,8 +79,8 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function 
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/brave in your mobile browser",
-    androidAppLink: 'https://join.pepo.com/brave',
-    iosAppLink: 'https://join.pepo.com/brave',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
     pageMeta: {
       title: 'Pepo | Brave',
       robots: 'noindex, nofollow'
@@ -95,8 +95,8 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req,
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: 'https://join.pepo.com/linkedin',
-    iosAppLink: 'https://join.pepo.com/linkedin',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
     pageMeta: {
       title: 'Pepo | Linkedin',
       robots: 'noindex, nofollow'
@@ -111,8 +111,8 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/linkedin in your mobile browser",
-    androidAppLink: 'https://join.pepo.com/linkedin',
-    iosAppLink: 'https://join.pepo.com/linkedin',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
     pageMeta: {
       title: 'Pepo | Linkedin',
       robots: 'noindex, nofollow'
@@ -127,8 +127,8 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req,
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: 'https://join.pepo.com/facebook',
-    iosAppLink: 'https://join.pepo.com/facebook',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
     pageMeta: {
       title: 'Pepo | Facebook',
       robots: 'noindex, nofollow'
@@ -143,8 +143,8 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/facebook in your mobile browser",
-    androidAppLink: 'https://join.pepo.com/facebook',
-    iosAppLink: 'https://join.pepo.com/facebook',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
     pageMeta: {
       title: 'Pepo | Facebook',
       robots: 'noindex, nofollow'
@@ -159,8 +159,8 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: 'https://join.pepo.com/etherscan',
-    iosAppLink: 'https://join.pepo.com/etherscan',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
     pageMeta: {
       title: 'Pepo | Etherscan',
       robots: 'noindex, nofollow'
@@ -175,8 +175,8 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/etherscan in your mobile browser",
-    androidAppLink: 'https://join.pepo.com/etherscan',
-    iosAppLink: 'https://join.pepo.com/etherscan',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
     pageMeta: {
       title: 'Pepo | Etherscan',
       robots: 'noindex, nofollow'
@@ -191,8 +191,8 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: 'https://join.pepo.com/ph',
-    iosAppLink: 'https://join.pepo.com/ph',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
     pageMeta: {
       title: 'Pepo | PH',
       robots: 'noindex, nofollow'
@@ -207,8 +207,8 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (re
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/ph in your mobile browser",
-    androidAppLink: 'https://join.pepo.com/ph',
-    iosAppLink: 'https://join.pepo.com/ph',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
     pageMeta: {
       title: 'Pepo | PH',
       robots: 'noindex, nofollow'
@@ -223,8 +223,8 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, r
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: 'https://join.pepo.com/reddit',
-    iosAppLink: 'https://join.pepo.com/reddit',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
     pageMeta: {
       title: 'Pepo | Reddit',
       robots: 'noindex, nofollow'
@@ -239,8 +239,8 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/reddit in your mobile browser",
-    androidAppLink: 'https://join.pepo.com/reddit',
-    iosAppLink: 'https://join.pepo.com/reddit',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
     pageMeta: {
       title: 'Pepo | Reddit',
       robots: 'noindex, nofollow'
@@ -255,8 +255,8 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, r
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: 'https://join.pepo.com/google',
-    iosAppLink: 'https://join.pepo.com/google',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
     pageMeta: {
       title: 'Pepo | Google',
       robots: 'noindex, nofollow'
@@ -271,8 +271,8 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/google in your mobile browser",
-    androidAppLink: 'https://join.pepo.com/google',
-    iosAppLink: 'https://join.pepo.com/google',
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
     pageMeta: {
       title: 'Pepo | Google',
       robots: 'noindex, nofollow'
