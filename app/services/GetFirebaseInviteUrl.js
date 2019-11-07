@@ -51,6 +51,8 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let url = new urlParser.URL(coreConstants.PEPO_FIREBASE_DOMAIN);
 
+    let oflLink = oThis.inviteCode.toLowerCase() == 'brave' ? coreConstants.PEPO_DOMAIN + "/brave" : coreConstants.PEPO_DOMAIN;
+
     // Assign all url params
     oThis.urlParams = {
       link: `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}`,
@@ -62,9 +64,8 @@ class GetFirebaseInviteUrl extends ServiceBase {
       st: 'Pepo - Meet the people shaping the crypto movement',
       sd: 'Keep the check in the box below to automatically apply the invite code in the App!',
       si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
-      ofl: coreConstants.PEPO_DOMAIN
+      ofl: oflLink
     };
-
 
     if (!basicHelper.isProduction()) {
       const s3UrlParams = {
