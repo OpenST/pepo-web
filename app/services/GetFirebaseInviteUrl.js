@@ -16,7 +16,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
-    oThis.inviteCode = oThis.decodedParams.code;
+    oThis.inviteCode = oThis.decodedParams.code || '';
     oThis.urlParams = {};
   }
 
@@ -28,14 +28,6 @@ class GetFirebaseInviteUrl extends ServiceBase {
    */
   async _asyncPerform() {
     const oThis = this;
-
-    if (!oThis.inviteCode) {
-      return responseHelper.error({
-        internal_error_identifier: 'a_s_gfiu_1',
-        api_error_identifier: 'resource_not_found',
-        debug_options: {}
-      });
-    }
 
     return responseHelper.successWithData({url: oThis._generateFireBaseUrl()});
   }
