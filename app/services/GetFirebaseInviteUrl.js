@@ -16,7 +16,9 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
-    oThis.inviteCode = oThis.decodedParams.code || '';
+    // Specific check for undefined because express converts req.params to string. So, if inviteCode is missing
+    // in req.params, code = 'undefined'. typeof code = 'string'.
+    oThis.inviteCode = oThis.decodedParams.code === 'undefined' ? '' : oThis.decodedParams.code;
     oThis.urlParams = {};
   }
 
@@ -43,7 +45,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let url = new urlParser.URL(coreConstants.PEPO_FIREBASE_DOMAIN);
 
-    let oflLink = oThis.inviteCode.toLowerCase() == 'brave' ? coreConstants.PEPO_DOMAIN + "/brave" : coreConstants.PEPO_DOMAIN;
+    let oflLink = oThis.inviteCode.toLowerCase() === 'brave' ? coreConstants.PEPO_DOMAIN + "/brave" : coreConstants.PEPO_DOMAIN;
 
     // Assign all url params
     oThis.urlParams = {
