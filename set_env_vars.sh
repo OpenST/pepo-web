@@ -18,7 +18,7 @@ export PW_BASIC_AUTH_PASSWORD='testpasswd'
 
 export PEPO_DOMAIN='http://pepodev.com:8080';
 export PEPO_STORE_DOMAIN='http://store.pepodev.com:8080';
-export PW_INVITE_DOMAIN='http://invite.pepodev.com:8080';
+export PW_INVITE_DOMAIN='http://join.pepodev.com:8080';
 export PW_FIREBASE_DOMAIN='http://app.pepodev.com:8080';
 export PW_COOKIE_SECRET='aa5298d3a3fe181a3a52d085ee1525df5asa498337f8f3b76ca7df0a5de32124'
 

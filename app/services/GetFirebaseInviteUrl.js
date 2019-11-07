@@ -16,9 +16,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
-    // Specific check for undefined because express converts req.params to string. So, if inviteCode is missing
-    // in req.params, code = 'undefined'. typeof code = 'string'.
-    oThis.inviteCode = oThis.decodedParams.code === 'undefined' ? '' : oThis.decodedParams.code;
+    oThis.inviteCode = oThis.decodedParams.code;
     oThis.urlParams = {};
   }
 
@@ -49,7 +47,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     // Assign all url params
     oThis.urlParams = {
-      link: `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}`,
+      link: oThis.inviteCode ? `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}` : `${coreConstants.PEPO_DOMAIN}`,
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       isi: coreConstants.PEPO_IOS_APP_ID,

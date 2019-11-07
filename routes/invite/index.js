@@ -9,17 +9,21 @@ const rootPrefix = '../..',
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
-router.get('/:code?', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
-  req.decodedParams.code = req.params.code;
-  // Process the data received in req.body
+router.get('*', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+
+  // Extract invite code from url
+  // Step 1: Remove first and last slash from path, if present.
+  const parsedPath = req.path.replace(/\/*$/, "").replace(/^\/*/, "").trim();
+  // Step 2: If parsedPath doesn't contain slash and is not blank, then consider it as invite code.
+  req.decodedParams.code = (parsedPath === '' || parsedPath.includes('/')) ? '' : parsedPath;
+
+  // Process the data received in req.body.
   const apiResponse = await new GetFirebaseInviteUrl({decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     res.redirect(301, apiResponse.data.url);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
-
 });
-
 
 module.exports = router;
