@@ -29,14 +29,6 @@ class GetFirebaseInviteUrl extends ServiceBase {
   async _asyncPerform() {
     const oThis = this;
 
-    if (!oThis.inviteCode) {
-      return responseHelper.error({
-        internal_error_identifier: 'a_s_gfiu_1',
-        api_error_identifier: 'resource_not_found',
-        debug_options: {}
-      });
-    }
-
     return responseHelper.successWithData({url: oThis._generateFireBaseUrl()});
   }
 
@@ -51,11 +43,11 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let url = new urlParser.URL(coreConstants.PEPO_FIREBASE_DOMAIN);
 
-    let oflLink = oThis.inviteCode.toLowerCase() == 'brave' ? coreConstants.PEPO_DOMAIN + "/brave" : coreConstants.PEPO_DOMAIN;
+    let oflLink = oThis.inviteCode.toLowerCase() === 'brave' ? coreConstants.PEPO_DOMAIN + "/brave" : coreConstants.PEPO_DOMAIN;
 
     // Assign all url params
     oThis.urlParams = {
-      link: `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}`,
+      link: oThis.inviteCode ? `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}` : `${coreConstants.PEPO_DOMAIN}`,
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       isi: coreConstants.PEPO_IOS_APP_ID,
