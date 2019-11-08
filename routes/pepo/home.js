@@ -26,7 +26,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   });
 });
 
-/* GET home page. */
+/* GET what grinds my gears. */
 router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -41,7 +41,7 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
   });
 });
 
-/* GET home page. */
+/* GET epicenter */
 router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -56,16 +56,257 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
   });
 });
 
-/* GET home page. */
+/* GET brave. */
 router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
-    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
-    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
     pageMeta: {
       title: 'Pepo | Brave',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET brave desktop. */
+router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/brave in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
+    pageMeta: {
+      title: 'Pepo | Brave',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET linkedin. */
+router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    pageMeta: {
+      title: 'Pepo | Linkedin',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET linkedin desktop. */
+router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/linkedin in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    pageMeta: {
+      title: 'Pepo | Linkedin',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET facebook. */
+router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    pageMeta: {
+      title: 'Pepo | Facebook',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET facebook desktop. */
+router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/facebook in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    pageMeta: {
+      title: 'Pepo | Facebook',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET etherscan. */
+router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    pageMeta: {
+      title: 'Pepo | Etherscan',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET etherscan desktop. */
+router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/etherscan in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    pageMeta: {
+      title: 'Pepo | Etherscan',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET ph. */
+router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    pageMeta: {
+      title: 'Pepo | PH',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET ph desktop. */
+router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/ph in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    pageMeta: {
+      title: 'Pepo | PH',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET reddit. */
+router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    pageMeta: {
+      title: 'Pepo | Reddit',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET reddit desktop. */
+router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/reddit in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    pageMeta: {
+      title: 'Pepo | Reddit',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET google. */
+router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    pageMeta: {
+      title: 'Pepo | Google',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET google desktop. */
+router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/google in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    pageMeta: {
+      title: 'Pepo | Google',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET stories. */
+router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    pageMeta: {
+      title: 'Pepo | Stories',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET stories desktop. */
+router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/stories in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    pageMeta: {
+      title: 'Pepo | Stories',
       robots: 'noindex, nofollow'
     }
   });
