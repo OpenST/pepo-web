@@ -280,6 +280,38 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function
   });
 });
 
+/* GET stories. */
+router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    pageMeta: {
+      title: 'Pepo | Stories',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
+/* GET stories desktop. */
+router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/stories in your mobile browser",
+    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories' + "/desktop",
+    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories' + "/desktop",
+    pageMeta: {
+      title: 'Pepo | Stories',
+      robots: 'noindex, nofollow'
+    }
+  });
+});
+
 router.get(pagePathConstants.privacy, function (req, res) {
   // Process the data received in req.body
   res.redirect(302, 'https://drive.google.com/file/d/1si1J9PXkW7mLplUy_CJTNXTsi1OtNRiD/view?usp=sharing');
