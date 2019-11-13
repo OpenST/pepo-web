@@ -88,6 +88,7 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async 
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -110,6 +111,7 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -132,6 +134,7 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asy
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -154,6 +157,7 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPar
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -176,6 +180,7 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asy
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -198,6 +203,7 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPar
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -220,6 +226,7 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, as
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -242,6 +249,7 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPa
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -264,6 +272,7 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async fun
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -286,6 +295,7 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, a
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -308,6 +318,7 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -330,6 +341,7 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParam
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -352,6 +364,7 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -374,6 +387,7 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParam
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -396,6 +410,7 @@ router.get('/stories', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asyn
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
@@ -417,6 +432,7 @@ router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPara
 
   if (utmQueryString !== '') {
     appDownloadLink += utmQueryString;
+    utmQueryString = '';
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
