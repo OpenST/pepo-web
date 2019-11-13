@@ -43,11 +43,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let url = new urlParser.URL(coreConstants.PEPO_FIREBASE_DOMAIN);
 
-    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories'],
-      inviteCode = (oThis.inviteCode || '').toLowerCase()
-    ;
-
-    let oflLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
+    let oflLink = oThis._fetchOflLink();
 
     // Assign all url params
     oThis.urlParams = {
@@ -75,6 +71,34 @@ class GetFirebaseInviteUrl extends ServiceBase {
     oThis._appendUtmParams();
 
     return oThis._generateUrl(url);
+  }
+
+  /**
+   * Fetch ofl link
+   * @returns {*}
+   * @private
+   */
+  _fetchOflLink() {
+    const oThis = this;
+
+    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories'],
+      inviteCode = (oThis.inviteCode || '').toLowerCase()
+    ;
+
+    let oflLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
+
+    let utmQueryString = '';
+    utmQueryString +=  oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';
+    utmQueryString +=  oThis.decodedParams.utm_medium ? '&utm_medium=' + oThis.decodedParams.utm_medium : '';
+    utmQueryString +=  oThis.decodedParams.utm_source ? '&utm_source=' + oThis.decodedParams.utm_source : '';
+    utmQueryString +=  oThis.decodedParams.utm_term ? '&utm_term=' + oThis.decodedParams.utm_term : '';
+    utmQueryString +=  oThis.decodedParams.utm_content ? '&utm_content=' + oThis.decodedParams.utm_content : '';
+
+    if (utmQueryString !== '') {
+      oflLink += '?' + utmQueryString
+    }
+
+    return oflLink;
   }
 
   /**
