@@ -87,24 +87,15 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let oflLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
 
-    if (oThis.decodedParams.utm_campaign) {
-      oflLink += '?utm_campaign=' + oThis.decodedParams.utm_campaign;
+    let utmQueryString = '';
+    utmQueryString +=  oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';
+    utmQueryString +=  oThis.decodedParams.utm_medium ? '&utm_medium=' + oThis.decodedParams.utm_medium : '';
+    utmQueryString +=  oThis.decodedParams.utm_source ? '&utm_source=' + oThis.decodedParams.utm_source : '';
+    utmQueryString +=  oThis.decodedParams.utm_term ? '&utm_term=' + oThis.decodedParams.utm_term : '';
+    utmQueryString +=  oThis.decodedParams.utm_content ? '&utm_content=' + oThis.decodedParams.utm_content : '';
 
-      if (oThis.decodedParams.utm_medium) {
-        oflLink += '&utm_medium=' + oThis.decodedParams.utm_medium;
-      }
-
-      if (oThis.decodedParams.utm_source) {
-        oflLink += '&utm_source=' + oThis.decodedParams.utm_source;
-      }
-
-      if (oThis.decodedParams.utm_term) {
-        oflLink += '&utm_term=' + oThis.decodedParams.utm_term;
-      }
-
-      if (oThis.decodedParams.utm_content) {
-        oflLink += '&utm_content=' + oThis.decodedParams.utm_content;
-      }
+    if (utmQueryString !== '') {
+      oflLink += '?' + utmQueryString
     }
 
     return oflLink;

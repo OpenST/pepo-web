@@ -17,26 +17,12 @@ const errorConfig = basicHelper.fetchErrorConfig();
 let utmQueryString = '';
 
 const filterUtmParams = function(req, res, next) {
+  utmQueryString +=  req.query.utm_campaign ? '&utm_campaign=' + req.query.utm_campaign : '';
+  utmQueryString +=  req.query.utm_medium ? '&utm_medium=' + req.query.utm_medium : '';
+  utmQueryString +=  req.query.utm_source ? '&utm_source=' + req.query.utm_source : '';
+  utmQueryString +=  req.query.utm_term ? '&utm_term=' + req.query.utm_term : '';
+  utmQueryString +=  req.query.utm_content ? '&utm_content=' + req.query.utm_content : '';
 
-  if (req.query.utm_campaign) {
-    utmQueryString += '?utm_campaign=' + req.query.utm_campaign;
-
-    if (req.query.utm_medium) {
-      utmQueryString += '&utm_medium=' + req.query.utm_medium;
-    }
-
-    if (req.query.utm_source) {
-      utmQueryString += '&utm_source=' + req.query.utm_source;
-    }
-
-    if (req.query.utm_term) {
-      utmQueryString += '&utm_term=' + req.query.utm_term;
-    }
-
-    if (req.query.utm_content) {
-      utmQueryString += '&utm_content=' + req.query.utm_content;
-    }
-  }
   next();
 };
 
@@ -87,7 +73,7 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/brave';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -110,7 +96,7 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/brave';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -133,7 +119,7 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asy
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/linkedin';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -156,7 +142,7 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPar
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/linkedin';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -179,7 +165,7 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asy
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/facebook';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -202,7 +188,7 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPar
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/facebook';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -225,7 +211,7 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, as
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/etherscan';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -248,7 +234,7 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPa
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/etherscan';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -271,7 +257,7 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async fun
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/ph';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -294,7 +280,7 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, a
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/ph';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -317,7 +303,7 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/reddit';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -340,7 +326,7 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParam
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/reddit';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -363,7 +349,7 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/google';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -386,7 +372,7 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParam
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/google';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -409,7 +395,7 @@ router.get('/stories', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asyn
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/stories';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
@@ -431,7 +417,7 @@ router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPara
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/stories';
 
   if (utmQueryString !== '') {
-    appDownloadLink += utmQueryString;
+    appDownloadLink += '?' + utmQueryString;
     utmQueryString = '';
   }
 
