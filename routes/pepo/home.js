@@ -14,6 +14,17 @@ const rootPrefix = '../..',
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
+let utmQueryString = '';
+
+const filterUtmParams = function(req, res, next) {
+  utmQueryString +=  req.query.utm_campaign ? '&utm_campaign=' + req.query.utm_campaign : '';
+  utmQueryString +=  req.query.utm_medium ? '&utm_medium=' + req.query.utm_medium : '';
+  utmQueryString +=  req.query.utm_source ? '&utm_source=' + req.query.utm_source : '';
+  utmQueryString +=  req.query.utm_term ? '&utm_term=' + req.query.utm_term : '';
+  utmQueryString +=  req.query.utm_content ? '&utm_content=' + req.query.utm_content : '';
+
+  next();
+};
 
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
@@ -57,14 +68,21 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
 });
 
 /* GET brave. */
-router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/brave', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/brave';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Brave',
       robots: 'noindex, nofollow'
@@ -73,14 +91,21 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, re
 });
 
 /* GET brave desktop. */
-router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/brave';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/brave in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/brave',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Brave',
       robots: 'noindex, nofollow'
@@ -89,14 +114,21 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function 
 });
 
 /* GET linkedin. */
-router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/linkedin';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Linkedin',
       robots: 'noindex, nofollow'
@@ -105,14 +137,21 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req,
 });
 
 /* GET linkedin desktop. */
-router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/linkedin';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/linkedin in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/linkedin',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Linkedin',
       robots: 'noindex, nofollow'
@@ -121,14 +160,21 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
 });
 
 /* GET facebook. */
-router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/facebook';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Facebook',
       robots: 'noindex, nofollow'
@@ -137,14 +183,21 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req,
 });
 
 /* GET facebook desktop. */
-router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/facebook';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/facebook in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/facebook',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Facebook',
       robots: 'noindex, nofollow'
@@ -153,14 +206,21 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
 });
 
 /* GET etherscan. */
-router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/etherscan';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Etherscan',
       robots: 'noindex, nofollow'
@@ -169,14 +229,21 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req
 });
 
 /* GET etherscan desktop. */
-router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/etherscan';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/etherscan in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/etherscan',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Etherscan',
       robots: 'noindex, nofollow'
@@ -185,14 +252,21 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
 });
 
 /* GET ph. */
-router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/ph', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/ph';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | PH',
       robots: 'noindex, nofollow'
@@ -201,14 +275,21 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
 });
 
 /* GET ph desktop. */
-router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/ph';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/ph in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/ph',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | PH',
       robots: 'noindex, nofollow'
@@ -217,14 +298,21 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (re
 });
 
 /* GET reddit. */
-router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/reddit';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Reddit',
       robots: 'noindex, nofollow'
@@ -233,14 +321,21 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, r
 });
 
 /* GET reddit desktop. */
-router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/reddit';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/reddit in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/reddit',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Reddit',
       robots: 'noindex, nofollow'
@@ -249,14 +344,21 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function
 });
 
 /* GET google. */
-router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/google', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/google';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Google',
       robots: 'noindex, nofollow'
@@ -265,14 +367,21 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, r
 });
 
 /* GET google desktop. */
-router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/google';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/google in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/google',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Google',
       robots: 'noindex, nofollow'
@@ -281,14 +390,21 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function
 });
 
 /* GET stories. */
-router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/stories', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/stories';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Stories',
       robots: 'noindex, nofollow'
@@ -297,14 +413,20 @@ router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, 
 });
 
 /* GET stories desktop. */
-router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/stories';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/stories in your mobile browser",
-    androidAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
-    iosAppLink: coreConstants.PEPO_INVITE_DOMAIN + '/stories',
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Stories',
       robots: 'noindex, nofollow'
