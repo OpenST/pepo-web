@@ -47,7 +47,8 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     pageMeta: {
       title: 'Pepo | What grinds my gears',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/whatgrindsmygears'
     }
   });
 });
@@ -62,7 +63,8 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     pageMeta: {
       title: 'Pepo | Epicenter',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/epicenter'
     }
   });
 });
@@ -85,7 +87,8 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async 
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Brave',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/brave'
     }
   });
 });
@@ -108,7 +111,8 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Brave',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/brave/desktop'
     }
   });
 });
@@ -131,7 +135,8 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asy
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Linkedin',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/linkedin'
     }
   });
 });
@@ -154,7 +159,8 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPar
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Linkedin',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/linkedin/desktop'
     }
   });
 });
@@ -177,7 +183,8 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asy
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Facebook',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/facebook'
     }
   });
 });
@@ -200,7 +207,8 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPar
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Facebook',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/facebook/desktop'
     }
   });
 });
@@ -223,7 +231,8 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, as
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Etherscan',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/etherscan'
     }
   });
 });
@@ -246,7 +255,8 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPa
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Etherscan',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/etherscan/desktop'
     }
   });
 });
@@ -269,7 +279,8 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async fun
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | PH',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/ph'
     }
   });
 });
@@ -292,7 +303,8 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, a
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | PH',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/ph/desktop'
     }
   });
 });
@@ -315,7 +327,8 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Reddit',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/reddit'
     }
   });
 });
@@ -338,7 +351,8 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParam
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Reddit',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/reddit/desktop'
     }
   });
 });
@@ -361,7 +375,8 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Google',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/google'
     }
   });
 });
@@ -384,7 +399,8 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParam
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Google',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/google/desktop'
     }
   });
 });
@@ -407,7 +423,8 @@ router.get('/stories', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, asyn
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Stories',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/stories'
     }
   });
 });
@@ -429,7 +446,8 @@ router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPara
     iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Stories',
-      robots: 'noindex, nofollow'
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/stories/desktop'
     }
   });
 });
