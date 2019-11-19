@@ -16,7 +16,7 @@ const errorConfig = basicHelper.fetchErrorConfig();
 
 const primaryAuthCheck = function (req, res, next) {
   const hasLoginCookie = req.headers['cookie'] ?
-    req.headers['cookie'].includes(`${cookieGlobalConstants.loginFromWebviewCookieName}=`) :
+    req.headers['cookie'].includes(`${cookieGlobalConstants.loginStoreCookieName}=`) :
     false;
 
   if (!req.decodedParams.rt && !hasLoginCookie) {
