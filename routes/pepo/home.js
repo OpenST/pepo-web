@@ -53,6 +53,30 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
   });
 });
 
+/* GET  What grinds my gears desktop. */
+router.get('/whatgrindsmygears/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/whatgrindsmygears';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/whatgrindsmygears in your mobile browser",
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
+    pageMeta: {
+      title: 'Pepo | What grinds my gears',
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/whatgrindsmygears/desktop'
+    }
+  });
+});
+
 /* GET epicenter */
 router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
@@ -65,6 +89,30 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
       title: 'Pepo | Epicenter',
       robots: 'noindex, nofollow',
       canonical: 'https://pepo.com/epicenter'
+    }
+  });
+});
+
+/* GET epicenter desktop. */
+router.get('/epicenter/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/epicenter';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/epicenter in your mobile browser",
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
+    pageMeta: {
+      title: 'Pepo | Epicenter',
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/epicenter/desktop'
     }
   });
 });
