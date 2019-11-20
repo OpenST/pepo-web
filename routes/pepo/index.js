@@ -17,7 +17,8 @@ const rootPrefix = '../..',
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
-  GetVideoUrl = require(rootPrefix + '/app/services/GetVideoUrl');
+  GetVideoUrl = require(rootPrefix + '/app/services/GetVideoUrl'),
+  responseHelper = require(rootPrefix + '/lib/formatter/response');
 
 const basicAuthentication = function(req, res, next) {
   if (!coreConstants.USE_BASIC_AUTHENTICATION) {
