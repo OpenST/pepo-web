@@ -500,6 +500,54 @@ router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmPara
   });
 });
 
+/* GET tw. */
+router.get('/tw', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/tw';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    hideUberBanner: 1,
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
+    pageMeta: {
+      title: 'Pepo | Twitter',
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/tw'
+    }
+  });
+});
+
+/* GET tw desktop. */
+router.get('/tw/desktop', sanitizer.sanitizeDynamicUrlParams, filterUtmParams, async function (req, res, next) {
+
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/tw';
+
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+    utmQueryString = '';
+  }
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    uberBannerTxt: "To download the mobile app, please visit Pepo.com/tw in your mobile browser",
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
+    pageMeta: {
+      title: 'Pepo | Twitter',
+      robots: 'noindex, nofollow',
+      canonical: 'https://pepo.com/tw/desktop'
+    }
+  });
+});
+
 router.get(pagePathConstants.privacy, function (req, res) {
   // Process the data received in req.body
   res.redirect(302, 'https://drive.google.com/file/d/1si1J9PXkW7mLplUy_CJTNXTsi1OtNRiD/view?usp=sharing');
