@@ -54,7 +54,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
       ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       efr: '0',
       st: 'Pepo - Meet the people shaping the crypto movement',
-      sd: 'Keep the check in the box below to automatically apply the invite code in the App!',
+      sd: 'For the best experience keep the checkbox selected',
       si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: oflLink
     };
