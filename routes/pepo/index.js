@@ -4,8 +4,6 @@ const router = express.Router(),
   csrf = require('csurf'),
   basicAuth = require('basic-auth');
 
-const errorConfig = basicHelper.fetchErrorConfig();
-
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   staticContentsRoute = require(rootPrefix + '/routes/pepo/staticContents'),
@@ -19,6 +17,8 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   GetVideoUrl = require(rootPrefix + '/app/services/GetVideoUrl'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
+
+const errorConfig = basicHelper.fetchErrorConfig();
 
 const basicAuthentication = function(req, res, next) {
   if (!coreConstants.USE_BASIC_AUTHENTICATION) {
