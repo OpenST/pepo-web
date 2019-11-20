@@ -4,6 +4,8 @@ const router = express.Router(),
   csrf = require('csurf'),
   basicAuth = require('basic-auth');
 
+const errorConfig = basicHelper.fetchErrorConfig();
+
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   staticContentsRoute = require(rootPrefix + '/routes/pepo/staticContents'),
@@ -13,7 +15,9 @@ const rootPrefix = '../..',
   supportRouter = require(rootPrefix + '/routes/pepo/support'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
+  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
+  sanitizer = require(rootPrefix + '/helpers/sanitizer'),
+  GetVideoUrl = require(rootPrefix + '/app/services/GetVideoUrl');
 
 const basicAuthentication = function(req, res, next) {
   if (!coreConstants.USE_BASIC_AUTHENTICATION) {
@@ -69,4 +73,14 @@ router.use(pagePathConstants.home, homeRouter);
 router.use(pagePathConstants.redemptions, redemptionsRouter);
 router.use(pagePathConstants.support, supportRouter);
 
+router.use(pagePathConstants.video, sanitizer.sanitizeDynamicUrlParams, async function(req, res, next) {
+  // Process the data received in req.body.
+  req.decodedParams.video_id =  req.params.video_id;
+  const apiResponse = await new GetVideoUrl({decodedParams: req.decodedParams}).perform();
+  if (apiResponse.success) {
+    res.redirect(301, apiResponse.data.url);
+  } else {
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  }
+});
 module.exports = router;
