@@ -8,7 +8,7 @@
   "dependencies": {
     "unescape": "1.0.1",
     "bignumber.js": "4.1.0",
-    "@ostdotcom/base": "1.0.0",
+    "@ostdotcom/base": "^2.0.0",
     "basic-auth": "2.0.0",
     "cookie-parser": "1.4.4",
     "debug": "2.6.9",
