@@ -52,7 +52,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     // Assign all url params
     oThis.urlParams = {
-      link: oThis._generateUrl(coreConstants.PEPO_DOMAIN, linkParams),
+      link: oThis._generateUrl(new urlParser.URL(coreConstants.PEPO_DOMAIN), linkParams),
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       isi: coreConstants.PEPO_IOS_APP_ID,
