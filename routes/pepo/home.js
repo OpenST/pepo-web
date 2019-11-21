@@ -594,6 +594,12 @@ router.get(pagePathConstants.video, sanitizer.sanitizeDynamicUrlParams, async fu
           description: apiResponse.data.pageMeta.description,
           image: apiResponse.data.pageMeta.image,
           url: canonicalUrl
+        },
+        twitter: {
+          title: apiResponse.data.pageMeta.title,
+          description: apiResponse.data.pageMeta.description,
+          image: apiResponse.data.pageMeta.image,
+          card: "summary_large_image"
         }
       }
     });
