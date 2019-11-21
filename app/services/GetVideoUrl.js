@@ -2,7 +2,8 @@ const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  coreConstants = require(rootPrefix + '/config/coreConstants');
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
+  VideoShareDetails = require(rootPrefix + '/lib/pepoApi/Video');
 
 const urlParser = require('url');
 
@@ -18,6 +19,8 @@ class GetVideoUrl extends ServiceBase {
     oThis.decodedParams = params.decodedParams;
     oThis.videoId = oThis.decodedParams.video_id;
     oThis.urlParams = {};
+    
+    oThis.videoShareDetails = null;
   }
 
   /**
@@ -28,6 +31,8 @@ class GetVideoUrl extends ServiceBase {
    */
   async _asyncPerform() {
     const oThis = this;
+    
+    await oThis._fetchVideoShareDetails();
 
     return responseHelper.successWithData({
       url: oThis._generateFireBaseUrl(),
@@ -37,6 +42,24 @@ class GetVideoUrl extends ServiceBase {
         image: oThis.urlParams.si
       }
     });
+  }
+  
+  /**
+   * Fetch video share details
+   *
+   * @returns {Promise<void>}
+   * @private
+   */
+  async _fetchVideoShareDetails() {
+    const oThis = this;
+    
+    let videoShareResponse = await new VideoShareDetails({}).getVideoShareDetails({videoId: oThis.videoId});
+    if(videoShareResponse.success){
+      let resultType = videoShareResponse.data.result_type;
+      oThis.videoShareDetails = videoShareResponse.data[resultType];
+    }
+    
+    console.log('--oThis.videoShareDetails--',oThis.videoShareDetails);
   }
 
   /**
@@ -61,8 +84,8 @@ class GetVideoUrl extends ServiceBase {
       ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       efr: '0',
       st: 'Pepo - Meet the people shaping the crypto movement',
-      sd: 'For the best experience keep the checkbox selected',
-      si: 'https://dbvoeb7t6hffk.cloudfront.net/pepo-staging1000/ua/images/2090-0ece75d3f7f8029d93346c79bc364349-original.jpg',
+      sd: oThis.videoShareDetails.message ? oThis.videoShareDetails.message : 'For the best experience keep the checkbox selected',
+      si: oThis.videoShareDetails.poster_image_url ? oThis.videoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: oflLink
     };
 
