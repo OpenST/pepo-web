@@ -7,7 +7,7 @@ const rootPrefix = '../..',
 const urlParser = require('url');
 
 /**
- * Class to get firebase redirection url for invite url
+ * Class to get firebase redirection url for video url
  *
  */
 class GetVideoUrl extends ServiceBase {
@@ -55,7 +55,7 @@ class GetVideoUrl extends ServiceBase {
       efr: '0',
       st: 'Pepo - Meet the people shaping the crypto movement',
       sd: 'For the best experience keep the checkbox selected',
-      si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
+      si: 'https://dbvoeb7t6hffk.cloudfront.net/pepo-staging1000/ua/images/2090-0ece75d3f7f8029d93346c79bc364349-original.jpg',
       ofl: oflLink
     };
 
@@ -81,7 +81,7 @@ class GetVideoUrl extends ServiceBase {
   _fetchOflLink() {
     const oThis = this;
 
-    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories'],
+    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories', 'tw'],
       inviteCode = (oThis.inviteCode || '').toLowerCase()
     ;
 

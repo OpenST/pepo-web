@@ -11,7 +11,9 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
+  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
+  GetVideoUrl = require(rootPrefix + '/app/services/GetVideoUrl'),
+  responseHelper = require(rootPrefix + '/lib/formatter/response');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 let utmQueryString = '';
@@ -569,8 +571,19 @@ router.get(pagePathConstants.mediaKit, function (req, res) {
 });
 
 /* Redirect videos */
-router.get('/video/:id', function (req, res) {
-  return res.redirect(302, coreConstants.PEPO_DOMAIN);
+router.get('/video/:id', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+  req.decodedParams.video_id =  req.params.id;
+  if(basicHelper.isProduction()){
+    return res.redirect(302, coreConstants.PEPO_DOMAIN);
+  }
+  const apiResponse = await new GetVideoUrl({decodedParams: req.decodedParams}).perform();
+  console.log('---apiResponse-------',apiResponse);
+  console.log('\n\n\n\n');
+  if (apiResponse.success) {
+    res.redirect(301, apiResponse.data.url);
+  } else {
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  }
 });
 
 /* Redirect tag pages */
