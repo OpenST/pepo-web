@@ -29,7 +29,14 @@ class GetVideoUrl extends ServiceBase {
   async _asyncPerform() {
     const oThis = this;
 
-    return responseHelper.successWithData({url: oThis._generateFireBaseUrl()});
+    return responseHelper.successWithData({
+      url: oThis._generateFireBaseUrl(),
+      pageMeta: {
+        title: oThis.urlParams.st,
+        description: oThis.urlParams.sd,
+        image: oThis.urlParams.si
+      }
+    });
   }
 
   /**
@@ -81,11 +88,7 @@ class GetVideoUrl extends ServiceBase {
   _fetchOflLink() {
     const oThis = this;
 
-    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories', 'tw'],
-      inviteCode = (oThis.inviteCode || '').toLowerCase()
-    ;
-
-    let oflLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
+    let oflLink = coreConstants.PEPO_DOMAIN;
 
     let utmQueryString = '';
     utmQueryString +=  oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';

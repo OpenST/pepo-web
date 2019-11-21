@@ -571,8 +571,8 @@ router.get(pagePathConstants.mediaKit, function (req, res) {
 });
 
 /* Redirect videos */
-router.get('/video/:id', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
-  req.decodedParams.video_id =  req.params.id;
+router.get(pagePathConstants.video, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+  req.decodedParams.video_id =  req.params.video_id;
   if(basicHelper.isProduction()){
     return res.redirect(302, coreConstants.PEPO_DOMAIN);
   }
@@ -580,7 +580,23 @@ router.get('/video/:id', sanitizer.sanitizeDynamicUrlParams, async function (req
   console.log('---apiResponse-------',apiResponse);
   console.log('\n\n\n\n');
   if (apiResponse.success) {
-    res.redirect(301, apiResponse.data.url);
+    //res.redirect(301, apiResponse.data.url);
+    let canonicalUrl = coreConstants.PEPO_DOMAIN + '/video/' + req.decodedParams.video_id;
+    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+      redirect_to_location: apiResponse.data.url,
+      pageMeta: {
+        title: apiResponse.data.pageMeta.title,
+        description: apiResponse.data.pageMeta.description,
+        robots: 'noindex, nofollow',
+        canonical: canonicalUrl,
+        og: {
+          title: apiResponse.data.pageMeta.title,
+          description: apiResponse.data.pageMeta.description,
+          image: apiResponse.data.pageMeta.image,
+          url: canonicalUrl
+        }
+      }
+    });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
