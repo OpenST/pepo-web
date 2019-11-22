@@ -571,17 +571,15 @@ router.get(pagePathConstants.mediaKit, function (req, res) {
 });
 
 /* Redirect videos */
-router.get(pagePathConstants.video, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
   req.decodedParams.video_id =  req.params.video_id;
-  if(basicHelper.isProduction()){
-    return res.redirect(302, coreConstants.PEPO_DOMAIN);
-  }
+  // if(basicHelper.isProduction()){
+  //   return res.redirect(302, coreConstants.PEPO_DOMAIN);
+  // }
   const apiResponse = await new GetVideoUrl({decodedParams: req.decodedParams}).perform();
-  console.log('---apiResponse-------',apiResponse);
-  console.log('\n\n\n\n');
   if (apiResponse.success) {
     //res.redirect(301, apiResponse.data.url);
-    let canonicalUrl = coreConstants.PEPO_DOMAIN + '/video/' + req.decodedParams.video_id;
+    let canonicalUrl = coreConstants.PEPO_DOMAIN + `${pagePathConstants.video}/` + req.decodedParams.video_id;
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
       redirect_to_location: apiResponse.data.url,
       pageMeta: {

@@ -18,8 +18,8 @@ class GetVideoUrl extends ServiceBase {
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
     oThis.videoId = oThis.decodedParams.video_id;
-    oThis.urlParams = {};
     
+    oThis.urlParams = {};
     oThis.videoShareDetails = {};
   }
 
@@ -33,9 +33,11 @@ class GetVideoUrl extends ServiceBase {
     const oThis = this;
     
     await oThis._fetchVideoShareDetails();
+  
+    const url = oThis._generateFireBaseUrl();
 
     return responseHelper.successWithData({
-      url: oThis._generateFireBaseUrl(),
+      url: url,
       pageMeta: {
         title: oThis.urlParams.st,
         description: oThis.urlParams.sd,
@@ -95,8 +97,8 @@ class GetVideoUrl extends ServiceBase {
 
       Object.assign(oThis.urlParams, s3UrlParams);
     }
-
-    oThis._appendUtmParams();
+    
+    Object.assign(oThis.urlParams, oThis._googleAnalyticsUtmParams());
 
     return oThis._generateUrl(url);
   }
@@ -126,11 +128,11 @@ class GetVideoUrl extends ServiceBase {
   }
 
   /**
-   * Append utm params
+   * Get utm params for google analytics
    *
    * @private
    */
-  _appendUtmParams() {
+  _googleAnalyticsUtmParams() {
     const oThis = this;
 
     const utmParams = {
@@ -140,8 +142,8 @@ class GetVideoUrl extends ServiceBase {
       utm_term: oThis.decodedParams.utm_term || 'default',
       utm_content: oThis.decodedParams.utm_content || 'default'
     };
-
-    Object.assign(oThis.urlParams, utmParams);
+    
+    return utmParams;
   }
 
   /**
