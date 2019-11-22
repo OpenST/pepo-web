@@ -20,7 +20,7 @@ class GetVideoUrl extends ServiceBase {
     oThis.videoId = oThis.decodedParams.video_id;
     oThis.urlParams = {};
     
-    oThis.videoShareDetails = null;
+    oThis.videoShareDetails = {};
   }
 
   /**
@@ -58,8 +58,6 @@ class GetVideoUrl extends ServiceBase {
       let resultType = videoShareResponse.data.result_type;
       oThis.videoShareDetails = videoShareResponse.data[resultType];
     }
-    
-    console.log('--oThis.videoShareDetails--',oThis.videoShareDetails);
   }
 
   /**
