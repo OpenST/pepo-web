@@ -18,7 +18,6 @@ class GetFirebaseInviteUrl extends ServiceBase {
     oThis.decodedParams = params.decodedParams;
     oThis.inviteCode = oThis.decodedParams.code;
     oThis.urlParams = {};
-    oThis.utmParams = {};
   }
 
   /**
@@ -46,13 +45,9 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let oflLink = oThis._fetchOflLink();
 
-    oThis._appendUtmParams();
-
-    let linkParams = oThis.inviteCode ? Object.assign(oThis.utmParams, {invite: oThis.inviteCode}) : oThis.utmParams;
-
     // Assign all url params
     oThis.urlParams = {
-      link: oThis._generateUrl(new urlParser.URL(coreConstants.PEPO_DOMAIN), linkParams),
+      link: oThis.inviteCode ? `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}` : `${coreConstants.PEPO_DOMAIN}`,
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       isi: coreConstants.PEPO_IOS_APP_ID,
@@ -73,7 +68,9 @@ class GetFirebaseInviteUrl extends ServiceBase {
       Object.assign(oThis.urlParams, s3UrlParams);
     }
 
-    return oThis._generateUrl(url, oThis.urlParams);
+    oThis._appendUtmParams();
+
+    return oThis._generateUrl(url);
   }
 
   /**
@@ -112,7 +109,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
   _appendUtmParams() {
     const oThis = this;
 
-    oThis.utmParams = {
+    const utmParams = {
       utm_source: oThis.decodedParams.utm_source || 'default',
       utm_medium: oThis.decodedParams.utm_medium || 'default',
       utm_campaign: oThis.decodedParams.utm_campaign || 'default',
@@ -120,23 +117,22 @@ class GetFirebaseInviteUrl extends ServiceBase {
       utm_content: oThis.decodedParams.utm_content || 'default'
     };
 
-    Object.assign(oThis.urlParams, oThis.utmParams);
+    Object.assign(oThis.urlParams, utmParams);
   }
 
   /**
    * Generate url
    *
    * @param url
-   * @param urlParams
-   * @returns {string | SVGAnimatedString}
+   * @returns {string}
    * @private
    */
-  _generateUrl(url, urlParams) {
+  _generateUrl(url) {
     const oThis = this;
 
     const searchParams = new urlParser.URLSearchParams(url.searchParams);
-    for (let key in urlParams) {
-      let val = urlParams[key];
+    for (let key in oThis.urlParams) {
+      let val = oThis.urlParams[key];
       searchParams.append(key, val);
     }
     url.search = searchParams;
