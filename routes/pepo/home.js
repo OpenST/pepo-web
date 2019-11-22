@@ -11,8 +11,8 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
+  GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
-  GetVideoUrl = require(rootPrefix + '/app/services/GetVideoUrl'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -103,30 +103,11 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
     );
   }
 
-  const apiResponse = await new GetVideoUrl({decodedParams: req.decodedParams}).perform();
+  const apiResponse = await new GetFirebaseVideoUrl({decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
-    //res.redirect(301, apiResponse.data.url);
-    let canonicalUrl = coreConstants.PEPO_DOMAIN + `${pagePathConstants.video}/` + req.decodedParams.video_id;
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
       redirect_to_location: apiResponse.data.url,
-      pageMeta: {
-        title: apiResponse.data.pageMeta.title,
-        description: apiResponse.data.pageMeta.description,
-        robots: 'noindex, nofollow',
-        canonical: canonicalUrl,
-        og: {
-          title: apiResponse.data.pageMeta.title,
-          description: apiResponse.data.pageMeta.description,
-          image: apiResponse.data.pageMeta.image,
-          url: canonicalUrl
-        },
-        twitter: {
-          title: apiResponse.data.pageMeta.title,
-          description: apiResponse.data.pageMeta.description,
-          image: apiResponse.data.pageMeta.image,
-          card: "summary_large_image"
-        }
-      }
+      pageMeta: apiResponse.data.pageMeta
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

@@ -1,26 +1,24 @@
-const rootPrefix = '../..',
+const rootPrefix = '../../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants');
 
 const urlParser = require('url');
 
 /**
- * Class to get firebase redirection url for invite url
+ * Base class to get firebase url.
  *
  */
-class GetFirebaseInviteUrl extends ServiceBase {
+class FirebaseUrlBase extends ServiceBase {
   constructor(params) {
     super(params);
-
+    
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
-    oThis.inviteCode = oThis.decodedParams.code;
-
+    
     oThis.urlParams = {};
   }
-
+  
   /**
    * Async perform
    *
@@ -28,11 +26,9 @@ class GetFirebaseInviteUrl extends ServiceBase {
    * @private
    */
   async _asyncPerform() {
-    const oThis = this;
-
-    return responseHelper.successWithData({url: oThis._generateFireBaseUrl()});
+    throw new Error('Sub-class to implement');
   }
-
+  
   /**
    * Generate firebase url
    *
@@ -41,89 +37,53 @@ class GetFirebaseInviteUrl extends ServiceBase {
    */
   _generateFireBaseUrl() {
     const oThis = this;
-
+    
     let url = new urlParser.URL(coreConstants.PEPO_FIREBASE_DOMAIN);
-
-    let oflLink = oThis._fetchOflLink();
-    let applaunchLink = oThis._fetchAppLaunchLink();
-
-    // Assign all url params
-    oThis.urlParams = {
-      link: applaunchLink,
-      apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
-      ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      isi: coreConstants.PEPO_IOS_APP_ID,
-      ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      efr: '0',
-      st: 'Pepo - Meet the people shaping the crypto movement',
-      sd: 'For the best experience keep the checkbox selected',
-      si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
-      ofl: oflLink
-    };
-
+  
+    oThis.urlParams = oThis._getFirebaseUrlParams();
+    
     if (!basicHelper.isProduction()) {
       const s3UrlParams = {
         afl: coreConstants.PEPO_ANDROID_APP_LINK,
         ifl: coreConstants.PEPO_IOS_APP_LINK
       };
-
+      
       Object.assign(oThis.urlParams, s3UrlParams);
     }
-
+    
     Object.assign(oThis.urlParams, oThis._googleAnalyticsUtmParams());
-
+    
     return oThis._generateUrl(url);
   }
-
+  
   /**
-   * Fetch ofl link
-   * @returns {*}
+   * Get firebase url params
+   *
+   * @returns {Object}
    * @private
    */
-  _fetchOflLink() {
-    const oThis = this;
-
-    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories', 'tw'],
-      inviteCode = (oThis.inviteCode || '').toLowerCase()
-    ;
-
-    let oflLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
-
-    return oflLink + oThis._generateQueryString();
+  _getFirebaseUrlParams(){
+    throw new Error('Sub-class to implement');
   }
-
+  
   /**
-   * Fetch app launch link
+   * Generate UTM query string
    * @returns {*}
    * @private
    */
-  _fetchAppLaunchLink() {
+  _generateUtmQueryString() {
     const oThis = this;
-
-    let queryString = oThis._generateQueryString();
-    queryString +=  oThis.inviteCode ? '&invite=' + oThis.inviteCode : '';
-
-    return coreConstants.PEPO_DOMAIN + queryString;
-  }
-
-  /**
-   * Generate query string
-   * @returns {*}
-   * @private
-   */
-  _generateQueryString() {
-    const oThis = this;
-
-    let queryString = '?';
+    
+    let queryString = '';
     queryString +=  oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';
     queryString +=  oThis.decodedParams.utm_medium ? '&utm_medium=' + oThis.decodedParams.utm_medium : '';
     queryString +=  oThis.decodedParams.utm_source ? '&utm_source=' + oThis.decodedParams.utm_source : '';
     queryString +=  oThis.decodedParams.utm_term ? '&utm_term=' + oThis.decodedParams.utm_term : '';
     queryString +=  oThis.decodedParams.utm_content ? '&utm_content=' + oThis.decodedParams.utm_content : '';
-
+    
     return queryString;
   }
-
+  
   /**
    * Append utm params for google analytics
    *
@@ -131,7 +91,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
    */
   _googleAnalyticsUtmParams() {
     const oThis = this;
-
+    
     const utmParams = {
       utm_source: oThis.decodedParams.utm_source || 'default',
       utm_medium: oThis.decodedParams.utm_medium || 'default',
@@ -139,10 +99,10 @@ class GetFirebaseInviteUrl extends ServiceBase {
       utm_term: oThis.decodedParams.utm_term || 'default',
       utm_content: oThis.decodedParams.utm_content || 'default'
     };
-
+    
     return utmParams;
   }
-
+  
   /**
    * Generate url
    *
@@ -152,17 +112,16 @@ class GetFirebaseInviteUrl extends ServiceBase {
    */
   _generateUrl(url) {
     const oThis = this;
-
+    
     const searchParams = new urlParser.URLSearchParams(url.searchParams);
     for (let key in oThis.urlParams) {
       let val = oThis.urlParams[key];
       searchParams.append(key, val);
     }
     url.search = searchParams;
-
+    
     return url.href
   }
-
 }
 
-module.exports = GetFirebaseInviteUrl;
+module.exports = FirebaseUrlBase;
