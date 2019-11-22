@@ -17,6 +17,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
     oThis.inviteCode = oThis.decodedParams.code;
+
     oThis.urlParams = {};
   }
 
@@ -44,10 +45,11 @@ class GetFirebaseInviteUrl extends ServiceBase {
     let url = new urlParser.URL(coreConstants.PEPO_FIREBASE_DOMAIN);
 
     let oflLink = oThis._fetchOflLink();
+    let applaunchLink = oThis._fetchAppLaunchLink();
 
     // Assign all url params
     oThis.urlParams = {
-      link: oThis.inviteCode ? `${coreConstants.PEPO_DOMAIN}?invite=${oThis.inviteCode}` : `${coreConstants.PEPO_DOMAIN}`,
+      link: applaunchLink,
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       isi: coreConstants.PEPO_IOS_APP_ID,
@@ -68,7 +70,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
       Object.assign(oThis.urlParams, s3UrlParams);
     }
 
-    oThis._appendUtmParams();
+    Object.assign(oThis.urlParams, oThis._googleAnalyticsUtmParams());
 
     return oThis._generateUrl(url);
   }
@@ -87,26 +89,47 @@ class GetFirebaseInviteUrl extends ServiceBase {
 
     let oflLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
 
-    let utmQueryString = '';
-    utmQueryString +=  oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';
-    utmQueryString +=  oThis.decodedParams.utm_medium ? '&utm_medium=' + oThis.decodedParams.utm_medium : '';
-    utmQueryString +=  oThis.decodedParams.utm_source ? '&utm_source=' + oThis.decodedParams.utm_source : '';
-    utmQueryString +=  oThis.decodedParams.utm_term ? '&utm_term=' + oThis.decodedParams.utm_term : '';
-    utmQueryString +=  oThis.decodedParams.utm_content ? '&utm_content=' + oThis.decodedParams.utm_content : '';
-
-    if (utmQueryString !== '') {
-      oflLink += '?' + utmQueryString
-    }
-
-    return oflLink;
+    return oflLink + oThis._generateQueryString();
   }
 
   /**
-   * Append utm params
+   * Fetch app launch link
+   * @returns {*}
+   * @private
+   */
+  _fetchAppLaunchLink() {
+    const oThis = this;
+
+    let queryString = oThis._generateQueryString();
+    queryString +=  oThis.inviteCode ? '&invite=' + oThis.inviteCode : '';
+
+    return coreConstants.PEPO_DOMAIN + queryString;
+  }
+
+  /**
+   * Generate query string
+   * @returns {*}
+   * @private
+   */
+  _generateQueryString() {
+    const oThis = this;
+
+    let queryString = '?';
+    queryString +=  oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';
+    queryString +=  oThis.decodedParams.utm_medium ? '&utm_medium=' + oThis.decodedParams.utm_medium : '';
+    queryString +=  oThis.decodedParams.utm_source ? '&utm_source=' + oThis.decodedParams.utm_source : '';
+    queryString +=  oThis.decodedParams.utm_term ? '&utm_term=' + oThis.decodedParams.utm_term : '';
+    queryString +=  oThis.decodedParams.utm_content ? '&utm_content=' + oThis.decodedParams.utm_content : '';
+
+    return queryString;
+  }
+
+  /**
+   * Append utm params for google analytics
    *
    * @private
    */
-  _appendUtmParams() {
+  _googleAnalyticsUtmParams() {
     const oThis = this;
 
     const utmParams = {
@@ -117,7 +140,7 @@ class GetFirebaseInviteUrl extends ServiceBase {
       utm_content: oThis.decodedParams.utm_content || 'default'
     };
 
-    Object.assign(oThis.urlParams, utmParams);
+    return utmParams;
   }
 
   /**
