@@ -10,11 +10,11 @@ const rootPrefix = '../../..',
 class GetFirebaseInviteUrl extends FirebaseUrlBase {
   constructor(params) {
     super(params);
-    
+
     const oThis = this;
     oThis.inviteCode = oThis.decodedParams.code;
   }
-  
+
   /**
    * Async perform
    *
@@ -23,7 +23,7 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
    */
   async _asyncPerform() {
     const oThis = this;
-    
+
     return responseHelper.successWithData({
       url: oThis._generateFireBaseUrl(),
       pageMeta: {
@@ -46,7 +46,7 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
       }
     });
   }
-  
+
   /**
    * Get firebase url params
    *
@@ -55,7 +55,7 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
    */
   _getFirebaseUrlParams(){
     const oThis = this;
-    
+
     // Assign all url params
     return {
       link: oThis._fetchAppLaunchLink(),
@@ -70,7 +70,7 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
       ofl: oThis._fetchOflLink()
     };
   }
-  
+
   /**
    * Fetch ofl link
    * @returns {*}
@@ -78,17 +78,17 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
    */
   _fetchOflLink() {
     const oThis = this;
-    
+
     let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories', 'tw'],
       inviteCode = (oThis.inviteCode || '').toLowerCase()
     ;
-    
+
     let baseLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
     let queryString = oThis._generateUtmQueryString();
-    
+
     return baseLink + (queryString ? `?${queryString}` : '');
   }
-  
+
   /**
    * Fetch app launch link
    * @returns {*}
@@ -96,13 +96,13 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
    */
   _fetchAppLaunchLink() {
     const oThis = this;
-    
+
     let baseLink = coreConstants.PEPO_DOMAIN;
-    
+
     let queryString = oThis._generateUtmQueryString();
     queryString +=  oThis.inviteCode ? '&invite=' + oThis.inviteCode : '';
-  
-    return baseLink + (queryString ? `?${queryString}` : '');
+
+    return encodeURI(baseLink + (queryString ? `?${queryString}` : ''));
   }
 }
 
