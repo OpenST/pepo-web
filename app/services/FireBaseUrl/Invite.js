@@ -102,7 +102,7 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
     let queryString = oThis._generateUtmQueryString();
     queryString +=  oThis.inviteCode ? '&invite=' + oThis.inviteCode : '';
 
-    return encodeURI(baseLink + (queryString ? `?${queryString}` : ''));
+    return baseLink + (queryString ? `?${queryString}` : '');
   }
 }
 
