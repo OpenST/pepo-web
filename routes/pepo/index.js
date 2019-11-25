@@ -8,6 +8,7 @@ const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   staticContentsRoute = require(rootPrefix + '/routes/pepo/staticContents'),
   homeRouter = require(rootPrefix + '/routes/pepo/home'),
+  inviteCodesRouter = require(rootPrefix + '/routes/pepo/inviteCodes'),
   usersRouter = require(rootPrefix + '/routes/pepo/users'),
   redemptionsRouter = require(rootPrefix + '/routes/pepo/redemptions'),
   supportRouter = require(rootPrefix + '/routes/pepo/support'),
@@ -65,6 +66,7 @@ router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 router.use(csrfProtection);
 
 router.use(pagePathConstants.home, homeRouter);
+router.use(pagePathConstants.home, inviteCodesRouter);
 // router.use(pagePathConstants.account, usersRouter);
 router.use(pagePathConstants.redemptions, redemptionsRouter);
 router.use(pagePathConstants.support, supportRouter);
