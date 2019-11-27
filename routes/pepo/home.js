@@ -12,6 +12,7 @@ const rootPrefix = '../..',
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
+  GetFirebaseReplyVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/ReplyVideo'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
 
@@ -102,6 +103,38 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   }
 
   const apiResponse = await new GetFirebaseVideoUrl({decodedParams: req.decodedParams}).perform();
+  if (apiResponse.success) {
+    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+      redirect_to_location: apiResponse.data.url,
+      pageMeta: apiResponse.data.pageMeta
+    });
+  } else {
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  }
+});
+
+/* Redirect video pages */
+router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+  
+  // Code not yet open for production, staging or sandbox. Remove the following line afterwards
+  return res.redirect(302, coreConstants.PEPO_DOMAIN);
+  
+  req.decodedParams.reply_detail_id =  parseInt(req.params.reply_detail_id);
+  
+  // Render 404 page if id not valid
+  if (req.decodedParams.reply_detail_id < 1 || isNaN(req.decodedParams.reply_detail_id)) {
+    return responseHelper.renderApiResponse(
+      responseHelper.error({
+        internal_error_identifier: 'r_p_h_2',
+        api_error_identifier: 'resource_not_found',
+        debug_options: {}
+      }),
+      res,
+      errorConfig
+    );
+  }
+  
+  const apiResponse = await new GetFirebaseReplyVideoUrl({decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
       redirect_to_location: apiResponse.data.url,
