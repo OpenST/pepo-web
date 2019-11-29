@@ -3,20 +3,20 @@ const rootPrefix = '../../..',
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  VideoShareDetails = require(rootPrefix + '/lib/pepoApi/Video');
+  ReplyVideoShareDetails = require(rootPrefix + '/lib/pepoApi/ReplyVideo');
 
 /**
- * Class to get firebase redirection url for video url
+ * Class to get firebase redirection url for reply video url
  *
  */
-class GetFirebaseVideoUrl extends FirebaseUrlBase {
+class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
   constructor(params) {
     super(params);
     
     const oThis = this;
-    oThis.videoId = oThis.decodedParams.video_id;
+    oThis.replyDetailId = oThis.decodedParams.reply_detail_id;
     
-    oThis.videoShareDetails = {};
+    oThis.replyVideoShareDetails = {};
   }
   
   /**
@@ -28,7 +28,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
   async _asyncPerform() {
     const oThis = this;
     
-    await oThis._fetchVideoShareDetails();
+    await oThis._fetchReplyVideoShareDetails();
     
     const url = oThis._generateFireBaseUrl();
     
@@ -38,7 +38,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
         title: oThis.urlParams.st,
         description: '',
         robots: 'noindex, nofollow',
-        canonical: oThis._videoBaseUrl(),
+        canonical: oThis._replyVideoBaseUrl(),
         og: {
           title: oThis.urlParams.st,
           description: '',
@@ -61,13 +61,13 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    * @returns {Promise<void>}
    * @private
    */
-  async _fetchVideoShareDetails() {
+  async _fetchReplyVideoShareDetails() {
     const oThis = this;
     
-    let videoShareResponse = await new VideoShareDetails({}).getVideoShareDetails({videoId: oThis.videoId});
-    if(videoShareResponse.success){
-      let resultType = videoShareResponse.data.result_type;
-      oThis.videoShareDetails = videoShareResponse.data[resultType];
+    let replyVideoShareResponse = await new ReplyVideoShareDetails({}).getReplyVideoShareDetails({reply_detail_id: oThis.replyDetailId});
+    if(replyVideoShareResponse.success){
+      let resultType = replyVideoShareResponse.data.result_type;
+      oThis.replyVideoShareDetails = replyVideoShareResponse.data[resultType];
     }
   }
   
@@ -89,8 +89,8 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
       ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       efr: '0',
       st: 'Pepo - Meet the people shaping the crypto movement',
-      sd: oThis.videoShareDetails.message ? oThis.videoShareDetails.message : 'For the best experience keep the checkbox selected',
-      si: oThis.videoShareDetails.poster_image_url ? oThis.videoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
+      sd: oThis.replyVideoShareDetails.message ? oThis.replyVideoShareDetails.message : 'For the best experience keep the checkbox selected',
+      si: oThis.replyVideoShareDetails.poster_image_url ? oThis.replyVideoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: oThis._fetchOflLink()
     };
   }
@@ -106,7 +106,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
     
     let baseLink = coreConstants.PEPO_DOMAIN;
     let queryString = oThis._generateUtmQueryString();
-  
+    
     return baseLink + (queryString ? `?${queryString}` : '');
   }
   
@@ -118,7 +118,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
   _fetchAppLaunchLink() {
     const oThis = this;
     
-    let baseLink = oThis._videoBaseUrl();
+    let baseLink = oThis._replyVideoBaseUrl();
     let queryString = oThis._generateUtmQueryString();
     
     return baseLink + (queryString ? `?${queryString}` : '');
@@ -130,12 +130,12 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    * @returns {string}
    * @private
    */
-  _videoBaseUrl() {
+  _replyVideoBaseUrl() {
     const oThis = this;
     
-    return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.video}/${oThis.videoId}`;
+    return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.reply}/${oThis.replyDetailId}`;
   }
   
 }
 
-module.exports = GetFirebaseVideoUrl;
+module.exports = GetFirebaseReplyVideoUrl;
