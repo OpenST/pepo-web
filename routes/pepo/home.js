@@ -84,9 +84,6 @@ router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (
 /* Redirect video pages */
 router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
   
-  // Code not yet open for production, staging or sandbox. Remove the following line afterwards
-  return res.redirect(302, coreConstants.PEPO_DOMAIN);
-
   req.decodedParams.video_id =  parseInt(req.params.video_id);
 
   // Render 404 page if id not valid
@@ -115,10 +112,7 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 
 /* Redirect video pages */
 router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
-  
-  // Code not yet open for production, staging or sandbox. Remove the following line afterwards
-  return res.redirect(302, coreConstants.PEPO_DOMAIN);
-  
+
   req.decodedParams.reply_detail_id =  parseInt(req.params.reply_detail_id);
   
   // Render 404 page if id not valid
