@@ -79,7 +79,7 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
   _fetchOflLink() {
     const oThis = this;
 
-    let whitelistedCodes = ['brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories', 'tw'],
+    let whitelistedCodes = ['whatgrindsmygears', 'epicenter', 'brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories', 'tw'],
       inviteCode = (oThis.inviteCode || '').toLowerCase()
     ;
 
