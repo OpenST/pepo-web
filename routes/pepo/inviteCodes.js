@@ -19,12 +19,19 @@ const filterUtmParams = function(req) {
 
 /* GET what grinds my gears. */
 router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/whatgrindsmygears';
+
+  let utmQueryString = filterUtmParams(req);
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+  }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
-    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
-    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | What grinds my gears',
       robots: 'noindex, nofollow',
@@ -60,11 +67,18 @@ router.get('/whatgrindsmygears/desktop', sanitizer.sanitizeDynamicUrlParams, asy
 /* GET epicenter */
 router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/epicenter';
+
+  let utmQueryString = filterUtmParams(req);
+  if (utmQueryString !== '') {
+    appDownloadLink += '?' + utmQueryString;
+  }
+  
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
-    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
-    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    androidAppLink: appDownloadLink,
+    iosAppLink: appDownloadLink,
     pageMeta: {
       title: 'Pepo | Epicenter',
       robots: 'noindex, nofollow',
