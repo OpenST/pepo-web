@@ -13,6 +13,7 @@ const elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker')
   pepoRoutes = require(rootPrefix + '/routes/pepo/index'),
   storeRoutes = require(rootPrefix + '/routes/store/index'),
   inviteRoutes = require(rootPrefix + '/routes/invite/index'),
+  webviewRoutes = require(rootPrefix + '/routes/webview/index'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
@@ -104,6 +105,7 @@ const setResponseHeader = async function(req, res, next) {
 
 const pepoHostName = new URL(coreConstants.PEPO_DOMAIN).hostname;
 const pepoStoreHostName = new URL(coreConstants.PEPO_STORE_DOMAIN).hostname;
+const pepoWebviewHostName = new URL(coreConstants.PEPO_WEBVIEW_DOMAIN).hostname;
 const pepoInviteHostName = new URL(coreConstants.PEPO_INVITE_DOMAIN).hostname;
 
 // Set worker process title
@@ -155,6 +157,8 @@ app.use('/', function(request, response, next){
     pepoRoutes(request, response, next);
   }else if(request.hostname === pepoStoreHostName){
     storeRoutes(request, response, next);
+  }else if(request.hostname === pepoWebviewHostName) {
+    webviewRoutes(request, response, next);
   }else if(request.hostname === pepoInviteHostName){
     inviteRoutes(request, response, next);
   }else{
