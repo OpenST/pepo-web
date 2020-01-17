@@ -51,10 +51,6 @@ class CoreConstant {
     return process.env.PEPO_STORE_DOMAIN;
   }
 
-  get PEPO_WEBVIEW_DOMAIN() {
-    return process.env.PW_WEBVIEW_DOMAIN;
-  }
-
   get PEPO_INVITE_DOMAIN() {
     return process.env.PW_INVITE_DOMAIN;
   }

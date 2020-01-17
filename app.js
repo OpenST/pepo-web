@@ -18,6 +18,7 @@ const elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker')
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
@@ -105,7 +106,6 @@ const setResponseHeader = async function(req, res, next) {
 
 const pepoHostName = new URL(coreConstants.PEPO_DOMAIN).hostname;
 const pepoStoreHostName = new URL(coreConstants.PEPO_STORE_DOMAIN).hostname;
-const pepoWebviewHostName = new URL(coreConstants.PEPO_WEBVIEW_DOMAIN).hostname;
 const pepoInviteHostName = new URL(coreConstants.PEPO_INVITE_DOMAIN).hostname;
 
 // Set worker process title
@@ -153,15 +153,17 @@ app.use(setResponseHeader);
 
 app.use('/', function(request, response, next){
 
-  if(request.hostname === pepoHostName){
-    pepoRoutes(request, response, next);
-  }else if(request.hostname === pepoStoreHostName){
+  if (request.hostname === pepoHostName) {
+    if (request.url.match('^' + pagePathConstants.webview + '/')) {
+      webviewRoutes(request, response, next);
+    } else {
+      pepoRoutes(request, response, next);
+    }
+  } else if(request.hostname === pepoStoreHostName) {
     storeRoutes(request, response, next);
-  }else if(request.hostname === pepoWebviewHostName) {
-    webviewRoutes(request, response, next);
-  }else if(request.hostname === pepoInviteHostName){
+  } else if(request.hostname === pepoInviteHostName) {
     inviteRoutes(request, response, next);
-  }else{
+  } else {
     next();
   }
 });
