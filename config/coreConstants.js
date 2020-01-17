@@ -52,7 +52,7 @@ class CoreConstant {
   }
 
   get PEPO_WEBVIEW_DOMAIN() {
-    return process.env.PEPO_WEBVIEW_DOMAIN;
+    return process.env.PW_WEBVIEW_DOMAIN;
   }
 
   get PEPO_INVITE_DOMAIN() {
