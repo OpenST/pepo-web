@@ -3,6 +3,7 @@ const router = express.Router();
 
 const rootPrefix = '../..',
   deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
+  signinWithAppleConstants = require(rootPrefix + '/lib/globalConstant/signinWithApple'),
   basicHelper = require(rootPrefix + '/helpers/basic');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -23,6 +24,16 @@ router.get('/.well-known/apple-app-site-association', async function (req, res) 
   
   return res.status(200).json(apiResponse);
   
+});
+
+/* GET sign in apple verification file. */
+router.get('/.well-known/apple-developer-domain-association.txt', async function (req, res) {
+
+  let apiResponse = signinWithAppleConstants.getAppleDeveloperDomainAssociation();
+
+  console.log('apiResponse', apiResponse);
+  res.set('Content-Type', 'text/plain');
+  res.status(200).send(apiResponse);
 });
 
 /* GET Deep linking for ios. */
