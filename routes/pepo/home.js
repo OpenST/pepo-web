@@ -48,7 +48,7 @@ router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, as
 });
 
 /* GET home page. */
-router.get('/twitter/auth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+router.get('/twitter/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
   if (!req.decodedParams.rd) {
     if (!req.decodedParams.oauth_token || !req.decodedParams.oauth_verifier) {
