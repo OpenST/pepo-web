@@ -13,6 +13,7 @@ const rootPrefix = '../..',
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   GetFirebaseReplyVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/ReplyVideo'),
+  GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
 
@@ -142,7 +143,7 @@ router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDyna
 /* Redirect channel pages */
 router.get(`${pagePathConstants.channels}/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
-  req.decodedParams.permalink =  parseInt(req.params.permalink);
+  req.decodedParams.permalink =  req.params.permalink;
 
   // Render 404 page if id not valid
   if (!req.decodedParams.permalink) {
@@ -157,7 +158,7 @@ router.get(`${pagePathConstants.channels}/:permalink`, sanitizer.sanitizeDynamic
     );
   }
 
-  const apiResponse = await new GetFirebaseReplyVideoUrl({decodedParams: req.decodedParams}).perform();
+  const apiResponse = await new GetFirebaseChannelUrl({decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
       redirect_to_location: apiResponse.data.url,
