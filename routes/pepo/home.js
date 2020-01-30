@@ -83,7 +83,7 @@ router.get('/twitter/oauth', sanitizer.sanitizeDynamicUrlParams, async function 
 
 /* Redirect video pages */
 router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
-  
+
   req.decodedParams.video_id =  parseInt(req.params.video_id);
 
   // Render 404 page if id not valid
@@ -114,7 +114,7 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
   req.decodedParams.reply_detail_id =  parseInt(req.params.reply_detail_id);
-  
+
   // Render 404 page if id not valid
   if (req.decodedParams.reply_detail_id < 1 || isNaN(req.decodedParams.reply_detail_id)) {
     return responseHelper.renderApiResponse(
@@ -127,7 +127,36 @@ router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDyna
       errorConfig
     );
   }
-  
+
+  const apiResponse = await new GetFirebaseReplyVideoUrl({decodedParams: req.decodedParams}).perform();
+  if (apiResponse.success) {
+    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+      redirect_to_location: apiResponse.data.url,
+      pageMeta: apiResponse.data.pageMeta
+    });
+  } else {
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  }
+});
+
+/* Redirect channel pages */
+router.get(`${pagePathConstants.channels}/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+
+  req.decodedParams.permalink =  parseInt(req.params.permalink);
+
+  // Render 404 page if id not valid
+  if (!req.decodedParams.permalink) {
+    return responseHelper.renderApiResponse(
+      responseHelper.error({
+        internal_error_identifier: 'r_p_h_3',
+        api_error_identifier: 'resource_not_found',
+        debug_options: {}
+      }),
+      res,
+      errorConfig
+    );
+  }
+
   const apiResponse = await new GetFirebaseReplyVideoUrl({decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
