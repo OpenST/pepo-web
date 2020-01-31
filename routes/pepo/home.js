@@ -14,6 +14,7 @@ const rootPrefix = '../..',
   GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   GetFirebaseReplyVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/ReplyVideo'),
   GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
+  GetFirebaseUserProfileUrl = require(rootPrefix + '/app/services/FireBaseUrl/UserProfile'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
 
@@ -221,6 +222,34 @@ router.get(pagePathConstants.about, function (req, res) {
 /* faq page */
 router.get(pagePathConstants.faqs, function (req, res) {
   res.redirect(302, 'https://intercom.help/pepo');
+});
+
+/* Redirect user profile pages */
+router.get(`/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+  req.decodedParams.permalink =  req.params.permalink;
+
+  // Render 404 page if id not valid
+  if (!req.decodedParams.permalink) {
+    return responseHelper.renderApiResponse(
+      responseHelper.error({
+        internal_error_identifier: 'r_p_h_4',
+        api_error_identifier: 'resource_not_found',
+        debug_options: {}
+      }),
+      res,
+      errorConfig
+    );
+  }
+
+  const apiResponse = await new GetFirebaseUserProfileUrl({decodedParams: req.decodedParams}).perform();
+  if (apiResponse.success) {
+    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+      redirect_to_location: apiResponse.data.url,
+      pageMeta: apiResponse.data.pageMeta
+    });
+  } else {
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  }
 });
 
 module.exports = router;
