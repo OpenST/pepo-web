@@ -113,7 +113,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
   _profileBaseUrl() {
     const oThis = this;
 
-    return `${coreConstants.PEPO_DOMAIN}${oThis.permalink}`;
+    return `${coreConstants.PEPO_DOMAIN}/${oThis.permalink}`;
   }
 
 }
