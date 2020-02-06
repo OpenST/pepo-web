@@ -47,7 +47,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
           title: oThis.urlParams.st,
           description: '',
           image: oThis.urlParams.si,
-          card: "summary_large_image"
+          card: "summary"
         }
       }
     });
