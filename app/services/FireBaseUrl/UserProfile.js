@@ -101,9 +101,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
     let baseLink = oThis._profileBaseUrl();
     let queryString = oThis._generateUtmQueryString();
 
-    if ( oThis.decodedParams.at ){
-      queryString += '&at=' +  oThis.decodedParams.at
-    }
+    queryString += oThis.decodedParams.at? '&at=' + oThis.decodedParams.at : '';
 
     return baseLink + (queryString ? `?${queryString}` : '');
   }
@@ -114,9 +112,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
     let baseLink = coreConstants.PEPO_DOMAIN;
     let queryString = oThis._generateUtmQueryString();
 
-    if ( oThis.decodedParams.at ){
-      queryString += '&at=' +  oThis.decodedParams.at
-    }
+    queryString += oThis.decodedParams.at? '&at=' + oThis.decodedParams.at : '';
 
     return baseLink + (queryString ? `?${queryString}` : '');
   }
