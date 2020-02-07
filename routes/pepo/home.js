@@ -142,7 +142,7 @@ router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDyna
 });
 
 /* Redirect channel pages */
-router.get(`${pagePathConstants.channels}/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+router.get(`${pagePathConstants.communities}/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
   req.decodedParams.permalink =  req.params.permalink;
 

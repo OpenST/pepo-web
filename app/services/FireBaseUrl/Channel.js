@@ -113,7 +113,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
   _channelBaseUrl() {
     const oThis = this;
 
-    return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.channels}/${oThis.permalink}`;
+    return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.communities}/${oThis.permalink}`;
   }
 
 }
