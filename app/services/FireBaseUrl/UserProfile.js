@@ -101,6 +101,23 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
     let baseLink = oThis._profileBaseUrl();
     let queryString = oThis._generateUtmQueryString();
 
+    if ( oThis.decodedParams.at ){
+      queryString += 'at=' +  oThis.decodedParams.at
+    }
+
+    return baseLink + (queryString ? `?${queryString}` : '');
+  }
+
+  _fetchOflLink() {
+    const oThis = this;
+
+    let baseLink = coreConstants.PEPO_DOMAIN;
+    let queryString = oThis._generateUtmQueryString();
+
+    if ( oThis.decodedParams.at ){
+      queryString += 'at=' +  oThis.decodedParams.at
+    }
+
     return baseLink + (queryString ? `?${queryString}` : '');
   }
 
