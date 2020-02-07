@@ -102,7 +102,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
     let queryString = oThis._generateUtmQueryString();
 
     if ( oThis.decodedParams.at ){
-      queryString += 'at=' +  oThis.decodedParams.at
+      queryString += '&at=' +  oThis.decodedParams.at
     }
 
     return baseLink + (queryString ? `?${queryString}` : '');
@@ -115,7 +115,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
     let queryString = oThis._generateUtmQueryString();
 
     if ( oThis.decodedParams.at ){
-      queryString += 'at=' +  oThis.decodedParams.at
+      queryString += '&at=' +  oThis.decodedParams.at
     }
 
     return baseLink + (queryString ? `?${queryString}` : '');
