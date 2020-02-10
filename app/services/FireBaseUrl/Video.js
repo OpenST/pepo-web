@@ -12,13 +12,13 @@ const rootPrefix = '../../..',
 class GetFirebaseVideoUrl extends FirebaseUrlBase {
   constructor(params) {
     super(params);
-    
+
     const oThis = this;
     oThis.videoId = oThis.decodedParams.video_id;
-    
+
     oThis.videoShareDetails = {};
   }
-  
+
   /**
    * Async perform
    *
@@ -27,11 +27,11 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    */
   async _asyncPerform() {
     const oThis = this;
-    
+
     await oThis._fetchVideoShareDetails();
-    
+
     const url = oThis._generateFireBaseUrl();
-    
+
     return responseHelper.successWithData({
       url: url,
       pageMeta: {
@@ -54,7 +54,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
       }
     });
   }
-  
+
   /**
    * Fetch video share details
    *
@@ -63,14 +63,14 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    */
   async _fetchVideoShareDetails() {
     const oThis = this;
-    
+
     let videoShareResponse = await new VideoShareDetails({}).getVideoShareDetails({videoId: oThis.videoId});
     if(videoShareResponse.success){
       let resultType = videoShareResponse.data.result_type;
       oThis.videoShareDetails = videoShareResponse.data[resultType];
     }
   }
-  
+
   /**
    * Get firebase url params
    *
@@ -79,37 +79,18 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    */
   _getFirebaseUrlParams(){
     const oThis = this;
-    
-    // Assign all url params
-    return {
+
+    let urlParams = oThis._getFirebaseCommonUrlParams();
+    Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
-      apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
-      ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      isi: coreConstants.PEPO_IOS_APP_ID,
-      ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      efr: '0',
-      st: 'Pepo - Meet the people shaping the crypto movement',
       sd: oThis.videoShareDetails.message ? oThis.videoShareDetails.message : 'For the best experience keep the checkbox selected',
       si: oThis.videoShareDetails.poster_image_url ? oThis.videoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: oThis._fetchOflLink()
-    };
+    });
+    // Assign all url params
+    return urlParams;
   }
-  
-  /**
-   * Fetch ofl link
-   *
-   * @returns {*}
-   * @private
-   */
-  _fetchOflLink() {
-    const oThis = this;
-    
-    let baseLink = coreConstants.PEPO_DOMAIN;
-    let queryString = oThis._generateUtmQueryString();
-  
-    return baseLink + (queryString ? `?${queryString}` : '');
-  }
-  
+
   /**
    * Fetch app launch link
    * @returns {*}
@@ -117,13 +98,13 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    */
   _fetchAppLaunchLink() {
     const oThis = this;
-    
+
     let baseLink = oThis._videoBaseUrl();
     let queryString = oThis._generateUtmQueryString();
-    
+
     return baseLink + (queryString ? `?${queryString}` : '');
   }
-  
+
   /**
    * Video base url
    *
@@ -132,10 +113,10 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    */
   _videoBaseUrl() {
     const oThis = this;
-    
+
     return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.video}/${oThis.videoId}`;
   }
-  
+
 }
 
 module.exports = GetFirebaseVideoUrl;

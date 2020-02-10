@@ -65,10 +65,11 @@ router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 
 router.use(csrfProtection);
 
+router.use(pagePathConstants.support, supportRouter); // Don't move it after home routes. permalink will match it for anything
+
 router.use(pagePathConstants.home, homeRouter);
 router.use(pagePathConstants.home, inviteCodesRouter);
 // router.use(pagePathConstants.account, usersRouter);
 router.use(pagePathConstants.redemptions, redemptionsRouter);
-router.use(pagePathConstants.support, supportRouter);
 
 module.exports = router;

@@ -3,20 +3,18 @@ const rootPrefix = '../../..',
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  ReplyVideoShareDetails = require(rootPrefix + '/lib/pepoApi/ReplyVideo');
+  UserProfileShareDetails = require(rootPrefix + '/lib/pepoApi/UserProfile');
 
 /**
- * Class to get firebase redirection url for reply video url
+ * Class to get firebase redirection url for profile url
  *
  */
-class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
+class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
   constructor(params) {
     super(params);
 
     const oThis = this;
-    oThis.replyDetailId = oThis.decodedParams.reply_detail_id;
-
-    oThis.replyVideoShareDetails = {};
+    oThis.permalink = oThis.decodedParams.permalink;
   }
 
   /**
@@ -28,7 +26,7 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
   async _asyncPerform() {
     const oThis = this;
 
-    await oThis._fetchReplyVideoShareDetails();
+    await oThis._fetchProfileShareDetails();
 
     const url = oThis._generateFireBaseUrl();
 
@@ -38,7 +36,7 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
         title: oThis.urlParams.st,
         description: '',
         robots: 'noindex, nofollow',
-        canonical: oThis._replyVideoBaseUrl(),
+        canonical: oThis._profileBaseUrl(),
         og: {
           title: oThis.urlParams.st,
           description: '',
@@ -49,7 +47,7 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
           title: oThis.urlParams.st,
           description: '',
           image: oThis.urlParams.si,
-          card: "summary_large_image"
+          card: "summary"
         }
       }
     });
@@ -61,13 +59,13 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
    * @returns {Promise<void>}
    * @private
    */
-  async _fetchReplyVideoShareDetails() {
+  async _fetchProfileShareDetails() {
     const oThis = this;
 
-    let replyVideoShareResponse = await new ReplyVideoShareDetails({}).getReplyVideoShareDetails({reply_detail_id: oThis.replyDetailId});
-    if(replyVideoShareResponse.success){
-      let resultType = replyVideoShareResponse.data.result_type;
-      oThis.replyVideoShareDetails = replyVideoShareResponse.data[resultType];
+    let shareResponse = await new UserProfileShareDetails({}).getUserProfileShareDetails({username: oThis.permalink});
+    if(shareResponse.success){
+      let resultType = shareResponse.data.result_type;
+      oThis.profileShareDetails = shareResponse.data[resultType];
     }
   }
 
@@ -83,8 +81,9 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
     let urlParams = oThis._getFirebaseCommonUrlParams();
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
-      sd: oThis.replyVideoShareDetails.message ? oThis.replyVideoShareDetails.message : 'For the best experience keep the checkbox selected',
-      si: oThis.replyVideoShareDetails.poster_image_url ? oThis.replyVideoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
+      st: oThis.profileShareDetails.title || '',
+      sd: oThis.profileShareDetails.message ? oThis.profileShareDetails.message : 'For the best experience keep the checkbox selected',
+      si: oThis.profileShareDetails.poster_image_url ? oThis.profileShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: oThis._fetchOflLink()
     });
     // Assign all url params
@@ -99,24 +98,37 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
   _fetchAppLaunchLink() {
     const oThis = this;
 
-    let baseLink = oThis._replyVideoBaseUrl();
+    let baseLink = oThis._profileBaseUrl();
     let queryString = oThis._generateUtmQueryString();
+
+    queryString += oThis.decodedParams.at? '&at=' + oThis.decodedParams.at : '';
+
+    return baseLink + (queryString ? `?${queryString}` : '');
+  }
+
+  _fetchOflLink() {
+    const oThis = this;
+
+    let baseLink = coreConstants.PEPO_DOMAIN;
+    let queryString = oThis._generateUtmQueryString();
+
+    queryString += oThis.decodedParams.at? '&at=' + oThis.decodedParams.at : '';
 
     return baseLink + (queryString ? `?${queryString}` : '');
   }
 
   /**
-   * Video base url
+   * Profile base url
    *
    * @returns {string}
    * @private
    */
-  _replyVideoBaseUrl() {
+  _profileBaseUrl() {
     const oThis = this;
 
-    return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.reply}/${oThis.replyDetailId}`;
+    return `${coreConstants.PEPO_DOMAIN}/${oThis.permalink}`;
   }
 
 }
 
-module.exports = GetFirebaseReplyVideoUrl;
+module.exports = GetFirebaseUserProfileUrl;

@@ -56,19 +56,15 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
   _getFirebaseUrlParams(){
     const oThis = this;
 
-    // Assign all url params
-    return {
+    let urlParams = oThis._getFirebaseCommonUrlParams();
+    Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
-      apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
-      ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      isi: coreConstants.PEPO_IOS_APP_ID,
-      ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
-      efr: '0',
-      st: 'Pepo - Meet the people shaping the crypto movement',
       sd: 'For the best experience keep the checkbox selected',
       si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: oThis._fetchOflLink()
-    };
+    });
+    // Assign all url params
+    return urlParams;
   }
 
   /**
