@@ -79,7 +79,7 @@ class FirebaseUrlBase extends ServiceBase {
       isi: coreConstants.PEPO_IOS_APP_ID,
       ipbi: coreConstants.PEPO_IOS_PACKAGE_NAME,
       efr: '0',
-      st: 'Pepo - Meet the people shaping the crypto movement'
+      st: 'Meet your peeps!'
     }
   }
 
