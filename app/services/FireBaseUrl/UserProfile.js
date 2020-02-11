@@ -15,6 +15,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
 
     const oThis = this;
     oThis.permalink = oThis.decodedParams.permalink;
+    oThis.profileShareDetails = {};
   }
 
   /**
