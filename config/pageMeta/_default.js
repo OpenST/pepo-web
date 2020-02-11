@@ -16,7 +16,7 @@ module.exports = {
     "title": "Pepo",
     "description": "Meet your peeps!",
     "image": "https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-meta-img-v2.png",
-    "card": 'summary',
+    "card": 'summary_large_image',
   },
   "assets": {
     // @key 'js'
