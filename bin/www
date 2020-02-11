@@ -4,7 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var rootPrefix = '..',
+ app = require(rootPrefix + '/app'),
+ logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
+
 var debug = require('debug')('pepo-web:server');
 var http = require('http');
 
@@ -98,16 +101,16 @@ process.on('SIGINT', function(){
 });
 
 function onTerminationSignal() {
-  console.info('SIGINT signal received.');
-  console.log('Closing http server.');
+  logger.info('SIGINT signal received.');
+  logger.log('Closing http server.');
   server.close(() => {
-    console.log('Current concurrent connections:', server.connections);
-    console.log('Http server closing. Bye.');
+    logger.log('Current concurrent connections:', server.connections);
+    logger.log('Http server closing. Bye.');
     process.exit(0);
   });
 
   setTimeout(function() {
-      console.log('Timeout occurred for server.close(). Current concurrent connections:', server.connections);
+      logger.log('Timeout occurred for server.close(). Current concurrent connections:', server.connections);
       process.exit(1);
   }, 60000);
 }
