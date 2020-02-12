@@ -1,0 +1,114 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.pepo-nav{
+  background-color: #fff;
+  box-shadow: 0 6px 6px 1px rgba(0, 0, 0, 0.05);
+
+  .main-nav-item{
+    position: relative;
+    letter-spacing: 0.4px;
+    display: block;
+    color: $valhalla;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 16px 0;
+  }
+
+  .main-menu {
+    width: 100%;
+    background-color: #FFFFFF;
+    .nav-item-wrapper{
+
+      padding-right: 10px;
+      padding-left: 10px;
+      @media only screen and (min-width: 768px){
+        padding-right: 0px;
+        padding-left: 0px;
+      }
+    }
+  }
+
+  input[type="checkbox"]{
+    display: none;
+  }
+
+  #toggle-menu{
+    font-size: 0;
+    border-radius: 0;
+    padding: 0.9rem 0.875rem;
+    background-color: white;
+    &.is-active{
+      background-color: #FFFFFF;
+    }
+    .toggle-menu{
+      width: 30px;
+      height: 5px;
+      position: relative;
+      display: block;
+      margin: 5px auto;
+      background-color: $valhalla;
+      -webkit-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  #toggle-menu.is-active .toggle-menu:nth-child(2){
+    opacity: 0;
+  }
+
+  #toggle-menu.is-active .toggle-menu:nth-child(1){
+    -webkit-transform: translateY(10px) rotate(45deg);
+    -ms-transform: translateY(10px) rotate(45deg);
+    -o-transform: translateY(10px) rotate(45deg);
+    transform: translateY(10px) rotate(45deg);
+  }
+
+  #toggle-menu.is-active .toggle-menu:nth-child(3){
+    -webkit-transform: translateY(-10px) rotate(-45deg);
+    -ms-transform: translateY(-10px) rotate(-45deg);
+    -o-transform: translateY(-10px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
+  }
+
+  @media only screen and (min-width: 768px){
+
+    .main-nav-item{
+      padding: 16px 12px;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+
+    .main-menu {
+      display: block;
+      width: auto;
+      background-color: transparent;
+    }
+
+    .pepo-brand {
+      padding: 1rem 0.8rem;
+    }
+
+    #toggle-menu,
+    label.drop-icon {
+      display: none;
+    }
+
+    li {
+      float: left;
+    }
+
+  }
+
+}
+
+@media only screen and (min-width: 992px){
+  .modal-lg{
+    max-width: 650px!important;
+  }
+}
