@@ -1,0 +1,46 @@
+<%
+ost_watch_link = "https://ostwatch.com/mainnet"
+calendly_link = "https://calendly.com/ostdotcom"
+%>
+<nav class="container">
+    <div class="row align-items-center">
+        <a class="pepo-brand mr-0" href="" title="Pepo" style="width: 150px; height: 50px">
+            <svg class="ost-nav-logo" style="width: 150px; height: 50px">
+                <switch>
+                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#icon-logo"></use>
+                </switch>
+            </svg>
+        </a>
+        <label for="tm" id="toggle-menu" class="mb-0 ml-auto ml-md-0 align-self-start navbar-toggler" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="toggle-menu"></span>
+            <span class="toggle-menu"></span>
+            <span class="toggle-menu"></span>
+        </label>
+        <ul class="main-menu clearfix m-0 p-0 list-unstyled d-flex justify-content-around" style="margin-left: auto!important;">
+
+            <li class="nav-item-wrapper mr-4">
+                <a href="" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item" title="Developers">Developers</a>
+            </li>
+
+            <li class="nav-item-wrapper mr-4">
+                <a href="<%=ost_watch_link %>" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item" title="Live Transactions">Live Transactions</a>
+            </li>
+
+
+            <li class="nav-item-wrapper">
+                <a href="https://medium.com/ostdotcom" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item" title="Blog">Blog</a>
+            </li>
+
+            <li class="d-block d-md-none">
+                <a href="login" class="main-nav-item no-border btn btn-white-border mx-5 my-3" title="Login">Login</a>
+            </li>
+
+            <li class="d-block d-md-none">
+                <a href="<%=calendly_link %>" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item btn btn-secondary mx-5 mb-3" title="Schedule a call">Schedule a call</a>
+            </li>
+
+        </ul>
+
+    </div>
+    <!--<div class="navbar-phatom-el"></div>-->
+</nav>

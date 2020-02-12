@@ -1,2 +1,2 @@
-//= require plugins/slick/slick
-//= require web/home/twitterCarousel
+//#= require plugins/slick/slick
+//#= require web/home/twitterCarousel
