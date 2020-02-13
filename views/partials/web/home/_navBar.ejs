@@ -16,8 +16,8 @@ calendly_link = "https://calendly.com/ostdotcom"
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse" style="margin-left: auto!important;" id="navbarToggler">
 
             <li class="nav-item-wrapper">
-                <a href="javascript:void(0)" rel="noopener noreferrer nofollow" class="main-nav-item" title="Download App" id="downloadApp">
-                    <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/download-icon.png" alt="Download App" class="img-fluid mr-2" width="14.66"/>Download App
+                <a href="javascript:void(0)" rel="noopener noreferrer nofollow" class="main-nav-item d-app-nav-item" title="Download App" id="downloadApp">
+                    <img src="/app-download.png" alt="Download App" class="img-fluid mr-2" width="16"/>Download App
                 </a>
             </li>
 
@@ -31,13 +31,13 @@ calendly_link = "https://calendly.com/ostdotcom"
             </li>
 
             <li class="d-block d-md-none my-3">
-                <a href="" class="d-inline-block" title="Google Play">
+                <a href="<%= androidAppLink %>" class="d-inline-block" title="Google Play">
                     <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/google-play.png" alt="Google Play" class="img-fluid" width="175"/>
                 </a>
             </li>
 
             <li class="d-block d-md-none my-3">
-                <a href="" target="_blank" rel="noopener noreferrer nofollow" class="d-inline-block" title="App Store">
+                <a href="<%= iosAppLink %>" target="_blank" rel="noopener noreferrer nofollow" class="d-inline-block" title="App Store">
                     <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/app-store.png" alt="App Store" class="img-fluid" width="175"/>
                 </a>
             </li>
@@ -45,8 +45,9 @@ calendly_link = "https://calendly.com/ostdotcom"
         </ul>
 
     </div>
-    <!--<div class="navbar-phatom-el"></div>-->
 </nav>
+
+<div class="navbar-phatom-el"></div>
 
 <div id="downloadModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">

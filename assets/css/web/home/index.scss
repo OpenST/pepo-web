@@ -22,6 +22,14 @@
   display: inline-block;
 }
 
+.videoWrapperStyling{
+  overflow: hidden;
+  border-radius: 25px;
+  line-height: 0;
+  display: inline-block;
+  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+}
+
 .videoSpeaker {
   height: 30px;
   width: 30px;
@@ -88,16 +96,18 @@
 
 .side-by-side{
   h1{
-    font-size: 40px;
+    font-size: 36px;
     color: #2A293B;
   }
   h4{
-    //font-size: 36px;
-    color: #2A293B;
+    font-size: 21px;
+    color: #6c6c77;
+    font-weight: 400;
   }
   p{
-    font-size: 18px;
-    color: #2A293B;
+    font-size: 28px;
+    color: #6c6c77;
+    margin-top: 40px;
   }
   h2{
     font-size: 28px;
@@ -127,11 +137,32 @@
       }
     }
   }
+  .connect-with-people{
+    border-radius: 25px;
+    overflow: hidden;
+    width: 200px;
+    @media screen and (min-width: 768px){
+      width: 250px;
+    }
+    &.top-img{
+      top: 33px;
+      left: 50px;
+      position: absolute;
+      @media screen and (min-width: 768px){
+        top: 33px;
+        left: 50px;
+      }
+      @media screen and (min-width: 1024px){
+        top: 66px;
+        left: 100px;
+      }
+    }
+  }
 }
 
 .minHeightContainer {
   @media screen and (min-width: 768px) and (max-width: 1440px) {
-    min-height: 95vh;
+    min-height: calc(100vh - 58px);
   }
   @media screen and (min-width: 1441px) and (max-width: 1680px) {
     min-height: 90vh;

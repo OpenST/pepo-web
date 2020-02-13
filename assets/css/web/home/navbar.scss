@@ -6,7 +6,6 @@
 
 .pepo-nav{
   background-color: #fff;
-  box-shadow: 0 6px 6px 1px rgba(0, 0, 0, 0.05);
 
   .main-nav-item{
     position: relative;
@@ -16,7 +15,14 @@
     font-weight: 500;
     font-size: 16px;
     padding: 16px 0;
+    &.d-app-nav-item{
+      background-color: #ffeeef;
+      color: $wildWatermelon;
+      border-radius: 3px;
+      padding: 5px 12px;
+    }
   }
+
 
   .main-menu {
     width: 100%;
@@ -26,9 +32,16 @@
       padding-right: 10px;
       padding-left: 10px;
       @media only screen and (min-width: 768px){
-        padding-right: 0px;
-        padding-left: 0px;
+        padding-right: 0;
+        padding-left: 0;
       }
+    }
+  }
+
+  @media (min-width: 768px){
+    &.nav-box-shadow{
+      box-shadow: 0 6px 6px 1px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.5s cubic-bezier(0,1,.5,1);
     }
   }
 
@@ -100,7 +113,8 @@
     }
 
     li {
-      float: left;
+      //float: left;
+      display: inline-block;
     }
 
   }
