@@ -27,7 +27,8 @@
   border-radius: 25px;
   line-height: 0;
   display: inline-block;
-  box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 22px 1px rgba(0, 0, 0, 0.1);
+  //box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
 }
 
 .videoSpeaker {
@@ -200,6 +201,32 @@
   content: '';
   display: block;
   height: 25%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  -webkit-backface-visibility: hidden;
+}
+
+.edge--bottom--reverse:before {
+  top: 100%;
+  -webkit-transform: skewY(-3.5deg);
+  transform: skewY(-3.5deg);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.edge--bottom--reverse:before {
+  background: inherit;
+  content: '';
+  display: block;
+  height: 5%;
+  @media (min-width: 768px){
+    height: 15%;
+  }
+  @media (min-width: 1200px){
+    height: 25%;
+  }
   left: 0;
   position: absolute;
   right: 0;

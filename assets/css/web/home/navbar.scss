@@ -16,10 +16,14 @@
     font-size: 16px;
     padding: 16px 0;
     &.d-app-nav-item{
-      background-color: #ffeeef;
-      color: $wildWatermelon;
+      background-color: $wildWatermelon;
+      background: linear-gradient(90deg, rgba(255,116,153,1) 20%, rgba(255,85,102,1) 100%);
+      color: $white;
       border-radius: 3px;
       padding: 5px 12px;
+      @media only screen and (min-width: 768px){
+        margin-right: 16px;
+      }
     }
   }
 
