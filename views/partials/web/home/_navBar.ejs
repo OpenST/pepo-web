@@ -15,7 +15,7 @@ calendly_link = "https://calendly.com/ostdotcom"
         <input type="checkbox" id="tm">
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse" style="margin-left: auto!important;" id="navbarToggler">
 
-            <li class="nav-item-wrapper">
+            <li class="nav-item-wrapper d-none d-md-inline-block">
                 <a href="javascript:void(0)" rel="noopener noreferrer nofollow" class="main-nav-item d-app-nav-item d-inline-block" title="Get The Pepo App" id="downloadApp">
                     <!--<img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/app-download-icon.png" alt="Download App" class="img-fluid mr-2" width="16"/>-->
                     Get The Pepo App
@@ -30,17 +30,17 @@ calendly_link = "https://calendly.com/ostdotcom"
                 <a href="https://ost.com/" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item" title="Ost Technology">Ost Technology</a>
             </li>
 
-            <li class="d-block d-md-none my-3 ml-2">
-                <a href="<%= androidAppLink %>" class="d-inline-block" title="Google Play">
-                    <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/google-play.png" alt="Google Play" class="img-fluid" width="175"/>
-                </a>
-            </li>
+            <!--<li class="d-block d-md-none my-3 ml-2">-->
+                <!--<a href="<%= androidAppLink %>" class="d-inline-block" title="Google Play">-->
+                    <!--<img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/google-play.png" alt="Google Play" class="img-fluid" width="175"/>-->
+                <!--</a>-->
+            <!--</li>-->
 
-            <li class="d-block d-md-none my-3 ml-2">
-                <a href="<%= iosAppLink %>" target="_blank" rel="noopener noreferrer nofollow" class="d-inline-block" title="App Store">
-                    <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/app-store.png" alt="App Store" class="img-fluid" width="175"/>
-                </a>
-            </li>
+            <!--<li class="d-block d-md-none my-3 ml-2">-->
+                <!--<a href="<%= iosAppLink %>" target="_blank" rel="noopener noreferrer nofollow" class="d-inline-block" title="App Store">-->
+                    <!--<img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/app-store.png" alt="App Store" class="img-fluid" width="175"/>-->
+                <!--</a>-->
+            <!--</li>-->
 
         </ul>
 
@@ -52,14 +52,11 @@ calendly_link = "https://calendly.com/ostdotcom"
 <div id="downloadModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content" style="padding: 35px 0; border-radius: 5px">
-            <div class="modal-header">
-                <h5 class="modal-title" style="color: #ff5566; font-size: 20px;font-weight: 600">Download Pepo App!</h5>
+            <div class="modal-header mb-5">
+                <h3 class="modal-title" style="color: #ff5566;font-weight: 600">Download Pepo App!</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" style="color: red; font-size: 20px">X</span>
                 </button>
-            </div>
-            <div class="modal-body text-center col-8 mx-auto">
-                <p style="color: #2A293B">Download our mobile app and create a wallet to claim your tokens.</p>
             </div>
             <div class="modal-footer">
                 <a href="<%= androidAppLink %>" target="_blank" title="Download Pepo App - Android" class="d-inline-block" rel="noopener noreferrer nofollow">
