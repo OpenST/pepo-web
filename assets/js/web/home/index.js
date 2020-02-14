@@ -5,11 +5,11 @@
 
         init : function () {
 
-          $("#toggle-menu").click(function(){
+          $("#toggle-menu").on('click', function(){
             $(this).toggleClass("is-active");
           });
 
-          $('#downloadApp').click(function () {
+          $('#downloadApp').on('click', function () {
             $('#downloadModal').modal('show');
           })
         }
