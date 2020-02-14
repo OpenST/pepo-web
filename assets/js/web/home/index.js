@@ -26,7 +26,10 @@
 
     $(window).on('load', function () {
       $('video').each(function () {
-        $(this).attr('src', $(this).data('src'));
+        var videoUrl = $(this).data('src');
+        if (videoUrl) {
+          $(this).attr('src', videoUrl);
+        }
       });
     });
 
