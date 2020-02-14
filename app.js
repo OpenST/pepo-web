@@ -151,8 +151,6 @@ app.use(appendRequestDebugInfo, startRequestLogLine);
 // set response Headers
 app.use(setResponseHeader);
 
-app.use(express.static('public'));
-
 app.use('/', function(request, response, next){
 
   if (request.hostname === pepoHostName) {

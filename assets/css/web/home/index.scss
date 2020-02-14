@@ -22,6 +22,20 @@
   display: inline-block;
 }
 
+.jumboVideoHeight{
+  width: 270px;
+  @media screen and (min-width: 768px){
+    height: 584.34px;
+  }
+}
+
+.videoHeight{
+  width: 250px;
+  @media screen and (min-width: 768px){
+    height: 541.06px;
+  }
+}
+
 .videoWrapperStyling{
   overflow: hidden;
   border-radius: 25px;
