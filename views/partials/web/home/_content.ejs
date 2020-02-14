@@ -1,26 +1,20 @@
 <div class="container-fluid text-center">
     <div class="row align-items-center side-by-side py-6 py-lg-0 minHeightContainer">
         <div class="col-12 col-md-6 col-lg-5 col-xl-4 ml-auto meet-people">
-            <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-logo.png" alt="Pepo Logo" class="img-fluid mb-5" width="179"/>
+            <img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-logo.png" alt="Pepo Logo" class="img-fluid ml-2 ml-md-0" width="179" style="margin-bottom: 20px"/>
             <h1 class="mb-3">Meet Your Peeps!</h1>
-            <h4 class="mb-6">Real People. Real Connections.</h4>
-            <div class="mt-6">
+            <h4 class="mb-0">Real People. Real Connections.</h4>
+            <div class="mt-4">
                 <%- include('../partials/shared/_twitterConnect', {twitterRedirectUrl: twitterRedirectUrl}) -%>
-                <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '1') { %>
-                    <div class="error twitter-signin-error">Twitter Connect Failed!</div>
-                <%}%>
-                <% if (typeof twitterSigninError != 'undefined' && twitterSigninError == '2') { %>
-                    <div class="error twitter-signin-error">Hey, you are already registered in our app!</div>
-                <%}%>
             </div>
         </div>
         <div class="col-12 col-md-6 px-0 pt-6 pt-md-0">
             <div class="videoWrapper">
                 <video autoplay loop muted playsinline
-                       poster="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-jumbo-video-cover.png"
-                       style="width: 300px"
+                       poster="https://d3attjoi5jlede.cloudfront.net/images/hp/pepo-jumbotron-video-cover.png"
+                       style="width: 270px" class="videoWrapperStyling"
                 >
-                    <source src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-jumbo-video-normal.mp4" type="video/mp4">
+                    <source src="https://d3attjoi5jlede.cloudfront.net/images/hp/pepo-jumbotron-video.mp4" type="video/mp4">
                 </video>
                 <div>
                     <a href="javascript:void(0)" class="videoSpeaker mute videoMuteUnMute" title="Click to Unmute">
@@ -30,35 +24,4 @@
             </div>
         </div>
     </div>
-
-    <!--<div class="row j-image-animation">-->
-        <!--<div class="p-0 position-relative" style="overflow: hidden">-->
-            <!--<img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-bg-j-banner-thunderbolt-v3.png" alt="Pepo banner" class="img-fluid d-none d-md-block"/>-->
-            <!--<img src="https://d3attjoi5jlede.cloudfront.net/images/pre-launch/pepo-bg-j-banner-mobile-v3.png" alt="Pepo banner" class="img-fluid d-block d-md-none"/>-->
-            <!--<div style="position: absolute; left: 0; bottom: 0;right: 0;top:0;background-color: rgba(0, 0, 0, 0.2);">-->
-                <!--<div style="color: #fff;-->
-                          <!--font-size: 30px;-->
-                          <!--height: 100%;-->
-                          <!--margin: 0;-->
-                          <!--display: flex;-->
-                          <!--align-items: center;-->
-                          <!--justify-content: center;-->
-                          <!--text-transform: uppercase;-->
-                          <!--letter-spacing: 1px;">-->
-                    <!--<span class="d-none d-md-block">The best crypto user experience ever made</span>-->
-                    <!--<span class="d-block d-md-none">The best crypto <br/>user experience <br/>ever made</span>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-
-    <%#- include ../../../partials/web/home/_twitterFeed -%>
-
-    <!--<div class="row align-items-center side-by-side py-6">-->
-        <!--<div class="col-12 col-md-8 col-lg-6 col-xl-5 mx-auto text-left">-->
-            <!--<h2 class="mb-3 text-center">PEPO IS NOT JUST ANOTHER <br/>CRYPTO APP</h2>-->
-            <!--<p>Pepo is the best crypto user experience ever made. It’s blazing fast. Simple. Human. Pepo removes many of the icky bits that have limited crypto mass-adoption, while making crypto about the people, not just the technology. It’s an app the entire movement can get behind.</p>-->
-            <!--<p>Pepo is so fast, so easy to use, that you’ll reimagine what’s possible with crypto.</p>-->
-        <!--</div>-->
-    <!--</div>-->
 </div>

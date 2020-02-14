@@ -7,3 +7,4 @@
 //= require plugins/jquery-validate/ost-jquery-validate-modifications
 //= require plugins/jquery-validate/additional-methods
 //= require utils/formHelper
+//= require utils/navBar
