@@ -18,4 +18,10 @@
 
     homePage.init();
 
+    $(document).ready(function () {
+      $('video').each(function () {
+        $(this).attr('src', $(this).data('src'));
+      });
+    });
+
 })(window, jQuery);
