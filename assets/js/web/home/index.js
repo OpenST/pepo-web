@@ -18,7 +18,13 @@
 
     homePage.init();
 
-    $(document).ready(function () {
+    // $(document).ready(function () {
+    //   $('video').each(function () {
+    //     $(this).attr('src', $(this).data('src'));
+    //   });
+    // });
+
+    $(window).on('load', function () {
       $('video').each(function () {
         $(this).attr('src', $(this).data('src'));
       });
