@@ -1,0 +1,135 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.pepo-nav{
+  background-color: #fff;
+
+  .main-nav-item{
+    position: relative;
+    letter-spacing: 0.4px;
+    display: block;
+    color: $valhalla;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 16px 0;
+    &.d-app-nav-item{
+      background-color: $wildWatermelon;
+      background: linear-gradient(90deg, rgba(255,116,153,1) 20%, rgba(255,85,102,1) 100%);
+      color: $white;
+      border-radius: 3px;
+      padding: 5px 12px;
+      @media only screen and (min-width: 768px){
+        margin-right: 16px;
+      }
+    }
+    &:hover{
+      text-decoration: none;
+    }
+  }
+
+
+  .main-menu {
+    width: 100%;
+    background-color: #FFFFFF;
+    .nav-item-wrapper{
+
+      padding-right: 10px;
+      padding-left: 10px;
+      @media only screen and (min-width: 768px){
+        padding-right: 0;
+        padding-left: 0;
+      }
+    }
+  }
+
+  //@media (min-width: 768px){
+    &.nav-box-shadow{
+      box-shadow: 0 6px 6px 1px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.5s cubic-bezier(0,1,.5,1);
+    }
+  //}
+
+  input[type="checkbox"]{
+    display: none;
+  }
+
+  #toggle-menu{
+    font-size: 0;
+    border-radius: 0;
+    padding: 0.9rem 0.875rem;
+    background-color: white;
+    &.is-active{
+      background-color: #FFFFFF;
+    }
+    .toggle-menu{
+      width: 30px;
+      height: 5px;
+      position: relative;
+      display: block;
+      margin: 5px auto;
+      background-color: $valhalla;
+      -webkit-transition: all 0.3s ease-in-out;
+      -o-transition: all 0.3s ease-in-out;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+
+  #toggle-menu.is-active .toggle-menu:nth-child(2){
+    opacity: 0;
+  }
+
+  #toggle-menu.is-active .toggle-menu:nth-child(1){
+    -webkit-transform: translateY(10px) rotate(45deg);
+    -ms-transform: translateY(10px) rotate(45deg);
+    -o-transform: translateY(10px) rotate(45deg);
+    transform: translateY(10px) rotate(45deg);
+  }
+
+  #toggle-menu.is-active .toggle-menu:nth-child(3){
+    -webkit-transform: translateY(-10px) rotate(-45deg);
+    -ms-transform: translateY(-10px) rotate(-45deg);
+    -o-transform: translateY(-10px) rotate(-45deg);
+    transform: translateY(-10px) rotate(-45deg);
+  }
+
+  @media only screen and (min-width: 768px){
+
+    .main-nav-item{
+      padding: 16px 12px;
+      &:hover{
+        text-decoration: none;
+      }
+    }
+
+    .main-menu {
+      display: block;
+      width: auto;
+      background-color: transparent;
+    }
+
+    .pepo-brand {
+      padding: 1rem 0.8rem;
+    }
+
+    #toggle-menu,
+    label.drop-icon {
+      display: none;
+    }
+
+    li {
+      //float: left;
+      display: inline-block;
+    }
+
+  }
+
+}
+
+@media only screen and (min-width: 992px){
+  .modal-lg{
+    max-width: 600px!important;
+  }
+}

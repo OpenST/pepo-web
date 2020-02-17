@@ -3,28 +3,34 @@
 
     var homePage = {
 
-        requestTokenEndpoint: '/api/web/prelaunch/twitter/request_token',
-
         init : function () {
-            homePage.getTwitterRedirectUrl();
-        },
 
-        getTwitterRedirectUrl : function () {
-            setInterval(function(){
-                $.ajax({
-                    url: homePage.requestTokenEndpoint,
-                    method: "GET",
-                    success: function (response) {
-                        if (response.success) {
-                            $('.twitter-connect').attr("href", response.data.twitterRedirectUrl)
-                        }
-                    }
-                })
-            }, 180000);
+          $("#toggle-menu").on('click', function(){
+            $(this).toggleClass("is-active");
+          });
+
+          $('#downloadApp').on('click', function () {
+            $('#downloadModal').modal('show');
+          })
         }
 
     };
 
     homePage.init();
+
+    // $(document).ready(function () {
+    //   $('video').each(function () {
+    //     $(this).attr('src', $(this).data('src'));
+    //   });
+    // });
+
+    $(window).on('load', function () {
+      $('video').each(function () {
+        var videoUrl = $(this).data('src');
+        if (videoUrl) {
+          $(this).attr('src', videoUrl);
+        }
+      });
+    });
 
 })(window, jQuery);
