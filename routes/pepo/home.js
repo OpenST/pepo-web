@@ -16,7 +16,9 @@ const rootPrefix = '../..',
   GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
   GetFirebaseUserProfileUrl = require(rootPrefix + '/app/services/FireBaseUrl/UserProfile'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response');
+  responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  GetVideo = require(rootPrefix + '/app/services/GetVideo'),
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
@@ -101,15 +103,21 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
     );
   }
 
-  const apiResponse = await new GetFirebaseVideoUrl({decodedParams: req.decodedParams}).perform();
-  if (apiResponse.success) {
-    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
-      redirect_to_location: apiResponse.data.url,
-      pageMeta: apiResponse.data.pageMeta
-    });
-  } else {
-    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
-  }
+  let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
+  let apiResponse = await getVideoObj._asyncPerform();
+  console.log(apiResponse, '==== apiResponse ====')
+
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', apiResponse.data);
+
+  // const apiResponse = await new GetFirebaseVideoUrl({decodedParams: req.decodedParams}).perform();
+  // if (apiResponse.success) {
+  //   return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+  //     redirect_to_location: apiResponse.data.url,
+  //     pageMeta: apiResponse.data.pageMeta
+  //   });
+  // } else {
+  //   return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  // }
 });
 
 /* Redirect video pages */
