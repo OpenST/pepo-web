@@ -18,22 +18,20 @@
     playPause: function () {
 
       var ctrlVideo = document.getElementById("webVideo");
+      var ppBtn = $('#ppBtn');
 
-      $('#ppBtn').off('click').on('click', function(){
+      ppBtn.off('click').on('click', function(){
 
-        if($('#ppBtn').hasClass("active")){
-          console.log('Heyy---- hasactive true');
+        if(ppBtn.hasClass("active")){
           ctrlVideo.play();
-
-          $('#ppBtn').html("Pause");
-          $('#ppBtn').toggleClass("active");
+          $('#ppBtn button').html("Pause");
+          ppBtn.toggleClass("active");
         } else {
-          console.log('Heyy---- hasactive false');
           ctrlVideo.pause();
-
-          $('#ppBtn').html("play");
-          $('#ppBtn').toggleClass("active");
+          $('#ppBtn button').html("Play");
+          ppBtn.toggleClass("active");
         }
+
       });
     }
 
