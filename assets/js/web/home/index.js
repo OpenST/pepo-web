@@ -5,13 +5,6 @@
 
         init : function () {
 
-          $("#toggle-menu").on('click', function(){
-            $(this).toggleClass("is-active");
-          });
-
-          $('.downloadApp').on('click', function () {
-            $('#downloadModal').modal('show');
-          })
         }
 
     };

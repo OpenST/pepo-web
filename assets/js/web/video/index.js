@@ -5,14 +5,6 @@
 
     init : function () {
 
-      $("#toggle-menu").on('click', function(){
-        $(this).toggleClass("is-active");
-      });
-
-      $('.downloadApp').on('click', function () {
-        $('#downloadModal').modal('show');
-      });
-
       $(".reportVideo").on('click', function () {
         var videoId = $(".videoContainer").data('video-id');
         $.ajax({
@@ -21,6 +13,9 @@
           method: 'POST',
           success: function(res){
             $('.toast-report-success').toast('show');
+          },
+          error: function (res) {
+            $('.toast-report-error').toast('show');
           }
         })
       });

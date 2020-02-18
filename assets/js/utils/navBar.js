@@ -18,6 +18,18 @@
       oThis.jNavPhantomEl = $('.navbar-phatom-el');
 
       oThis.setupNavbar();
+      oThis.bindEvents();
+    },
+
+    bindEvents: function(){
+
+      $("#toggle-menu").on('click', function(){
+        $(this).toggleClass("is-active");
+      });
+
+      $('.downloadApp').on('click', function () {
+        $('#downloadModal').modal('show');
+      });
     },
 
     setupNavbar: function(){
