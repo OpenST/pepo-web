@@ -18,12 +18,6 @@
 
     homePage.init();
 
-    // $(document).ready(function () {
-    //   $('video').each(function () {
-    //     $(this).attr('src', $(this).data('src'));
-    //   });
-    // });
-
     $(window).on('load', function () {
       $('video').each(function () {
         var videoUrl = $(this).data('src');
