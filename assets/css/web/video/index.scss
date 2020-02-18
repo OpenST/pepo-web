@@ -21,16 +21,35 @@
         width: 50px;
         height: 50px;
         border-radius: 50%;
-        background-color: red;
+        background-color: $wildWatermelon;
+      }
+
+      .user-name{
+        color: $valhalla;
+        font-weight: 600;
+      }
+
+      .user-handle{
+        font-size: 15px;
+        color: rgba(42, 41, 59, 0.5);
+      }
+
+      .desc{
+        color: rgba(42, 41, 59, 0.75);
+      }
+
+      .desc-link{
+        font-size: 15px;
+        color: $wildWatermelon;
       }
 
       ul > li{
         display: inline-block;
         margin: 0 5px 12px 0;
         a{
-          border: 1px solid #ff5566;
+          border: 1px solid $wildWatermelon;
           border-radius: 16px 0;
-          color: #ff5566;
+          color: $wildWatermelon;
           font-size: 12px;
           display: inline-block;
           padding: 3px 12px;
@@ -48,6 +67,14 @@
 
     .innerRight{
 
+      .countTxt{
+        display: block;
+        font-size: 14px;
+        color: $valhalla;
+        font-weight: 600;
+        margin-bottom: 3px;
+      }
+
     }
 
   }
@@ -55,6 +82,7 @@
   .video-action-list{
     > li {
       font-size: 0;
+      cursor: pointer;
       &:not(:last-child){
         margin-bottom: 20px;
       }

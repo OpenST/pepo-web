@@ -9,7 +9,7 @@
             $(this).toggleClass("is-active");
           });
 
-          $('#downloadApp').on('click', function () {
+          $('.downloadApp').on('click', function () {
             $('#downloadModal').modal('show');
           })
         }
