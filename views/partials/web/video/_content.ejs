@@ -1,5 +1,5 @@
 <!--<div>Hello from video page of <%#= JSON.stringify(user_videos[0].payload.video_id) %></div>-->
-<div class="container-fluid videoContainer">
+<div class="container-fluid videoContainer" data-video-id="<%= video_id %>">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-11 col-lg-9 col-xl-6 innerContainer">
             <div class="row h-100">
@@ -87,7 +87,7 @@
                                         <path d="M10.5 1.025c2.642 0 5.042.907 6.779 2.386 1.68 1.43 2.738 3.4 2.738 5.583 0 2.184-1.058 4.153-2.738 5.584-1.737 1.479-4.137 2.386-6.78 2.386-1.184 0-2.345-.183-3.448-.542l-3.256.714.331-2.23C2.146 13.41.983 11.248.983 8.995c0-2.183 1.058-4.153 2.738-5.583C5.458 1.932 7.858 1.025 10.5 1.025z" stroke-width="1.8" fill-rule="nonzero" fill="#FFF" stroke="#F56"/>
                                     </svg>
                                 </li>
-                                <li>
+                                <li class="reportVideo">
                                     <svg width="17" height="21" xmlns="http://www.w3.org/2000/svg">
                                         <g fill="none" fill-rule="evenodd">
                                             <path d="M5.683.176A10.511 10.511 0 00.522 1.687a.724.724 0 00-.355.606v17.75c0 .397.339.719.757.719.419 0 .758-.322.758-.718v-8.696c.941-.52 4.046-1.944 7.78-.412 2.231.916 3.93 1.102 5.099 1.04 1.17-.06 1.886-.418 1.886-.418a.728.728 0 00.386-.622v-8.65a.725.725 0 00-.368-.622.81.81 0 00-.752-.014s-.304.181-1.223.224c-.92.043-2.377-.095-4.435-.913A11.124 11.124 0 005.683.176z" fill="#F56" fill-rule="nonzero"/>

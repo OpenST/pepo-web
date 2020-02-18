@@ -13,6 +13,18 @@
         $('#downloadModal').modal('show');
       });
 
+      $(".reportVideo").on('click', function () {
+        var videoId = $(".videoContainer").data('video-id');
+        $.ajax({
+          url:'/api/web/report',
+          data: {report_entity_kind: 'video', report_entity_id: videoId},
+          method: 'POST',
+          success: function(res){
+            $('.toast-report-success').toast('show');
+          }
+        })
+      });
+
     },
 
     playPause: function () {
