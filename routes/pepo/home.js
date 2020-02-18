@@ -18,7 +18,8 @@ const rootPrefix = '../..',
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
+  videoFormatter = require(rootPrefix + '/lib/formatter/video_data');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
@@ -109,10 +110,11 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   let apiResponse = await getVideoObj.perform();
 
   if (apiResponse.success) {
+    let formattedData = videoFormatter(apiResponse.data);
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
       ...{androidAppLink: appDownloadLink,
         iosAppLink: appDownloadLink
-      },  ...apiResponse.data } );
+      },  ...formattedData });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
