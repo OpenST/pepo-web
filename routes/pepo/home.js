@@ -106,7 +106,7 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   }
 
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
-  let apiResponse = await getVideoObj._asyncPerform();
+  let apiResponse = await getVideoObj.perform();
 
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
