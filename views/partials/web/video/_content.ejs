@@ -5,13 +5,13 @@
             <div class="row h-100">
                 <div class="col-md-5 col-lg-6 innerLeft py-3">
                     <div class="media align-items-center">
-                        <img class="mr-2 profileImage" src="" alt="">
+                        <img class="mr-2 profileImage img-fluid" src="<%=original_profile_image_url%>" alt="">
                         <div class="media-body">
-                            <h6 class="m-0 user-name">Media heading</h6>
-                            <span class="user-handle" style="font-size: 14px">Cras sit amet</span>
+                            <h6 class="m-0 user-name"><%= profile_name %></h6>
+                            <span class="user-handle" style="font-size: 14px">@<%= profile_username %></span>
                         </div>
                     </div>
-                    <p class="mt-3 mb-0" style="font-size: 15px">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                    <p class="mt-3 mb-0" style="font-size: 15px"><%= profile_username %></p>
                     <a class="mt-2 d-inline-block" href="" style="font-size: 15px; color: #ff5566">www.facebook.com/skjahsjdhvia</a>
                     <ul class="mt-3 list-unstyled">
                         <li><a href="">ETHDENVER 2020</a></li>
@@ -37,6 +37,7 @@
                         <div class="col-md-2 col-2 align-items-end d-flex justify-content-center">
                             <ul class="list-unstyled m-0 p-0 text-center video-action-list mb-4">
                                 <li>
+                                    <span><%= tokens_raised %></span>
                                     <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
                                         <defs>
                                             <linearGradient x1="100%" y1="100%" x2="0%" y2="0%" id="a">
@@ -51,6 +52,7 @@
                                     </svg>
                                 </li>
                                 <li>
+                                    <span><%= replies_count %></span>
                                     <svg width="21" height="19" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M10.5 1.025c2.642 0 5.042.907 6.779 2.386 1.68 1.43 2.738 3.4 2.738 5.583 0 2.184-1.058 4.153-2.738 5.584-1.737 1.479-4.137 2.386-6.78 2.386-1.184 0-2.345-.183-3.448-.542l-3.256.714.331-2.23C2.146 13.41.983 11.248.983 8.995c0-2.183 1.058-4.153 2.738-5.583C5.458 1.932 7.858 1.025 10.5 1.025z" stroke-width="1.8" fill-rule="nonzero" fill="#FFF" stroke="#F56"/>
                                     </svg>
