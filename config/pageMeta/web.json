@@ -42,5 +42,10 @@
   "store": {
     "page": "Store",
     "robots": "noindex, nofollow"
+  },
+  "video": {
+    "page": "Video",
+    "canonical": "https://pepo.com/video",
+    "robots": "noindex, nofollow"
   }
 }

@@ -1,0 +1,329 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.uber-banner{
+  background: linear-gradient(80deg, $ticklePink 0%, $wildWatermelon 100%);
+  padding: 10px 0;
+  letter-spacing: 0.6px;
+  color: $white;
+  font-size: 16px;
+  font-weight: 500;
+  text-align: center;
+  &:hover, &:focus{
+    text-decoration: none;
+    color: $white;
+  }
+}
+
+.videoWrapper{
+  display: inline-block;
+}
+
+.jumboVideoHeight{
+  width: 270px;
+  @media screen and (min-width: 768px){
+    height: 584.34px;
+  }
+}
+
+.videoHeight{
+  width: 250px;
+  @media screen and (min-width: 768px){
+    height: 541.06px;
+  }
+}
+
+.videoWrapperStyling{
+  overflow: hidden;
+  border-radius: 25px;
+  line-height: 0;
+  display: inline-block;
+  box-shadow: 0 0 22px 1px rgba(0, 0, 0, 0.1);
+  //box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+.videoSpeaker {
+  height: 30px;
+  width: 30px;
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+
+  span {
+    display: block;
+    width: 8px;
+    height: 8px;
+    background: $wildWatermelon;
+    margin: 11px 0 0 2px;
+
+    &:after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-color: transparent $wildWatermelon transparent transparent;
+      border-width: 10px 14px 10px 15px;
+      left: -13px;
+      top: 5px;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+      border-radius: 0 50px 0 0;
+      content: '';
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      border-style: double;
+      border-color: $wildWatermelon;
+      border-width: 7px 7px 0 0;
+      left: 18px;
+      top: 9px;
+      transition: all 0.2s ease-out;
+      -moz-transition: all 0.2s ease-out;
+      -webkit-transition: all 0.2s ease-out;
+    }
+  }
+
+  &:hover {
+
+    span:before {
+      transform: scale(.8) translate(-3px, 0) rotate(42deg);
+      -moz-transform: scale(.8) translate(-3px, 0) rotate(42deg);
+      -webkit-transform: scale(.8) translate(-3px, 0) rotate(42deg);
+    }
+  }
+
+  &.mute {
+    span:before {
+      opacity: 0;
+      transform: scale(.5) translate(-15px, 0) rotate(36deg);
+      -moz-transform: scale(.5) translate(-15px, 0) rotate(36deg);
+      -webkit-transform: scale(.5) translate(-15px, 0) rotate(36deg);
+    }
+  }
+}
+
+
+.side-by-side{
+  h1{
+    font-size: 36px;
+    color: #2A293B;
+  }
+  h4{
+    font-size: 21px;
+    color: #6c6c77;
+    font-weight: 400;
+  }
+  p{
+    font-size: 28px;
+    color: #6c6c77;
+    margin-top: 40px;
+  }
+  h2{
+    font-size: 28px;
+    color: #2A293B;
+    line-height: 1.5;
+  }
+  .txt-svg{
+    height: 18px;
+    width: 18px;
+    margin-left: 6px;
+    fill: #FFFFFF;
+    -webkit-transition: fill .3s ease-in-out;
+    -moz-transition: fill .3s ease-in-out;
+    transition: fill .3s ease-in-out;
+    &.red{
+      fill: #FF5566;
+    }
+  }
+  .btn{
+    max-width: 200px;
+    &:hover{
+      .txt-svg{
+        fill: #FF5566;
+        &.red{
+          fill: #ffffff;
+        }
+      }
+    }
+  }
+  .connect-with-people{
+    border-radius: 25px;
+    overflow: hidden;
+    width: 200px;
+    @media screen and (min-width: 768px){
+      width: 250px;
+    }
+    &.top-img{
+      top: 33px;
+      left: 50px;
+      position: absolute;
+      @media screen and (min-width: 768px){
+        top: 33px;
+        left: 50px;
+      }
+      @media screen and (min-width: 1024px){
+        top: 66px;
+        left: 100px;
+      }
+    }
+  }
+}
+
+.minHeightContainer {
+  @media screen and (min-width: 768px) and (max-width: 1440px) {
+    min-height: calc(100vh - 58px);
+  }
+  @media screen and (min-width: 1441px) and (max-width: 1680px) {
+    min-height: 90vh;
+  }
+  @media screen and (min-width: 1681px){
+    min-height: 65vh;
+  }
+}
+
+.meet-people-text{
+  @media screen and (min-width: 1200px){
+    margin: 50px 0;
+  }
+  @media screen and (min-width: 1441px){
+    margin: 100px 0 150px 0;
+  }
+}
+
+.twitter-signin-error{
+  color: #dd0017;
+  font-size: 13px;
+  margin-top: 5px;
+}
+
+.edge--top--reverse:before {
+  top: 0;
+  -webkit-transform: skewY(-3.5deg);
+  transform: skewY(-3.5deg);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.edge--top--reverse:before {
+  background: inherit;
+  content: '';
+  display: block;
+  height: 25%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  -webkit-backface-visibility: hidden;
+}
+
+.edge--bottom--reverse:before {
+  top: 100%;
+  -webkit-transform: skewY(-3.5deg);
+  transform: skewY(-3.5deg);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
+}
+
+.edge--bottom--reverse:before {
+  background: inherit;
+  content: '';
+  display: block;
+  height: 5%;
+  @media (min-width: 768px){
+    height: 15%;
+  }
+  @media (min-width: 1441px){
+    height: 25%;
+  }
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  -webkit-backface-visibility: hidden;
+}
+
+.edge--top:before {
+  top: 0;
+  -webkit-transform: skewY(3.5deg);
+  transform: skewY(3.5deg);
+  -webkit-transform-origin: 100% 0;
+  transform-origin: 100% 0;
+}
+
+.edge--top:before {
+  background: inherit;
+  content: '';
+  display: block;
+  height: 25%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  z-index: -1;
+  -webkit-backface-visibility: hidden;
+}
+
+.meet-people-image{
+  @media screen and (min-width: 1441px){
+    margin: 50px 0 130px;
+  }
+}
+
+.meet-people,
+.meet-people-image,
+.j-image-animation{
+  opacity: 0;
+}
+
+@mixin translateY( $by ) {
+  -webkit-transform: translateY(  $by );  /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform: translateY( $by );  /* IE 9 */
+  transform: translateY( $by );  /* Firefox 16+, IE 10+, Opera */
+}
+
+@mixin transform( $by ) {
+  -webkit-transform: scale(  $by );  /* Chrome, Opera 15+, Safari 3.1+ */
+  -ms-transform: scale( $by );  /* IE 9 */
+  transform: scale( $by );  /* Firefox 16+, IE 10+, Opera */
+}
+
+.meet-people{
+  animation: jumbotronAnimation 1s forwards 0.2s;
+}
+
+.meet-people-image{
+  animation: jumbotronImageAnimation 1s forwards 1.5s;
+}
+
+.j-image-animation{
+  animation: jumbotronAnimation 2s forwards  0.2s;
+}
+
+@keyframes jumbotronAnimation{
+  0%{
+    @include translateY( 2% ) ;
+    opacity: 0.3;
+    visibility: hidden;
+  }
+  100%{
+    @include translateY( 0 ) ;
+    opacity: 1;
+  }
+}
+
+@keyframes jumbotronImageAnimation{
+  0%{
+    @include transform( 0.97 ) ;
+    opacity: 0.1;
+    visibility: hidden;
+  }
+  100%{
+    @include transform( 1 ) ;
+    opacity: 1;
+  }
+}

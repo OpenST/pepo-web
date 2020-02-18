@@ -88,6 +88,8 @@ router.get('/twitter/oauth', sanitizer.sanitizeDynamicUrlParams, async function 
 /* Redirect video pages */
 router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
+  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/video';
+
   req.decodedParams.video_id =  parseInt(req.params.video_id);
 
   // Render 404 page if id not valid
@@ -105,9 +107,15 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj._asyncPerform();
-  console.log(apiResponse, '==== apiResponse ====')
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', apiResponse.data);
+  if (apiResponse.success) {
+    return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
+      ...{androidAppLink: appDownloadLink,
+        iosAppLink: appDownloadLink
+      },  ...apiResponse.data } );
+  } else {
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+  }
 
   // const apiResponse = await new GetFirebaseVideoUrl({decodedParams: req.decodedParams}).perform();
   // if (apiResponse.success) {
