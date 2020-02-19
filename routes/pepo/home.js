@@ -108,8 +108,11 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
 
+
   if (apiResponse.success) {
     let formattedData = videoFormatter(apiResponse.data);
+
+    console.log('formattedData:',formattedData);
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
       ...{androidAppLink: appDownloadLink,
         iosAppLink: appDownloadLink
