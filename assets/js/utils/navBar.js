@@ -27,8 +27,11 @@
         $(this).toggleClass("is-active");
       });
 
-      $('.downloadApp').on('click', function () {
+      $('.downloadApp').on('click', function (e) {
         $('#downloadModal').modal('show');
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
       });
     },
 

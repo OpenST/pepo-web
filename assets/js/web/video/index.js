@@ -55,23 +55,20 @@
   },
 
     playPause: function () {
-      var ppBtn = $('.ppBtn');
+      var ppBtn = $('.video-container-wrapper');
 
       ppBtn.on('click', function(e){
-
-        var ppBtn = $(e.target);
-        var ctrlVideo = ppBtn.next('video.pepoVideo')[0];
-
-        if(ppBtn.hasClass("active")){
+        var ctrlVideo = $(this).find('video.pepoVideo')[0];
+        if($(this).hasClass("active")){
           ctrlVideo.play();
-          $('.ppBtn button').html("Pause");
-          ppBtn.toggleClass("active");
+          $(this).find('.ppBtn').hide();
+          $(this).toggleClass("active");
         } else {
           ctrlVideo.pause();
-          $('.ppBtn button').html("Play");
-          ppBtn.toggleClass("active");
+          $(this).find('.ppBtn').show();
+          // $('.ppBtn button').html("Play");
+          $(this).toggleClass("active");
         }
-
       });
     }
 

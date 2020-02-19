@@ -7,7 +7,7 @@
 .pepo-nav,
 .pepo-video{
   min-height: 58px;
-  background-color: #fff;
+  background-color: $white;
 
   .main-nav-item{
     position: relative;
@@ -35,7 +35,7 @@
 
   .main-menu {
     width: 100%;
-    background-color: #FFFFFF;
+    background-color: $white;
     .nav-item-wrapper{
 
       padding-right: 10px;
@@ -64,7 +64,7 @@
     padding: 0.8rem 0.875rem;
     background-color: white;
     &.is-active{
-      background-color: #FFFFFF;
+      background-color: $white;
     }
     .toggle-menu{
       width: 30px;

@@ -5,12 +5,12 @@
                 <div class="col pr-0">
                     <div class="row h-100">
                         <%- include _video_left -%>
-                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center">
+                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
                             <%- include _video_player -%>
                         </div>
                     </div>
                 </div>
-                <%- include _action_buttons -%>
+                <%- include('../partials/web/video/_action_buttons', {actionButtonsPos: "actionButtonsWeb"}) -%>
             </div>
         </div>
     </div>
@@ -19,8 +19,28 @@
 
 <div class="container-fluid videoContainer d-block d-md-none" data-video-id="<%= video_id %>">
     <div class="row" style="height: inherit">
-        <div class="col p-0" style="height: inherit">
+        <div class="col p-0 video-container-wrapper active" style="height: inherit">
             <%- include _video_player -%>
+            <div style="position: absolute; color: #fff; bottom: 0;">
+                <div class="d-flex justify-content-between pl-3">
+
+                    <ul class="mt-3 list-unstyled channel-list mb-0 align-self-end" style="overflow: auto;white-space:nowrap;width: calc(100vw - 80px);">
+                        <% for(var i=0; i < channels_list.length; i++) { %>
+                            <li class="downloadApp"><a href="javascript:void(0)"><%= channels_list[i] %></a></li>
+                        <% } %>
+                    </ul>
+
+                    <%- include('../partials/web/video/_action_buttons', {actionButtonsPos: "actionButtonsMobile"}) -%>
+                </div>
+                <p style="color: #fff;padding: 0 15px;font-size: 14px" class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <p style="color: #ff5566;
+    width: 100vw;
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 15px;" class="col-12 mb-2 text-truncate">www.facebook.com/skjahsjdhvia www.facebook.com/skjahsjdhvia</p>
+            </div>
         </div>
     </div>
 </div>
