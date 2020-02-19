@@ -4,6 +4,7 @@
   var videoPage = {
 
     init : function () {
+      var oThis = this;
 
       $(".reportVideo").on('click', function () {
         $('#reportModal').modal('show');
@@ -28,7 +29,30 @@
           })
         });
 
+      $(".copyToClipboard").on('click', function () {
+        var isCopied = oThis.copyToClipboard(document.URL);
+        if(isCopied){
+          $('.toast-copied-to-clipboard').toast('show');
+        } else {
+          $('.toast-copied-to-clipboard-failed').toast('show');
+        }
+      });
     },
+
+    copyToClipboard : function(str) {
+      const el = document.createElement('textarea');
+      el.value = str;
+      document.body.appendChild(el);
+      el.select();
+      try{
+        document.execCommand('copy');
+      } catch (e) {
+        document.body.removeChild(el);
+        return 0;
+      }
+      document.body.removeChild(el);
+      return 1;
+  },
 
     playPause: function () {
 
