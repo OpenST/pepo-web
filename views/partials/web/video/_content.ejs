@@ -5,12 +5,23 @@
                 <div class="col pr-0">
                     <div class="row h-100">
                         <%- include _video_left -%>
-                        <%- include _video_right -%>
+                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center">
+                            <%- include _video_right -%>
+                        </div>
                     </div>
                 </div>
                 <%- include _action_buttons -%>
 
             </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid videoContainer d-block d-md-none" data-video-id="<%= video_id %>">
+    <div class="row h-100">
+        <div class="col p-0" style="background-color: red">
+            <%- include _video_right -%>
         </div>
     </div>
 </div>

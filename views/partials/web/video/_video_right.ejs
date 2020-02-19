@@ -1,39 +1,37 @@
-<div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center">
-    <div id="ppBtn" class="active ppBtnUi">
-        <svg width="62" height="62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <defs>
-                <filter x="-68.7%" y="-56.2%" width="237.5%" height="212.5%" filterUnits="objectBoundingBox" id="a">
-                    <feMorphology radius=".5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
-                    <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
-                    <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
-                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
-                </filter>
-                <filter x="-21.9%" y="-21.9%" width="143.9%" height="143.9%" filterUnits="objectBoundingBox" id="c">
-                    <feMorphology radius=".5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
-                    <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
-                    <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
-                    <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
-                </filter>
-                <path d="M22.063 29.76c.317.56 1.026.747 1.574.426l8.936-5.251c.34-.199.553-.56.57-.957a1.16 1.16 0 00-.484-1.004l-12.971-9.337a1.154 1.154 0 00-1.2-.087 1.185 1.185 0 00-.616 1.038v16.34c0 .641.519 1.167 1.153 1.167s1.153-.526 1.153-1.168V16.853l9.69 6.973-7.384 4.341a1.174 1.174 0 00-.421 1.593z" id="b"/>
-                <path d="M23.637 0c-2.047 0-4.093.274-6.07.823-.618.169-.975.81-.808 1.435.167.625.801.992 1.418.817a20.533 20.533 0 015.46-.74c11.876 0 21.907 9.884 21.907 21.59s-10.031 21.59-21.907 21.59c-11.565 0-21.331-9.884-21.331-21.59 0-7.014 3.476-13.649 9.305-17.745a1.173 1.173 0 00.288-1.623 1.14 1.14 0 00-1.603-.291C3.851 8.794 0 16.146 0 23.925 0 36.891 10.827 47.85 23.637 47.85c13.127 0 24.213-10.959 24.213-23.925C47.85 10.959 36.764 0 23.637 0z" id="d"/>
-            </defs>
-            <g fill-rule="nonzero" fill="none">
-                <g transform="translate(7.175 7.175)">
-                    <use fill="#000" filter="url(#a)" xlink:href="#b"/>
-                    <use fill="#FFF" xlink:href="#b"/>
-                </g>
-                <g transform="translate(7.175 7.175)">
-                    <use fill="#000" filter="url(#c)" xlink:href="#d"/>
-                    <use fill="#FFF" xlink:href="#d"/>
-                </g>
+<div id="ppBtn" class="active ppBtnUi">
+    <svg width="62" height="62" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <filter x="-68.7%" y="-56.2%" width="237.5%" height="212.5%" filterUnits="objectBoundingBox" id="a">
+                <feMorphology radius=".5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+                <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+                <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
+            </filter>
+            <filter x="-21.9%" y="-21.9%" width="143.9%" height="143.9%" filterUnits="objectBoundingBox" id="c">
+                <feMorphology radius=".5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+                <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+                <feGaussianBlur stdDeviation="3" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1"/>
+            </filter>
+            <path d="M22.063 29.76c.317.56 1.026.747 1.574.426l8.936-5.251c.34-.199.553-.56.57-.957a1.16 1.16 0 00-.484-1.004l-12.971-9.337a1.154 1.154 0 00-1.2-.087 1.185 1.185 0 00-.616 1.038v16.34c0 .641.519 1.167 1.153 1.167s1.153-.526 1.153-1.168V16.853l9.69 6.973-7.384 4.341a1.174 1.174 0 00-.421 1.593z" id="b"/>
+            <path d="M23.637 0c-2.047 0-4.093.274-6.07.823-.618.169-.975.81-.808 1.435.167.625.801.992 1.418.817a20.533 20.533 0 015.46-.74c11.876 0 21.907 9.884 21.907 21.59s-10.031 21.59-21.907 21.59c-11.565 0-21.331-9.884-21.331-21.59 0-7.014 3.476-13.649 9.305-17.745a1.173 1.173 0 00.288-1.623 1.14 1.14 0 00-1.603-.291C3.851 8.794 0 16.146 0 23.925 0 36.891 10.827 47.85 23.637 47.85c13.127 0 24.213-10.959 24.213-23.925C47.85 10.959 36.764 0 23.637 0z" id="d"/>
+        </defs>
+        <g fill-rule="nonzero" fill="none">
+            <g transform="translate(7.175 7.175)">
+                <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+                <use fill="#FFF" xlink:href="#b"/>
             </g>
-        </svg>
-        <button>Play</button>
-    </div>
-    <video id="webVideo" playsinline loop
-           style="width: 100%; height: 100%; max-height: 100%;object-fit: cover"
-           poster=""
-    >
-        <source src="<%= external_video_url %>" type="video/mp4">
-    </video>
+            <g transform="translate(7.175 7.175)">
+                <use fill="#000" filter="url(#c)" xlink:href="#d"/>
+                <use fill="#FFF" xlink:href="#d"/>
+            </g>
+        </g>
+    </svg>
+    <button>Play</button>
 </div>
+<video id="webVideo" playsinline loop
+       style="width: 100%; height: 100%; max-height: 100%;object-fit: cover"
+       poster=""
+>
+    <source src="<%= external_video_url %>" type="video/mp4">
+</video>
