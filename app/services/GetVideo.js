@@ -1,13 +1,14 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
+  GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   Video = require(rootPrefix + '/lib/pepoApi/Video');
 
-  /**
+/**
  * Class for Getting video
  *
  * @class GetVideo
@@ -60,7 +61,15 @@ class GetVideo extends ServiceBase {
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
-      oThis.serviceResp = resp
+      oThis.serviceResp = resp;
+      const apiResponse = await new GetFirebaseVideoUrl({decodedParams: oThis.decodedParams}).perform();
+
+      if (apiResponse.success) {
+        oThis.serviceResp.firebaseVideoUrl = apiResponse.data.url;
+        oThis.serviceResp.shareUrl = apiResponse.data.pageMeta.canonical;
+        oThis.serviceResp.pageMeta = apiResponse.data.pageMeta;
+      }
+
     }
 
     return responseHelper.successWithData(oThis.serviceResp);
