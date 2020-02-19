@@ -6,19 +6,27 @@
     init : function () {
 
       $(".reportVideo").on('click', function () {
-        var videoId = $(".videoContainer").data('video-id');
-        $.ajax({
-          url:'/api/web/report',
-          data: {report_entity_kind: 'video', report_entity_id: videoId},
-          method: 'POST',
-          success: function(res){
-            $('.toast-report-success').toast('show');
-          },
-          error: function (res) {
-            $('.toast-report-error').toast('show');
-          }
-        })
+        $('#reportModal').modal('show');
       });
+
+      $(".report-title").on('click', function () {
+          var videoId = $(".videoContainer").data('video-id');
+          $.ajax({
+            url:'/api/web/report',
+            data: { report_entity_kind: 'video', report_entity_id: videoId },
+            method: 'POST',
+            success: function(res){
+              if(res.success){
+                $('.toast-report-success').toast('show');
+              } else {
+                $('.toast-report-error').toast('show');
+              }
+            },
+            error: function (res) {
+              $('.toast-report-error').toast('show');
+            }
+          })
+        });
 
     },
 

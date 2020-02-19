@@ -30,10 +30,6 @@
       $('.downloadApp').on('click', function () {
         $('#downloadModal').modal('show');
       });
-
-      $('.reportVideo').on('click', function () {
-        $('#reportModal').modal('show');
-      });
     },
 
     setupNavbar: function(){
