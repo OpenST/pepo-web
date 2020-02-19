@@ -65,9 +65,9 @@ class GetVideo extends ServiceBase {
       const apiResponse = await new GetFirebaseVideoUrl({decodedParams: oThis.decodedParams}).perform();
 
       if (apiResponse.success) {
-        oThis.serviceResp.firebaseVideoUrl = apiResponse.data.url;
-        oThis.serviceResp.shareUrl = apiResponse.data.pageMeta.canonical;
-        oThis.serviceResp.pageMeta = apiResponse.data.pageMeta;
+        oThis.serviceResp.data.firebaseVideoUrl = apiResponse.data.url;
+        oThis.serviceResp.data.shareUrl = apiResponse.data.pageMeta.canonical;
+        oThis.serviceResp.data.pageMeta = apiResponse.data.pageMeta;
       }
 
     }
