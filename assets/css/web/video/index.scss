@@ -6,7 +6,11 @@
 
 .videoContainer{
   background-color: #f9f9f9;
-  height: calc(100vh - 58px);
+  height: calc(100vh - 63px);
+  @media only screen and (min-width: 768px){
+    height: calc(100vh - 58px);
+  }
+
 
   .innerContainer{
     height: 85%;
@@ -64,18 +68,6 @@
       }
 
     }
-
-    .innerRight{
-
-      .countTxt{
-        display: block;
-        font-size: 14px;
-        color: $valhalla;
-        font-weight: 600;
-        margin-bottom: 3px;
-      }
-
-    }
   }
 
   .video-action-list{
@@ -97,6 +89,14 @@
   z-index: 3;
   position: absolute;
   height: 100%;
+}
+
+.countTxt{
+  display: block;
+  font-size: 14px;
+  color: $valhalla;
+  font-weight: 600;
+  margin-bottom: 3px;
 }
 
 .toast {
