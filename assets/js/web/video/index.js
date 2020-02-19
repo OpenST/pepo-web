@@ -10,6 +10,11 @@
         $('#reportModal').modal('show');
       });
 
+
+      $('.downloadAppSingleCTA').on('click', function () {
+        $('#downloadModalSingleCTA').modal('show');
+      });
+
       $(".report-title").on('click', function () {
           var videoId = $(".videoContainer").data('video-id');
           $.ajax({
@@ -30,7 +35,8 @@
         });
 
       $(".copyToClipboard").on('click', function () {
-        var isCopied = oThis.copyToClipboard(document.URL);
+        var textToCopy = $(".copyToClipboard").data('share-url');
+        var isCopied = oThis.copyToClipboard(textToCopy);
         if(isCopied){
           $('.toast-copied-to-clipboard').toast('show');
         } else {
