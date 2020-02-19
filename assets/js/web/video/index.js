@@ -55,19 +55,20 @@
   },
 
     playPause: function () {
+      var ppBtn = $('.ppBtn');
 
-      var ctrlVideo = document.getElementById("webVideo");
-      var ppBtn = $('#ppBtn');
+      ppBtn.on('click', function(e){
 
-      ppBtn.off('click').on('click', function(){
+        var ppBtn = $(e.target);
+        var ctrlVideo = ppBtn.next('video.pepoVideo')[0];
 
         if(ppBtn.hasClass("active")){
           ctrlVideo.play();
-          $('#ppBtn button').html("Pause");
+          $('.ppBtn button').html("Pause");
           ppBtn.toggleClass("active");
         } else {
           ctrlVideo.pause();
-          $('#ppBtn button').html("Play");
+          $('.ppBtn button').html("Play");
           ppBtn.toggleClass("active");
         }
 

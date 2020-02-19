@@ -6,7 +6,7 @@
                     <div class="row h-100">
                         <%- include _video_left -%>
                         <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center">
-                            <%- include _video_right -%>
+                            <%- include _video_player -%>
                         </div>
                     </div>
                 </div>
@@ -19,9 +19,9 @@
 
 
 <div class="container-fluid videoContainer d-block d-md-none" data-video-id="<%= video_id %>">
-    <div class="row h-100">
-        <div class="col p-0" style="background-color: red">
-            <%- include _video_right -%>
+    <div class="row" style="height: inherit">
+        <div class="col p-0" style="height: inherit">
+            <%- include _video_player -%>
         </div>
     </div>
 </div>
