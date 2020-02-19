@@ -11,7 +11,6 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   GetFirebaseReplyVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/ReplyVideo'),
   GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
   GetFirebaseUserProfileUrl = require(rootPrefix + '/app/services/FireBaseUrl/UserProfile'),
@@ -118,16 +117,6 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
-
-  // const apiResponse = await new GetFirebaseVideoUrl({decodedParams: req.decodedParams}).perform();
-  // if (apiResponse.success) {
-  //   return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
-  //     redirect_to_location: apiResponse.data.url,
-  //     pageMeta: apiResponse.data.pageMeta
-  //   });
-  // } else {
-  //   return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
-  // }
 });
 
 /* Redirect video pages */
