@@ -6,7 +6,7 @@
       return defaultPageTitle;
     }
 
-    var title = pageMeta.title;
+    var title = pageMeta.title.replace(/(- |)http(s|):\/\/.*\S/g, "").trim();
     if ( pageMeta.page ) {
       title = title + " | " + pageMeta.page;
     }
@@ -19,20 +19,29 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+<% if(pageMeta.description) { %>
 <meta name="description" content="<%= pageMeta.description %>">
+<% } %>
 <meta name="keywords" content="<%= pageMeta.keywords %>">
 <meta name="robots" content="<%= pageMeta.robots%>">
 <link rel="canonical" href="<%= pageMeta.canonical %>" />
 
 <meta property="og:title" content="<%= pageMeta.og.title %>"/>
+<% if(pageMeta.og.description) { %>
 <meta property="og:description" content="<%= pageMeta.og.description %>"/>
+<% } %>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="<%= pageMeta.og.url || 'https://pepo.com' %>"/>
 <meta property="og:site_name" content="pepo.com"/>
 <meta property="og:image" content="<%= pageMeta.og.image %>"/>
+<% if(pageMeta.og.video) { %>
+<meta property="og:video" content="<%= pageMeta.og.video %>"/>
+<% } %>
 
 <meta name="twitter:title" content="<%= pageMeta.twitter.title %>" />
+<% if(pageMeta.og.description) { %>
 <meta name="twitter:description" content="<%= pageMeta.twitter.description %>" />
+<% } %>
 <meta name="twitter:image" content="<%= pageMeta.twitter.image %>" />
 <meta name="twitter:card" content="<%= pageMeta.twitter.card %>" />
 
