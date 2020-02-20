@@ -35,18 +35,18 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
     return responseHelper.successWithData({
       url: url,
       pageMeta: {
-        title: oThis.urlParams.st,
+        title: oThis.urlParams.sd,
         description: '',
         robots: 'noindex, nofollow',
         canonical: oThis._videoBaseUrl(),
         og: {
-          title: oThis.urlParams.st,
+          title: oThis.urlParams.sd,
           description: '',
           image: oThis.urlParams.si,
           url: oThis._fetchAppLaunchLink()
         },
         twitter: {
-          title: oThis.urlParams.st,
+          title: oThis.urlParams.sd,
           description: '',
           image: oThis.urlParams.si,
           card: "summary_large_image"
