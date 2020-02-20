@@ -160,11 +160,11 @@
     background-color: rgba(0, 0, 0, 0.4);
   }
   &.mobile-user-name{
-    color: #fff;
+    color: $white;
     font-family: AvenirNext-Medium;
   }
   &.mobile-link{
-    color: #fff;
+    color: $white;
     font-size: 14px;
     overflow: hidden;
     white-space: nowrap;
@@ -172,16 +172,16 @@
     font-family: AvenirNext-Medium;
   }
   &.mobile-text{
-    color: #fff;
+    color: $white;
     font-size: 14px;
     font-weight: 300
   }
 }
 #downloadModalSingleCTA {
   .open-pepo-app{
-    background-color: #FF5566;
-    background: linear-gradient(90deg, #ff7499 20%, #ff5566 100%);
-    color: #fff;
+    background-color: $wildWatermelon;
+    background: linear-gradient(90deg, $ticklePink 20%, $wildWatermelon 100%);
+    color: $white;
     border-radius: 3px;
     padding: 5px 12px;
   }
