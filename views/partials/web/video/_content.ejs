@@ -6,7 +6,7 @@
                     <div class="row h-100">
                         <%- include _video_left -%>
                         <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <%- include _video_player -%>
+                            <%- include('../partials/web/video/_video_player', {video_link: web_video_url, video_poster_url: web_video_poster_url }) -%>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
 <div class="container-fluid videoContainer d-block d-md-none" data-video-id="<%= video_id %>">
     <div class="row" style="height: inherit">
         <div class="col p-0 video-container-wrapper active" style="height: inherit">
-            <%- include _video_player -%>
+            <%- include('../partials/web/video/_video_player', {video_link: mobile_video_url, video_poster_url:  mobile_video_poster_url }) -%>
             <div style="position: absolute; bottom: 0;">
                 <div class="d-flex justify-content-between pl-3">
 

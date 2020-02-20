@@ -108,14 +108,16 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
 
+  console.log('apiResponse.data.pageMeta:',apiResponse.data.page_meta);
 
   if (apiResponse.success) {
     let formattedData = videoFormatter(apiResponse.data);
 
-    console.log('formattedData:',formattedData);
+    // console.log('formattedData:',formattedData);
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
       ...{androidAppLink: appDownloadLink,
-        iosAppLink: appDownloadLink
+        iosAppLink: appDownloadLink,
+        pageMeta: apiResponse.data.page_meta
       },  ...formattedData });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
