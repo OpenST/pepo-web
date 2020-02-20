@@ -42,13 +42,13 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
         og: {
           title: oThis.urlParams.sd,
           description: '',
-          image: oThis.urlParams.si,
+          image: oThis._getImage(),
           url: oThis._fetchAppLaunchLink()
         },
         twitter: {
           title: oThis.urlParams.sd,
           description: '',
-          image: oThis.urlParams.si,
+          image: oThis._getImage(),
           card: "summary_large_image"
         }
       }
@@ -84,7 +84,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
       sd: oThis.videoShareDetails.message ? oThis.videoShareDetails.message : 'For the best experience keep the checkbox selected',
-      si: oThis.videoShareDetails.poster_image_url ? oThis.videoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
+      si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png', // Some static image.
       ofl: oThis._fetchOflLink()
     });
     // Assign all url params
@@ -117,6 +117,11 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
     return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.video}/${oThis.videoId}`;
   }
 
+  _getImage() {
+    const oThis = this;
+
+    return oThis.videoShareDetails.poster_image_url ? oThis.videoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png'
+  }
 }
 
 module.exports = GetFirebaseVideoUrl;
