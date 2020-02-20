@@ -6,16 +6,22 @@
     init : function () {
       var oThis = this;
 
-      $(".reportVideo").on('click', function () {
+      $(".reportVideo").on('click', function (e) {
         $('#reportModal').modal('show');
+        e.stopPropagation();
       });
 
 
-      $('.downloadAppSingleCTA').on('click', function () {
+      $('.actionButtonsWeb .downloadApp, .channel-list.web .downloadApp').on('click', function () {
+        $('#downloadModal').modal('show');
+      });
+
+      $('.actionButtonsMobile .downloadApp, .channel-list.mobile .downloadApp').on('click', function (e) {
         $('#downloadModalSingleCTA').modal('show');
+        e.stopPropagation();
       });
 
-      $(".report-title").on('click', function () {
+      $(".report-title").on('click', function (e) {
           var videoId = $(".videoContainer").data('video-id');
           $.ajax({
             url:'/api/web/report',
@@ -31,10 +37,11 @@
             error: function (res) {
               $('.toast-report-error').toast('show');
             }
-          })
+          });
+          e.stopPropagation();
         });
 
-      $(".copyToClipboard").on('click', function () {
+      $(".copyToClipboard").on('click', function (e) {
         var textToCopy = $(".copyToClipboard").data('share-url');
         var isCopied = oThis.copyToClipboard(textToCopy);
         if(isCopied){
@@ -42,6 +49,7 @@
         } else {
           $('.toast-copied-to-clipboard-failed').toast('show');
         }
+        e.stopPropagation();
       });
     },
 

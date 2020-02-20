@@ -27,7 +27,15 @@
         $(this).toggleClass("is-active");
       });
 
-      $('.downloadApp').on('click', function (e) {
+      $('nav .downloadApp.web').on('click', function (e) {
+        $('#downloadModal').modal('show');
+        e.preventDefault();
+        e.stopPropagation();
+        return false;
+      });
+
+      $('nav .downloadApp.mobile').on('click', function (e) {
+        // need to change this logic.
         $('#downloadModal').modal('show');
         e.preventDefault();
         e.stopPropagation();
