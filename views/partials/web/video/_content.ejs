@@ -21,10 +21,10 @@
     <div class="row" style="height: inherit">
         <div class="col p-0 video-container-wrapper active" style="height: inherit">
             <%- include _video_player -%>
-            <div style="position: absolute; color: #fff; bottom: 0;">
+            <div style="position: absolute; bottom: 0;">
                 <div class="d-flex justify-content-between pl-3">
 
-                    <ul class="mt-3 list-unstyled channel-list mb-0 align-self-end" style="overflow: auto;white-space:nowrap;width: calc(100vw - 80px);">
+                    <ul class="mt-3 list-unstyled channel-list mobile mb-0 align-self-end">
                         <% for(var i=0; i < channels_list.length; i++) { %>
                             <li class="downloadApp"><a href="javascript:void(0)"><%= channels_list[i] %></a></li>
                         <% } %>
@@ -32,14 +32,15 @@
 
                     <%- include('../partials/web/video/_action_buttons', {actionButtonsPos: "actionButtonsMobile"}) -%>
                 </div>
-                <p style="color: #fff;padding: 0 15px;font-size: 14px" class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-                <p style="color: #ff5566;
-    width: 100vw;
-    font-size: 14px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 0 15px;" class="col-12 mb-2 text-truncate">www.facebook.com/skjahsjdhvia www.facebook.com/skjahsjdhvia</p>
+                <div class="px-3 py-2 desc mobile">
+                    <div class="desc mobile-user-name">@<%= profile_username %></div>
+                    <% if (description_text) { %>
+                        <p class="mb-0 desc mobile-text"><%= description_text %></p>
+                    <% } %>
+                    <% if (description_link) { %>
+                        <p class="mb-0 mt-1 desc mobile-link"><%= description_link %></p>
+                    <% } %>
+                </div>
             </div>
         </div>
     </div>
