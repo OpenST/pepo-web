@@ -3,6 +3,7 @@ const router = express.Router();
 
 const rootPrefix = '../..',
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
+  GetFirebaseHomeUrl = require(rootPrefix + '/app/services/FireBaseUrl/Home'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
@@ -24,13 +25,21 @@ const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform();
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
-    twitterRedirectUrl: '#',
-    twitterSigninError: 0,
-    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
-    iosAppLink: appUpdateLinksConstants.iosUpdateLink
-  });
+  if (apiResponse.success) {
+    return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+      twitterRedirectUrl: '#',
+      twitterSigninError: 0,
+      androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+      iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+      // redirect_to_location: apiResponse.data.url,
+      // pageMeta: apiResponse.data.pageMeta
+    });
+  } else {
+
+  }
+
 });
 
 /* Double opt in page. */
