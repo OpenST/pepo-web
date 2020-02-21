@@ -62,4 +62,58 @@
     </g>
   </symbol>
 
+  <symbol id="video-replies-icon-mobile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 41">
+      <defs>
+          <filter x="-62.5%" y="-68.2%" width="225%" height="235.9%" filterUnits="objectBoundingBox" id="a">
+              <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+              <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+              <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+              <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+              <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0" in="shadowBlurOuter1"/>
+          </filter>
+          <path d="M337.375 515a.61.61 0 01-.236-.048l-4.118-1.739c-1.292.398-2.643.6-4.02.6-6.618 0-12.001-4.668-12.001-10.406 0-5.739 5.383-10.407 12-10.407s12 4.668 12 10.407c0 2.763-1.288 5.436-3.545 7.382l.516 3.53a.593.593 0 01-.23.558.605.605 0 01-.366.123z" id="replies-icon-mobile"/>
+      </defs>
+      <g transform="matrix(-1 0 0 1 351 -483)" fill="none" fill-rule="evenodd">
+          <use fill="#000" filter="url(#a)" xlink:href="#replies-icon-mobile"/>
+          <use fill-opacity=".85" fill="#FFF" xlink:href="#replies-icon-mobile"/>
+      </g>
+  </symbol>
+
+    <symbol id="video-report-icon-mobile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 33 38">
+        <defs>
+            <filter x="-70.6%" y="-54.5%" width="241.2%" height="209.1%" filterUnits="objectBoundingBox" id="a">
+                <feMorphology radius=".5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+                <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+                <feGaussianBlur stdDeviation="3.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+                <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.3 0" in="shadowBlurOuter1"/>
+            </filter>
+            <path d="M325.626 536.004c-1.817.05-3.62.58-5.264 1.615a.781.781 0 00-.362.648v18.965a.77.77 0 00.773.768.77.77 0 00.772-.768v-9.29c.96-.555 4.128-2.078 7.937-.44 2.275.977 4.007 1.176 5.2 1.111 1.193-.065 1.924-.448 1.924-.448a.783.783 0 00.394-.663v-9.243a.78.78 0 00-.376-.665.793.793 0 00-.767-.015s-.31.194-1.248.24c-.938.046-2.424-.102-4.523-.976a10.908 10.908 0 00-4.46-.84z" id="report-icon-mobile"/>
+        </defs>
+        <g transform="translate(-312 -528)" fill="none" fill-rule="evenodd">
+            <use fill="#000" filter="url(#a)" xlink:href="#report-icon-mobile"/>
+            <use fill-opacity="1" fill="#FFF" xlink:href="#report-icon-mobile"/>
+        </g>
+    </symbol>
+
+    <symbol id="video-copy-icon-mobile" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 35 37">
+        <defs>
+            <filter x="-92.1%" y="-83.3%" width="280.2%" height="265%" filterUnits="objectBoundingBox" id="a">
+                <feMorphology radius=".5" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"/>
+                <feOffset in="shadowSpreadOuter1" result="shadowOffsetOuter1"/>
+                <feGaussianBlur stdDeviation="4" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+                <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+                <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0" in="shadowBlurOuter1" result="shadowMatrixOuter1"/>
+                <feMerge>
+                    <feMergeNode in="shadowMatrixOuter1"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+        <g transform="translate(8 8)" fill="#FFF" fill-rule="evenodd" opacity="0.85">
+            <path d="M13.44 3.12V2.4a2.4 2.4 0 00-2.4-2.4H2.4A2.4 2.4 0 000 2.4v11.04a2.4 2.4 0 002.4 2.4h.72V6.72a3.6 3.6 0 013.6-3.6h6.72z" opacity="1"/>
+            <path d="M7.2 4.8a2.4 2.4 0 00-2.4 2.4v11.04a2.4 2.4 0 002.4 2.4h8.64a2.4 2.4 0 002.4-2.4V7.2a2.4 2.4 0 00-2.4-2.4H7.2z"/>
+        </g>
+    </symbol>
+
 </svg>
