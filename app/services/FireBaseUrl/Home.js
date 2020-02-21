@@ -61,7 +61,7 @@ class GetHomeUrl extends FirebaseUrlBase {
     let urlParams = oThis._getFirebaseCommonUrlParams();
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
-      sd: 'For the best experience keep the checkbox selected',
+      sd: 'Meet Your Peeps!\n' + 'REAL PEOPLE. REAL CONNECTIONS',
       si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
       ofl: oThis._fetchOflLink()
     });
