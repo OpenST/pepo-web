@@ -26,19 +26,17 @@ const errorConfig = basicHelper.fetchErrorConfig();
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform();
-
-  if (apiResponse.success) {
-    return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
-      twitterRedirectUrl: '#',
-      twitterSigninError: 0,
-      androidAppLink: appUpdateLinksConstants.androidUpdateLink,
-      iosAppLink: appUpdateLinksConstants.iosUpdateLink,
-      // redirect_to_location: apiResponse.data.url,
-      // pageMeta: apiResponse.data.pageMeta
-    });
-  } else {
-
+  let homeUrl = '';
+  if ( apiResponse.success ) {
+    homeUrl = apiResponse.data.url;
   }
+  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    twitterRedirectUrl: '#',
+    twitterSigninError: 0,
+    androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    homeUrl: homeUrl
+  });
 
 });
 
@@ -117,15 +115,15 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
 
-
   if (apiResponse.success) {
     let formattedData = videoFormatter(apiResponse.data);
 
-    // console.log('formattedData:',formattedData);
+
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
       ...{androidAppLink: appDownloadLink,
         iosAppLink: appDownloadLink,
-        pageMeta: formattedData.page_meta
+        pageMeta: formattedData.page_meta,
+        homeUrl: formattedData.home_url
       },  ...formattedData });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
