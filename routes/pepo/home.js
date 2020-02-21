@@ -125,7 +125,8 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
       ...{androidAppLink: appDownloadLink,
         iosAppLink: appDownloadLink,
-        pageMeta: formattedData.page_meta
+        pageMeta: formattedData.page_meta,
+        showFooter: false
       },  ...formattedData });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
