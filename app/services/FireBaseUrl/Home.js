@@ -62,7 +62,7 @@ class GetHomeUrl extends FirebaseUrlBase {
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
       sd: 'REAL PEOPLE. REAL CONNECTIONS.',
-      si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
+      si: 'https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-intermittent-img.png',
       ofl: oThis._fetchOflLink()
     });
     // Assign all url params

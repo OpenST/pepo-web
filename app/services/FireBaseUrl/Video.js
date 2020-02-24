@@ -84,7 +84,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
       sd: oThis.videoShareDetails.message ? oThis.videoShareDetails.message : 'REAL PEOPLE. REAL CONNECTIONS.',
-      si: 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png', // Some static image.
+      si: 'https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-intermittent-img.png', // Some static image.
       ofl: oThis._fetchOflLink()
     });
     // Assign all url params
