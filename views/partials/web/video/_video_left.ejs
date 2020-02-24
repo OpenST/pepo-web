@@ -10,7 +10,7 @@
         <p class="mt-3 mb-0 desc" style="font-size: 15px"><%= description_text %></p>
     <% } %>
     <% if (description_link) { %>
-        <a href="<%= description_link %>" class="mt-2 d-inline-block desc-link" rel="noopener noreferrer nofollow" target="_blank"><%= description_link %></a>
+        <a href="<%= description_link %>" class="mt-2 d-inline-block desc-link" rel="noopener noreferrer nofollow" target="_blank" title="<%= description_link %>"><%= description_display_link %></a>
     <% } %>
     <ul class="mt-3 list-unstyled channel-list web">
         <% for(var i=0; i < channels_list.length; i++) { %>

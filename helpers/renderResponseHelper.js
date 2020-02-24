@@ -28,6 +28,10 @@ class ResponseRenderer {
       locals._environment = coreConstants.environment;
     }
 
+    if ( !locals.hasOwnProperty('showFooter')) {
+      locals.showFooter = true;
+    }
+
     response.render(layout, locals, callback);
   }
 

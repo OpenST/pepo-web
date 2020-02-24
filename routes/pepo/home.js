@@ -118,12 +118,13 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   if (apiResponse.success) {
     let formattedData = videoFormatter(apiResponse.data);
 
-
+    // console.log('formattedData:',formattedData);
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
       ...{androidAppLink: appDownloadLink,
         iosAppLink: appDownloadLink,
         pageMeta: formattedData.page_meta,
-        homeUrl: formattedData.home_url
+        homeUrl: formattedData.home_url,
+        showFooter: false
       },  ...formattedData });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

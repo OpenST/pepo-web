@@ -37,7 +37,7 @@
                         <p class="mb-0 desc mobile-text"><%= description_text %></p>
                     <% } %>
                     <% if (description_link) { %>
-                        <a href="<%= description_link %>" rel="noopener noreferrer nofollow" target="_blank"  onclick="event.stopPropagation();" class="mb-0 mt-1 desc mobile-link"><%= description_link %></a>
+                        <a href="<%= description_link %>" class="mb-0 mt-1 desc mobile-link" rel="noopener noreferrer nofollow" target="_blank" title="<%= description_link %>" onclick="event.stopPropagation();"><%= description_display_link %></a>
                     <% } %>
                 </div>
             </div>
