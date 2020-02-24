@@ -95,8 +95,6 @@ router.get('/twitter/oauth', sanitizer.sanitizeDynamicUrlParams, async function 
 /* Redirect video pages */
 router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
-  let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/video';
-
   req.decodedParams.video_id =  parseInt(req.params.video_id);
 
   // Render 404 page if id not valid
@@ -118,10 +116,10 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   if (apiResponse.success) {
     let formattedData = videoFormatter(apiResponse.data);
 
-    // console.log('formattedData:',formattedData);
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
-      ...{androidAppLink: appDownloadLink,
-        iosAppLink: appDownloadLink,
+      ...{
+        androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+        iosAppLink: appUpdateLinksConstants.iosUpdateLink,
         pageMeta: formattedData.page_meta,
         homeUrl: formattedData.home_url,
         showFooter: false
