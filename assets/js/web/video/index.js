@@ -22,6 +22,7 @@
       });
 
       $(".report-title").on('click', function (e) {
+          $('#reportModal').modal('hide');
           var videoId = $(".videoContainer").data('video-id');
           $.ajax({
             url:'/api/web/report',
@@ -54,10 +55,17 @@
     },
 
     copyToClipboard : function(str) {
-      const el = document.createElement('textarea');
+      var el = document.createElement('textarea');
       el.value = str;
       document.body.appendChild(el);
       el.select();
+      // For old iOS devices
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+      el.setSelectionRange(0, el.value.length);
       try{
         document.execCommand('copy');
       } catch (e) {

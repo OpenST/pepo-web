@@ -4,13 +4,21 @@
 // Import theme variables
 @import "../../web/Starboy/variables";
 
+html, body{
+  @media only screen and (max-width: 767px){
+    overflow-y: hidden;
+  }
+  background-color: #f2f2f2;
+}
+
 .videoContainer{
   background-color: #f9f9f9;
-  height: calc(100vh - 63px);
+  max-height: calc(100% - 64px);
+  height: 100%;
   @media only screen and (min-width: 768px){
-    height: calc(100vh - 58px);
+    max-height: calc(100% - 58px);
+    height: 100%;
   }
-
 
   .innerContainer{
     height: 85%;
@@ -92,7 +100,8 @@
   box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.1);
   pointer-events: none;
   .toast-text{
-    font-size: 14px;
+    font-size: 16px;
+    color: $valhalla;
     padding: 10px 12px;
     text-align: center;
   }
