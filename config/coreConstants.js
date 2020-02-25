@@ -112,6 +112,14 @@ class CoreConstant {
     return process.env.PW_IOS_APP_ID;
   }
 
+  get DEFAULT_SHARE_IMAGE(){
+    return 'https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-intermittent-img.png';
+  }
+
+  get DEFAULT_SHARE_DESCRIPTION(){
+    return 'REAL PEOPLE. REAL CONNECTIONS.';
+  }
+
 }
 
 module.exports = new CoreConstant();

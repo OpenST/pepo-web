@@ -1,12 +1,8 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
-  GetFirebaseHomeUrl = require(rootPrefix + '/app/services/FireBaseUrl/Home'),
   GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
-  coreConstants = require(rootPrefix + '/config/coreConstants'),
   Video = require(rootPrefix + '/lib/pepoApi/Video');
 
 /**
@@ -63,14 +59,13 @@ class GetVideo extends ServiceBase {
       return Promise.reject(resp);
     } else {
       oThis.serviceResp = resp;
-      const apiResponse = await new GetFirebaseVideoUrl({decodedParams: oThis.decodedParams}).perform(),
-      firebaseHomeUrlApiResponse = await new GetFirebaseHomeUrl({decodedParams: oThis.decodedParams}).perform();
+      const apiResponse = await new GetFirebaseVideoUrl({decodedParams: oThis.decodedParams, videoResponse: resp}).perform();
 
       if (apiResponse.success) {
         oThis.serviceResp.data.firebase_video_url = apiResponse.data.url;
         oThis.serviceResp.data.share_url = apiResponse.data.pageMeta.canonical;
         oThis.serviceResp.data.page_meta = apiResponse.data.pageMeta;
-        oThis.serviceResp.data.home_url = firebaseHomeUrlApiResponse.data.url;
+        oThis.serviceResp.data.home_url = apiResponse.data.url;
       }
 
     }

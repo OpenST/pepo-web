@@ -82,8 +82,8 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
       st: oThis.channelShareDetails.title || '',
-      sd: oThis.channelShareDetails.message ? oThis.channelShareDetails.message : 'For the best experience keep the checkbox selected',
-      si: oThis.channelShareDetails.poster_image_url ? oThis.channelShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
+      sd: oThis.channelShareDetails.message ? oThis.channelShareDetails.message : coreConstants.DEFAULT_SHARE_DESCRIPTION,
+      si: oThis.channelShareDetails.poster_image_url ? oThis.channelShareDetails.poster_image_url : coreConstants.DEFAULT_SHARE_IMAGE,
       ofl: oThis._fetchOflLink()
     });
     // Assign all url params

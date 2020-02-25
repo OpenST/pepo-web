@@ -2,8 +2,7 @@ const rootPrefix = '../../..',
   FirebaseUrlBase = require(rootPrefix + '/app/services/FireBaseUrl/Base'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  coreConstants = require(rootPrefix + '/config/coreConstants'),
-  VideoShareDetails = require(rootPrefix + '/lib/pepoApi/Video');
+  coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
  * Class to get firebase redirection url for video url
@@ -15,8 +14,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
 
     const oThis = this;
     oThis.videoId = oThis.decodedParams.video_id;
-
-    oThis.videoShareDetails = {};
+    oThis.videoResponse = params.videoResponse;
   }
 
   /**
@@ -28,27 +26,28 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
   async _asyncPerform() {
     const oThis = this;
 
-    await oThis._fetchVideoShareDetails();
-
+    const title = oThis._getPageTitle();
+    const description = oThis._getPageDescription();
+    const image = oThis._getPageImage();
     const url = oThis._generateFireBaseUrl();
 
     return responseHelper.successWithData({
-      url: url,
+      url: url, // firebase url
       pageMeta: {
-        title: oThis.urlParams.sd,
-        description: '',
-        robots: 'noindex, nofollow',
+        title: title,
+        description: description,
+        robots: 'index, follow',
         canonical: oThis._videoBaseUrl(),
         og: {
-          title: oThis.urlParams.sd,
-          description: '',
-          image: oThis._getImage(),
+          title: title,
+          description: description,
+          image: image,
           url: oThis._fetchAppLaunchLink()
         },
         twitter: {
-          title: oThis.urlParams.sd,
-          description: '',
-          image: oThis._getImage(),
+          title: title,
+          description: description,
+          image: image,
           card: "summary_large_image"
         }
       }
@@ -56,19 +55,51 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
   }
 
   /**
-   * Fetch video share details
+   *  Get Title for video page
    *
-   * @returns {Promise<void>}
+   * @returns {string}
    * @private
    */
-  async _fetchVideoShareDetails() {
-    const oThis = this;
+  _getPageTitle() {
+    const oThis = this,
+      userId = oThis.videoResponse.video_details[oThis.videoId].creator_user_id,
+      userInfo = oThis.videoResponse.users[userId];
 
-    let videoShareResponse = await new VideoShareDetails({}).getVideoShareDetails({videoId: oThis.videoId});
-    if(videoShareResponse.success){
-      let resultType = videoShareResponse.data.result_type;
-      oThis.videoShareDetails = videoShareResponse.data[resultType];
+    return (userInfo.name + "'s Video " + oThis.videoId + " - Pepo");
+  }
+
+  /**
+   *  Get Description for video page
+   *
+   * @returns {string}
+   * @private
+   */
+  _getPageDescription() {
+    const oThis = this,
+      descId = oThis.videoResponse.video_details[oThis.videoId].description_id;
+
+    if(descId && oThis.videoResponse.video_descriptions[descId]){
+      return oThis.videoResponse.video_descriptions[descId].text;
     }
+
+    return coreConstants.DEFAULT_SHARE_DESCRIPTION;
+  }
+
+  /**
+   *  Get image for video page
+   *
+   * @returns {string}
+   * @private
+   */
+  _getPageImage() {
+    const oThis = this,
+      imageId = oThis.videoResponse.video_details[oThis.videoId].poster_image_id;
+
+    if(imageId && oThis.videoResponse.images[imageId]){
+      return oThis.videoResponse.images[imageId].resolutions['original'].url;
+    }
+
+    return coreConstants.DEFAULT_SHARE_IMAGE;
   }
 
   /**
@@ -83,9 +114,9 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
     let urlParams = oThis._getFirebaseCommonUrlParams();
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
-      sd: oThis.videoShareDetails.message ? oThis.videoShareDetails.message : 'REAL PEOPLE. REAL CONNECTIONS.',
-      si: 'https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-intermittent-img.png', // Some static image.
-      ofl: oThis._fetchOflLink()
+      sd: coreConstants.DEFAULT_SHARE_DESCRIPTION,
+      si: coreConstants.DEFAULT_SHARE_IMAGE,
+      ofl: oThis._fetchAppLaunchLink()
     });
     // Assign all url params
     return urlParams;
@@ -117,11 +148,6 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
     return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.video}/${oThis.videoId}`;
   }
 
-  _getImage() {
-    const oThis = this;
-
-    return oThis.videoShareDetails.poster_image_url ? oThis.videoShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png'
-  }
 }
 
 module.exports = GetFirebaseVideoUrl;
