@@ -19,7 +19,7 @@ const rootPrefix = '../..',
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  videoFormatter = require(rootPrefix + '/lib/formatter/video_data');
+  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
@@ -112,9 +112,11 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
+  console.log("apiResponse ===== ", apiResponse);
 
   if (apiResponse.success) {
-    let formattedData = videoFormatter(apiResponse.data);
+    let formattedData = new videoViewFormatter(apiResponse.data).perform();
+    console.log("apiResponse ===== ", formattedData);
 
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', {
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
