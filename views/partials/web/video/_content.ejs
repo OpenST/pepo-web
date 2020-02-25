@@ -1,4 +1,4 @@
-<div class="container-fluid videoContainer d-none d-md-block" data-video-id="<%= video_id %>">
+<div class="container-fluid videoContainer d-none d-md-block" data-video-id="<%= formattedEntityData.video_id %>">
     <div class="row h-100 justify-content-center align-items-center">
         <div class="col-11 col-lg-9 col-xl-6 innerContainer">
             <div class="row h-100">
@@ -6,7 +6,7 @@
                     <div class="row h-100">
                         <%- include _video_left -%>
                         <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <%- include('../partials/web/video/_video_player', {video_link: web_video_url, video_poster_url: web_video_poster_url }) -%>
+                            <%- include('../partials/web/video/_video_player', {video_link: formattedEntityData.web_video_url, video_poster_url: formattedEntityData.web_video_poster_url }) -%>
                         </div>
                     </div>
                 </div>
@@ -16,28 +16,28 @@
     </div>
 </div>
 
-<div class="container-fluid videoContainer d-block d-md-none" data-video-id="<%= video_id %>">
+<div class="container-fluid videoContainer d-block d-md-none" data-video-id="<%= formattedEntityData.video_id %>">
     <div class="row" style="height: inherit">
         <div class="col p-0 video-container-wrapper active" style="height: inherit">
-            <%- include('../partials/web/video/_video_player', {video_link: mobile_video_url, video_poster_url:  mobile_video_poster_url }) -%>
+            <%- include('../partials/web/video/_video_player', {video_link: formattedEntityData.mobile_video_url, video_poster_url:  formattedEntityData.mobile_video_poster_url }) -%>
             <div style="position: absolute; bottom: 0;">
                 <div class="d-flex justify-content-between pl-3">
 
                     <ul class="list-unstyled channel-list mobile mb-0 align-self-end">
-                        <% for(var i=0; i < channels_list.length; i++) { %>
-                            <li class="downloadApp"><a href="javascript:void(0)"><%= channels_list[i] %></a></li>
+                        <% for(var i=0; i < formattedEntityData.channels_list.length; i++) { %>
+                            <li class="downloadApp"><a href="javascript:void(0)"><%= formattedEntityData.channels_list[i] %></a></li>
                         <% } %>
                     </ul>
 
                     <%- include('../partials/web/video/_action_buttons', {actionButtonsPos: "actionButtonsMobile"}) -%>
                 </div>
                 <div class="px-3 py-2 desc mobile" onclick="event.stopPropagation()">
-                    <div class="desc mobile-user-name">@<%= profile_username %></div>
-                    <% if (description_text) { %>
-                        <p class="mb-0 desc mobile-text"><%- description_text %></p>
+                    <div class="desc mobile-user-name">@<%= formattedEntityData.profile_username %><span style="color: #FFFFFF; font-weight: lighter"><%= formattedEntityData.display_cts %></span></div>
+                    <% if (formattedEntityData.description_text) { %>
+                        <p class="mb-0 desc mobile-text"><%- formattedEntityData.description_text %></p>
                     <% } %>
-                    <% if (description_link) { %>
-                        <a href="<%= description_link %>" class="mb-0 mt-1 desc mobile-link" rel="noopener noreferrer nofollow" target="_blank" onclick="event.stopPropagation();"><%- description_display_link %></a>
+                    <% if (formattedEntityData.description_link) { %>
+                        <a href="<%= formattedEntityData.description_link %>" class="mb-0 mt-1 desc mobile-link" rel="noopener noreferrer nofollow" target="_blank" onclick="event.stopPropagation();"><%- formattedEntityData.description_display_link %></a>
                     <% } %>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 <div class="<%= actionButtonsPos %> align-items-end d-flex justify-content-center">
     <ul class="list-unstyled m-0 p-0 text-center video-action-list mb-3 mb-md-4">
         <li class="downloadApp">
-            <span class="countTxt"><%= tokens_raised %></span>
+            <span class="countTxt"><%= formattedEntityData.tokens_raised %></span>
             <svg width="40" height="40">
                 <switch>
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-pepo-icon"></use>
@@ -9,7 +9,7 @@
             </svg>
         </li>
         <li class="downloadApp">
-            <span class="countTxt"><%= replies_count %></span>
+            <span class="countTxt"><%= formattedEntityData.replies_count %></span>
             <svg width="44" height="41" class="d-inline-block d-md-none">
                 <switch>
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-replies-icon-mobile"></use>
@@ -33,7 +33,7 @@
                 </switch>
             </svg>
         </li>
-        <li class="copyToClipboard" data-share-url="<%= share_url %>">
+        <li class="copyToClipboard" data-share-url="<%= formattedEntityData.share_url %>">
             <svg width="35" height="37" class="d-inline-block d-md-none">
                 <switch>
                     <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-copy-icon-mobile"></use>

@@ -26,16 +26,16 @@ const errorConfig = basicHelper.fetchErrorConfig();
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform();
-  let homeUrl = '';
+  let firebaseGetTheAppUrl = '';
   if ( apiResponse.success ) {
-    homeUrl = apiResponse.data.url;
+    firebaseGetTheAppUrl = apiResponse.data.url;
   }
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
-    homeUrl: homeUrl
+    firebaseUrls: {getTheApp: firebaseGetTheAppUrl}
   });
 
 });
@@ -122,9 +122,9 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       pageMeta: formattedData.page_meta,
-      homeUrl: formattedData.home_url,
+      firebaseUrls: {openInApp: formattedData.firebase_video_url},
       showFooter: false,
-      ...formattedData
+      formattedEntityData: formattedData
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

@@ -93,7 +93,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    */
   _getPageImage() {
     const oThis = this,
-      imageId = oThis.videoResponse.video_details[oThis.videoId].poster_image_id;
+      imageId = oThis.videoResponse.videos[oThis.videoId].poster_image_id;
 
     if(imageId && oThis.videoResponse.images[imageId]){
       return oThis.videoResponse.images[imageId].resolutions['original'].url;
