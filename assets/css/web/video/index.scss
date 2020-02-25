@@ -52,6 +52,10 @@ html, body{
 
       .desc-link{
         font-size: 15px;
+        overflow: hidden;
+        white-space: nowrap;
+        display: block;
+        text-overflow: ellipsis;
         color: $wildWatermelon;
         &:hover, &:focus{
           text-decoration: none;
@@ -180,10 +184,11 @@ html, body{
   }
   &.mobile-link{
     color: $white;
-    font-size: 14px;
     overflow: hidden;
     white-space: nowrap;
+    display: block;
     text-overflow: ellipsis;
+    font-size: 14px;
     font-family: AvenirNext-Medium;
   }
   &.mobile-text{

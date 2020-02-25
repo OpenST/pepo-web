@@ -34,10 +34,10 @@
                 <div class="px-3 py-2 desc mobile" onclick="event.stopPropagation()">
                     <div class="desc mobile-user-name">@<%= profile_username %></div>
                     <% if (description_text) { %>
-                        <p class="mb-0 desc mobile-text"><%= description_text %></p>
+                        <p class="mb-0 desc mobile-text"><%- description_text %></p>
                     <% } %>
                     <% if (description_link) { %>
-                        <a href="<%= description_link %>" class="mb-0 mt-1 desc mobile-link" rel="noopener noreferrer nofollow" target="_blank" title="<%= description_link %>" onclick="event.stopPropagation();"><%= description_display_link %></a>
+                        <a href="<%= description_link %>" class="mb-0 mt-1 desc mobile-link" rel="noopener noreferrer nofollow" target="_blank" onclick="event.stopPropagation();"><%- description_display_link %></a>
                     <% } %>
                 </div>
             </div>

@@ -116,14 +116,14 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
   if (apiResponse.success) {
     let formattedData = videoFormatter(apiResponse.data);
 
-    return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video',{
-      ...{
-        androidAppLink: appUpdateLinksConstants.androidUpdateLink,
-        iosAppLink: appUpdateLinksConstants.iosUpdateLink,
-        pageMeta: formattedData.page_meta,
-        homeUrl: formattedData.home_url,
-        showFooter: false
-      },  ...formattedData });
+    return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', {
+      androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+      iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+      pageMeta: formattedData.page_meta,
+      homeUrl: formattedData.home_url,
+      showFooter: false,
+      ...formattedData
+    });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
