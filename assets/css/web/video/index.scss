@@ -197,6 +197,19 @@ html, body{
     font-weight: 300
   }
 }
+
+.timerCta{
+  font-size: 12px;
+  margin-left: 2px;
+  font-family: AvenirNext-Medium;
+  &.web{
+    color: #6c757d;
+  }
+  &.mobile{
+    color: #FFFFFF;
+  }
+}
+
 #downloadModalSingleCTA {
   .open-pepo-app{
     background-color: $wildWatermelon;
@@ -205,6 +218,5 @@ html, body{
     border-radius: 3px;
     padding: 5px 12px;
   }
-
 }
 

@@ -32,7 +32,17 @@
                     <%- include('../partials/web/video/_action_buttons', {actionButtonsPos: "actionButtonsMobile"}) -%>
                 </div>
                 <div class="px-3 py-2 desc mobile" onclick="event.stopPropagation()">
-                    <div class="desc mobile-user-name">@<%= formattedEntityData.profile_username %><span style="color: #FFFFFF; font-weight: lighter"><%= formattedEntityData.display_cts %></span></div>
+                    <div class="d-flex align-items-center">
+                        <div class="desc mobile-user-name">@<%= formattedEntityData.profile_username %></div>
+                        <div class="ml-1 d-flex align-items-center">
+                            <svg width="12" height="12">
+                                <switch>
+                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-cta-icon"></use>
+                                </switch>
+                            </svg>
+                            <span class="timerCta mobile"><%= formattedEntityData.display_cts %></span>
+                        </div>
+                    </div>
                     <% if (formattedEntityData.description_text) { %>
                         <p class="mb-0 desc mobile-text"><%- formattedEntityData.description_text %></p>
                     <% } %>

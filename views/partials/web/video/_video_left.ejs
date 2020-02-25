@@ -2,7 +2,17 @@
     <div class="media align-items-center">
         <img class="mr-2 profileImage img-fluid" src="<%=formattedEntityData.original_profile_image_url%>" alt="">
         <div class="media-body">
-            <h6 class="m-0 user-name"><%= formattedEntityData.profile_name %></h6>
+            <div class="d-flex align-items-center">
+                <h6 class="m-0 user-name"><%= formattedEntityData.profile_name %></h6>
+                <div class="ml-1 d-flex align-items-center">
+                    <svg width="12" height="12">
+                        <switch>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-web-cta-icon"></use>
+                        </switch>
+                    </svg>
+                    <span class="timerCta web"><%= formattedEntityData.display_cts %></span>
+                </div>
+            </div>
             <span class="user-handle">@<%= formattedEntityData.profile_username %></span>
         </div>
     </div>
