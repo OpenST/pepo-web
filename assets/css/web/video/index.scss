@@ -38,7 +38,11 @@ html, body{
 
       .user-name{
         color: $valhalla;
+        overflow: hidden;
+        white-space: nowrap;
+        display: block;
         font-weight: 600;
+        text-overflow: ellipsis;
       }
 
       .user-handle{
@@ -70,10 +74,14 @@ html, body{
       font-size: 0;
       cursor: pointer;
       &:not(:last-child){
-        margin-bottom: 20px;
+        @media only screen and (min-width: 768px){
+          margin-bottom: 20px;
+        }
+        margin-bottom: 10px;
       }
     }
   }
+
 }
 
 .ppBtnUi{
@@ -91,6 +99,13 @@ html, body{
   font-size: 14px;
   font-weight: 600;
   margin-bottom: 3px;
+}
+
+.marNeg{
+  margin-bottom: -6px;
+  @media only screen and (min-width: 768px){
+    margin-bottom: 3px;
+  }
 }
 
 .toast {
@@ -180,6 +195,9 @@ html, body{
   }
   &.mobile-user-name{
     color: $white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-family: AvenirNext-Medium;
   }
   &.mobile-link{
