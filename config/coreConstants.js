@@ -32,7 +32,6 @@ class CoreConstant {
   }
 
   get USE_BASIC_AUTHENTICATION() {
-    return false;
     return process.env.PW_USE_BASIC_AUTH == '1';
   }
 
