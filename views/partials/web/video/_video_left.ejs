@@ -1,10 +1,10 @@
 <div class="col-md-6 col-lg-6 innerLeft py-3 h-100" style="overflow-y: scroll!important;">
     <div class="media align-items-center">
-        <img class="mr-2 profileImage img-fluid" src="<%=formattedEntityData.original_profile_image_url%>" alt="">
+        <img class="profileImage img-fluid" src="<%=formattedEntityData.original_profile_image_url%>" alt="">
         <div class="media-body" style="width: calc(100% - 50px);">
             <div class="d-flex align-items-center">
                 <h6 class="m-0 user-name"><%= formattedEntityData.profile_name %></h6>
-                <div class="ml-1 d-flex align-items-center">
+                <div class="ml-2 d-flex align-items-center">
                     <svg width="12" height="12">
                         <switch>
                             <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-web-cta-icon"></use>
@@ -17,10 +17,10 @@
         </div>
     </div>
     <% if (formattedEntityData.description_text) { %>
-        <p class="mt-3 mb-0 desc" style="font-size: 15px"><%- formattedEntityData.description_text %></p>
+        <p class="mb-0 desc"><%- formattedEntityData.description_text %></p>
     <% } %>
     <% if (formattedEntityData.description_link) { %>
-        <a href="<%= formattedEntityData.description_link %>" class="mt-2 desc-link" rel="noopener noreferrer nofollow" target="_blank"><%- formattedEntityData.description_display_link %></a>
+        <a href="<%= formattedEntityData.description_link %>" class="desc-link" rel="noopener noreferrer nofollow" target="_blank"><%- formattedEntityData.description_display_link %></a>
     <% } %>
     <ul class="mt-3 list-unstyled channel-list web">
         <% for(var i=0; i < formattedEntityData.channels_list.length; i++) { %>

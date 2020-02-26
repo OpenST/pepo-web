@@ -70,8 +70,8 @@
       background-color: $white;
     }
     .toggle-menu{
-      width: 30px;
-      height: 5px;
+      width: 25px;
+      height: 3px;
       position: relative;
       display: block;
       margin: 5px auto;
@@ -87,17 +87,22 @@
   }
 
   #toggle-menu.is-active .toggle-menu:nth-child(1){
-    -webkit-transform: translateY(10px) rotate(45deg);
-    -ms-transform: translateY(10px) rotate(45deg);
-    -o-transform: translateY(10px) rotate(45deg);
-    transform: translateY(10px) rotate(45deg);
+    -webkit-transform: translateY(8px) rotate(45deg);
+    -ms-transform: translateY(8px) rotate(45deg);
+    -o-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
 
   #toggle-menu.is-active .toggle-menu:nth-child(3){
-    -webkit-transform: translateY(-10px) rotate(-45deg);
-    -ms-transform: translateY(-10px) rotate(-45deg);
-    -o-transform: translateY(-10px) rotate(-45deg);
-    transform: translateY(-10px) rotate(-45deg);
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    -ms-transform: translateY(-8px) rotate(-45deg);
+    -o-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .pepo-brand {
+    font-size: 0;
+    //padding: 1rem 0.8rem;
   }
 
   @media only screen and (min-width: 768px){
@@ -116,6 +121,7 @@
     }
 
     .pepo-brand {
+      font-size: 0;
       padding: 1rem 0.8rem;
     }
 
