@@ -20,10 +20,10 @@ module.exports = {
   },
   "assets": {
     // @key 'js'
-    // @value: @Nullable @String - path to manifest file. 
-    "js_manifest": true, //Possilbe values - true/false/String (Manifest File Path relative to assets/css folder)
-    "css_manifest": true, //Possilbe values - true/false/String (Manifest File Path relative to assets/js folder)
+    // @value: @Nullable @String - path to manifest file.
+    "js_manifest": true, //Possible values - true/false/String (Manifest File Path relative to assets/css folder)
+    "css_manifest": true, //Possible values - true/false/String (Manifest File Path relative to assets/js folder)
     "common_js": true,
-    "common_css": true 
+    "common_css": true
   }
 };

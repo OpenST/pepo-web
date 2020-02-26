@@ -62,10 +62,15 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
    */
   _getPageTitle() {
     const oThis = this,
-      userId = oThis.videoResponse.video_details[oThis.videoId].creator_user_id,
+      videoDetails = oThis.videoResponse.video_details[oThis.videoId],
+      userId = videoDetails.creator_user_id,
       userInfo = oThis.videoResponse.users[userId];
 
-    return (userInfo.name + "'s Video " + oThis.videoId + " - Pepo");
+    const dateObj = new Date(videoDetails.cts * 1000),
+      dateStr = (dateObj.toLocaleString('en-US', {year: 'numeric', month: 'short', day: 'numeric'}) + " " +
+        dateObj.toLocaleString('en-US', {minute: '2-digit', hour: '2-digit', hour12: false}));
+
+    return (userInfo.name + "'s video on Pepo - " + dateStr);
   }
 
   /**
@@ -82,7 +87,7 @@ class GetFirebaseVideoUrl extends FirebaseUrlBase {
       return oThis.videoResponse.video_descriptions[descId].text;
     }
 
-    return coreConstants.DEFAULT_SHARE_DESCRIPTION;
+    return (coreConstants.DEFAULT_SHARE_TITLE + " " + coreConstants.DEFAULT_SHARE_DESCRIPTION);
   }
 
   /**

@@ -117,7 +117,11 @@ class CoreConstant {
   }
 
   get DEFAULT_SHARE_DESCRIPTION(){
-    return 'REAL PEOPLE. REAL CONNECTIONS.';
+    return 'Real people. Real connections.';
+  }
+
+  get DEFAULT_SHARE_TITLE(){
+    return 'Meet your peeps!';
   }
 
 }
