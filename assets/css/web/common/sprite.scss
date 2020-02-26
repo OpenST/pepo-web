@@ -66,3 +66,7 @@ $sprite-location: $urlPrefix + "/pepo-web-sprite.png";
 .modal-close-icon{
   @include icon-generator(50px, 50px, -16px, -240px, -16px, -16px, 50);
 }
+
+.user-empty-profile-icon{
+  @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 17.63);
+}
