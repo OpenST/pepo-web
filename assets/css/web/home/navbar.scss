@@ -4,8 +4,10 @@
 // Import theme variables
 @import "../../web/Starboy/variables";
 
-.pepo-nav{
-  background-color: #fff;
+.pepo-nav,
+.pepo-video{
+  min-height: 58px;
+  background-color: $white;
 
   .main-nav-item{
     position: relative;
@@ -33,11 +35,10 @@
 
   .main-menu {
     width: 100%;
-    background-color: #FFFFFF;
+    background-color: $white;
     .nav-item-wrapper{
-
-      padding-right: 10px;
-      padding-left: 10px;
+      padding-right: 15px;
+      padding-left: 15px;
       @media only screen and (min-width: 768px){
         padding-right: 0;
         padding-left: 0;
@@ -59,17 +60,19 @@
   #toggle-menu{
     font-size: 0;
     border-radius: 0;
-    padding: 0.9rem 0.875rem;
+    padding: 0;
+    margin-left: 15px;
     background-color: white;
     &.is-active{
-      background-color: #FFFFFF;
+      background-color: $white;
     }
     .toggle-menu{
-      width: 30px;
-      height: 5px;
-      position: relative;
+      width: 25px;
+      height: 3px;
       display: block;
       margin: 5px auto;
+      position: relative;
+      border-radius: 3px;
       background-color: $valhalla;
       -webkit-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
@@ -82,23 +85,28 @@
   }
 
   #toggle-menu.is-active .toggle-menu:nth-child(1){
-    -webkit-transform: translateY(10px) rotate(45deg);
-    -ms-transform: translateY(10px) rotate(45deg);
-    -o-transform: translateY(10px) rotate(45deg);
-    transform: translateY(10px) rotate(45deg);
+    -webkit-transform: translateY(8px) rotate(45deg);
+    -ms-transform: translateY(8px) rotate(45deg);
+    -o-transform: translateY(8px) rotate(45deg);
+    transform: translateY(8px) rotate(45deg);
   }
 
   #toggle-menu.is-active .toggle-menu:nth-child(3){
-    -webkit-transform: translateY(-10px) rotate(-45deg);
-    -ms-transform: translateY(-10px) rotate(-45deg);
-    -o-transform: translateY(-10px) rotate(-45deg);
-    transform: translateY(-10px) rotate(-45deg);
+    -webkit-transform: translateY(-8px) rotate(-45deg);
+    -ms-transform: translateY(-8px) rotate(-45deg);
+    -o-transform: translateY(-8px) rotate(-45deg);
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  .pepo-brand {
+    font-size: 0;
+    //padding: 1rem 0.8rem;
   }
 
   @media only screen and (min-width: 768px){
 
     .main-nav-item{
-      padding: 16px 12px;
+      padding: 0 12px;
       &:hover{
         text-decoration: none;
       }
@@ -111,7 +119,8 @@
     }
 
     .pepo-brand {
-      padding: 1rem 0.8rem;
+      font-size: 0;
+      //padding: 1rem 0.8rem;
     }
 
     #toggle-menu,
@@ -131,5 +140,16 @@
 @media only screen and (min-width: 992px){
   .modal-lg{
     max-width: 600px!important;
+  }
+}
+
+@media only screen and (max-width: 767px){
+  .main-menu {
+    position: absolute;
+    z-index: 9;
+    top: 57px;
+    width: 100%;
+    left: 0;
+    margin-left: auto !important;
   }
 }

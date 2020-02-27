@@ -3,6 +3,7 @@ const router = express.Router();
 
 const rootPrefix = '../..',
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
+  GetFirebaseHomeUrl = require(rootPrefix + '/app/services/FireBaseUrl/Home'),
   TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
   apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
@@ -11,24 +12,32 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   GetFirebaseReplyVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/ReplyVideo'),
   GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
   GetFirebaseUserProfileUrl = require(rootPrefix + '/app/services/FireBaseUrl/UserProfile'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response');
+  responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  GetVideo = require(rootPrefix + '/app/services/GetVideo'),
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
+  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-
+  const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform();
+  let firebaseGetTheAppUrl = '';
+  if ( apiResponse.success ) {
+    firebaseGetTheAppUrl = apiResponse.data.url;
+  }
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
-    iosAppLink: appUpdateLinksConstants.iosUpdateLink
+    iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+    firebaseUrls: {getTheApp: firebaseGetTheAppUrl}
   });
+
 });
 
 /* Double opt in page. */
@@ -101,11 +110,21 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
     );
   }
 
-  const apiResponse = await new GetFirebaseVideoUrl({decodedParams: req.decodedParams}).perform();
+  let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
+  let apiResponse = await getVideoObj.perform();
+  console.log("apiResponse ===== ", apiResponse);
+
   if (apiResponse.success) {
-    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
-      redirect_to_location: apiResponse.data.url,
-      pageMeta: apiResponse.data.pageMeta
+    let formattedData = new videoViewFormatter(apiResponse.data).perform();
+    console.log("apiResponse ===== ", formattedData);
+
+    return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', {
+      androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+      iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+      pageMeta: formattedData.page_meta,
+      firebaseUrls: {openInApp: formattedData.firebase_video_url},
+      showFooter: false,
+      formattedEntityData: formattedData
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

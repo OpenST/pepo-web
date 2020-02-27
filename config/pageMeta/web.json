@@ -42,5 +42,9 @@
   "store": {
     "page": "Store",
     "robots": "noindex, nofollow"
+  },
+  "video": {
+    "page": "Video",
+    "robots": "noindex, nofollow"
   }
 }

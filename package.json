@@ -22,6 +22,7 @@
     "helmet": "3.21.1",
     "sanitize-html": "1.19.3",
     "connect-assets": "6.0.1",
-    "node-sass": "4.12.0"
+    "node-sass": "4.12.0",
+    "moment": "2.24.0"
   }
 }

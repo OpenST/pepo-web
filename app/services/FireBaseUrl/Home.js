@@ -4,15 +4,13 @@ const rootPrefix = '../../..',
   coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
- * Class to get firebase redirection url for invite url
+ * Class to get pepo home page url.
  *
+ * @class GetHomeUrl
  */
-class GetFirebaseInviteUrl extends FirebaseUrlBase {
+class GetHomeUrl extends FirebaseUrlBase {
   constructor(params) {
     super(params);
-
-    const oThis = this;
-    oThis.inviteCode = oThis.decodedParams.code;
   }
 
   /**
@@ -24,13 +22,15 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
   async _asyncPerform() {
     const oThis = this;
 
-    return responseHelper.successWithData({
-      url: oThis._generateFireBaseUrl(),
+    const url = oThis._generateFireBaseUrl();
+
+    const response = {
+      url: url,
       pageMeta: {
         title: oThis.urlParams.st,
         description: '',
         robots: 'noindex, nofollow',
-        canonical: coreConstants.PEPO_DOMAIN,
+        canonical: oThis._pepoHomeBaseUrl(),
         og: {
           title: oThis.urlParams.st,
           description: '',
@@ -44,7 +44,9 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
           card: "summary_large_image"
         }
       }
-    });
+    };
+
+    return responseHelper.successWithData(response);
   }
 
   /**
@@ -67,23 +69,6 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
     return urlParams;
   }
 
-  /**
-   * Fetch ofl link
-   * @returns {*}
-   * @private
-   */
-  _fetchOflLink() {
-    const oThis = this;
-
-    let whitelistedCodes = ['whatgrindsmygears', 'epicenter', 'brave', 'linkedin', 'facebook', 'etherscan', 'ph', 'reddit', 'google', 'stories', 'tw'],
-      inviteCode = (oThis.inviteCode || '').toLowerCase()
-    ;
-
-    let baseLink = whitelistedCodes.includes(inviteCode) ? coreConstants.PEPO_DOMAIN + "/" + inviteCode + "/desktop" : coreConstants.PEPO_DOMAIN;
-    let queryString = oThis._generateUtmQueryString();
-
-    return baseLink + (queryString ? `?${queryString}` : '');
-  }
 
   /**
    * Fetch app launch link
@@ -93,13 +78,22 @@ class GetFirebaseInviteUrl extends FirebaseUrlBase {
   _fetchAppLaunchLink() {
     const oThis = this;
 
-    let baseLink = coreConstants.PEPO_DOMAIN;
-
+    let baseLink = oThis._pepoHomeBaseUrl();
     let queryString = oThis._generateUtmQueryString();
-    queryString +=  oThis.inviteCode ? '&invite=' + oThis.inviteCode : '';
 
     return baseLink + (queryString ? `?${queryString}` : '');
   }
+
+  /**
+   * Video base url
+   *
+   * @returns {string}
+   * @private
+   */
+  _pepoHomeBaseUrl() {
+    return `${coreConstants.PEPO_DOMAIN}`;
+  }
+
 }
 
-module.exports = GetFirebaseInviteUrl;
+module.exports = GetHomeUrl;

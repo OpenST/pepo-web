@@ -83,8 +83,8 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
       st: oThis.profileShareDetails.title || '',
-      sd: oThis.profileShareDetails.message ? oThis.profileShareDetails.message : 'For the best experience keep the checkbox selected',
-      si: oThis.profileShareDetails.poster_image_url ? oThis.profileShareDetails.poster_image_url : 'https://d3attjoi5jlede.cloudfront.net/images/dynamic-link/artboard.png',
+      sd: oThis.profileShareDetails.message ? oThis.profileShareDetails.message : coreConstants.DEFAULT_SHARE_DESCRIPTION,
+      si: oThis.profileShareDetails.poster_image_url ? oThis.profileShareDetails.poster_image_url : coreConstants.DEFAULT_SHARE_IMAGE,
       ofl: oThis._fetchOflLink()
     });
     // Assign all url params

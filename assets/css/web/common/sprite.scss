@@ -1,0 +1,80 @@
+$urlPrefix: "https://d3attjoi5jlede.cloudfront.net/images/pepo-web";
+$retina-sprite-location: $urlPrefix + "/pepo-web-sprite@2x.png";
+$sprite-location: $urlPrefix + "/pepo-web-sprite.png";
+
+@mixin icon-generator($width,$height,$posX,$posY,$offsetHover,$offsetActive,$scale:100) {
+  background-image: url($sprite-location);
+  background-size: 720px * $scale/100 1520px * $scale/100;
+  @media only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    background-image: url($retina-sprite-location);
+    background-size: 720px * $scale/100 1520px * $scale/100;
+  }
+  display: inline-block;
+  outline: none !important;
+  &:focus {
+    outline: none;
+    background-position: $posX * $scale/100 $posY * $scale/100;
+  }
+  width: $width * $scale/100;
+  height: $height * $scale/100;
+  background-position: $posX * $scale/100 $posY * $scale/100;
+  &:hover {
+    background-position: $offsetHover * $scale/100 $posY * $scale/100;
+  }
+  &:active {
+    background-position: $offsetActive * $scale/100 $posY * $scale/100;
+  }
+}
+
+.pepo-logo-nav{
+  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 25);
+}
+
+.pepo-logo-content{
+  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 50);
+}
+
+.google-play-icon{
+  @include icon-generator(354px, 110px, -94px, -14px, -94px, -94px, 50);
+}
+
+.app-store-icon{
+  @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 50);
+}
+
+.modal-google-play-icon{
+  @include icon-generator(354px, 110px, -94px, -14px, -94px, -94px, 40);
+}
+
+.modal-app-store-icon{
+  @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 40);
+}
+
+.video-web-replies-icon{
+  @include icon-generator(76px, 76px, 0px, 0px, 0px, 0px, 50);
+}
+
+.video-web-report-icon{
+  @include icon-generator(76px, 76px, 0px, -76px, 0px, 0px, 50);
+}
+
+.video-web-copy-icon{
+  @include icon-generator(76px, 76px, 0px, -160px, 0px, 0px, 50);
+}
+
+.video-play-icon{
+  @include icon-generator(108px, 108px, -454px, -14px, -454px, -454px, 60);
+}
+
+.modal-close-icon{
+  @include icon-generator(50px, 50px, -16px, -240px, -16px, -16px, 50);
+}
+
+.user-empty-profile-icon{
+  @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 17.63);
+}
