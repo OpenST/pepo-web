@@ -6,10 +6,7 @@
 
 .pepo-nav,
 .pepo-video{
-  min-height: 64px;
-  @media only screen and (min-width: 768px){
-    min-height: 58px;
-  }
+  min-height: 58px;
   background-color: $white;
 
   .main-nav-item{
@@ -40,9 +37,8 @@
     width: 100%;
     background-color: $white;
     .nav-item-wrapper{
-
-      padding-right: 10px;
-      padding-left: 10px;
+      padding-right: 15px;
+      padding-left: 15px;
       @media only screen and (min-width: 768px){
         padding-right: 0;
         padding-left: 0;
@@ -64,7 +60,8 @@
   #toggle-menu{
     font-size: 0;
     border-radius: 0;
-    padding: 0.8rem 0.875rem;
+    padding: 0;
+    margin-left: 15px;
     background-color: white;
     &.is-active{
       background-color: $white;
@@ -72,9 +69,10 @@
     .toggle-menu{
       width: 25px;
       height: 3px;
-      position: relative;
       display: block;
       margin: 5px auto;
+      position: relative;
+      border-radius: 3px;
       background-color: $valhalla;
       -webkit-transition: all 0.3s ease-in-out;
       -o-transition: all 0.3s ease-in-out;
@@ -108,7 +106,7 @@
   @media only screen and (min-width: 768px){
 
     .main-nav-item{
-      padding: 16px 12px;
+      padding: 0 12px;
       &:hover{
         text-decoration: none;
       }
@@ -122,7 +120,7 @@
 
     .pepo-brand {
       font-size: 0;
-      padding: 1rem 0.8rem;
+      //padding: 1rem 0.8rem;
     }
 
     #toggle-menu,
@@ -149,7 +147,7 @@
   .main-menu {
     position: absolute;
     z-index: 9;
-    top: 62px;
+    top: 57px;
     width: 100%;
     left: 0;
     margin-left: auto !important;

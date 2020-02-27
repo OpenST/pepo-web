@@ -13,12 +13,8 @@ html, body{
 
 .videoContainer{
   background-color: #f9f9f9;
-  max-height: calc(100% - 64px);
+  max-height: calc(100% - 58px);
   height: 100%;
-  @media only screen and (min-width: 768px){
-    max-height: calc(100% - 58px);
-    height: 100%;
-  }
 
   .innerContainer{
     height: 85%;
@@ -58,6 +54,7 @@ html, body{
         font-size: 12px;
         font-weight: 300;
         color: rgba(42, 41, 59, 0.5);
+        font-family: AvenirNext-Medium;
       }
 
       .desc{
@@ -120,7 +117,7 @@ html, body{
 }
 
 .toast {
-  top: 5%;
+  top: 78px;
   left: 50%;
   z-index:2;
   border-radius: 5px;
