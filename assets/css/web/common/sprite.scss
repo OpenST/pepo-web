@@ -47,6 +47,14 @@ $sprite-location: $urlPrefix + "/pepo-web-sprite.png";
   @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 50);
 }
 
+.modal-google-play-icon{
+  @include icon-generator(354px, 110px, -94px, -14px, -94px, -94px, 40);
+}
+
+.modal-app-store-icon{
+  @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 40);
+}
+
 .video-web-replies-icon{
   @include icon-generator(76px, 76px, 0px, 0px, 0px, 0px, 50);
 }
