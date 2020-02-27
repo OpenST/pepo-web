@@ -31,40 +31,29 @@ $sprite-location: $urlPrefix + "/pepo-web-sprite.png";
   }
 }
 
-.pepo-logo-nav{
-  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 25);
+
+$pepoLogoConfig: 'nav' 25, 'content' 50;
+
+@each $logo in $pepoLogoConfig {
+  .pepo-logo-#{nth($logo, 1)} {
+    @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, nth($logo, 2));
+  }
 }
 
-.pepo-logo-content{
-  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 50);
+$storeIcon: 'google-play' -14px 50, 'app-store' -128px 50, 'modal-google-play' -14px 40, 'modal-app-store' -128px 40;
+
+@each $store in $storeIcon {
+  .#{nth($store, 1)}-icon {
+    @include icon-generator(354px, 110px, -94px, nth($store, 2), -94px, -94px, nth($store, 3));
+  }
 }
 
-.google-play-icon{
-  @include icon-generator(354px, 110px, -94px, -14px, -94px, -94px, 50);
-}
+$vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
 
-.app-store-icon{
-  @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 50);
-}
-
-.modal-google-play-icon{
-  @include icon-generator(354px, 110px, -94px, -14px, -94px, -94px, 40);
-}
-
-.modal-app-store-icon{
-  @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 40);
-}
-
-.video-web-replies-icon{
-  @include icon-generator(76px, 76px, 0px, 0px, 0px, 0px, 50);
-}
-
-.video-web-report-icon{
-  @include icon-generator(76px, 76px, 0px, -76px, 0px, 0px, 50);
-}
-
-.video-web-copy-icon{
-  @include icon-generator(76px, 76px, 0px, -160px, 0px, 0px, 50);
+@each $vActIcon in $vActionIcons {
+  .video-web-#{nth($vActIcon, 1)}-icon {
+    @include icon-generator(76px, 76px, 0px, nth($vActIcon, 2), 0px, 0px, 50);
+  }
 }
 
 .video-play-icon{
@@ -78,3 +67,39 @@ $sprite-location: $urlPrefix + "/pepo-web-sprite.png";
 .user-empty-profile-icon{
   @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 17.63);
 }
+
+//.pepo-logo-nav{
+//  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 25);
+//}
+//
+//.pepo-logo-content{
+//  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 50);
+//}
+
+//.google-play-icon{
+//  @include icon-generator(354px, 110px, -94px, -14px, -94px, -94px, 50);
+//}
+
+//.app-store-icon{
+//  @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 50);
+//}
+
+//.modal-google-play-icon{
+//  @include icon-generator(354px, 110px, -94px, -14px, -94px, -94px, 40);
+//}
+
+//.modal-app-store-icon{
+//  @include icon-generator(354px, 110px, -94px, -128px, -94px, -94px, 40);
+//}
+
+//.video-web-replies-icon{
+//  @include icon-generator(76px, 76px, 0px, 0px, 0px, 0px, 50);
+//}
+//
+//.video-web-report-icon{
+//  @include icon-generator(76px, 76px, 0px, -76px, 0px, 0px, 50);
+//}
+//
+//.video-web-copy-icon{
+//  @include icon-generator(76px, 76px, 0px, -160px, 0px, 0px, 50);
+//}
