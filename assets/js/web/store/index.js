@@ -46,6 +46,8 @@
         oThis.approvedVideo.hide();
         oThis.currentProductId = $(this).data("product-id");
         oThis.dollarAmount = $(this).data("dollar-amount");
+        oThis.minDollarValue = $(this).data("min-dollar-value");
+        oThis.maxDollarValue = $(this).data("max-dollar-value");
 
         $("#usd-amount").val(oThis.dollarAmount);
 
@@ -58,6 +60,11 @@
         $('#usd-amount').attr({
           'data-pepocorn-per-dollar': oThis.pepocornPerDollar
         });
+
+        if(oThis.minDollarValue === oThis.maxDollarValue ){
+          $('#usd-amount').attr('disabled', true);
+          $('.input-group-text').css({'background-color': '#e9ecef'});
+        }
       })
     },
 
@@ -72,6 +79,8 @@
         $('.landscape-img').attr('src', '');
         $('.redemption-message').hide();
         $('#requestError').hide();
+        $('#usd-amount').attr('disabled', false);
+        $('.input-group-text').removeAttr('style');
       })
     },
 
