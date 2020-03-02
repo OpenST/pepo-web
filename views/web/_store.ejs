@@ -27,7 +27,9 @@
         <% redemption_products.forEach(function(dat, index) { %>
             <div class="col-6 form-group <%= index % 2 ? 'pl-2' : 'pr-2' %>">
                 <div class="col-12 embed-responsive embed-responsive-1by1 product-img-wrapper">
-                    <div class="description-markup d-none"><%- decodeURIComponent(dat.description) %></div>
+                    <% if (dat.description) { %>
+                        <div class="description-markup d-none"><%- decodeURIComponent(dat.description) %></div>
+                    <% } %>
                     <img src="<%= dat.images.square%>"
                          data-src="<%= dat.images.landscape%>"
                          class="embed-responsive-item product-img"
