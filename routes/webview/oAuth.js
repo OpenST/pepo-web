@@ -18,4 +18,14 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
   return renderResponseHelper.renderWithLayout(req, res, 'webView', '', {});
 });
 
+/* GET apple oauth page. */
+router.get('/apple/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', '', {});
+});
+
+/* GET google oauth page. */
+router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', '', {});
+});
+
 module.exports = router;
