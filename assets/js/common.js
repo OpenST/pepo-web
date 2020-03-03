@@ -8,3 +8,4 @@
 //= require plugins/jquery-validate/additional-methods
 //= require utils/formHelper
 //= require utils/navBar
+//= require login/AppleAuth

@@ -50,6 +50,8 @@ const startRequestLogLine = function(req, res, next) {
     req.headers['user-agent'];
   console.log(message);
 
+  console.log(req.headers);
+
   next();
 };
 
