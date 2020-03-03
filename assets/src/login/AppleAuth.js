@@ -1,6 +1,6 @@
 const { $ } = window;
 const  APPLE_CLIENT_ID = 'com.pepo.staging.signin';
-const APPLE_REDIRECT_URL = 'http://stagingpepo.com/connect/apple/oauth';
+const APPLE_REDIRECT_URL = 'https://stagingpepo.com/connect/apple/oauth';
 
 class AppleAuth{
     
