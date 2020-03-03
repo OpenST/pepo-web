@@ -6,16 +6,20 @@ class AppleAuth{
     
         init = () => {
 
-            $.getScript('https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js', () => {
-                console.log('script loaded');
-                AppleID.auth.init({
-                    clientId : APPLE_CLIENT_ID,
-                    scope : 'email name',
-                    redirectURI : APPLE_REDIRECT_URL,
-                    state : 'some string',
-                    responseMode : 'form_post'
-                });  
-                this.bindEvents();              
+            $.ajax({
+                url: 'https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js',
+                dataType: 'script',
+                cache: true,
+                success: () => {
+                    AppleID.auth.init({
+                        clientId : APPLE_CLIENT_ID,
+                        scope : 'email name',
+                        redirectURI : APPLE_REDIRECT_URL,
+                        state : 'some string',
+                        responseMode : 'form_post'
+                    });  
+                    this.bindEvents();
+                }
             });
 
         }
