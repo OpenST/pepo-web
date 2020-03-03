@@ -1,9 +1,11 @@
-#customBtn {
+.customBtn {
   display: inline-block;
   color: #444;
   white-space: nowrap;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 1px rgba(0, 0, 0, 0.1);
 }
-#customBtn:hover {
+.customBtn:hover {
   cursor: pointer;
 }
 span.label {
@@ -20,20 +22,17 @@ span.icon {
 span.buttonText {
   display: inline-block;
   vertical-align: middle;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 14px;
-  font-weight: bold;
-  /* Use the Roboto font that is loaded in the <head> */
-  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
 }
 
-.modal-dialog{
+.modal-dialog-login{
   margin: 68px 10px 10px auto;
 }
 
 .modal-content-login{
-  padding : 0px !important;
+  border-radius: 5px !important;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
 }
 .modal-backdrop{
   opacity: 0 !important;

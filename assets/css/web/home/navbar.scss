@@ -27,6 +27,21 @@
         margin-right: 16px;
       }
     }
+    &.d-app-nav-item-secondary{
+      background-color: $white;
+      border: 1.5px solid $wildWatermelon;
+      color: $wildWatermelon;
+      border-radius: 3px;
+      padding: 5px 12px;
+      @media only screen and (min-width: 768px){
+        margin-right: 16px;
+      }
+      &:hover{
+        color: $white;
+        border-color: $wildWatermelon;
+        background-color: $wildWatermelon;
+      }
+    }
     &:hover{
       text-decoration: none;
     }
