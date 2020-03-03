@@ -1,18 +1,21 @@
 import navBar from './common/navBar';
+import appleAuth from './login/AppleAuth';
 
-const { $, jQuery } = window;
+const { $ } = window;
 
 class Common {
 
     constructor(){
 
-        $(document).ready(function () {
+        $(document).ready(() => {
             navBar.init();
+            appleAuth.init();
         });
 
-        $(window).on('resize scroll', function(){
+        $(window).on('resize scroll', () => {
             navBar.fixedNavBarMenu();
         });
+
     }
 
 }
