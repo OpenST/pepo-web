@@ -25,7 +25,8 @@
     "morgan": "1.9.1",
     "node-sass": "4.13.0",
     "sanitize-html": "1.19.3",
-    "unescape": "1.0.1"
+    "unescape": "1.0.1",
+    "qs": "6.9.1"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",
@@ -43,7 +44,6 @@
     "babel-loader": "8.0.6",
     "clean-webpack-plugin": "3.0.0",
     "glob": "^7.1.6",
-    "qs": "^6.9.1",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
     "webpack-dev-server": "3.10.1"
