@@ -1,0 +1,42 @@
+const path = require('path');
+const glob = require('glob');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
+module.exports = {
+    mode: "development",
+    entry: glob.sync('./assets/src/**.js').reduce((obj, el) => {
+        obj[path.parse(el).name] = el;
+        return obj;
+    },{}),
+    output: {
+        path: path.resolve(__dirname, './assets/js'),
+        filename: '[name].js',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.(js)$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            "@babel/preset-env"
+                        ],
+                        plugins: [
+                            "@babel/plugin-proposal-class-properties",
+                            "@babel/plugin-transform-async-to-generator",
+                            ["@babel/plugin-transform-runtime",
+                                {
+                                    "regenerator": true
+                                }
+                            ]
+                        ]
+                    }
+                }
+            }
+        ]
+    }
+};
