@@ -10,9 +10,16 @@ class ResponseRenderer {
     return pageMetaProvider(contentPartialPath);
   }
 
+  validateCsrfToken(request, layout, locals){
+    if(layout == 'login'){
+      return;
+    }
+    this.populateCSRFToken(request, locals);
+  }
+
   renderWithLayout(request, response, layout, contentPartialPath, locals, callback) {
     locals = locals || {};
-    this.populateCSRFToken(request, locals);
+    this.validateCsrfToken(request, layout, locals);
 
     if ( !locals.pageMeta ) {
       locals.pageMeta = this.getPageMeta( contentPartialPath );
@@ -36,11 +43,7 @@ class ResponseRenderer {
   }
 
   populateCSRFToken(request, locals) {
-    try{
-      locals._CSRFToken = request.csrfToken();
-    } catch(e){
-
-    }
+    locals._CSRFToken = request.csrfToken();
   }
 }
 
