@@ -13,7 +13,7 @@
         <img src="https://d3attjoi5jlede.cloudfront.net/images/web/redemption/pepo-corn-unicorn.png" class="img-fluid" width="18"/>
         <span id="pepoCornBalance"><%= pepocorn_balance %></span> = $<span id="dollarBalance"><%= pepocorn_balance %></span>
     </p>
-    <p class="mb-0 approved-video">Minimum 15 Unicorns and 1 approved video required before redeeming.</p>
+    <p class="mb-0 approved-video">Minimum 15 Unicorns and 1 video are required before redeeming.</p>
     <p class="mb-0 approved-video">
         <a href="https://intercom.help/pepo/en/articles/3418202-what-are-pepo-unicorns" class="owningUnicornsLearn" target="_blank" rel="noopener noreferrer nofollow">Learn</a> all about the benefits of owning Unicorns.
     </p>
@@ -27,6 +27,9 @@
         <% redemption_products.forEach(function(dat, index) { %>
             <div class="col-6 form-group <%= index % 2 ? 'pl-2' : 'pr-2' %>">
                 <div class="col-12 embed-responsive embed-responsive-1by1 product-img-wrapper">
+                    <% if (dat.description) { %>
+                        <div class="description-markup d-none"><%- decodeURIComponent(dat.description) %></div>
+                    <% } %>
                     <img src="<%= dat.images.square%>"
                          data-src="<%= dat.images.landscape%>"
                          class="embed-responsive-item product-img"
@@ -35,6 +38,9 @@
                          data-product-kind="<%= dat.kind %>"
                          data-dollar-amount="<%= dat.dollarValue %>"
                          data-pepocorn-per-dollar="<%= dat.pepocornPerDollar %>"
+                         data-prod-desc="<%= dat.description %>"
+                         data-min-dollar-value="<%= dat.minDollarValue %>"
+                         data-max-dollar-value="<%= dat.maxDollarValue %>"
                     />
                 </div>
             </div>
@@ -43,10 +49,11 @@
 </div>
 
 <div class="container-fluid product-detail" style="display: none">
-    <p style="font-size: 20px" class="my-2" id="productKind"></p>
-    <div class="col-12 embed-responsive embed-responsive-16by9 mb-5">
+    <p style="font-size: 20px;font-weight: 600;line-height: initial;" class="mt-2 mb-3 text-left" id="productKind"></p>
+    <div class="col-12 embed-responsive embed-responsive-16by9 mb-4">
         <img class="embed-responsive-item landscape-img" src="" alt="16x9 image"/>
     </div>
+    <p id="prodDescription" class="text-left"></p>
     <div id="requestSection">
         <label>Choose value</label>
         <div class="input-group">
