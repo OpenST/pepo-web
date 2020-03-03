@@ -33,6 +33,12 @@
         e.stopPropagation();
         return false;
       });
+
+      $('.loginApp').on('click',function (e) {
+        $('#loginModal').modal('show');
+        e.preventDefault();
+        e.stopPropagation();
+      })
     },
 
     setupNavbar: function(){

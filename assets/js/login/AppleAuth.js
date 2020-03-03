@@ -13,8 +13,7 @@
                     scope : 'email name',
                     redirectURI : 'http://pepodev.com/connect/apple/oauth',//loginConstants.APPLE_REDIRECT_URL,
                     state : 'some string',
-                    responseMode : 'form_post',
-                    usePopup: true
+                    responseMode : 'form_post'
                 });
             } catch(e) {
                 console.log("Error occurred ", e);

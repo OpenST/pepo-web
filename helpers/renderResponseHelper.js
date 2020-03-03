@@ -36,7 +36,11 @@ class ResponseRenderer {
   }
 
   populateCSRFToken(request, locals) {
-    locals._CSRFToken = request.csrfToken();
+    try{
+      locals._CSRFToken = request.csrfToken();
+    } catch(e){
+
+    }
   }
 }
 

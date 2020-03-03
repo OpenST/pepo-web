@@ -9,3 +9,4 @@
 //= require utils/formHelper
 //= require utils/navBar
 //= require login/AppleAuth
+//= require login/GoogleAuth
