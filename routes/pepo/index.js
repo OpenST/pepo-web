@@ -6,7 +6,7 @@ const router = express.Router(),
 
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  authRouter = require(router + '/routes/pepo/oAuth'),
+  authRouter = require(rootPrefix + '/routes/pepo/oAuth'),
   staticContentsRoute = require(rootPrefix + '/routes/pepo/staticContents'),
   homeRouter = require(rootPrefix + '/routes/pepo/home'),
   inviteCodesRouter = require(rootPrefix + '/routes/pepo/inviteCodes'),
