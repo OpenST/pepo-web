@@ -10,3 +10,5 @@
 //= require utils/navBar
 //= require login/AppleAuth
 //= require login/GoogleAuth
+//= require login/GithubAuth
+//= require login/TwitterAuth
