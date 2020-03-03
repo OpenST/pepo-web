@@ -1,34 +1,31 @@
-;
-(function (window , $) {
-    var pepo = ns('pepo');
+const { $ } = window;
 
-    var twitterRedirectURL;
+class TwitterAuth{
+
+    constructor(){
+        this.twitterRedirectURL = '';
+    }
     
-    var oThis = pepo.appleAuth = {
-        init : function(){
-            oThis.getRequestToken();
-        },
-
-        getRequestToken : function(){
-            $.ajax({
-                type: "GET",
-                url: '/api/web/auth/twitter/request_token'
-            })
-            .then(function(res){
-                twitterRedirectURL = res.data && res.data.twitterRedirectUrl;
-            })
-        },
-        
-        bindEvents: function(){
-            $('#twitter-signin').click(function(e){
-                window.location = twitterRedirectURL;
-            })
-        }
+    init = () => {
+        this.getRequestToken();
     }
 
-    $(document).ready(function () {
-        oThis.init();
-        oThis.bindEvents();
-    });
+    getRequestToken = () => {
+        $.ajax({
+            type: "GET",
+            url: '/api/web/auth/twitter/request_token',
+            success: (res) => {
+                this.twitterRedirectURL = res.data && res.data.twitterRedirectUrl;
+                this.bindEvents();
+            }
+        })
+    }
+    
+    bindEvents = () => {
+        $('#twitter-signin').click((e)=>{
+            window.location = this.twitterRedirectURL;
+        })
+    }
+}
+export default new TwitterAuth();
 
-})(window, jQuery);

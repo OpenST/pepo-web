@@ -1,35 +1,32 @@
-;
-(function (window , $) {
-    var pepo = ns('pepo');
+import qs from 'qs';
 
-    var GITHUB_CLIENT_ID = 'dac2bcce562025beaf89';
-    var GITHUB_REDIRECT_URL = 'http://pepodev.com/connect/github/oauth';
-    var GITHUB_BASE_URL = 'https://github.com/login/oauth';
+const { $ } = window;
+const GITHUB_CLIENT_ID = 'dac2bcce562025beaf89';
+const GITHUB_REDIRECT_URL = 'http://pepodev.com/connect/github/oauth';
+const GITHUB_BASE_URL = 'https://github.com/login/oauth';
 
-    var githubRedirectURL;
-    
-    var oThis = pepo.appleAuth = {
-        init : function(){
-            var params = {
-                client_id : GITHUB_CLIENT_ID,
-                redirect_uri : GITHUB_REDIRECT_URL,
-                scope : 'read:user user:email',
-                response_type : 'code'
-              };
-              var queryParams = $.param(params);
-              githubRedirectURL = GITHUB_BASE_URL + '/authorize?'+queryParams;
-        },
-        
-        bindEvents: function(){
-            $('#github-signin').click(function(e){
-               window.location = githubRedirectURL;
-            })
-        }
+class GithubAuth{
+
+    constructor(){
+        this.githubRedirectURL = '';
     }
-
-    $(document).ready(function () {
-        oThis.init();
-        oThis.bindEvents();
-    });
-
-})(window, jQuery);
+    
+    init = () => {
+        let params = {
+            client_id : GITHUB_CLIENT_ID,
+            redirect_uri : GITHUB_REDIRECT_URL,
+            scope : 'read:user user:email',
+            response_type : 'code'
+            };
+            let queryParams = qs.stringify(params);
+            this.githubRedirectURL = GITHUB_BASE_URL + '/authorize?'+queryParams;
+            this.bindEvents();
+    }
+    
+    bindEvents= () => {
+        $('#github-signin').click((e) => {
+            window.location = this.githubRedirectURL;
+        })
+    }
+}
+export default new GithubAuth();

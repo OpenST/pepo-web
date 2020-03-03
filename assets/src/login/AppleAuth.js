@@ -1,6 +1,6 @@
 const { $ } = window;
 const  APPLE_CLIENT_ID = 'com.pepo.staging.signin';
-const APPLE_REDIRECT_URL = 'http://pepodev.com/connect/apple/oauth';
+const APPLE_REDIRECT_URL = 'http://stagingpepo.com/connect/apple/oauth';
 
 class AppleAuth{
     
@@ -26,16 +26,7 @@ class AppleAuth{
         
         bindEvents= () =>{
             $('#apple-signin').click(function(e){
-                try {
-                    AppleID.auth.signIn().then(function(res){
-                      console.log(res);
-                    })
-                    .catch(function(e){
-                      console.log(e);
-                    })
-                } catch ( error ) {
-                    console.log(error);
-                }
+                AppleID.auth.signIn();
               })
         }
     }

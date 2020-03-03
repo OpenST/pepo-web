@@ -6,6 +6,7 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  AppleAuthenticator = require(rootPrefix + '/app/services/Authenticate/Apple'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 /* GET twitter oauth page. */
@@ -20,7 +21,15 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
 
 /* GET apple oauth page. */
 router.post('/apple/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  return renderResponseHelper.renderWithLayout(req, res, 'login', '', {});
+  console.log('decodedParams: ', req.decodedParams);
+  let authenticator = new AppleAuthenticator({headers: req.headers, decodedParams: req.decodedParams});
+  let apiResponse = await authenticator.perform();
+
+  if (apiResponse.success) {
+    renderResponseHelper.renderWithLayout(req, res, 'login', '', {});
+  } else {
+    return responseHelper.renderApiResponse(apiResponse, res, {});
+  }
 });
 
 /* GET google oauth page. */
