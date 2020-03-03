@@ -1,5 +1,6 @@
 import navBar from './common/navBar';
 import appleAuth from './login/AppleAuth';
+import googleAuth from './login/GoogleAuth';
 
 const { $ } = window;
 
@@ -10,6 +11,7 @@ class Common {
         $(document).ready(() => {
             navBar.init();
             appleAuth.init();
+            googleAuth.init();
         });
 
         $(window).on('resize scroll', () => {

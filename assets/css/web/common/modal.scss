@@ -12,12 +12,12 @@ span.label {
   font-family: serif;
   font-weight: normal;
 }
-span.icon {
-  background: url('https://developers-dot-devsite-v2-prod.appspot.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+div.icon {
   display: inline-block;
   vertical-align: middle;
   width: 42px;
   height: 42px;
+  margin:5px;
 }
 span.buttonText {
   display: inline-block;
