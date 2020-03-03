@@ -11,6 +11,7 @@
     approvedVideo: $('.approved-video'),
     currentProductId: null,
     currentProductKind: null,
+    prodDescription: null,
     pollingInterval: 10000,
     maxPollingInterval: 60000,
     requestRoute: "/api/web/redemptions/request",
@@ -39,10 +40,14 @@
         oThis.productDetail.find('.landscape-img').attr('src', $(this).data('src'));
         oThis.jBackArrow.fadeIn(400);
         oThis.currentProductKind = $(this).data("product-kind");
+        var prodDescMarkup = $(this).parent().find(".description-markup").html();
         $('#productKind').text(oThis.currentProductKind.toLowerCase() + " Gift Card");
+        $('#prodDescription').html(prodDescMarkup);
         oThis.approvedVideo.hide();
         oThis.currentProductId = $(this).data("product-id");
         oThis.dollarAmount = $(this).data("dollar-amount");
+        oThis.minDollarValue = $(this).data("min-dollar-value");
+        oThis.maxDollarValue = $(this).data("max-dollar-value");
 
         $("#usd-amount").val(oThis.dollarAmount);
 
@@ -55,6 +60,11 @@
         $('#usd-amount').attr({
           'data-pepocorn-per-dollar': oThis.pepocornPerDollar
         });
+
+        if(oThis.minDollarValue === oThis.maxDollarValue ){
+          $('#usd-amount').attr('disabled', true);
+          $('.input-group-text').css({'background-color': '#e9ecef'});
+        }
       })
     },
 
@@ -65,9 +75,12 @@
         $('.products').fadeIn(400);
         oThis.approvedVideo.show();
         $('#productKind').text('');
+        $('#prodDescription').text('');
         $('.landscape-img').attr('src', '');
         $('.redemption-message').hide();
         $('#requestError').hide();
+        $('#usd-amount').attr('disabled', false);
+        $('.input-group-text').removeAttr('style');
       })
     },
 
