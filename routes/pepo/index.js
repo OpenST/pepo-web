@@ -6,7 +6,6 @@ const router = express.Router(),
 
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  authRouter = require(rootPrefix + '/routes/pepo/oAuth'),
   staticContentsRoute = require(rootPrefix + '/routes/pepo/staticContents'),
   homeRouter = require(rootPrefix + '/routes/pepo/home'),
   inviteCodesRouter = require(rootPrefix + '/routes/pepo/inviteCodes'),
@@ -58,8 +57,6 @@ const csrfProtection = csrf({
 });
 
 router.use('/', staticContentsRoute);
-
-router.use(pagePathConstants.connect, authRouter);
 
 // Add basic auth in chain
 router.use(basicAuthentication);

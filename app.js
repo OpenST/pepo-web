@@ -20,6 +20,7 @@ const elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker')
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   customMiddleware = require(rootPrefix + '/helpers/customMiddleware'),
+  socialConnectRoutes = require(rootPrefix + '/routes/socialConnect/index'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer');
 
 const requestSharedNameSpace = createNamespace('pepoWebNameSpace');
@@ -158,6 +159,8 @@ app.use('/', function(request, response, next){
   if (request.hostname === pepoHostName) {
     if (request.url.match('^' + pagePathConstants.webview + '/')) {
       webviewRoutes(request, response, next);
+    } else if (request.url.match('^' + pagePathConstants.connect + '/')) {
+      socialConnectRoutes(request, response, next);
     } else {
       pepoRoutes(request, response, next);
     }
