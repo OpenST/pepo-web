@@ -1,15 +1,13 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
+  GetCurrentUser = require(rootPrefix + '/lib/pepoApi/User'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
-  coreConstants = require(rootPrefix + '/config/coreConstants');
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
 
 /**
  * Class for Pre Launch User account details
  *
- * @class PreLaunchTwitterConnect
+ * @class GetAccount
  */
 class GetAccount extends ServiceBase {
   /**
@@ -52,20 +50,13 @@ class GetAccount extends ServiceBase {
     const oThis = this;
     logger.log('Start::_fetchAccountInfo');
 
-    let PreLaunchInviteObj = new PreLaunchInvite(oThis.headers);
-    let resp = await PreLaunchInviteObj.getAccountInfo();
+    let resp = await new GetCurrentUser(oThis.headers).getCurrentUser();
 
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
       oThis.serviceResp = resp
     }
-
-    let preLaunchInvite = oThis.serviceResp.data.preLaunchInvite;
-    let inviteCode = oThis.serviceResp.data.inviteCode;
-    preLaunchInvite['inviteUrl'] = pagePathConstants.inviteFullUrl(inviteCode.code);
-
-    logger.log('End::_fetchAccountInfo');
 
     return responseHelper.successWithData({});
   }
