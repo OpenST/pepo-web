@@ -8,7 +8,6 @@ const rootPrefix = '../..',
   oAuthRouter = require(rootPrefix + '/routes/socialConnect/oAuth'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
 
 const csrfProtection = csrf({
