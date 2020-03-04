@@ -27,7 +27,17 @@ class AppleAuth{
         bindEvents= () =>{
             $('#apple-signin').click(function(e){
                 AppleID.auth.signIn();
-              })
+            })
+        }
+
+        logout = () => {
+            $.ajax({
+                url: '/auth/apple-disconnect',
+                type: "POST",
+                success: () => {
+                   console.log("logged out");
+                }
+            });
         }
     }
 

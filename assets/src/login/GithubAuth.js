@@ -28,5 +28,15 @@ class GithubAuth{
             window.location = this.githubRedirectURL;
         })
     }
+
+    logout = () => {
+        $.ajax({
+            url: '/auth/github-disconnect',
+            type: "POST",
+            success: () => {
+               console.log("logged out");
+            }
+        });
+    }
 }
 export default new GithubAuth();

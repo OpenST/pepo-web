@@ -35,6 +35,16 @@ class GoogleAuth{
       });
     });
   }
+
+  logout = () => {
+    $.ajax({
+        url: '/auth/google-disconnect',
+        type: "POST",
+        success: () => {
+           console.log("logged out");
+        }
+    });
+}
 }
 
 export default new GoogleAuth();

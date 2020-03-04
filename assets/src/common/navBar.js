@@ -40,6 +40,12 @@ class NavBar{
             e.preventDefault();
             e.stopPropagation();
         })
+
+        $('#logoutApp').on('click',function (e) {
+            $('#loginModal').modal('show');
+            e.preventDefault();
+            e.stopPropagation();
+        })
     }
 
     setupUberBanner(){

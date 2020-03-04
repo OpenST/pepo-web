@@ -26,6 +26,16 @@ class TwitterAuth{
             window.location = this.twitterRedirectURL;
         })
     }
+
+    logout = () => {
+        $.ajax({
+            url: '/auth/twitter-disconnect',
+            type: "POST",
+            success: () => {
+               console.log("logged out");
+            }
+        });
+    }
 }
 export default new TwitterAuth();
 
