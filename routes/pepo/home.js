@@ -18,6 +18,7 @@ const rootPrefix = '../..',
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
+  GetFeed = require(rootPrefix + '/app/services/GetFeed'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
 
@@ -38,6 +39,19 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl}
   });
 
+});
+
+/* GET feed page. */
+router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  let feedApiResponse = await new GetFeed({headers: req.headers, decodedParams: req.decodedParams}).perform();
+
+  console.log("apiResponse ===== ", feedApiResponse);
+
+  if (feedApiResponse.success) {
+
+  } else {
+    return responseHelper.renderApiResponse(feedApiResponse, res, errorConfig);
+  }
 });
 
 /* Double opt in page. */
