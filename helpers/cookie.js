@@ -13,6 +13,11 @@ class CookieHelper {
     const newCookies = requestObj.headers[cookieConstants.newCookieName];
 
     for (let cookieName in newCookies) {
+      
+      if (cookieName == cookieConstants.csrfCookieName) {
+        continue;
+      }
+      
       let cookieData = newCookies[cookieName];
       responseObj.cookie(cookieName, cookieData.value, cookieData.options);
     }
