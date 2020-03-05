@@ -51,7 +51,7 @@ class GetSupportDetails extends ServiceBase {
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
-      oThis.serviceResp = resp;
+      oThis.serviceResp = resp.data[resp.data.result_type];
       oThis.serviceResp.data['_supportWidgetAppId'] = coreConstants.SUPPORT_WIDGET_APP_ID;
       let userName = oThis.serviceResp.data['user_name'];
       if (userName) {
