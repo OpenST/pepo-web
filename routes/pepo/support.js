@@ -16,6 +16,7 @@ router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, ne
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
   let getSupportDetailsObj = new GetSupportDetails({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getSupportDetailsObj.perform();
+  console.log('==apiResponse====', apiResponse);
   cookieHelper.setNewCookies(req, res);
 
   // Un-Comment following for local development of pepo-web. DO NOT COMMIT UN-COMMENTED.
