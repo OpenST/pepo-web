@@ -44,11 +44,20 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 /* GET feed page. */
 router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let feedApiResponse = await new GetFeed({headers: req.headers, decodedParams: req.decodedParams}).perform();
-
+  let firebaseGetTheAppUrl = '';
+  if ( feedApiResponse.success ) {
+    firebaseGetTheAppUrl = feedApiResponse.data.url;
+  }
   console.log("apiResponse ===== ", feedApiResponse);
 
   if (feedApiResponse.success) {
-
+    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_feed', {
+      success: true,
+      androidAppLink: appUpdateLinksConstants.androidUpdateLink,
+      iosAppLink: appUpdateLinksConstants.iosUpdateLink,
+      firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
+      showFooter: false
+    });
   } else {
     return responseHelper.renderApiResponse(feedApiResponse, res, errorConfig);
   }

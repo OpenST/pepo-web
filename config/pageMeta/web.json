@@ -46,5 +46,9 @@
   "video": {
     "page": "Video",
     "robots": "noindex, nofollow"
+  },
+  "feed": {
+    "page": "Feed",
+    "robots": "noindex, nofollow"
   }
 }

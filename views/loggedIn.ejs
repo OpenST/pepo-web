@@ -10,7 +10,9 @@
 
     <%- include(_contentPartial) -%>
 
-    <%- include partials/shared/_footer -%>
+    <% if (showFooter) { %>
+        <%- include partials/shared/_footer -%>
+    <% } %>
     
     <% include partials/shared/_script %>
   </body>
