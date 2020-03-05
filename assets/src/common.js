@@ -9,7 +9,7 @@ const { $ } = window;
 class Common {
 
     constructor(){
-
+        /* All document on ready tasks should be initiated from here */
         $(document).ready(() => {
             navBar.init();
             appleAuth.init();
