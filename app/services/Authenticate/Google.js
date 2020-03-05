@@ -36,23 +36,18 @@ class GoogleAuthenticator extends AuthenticatorBase {
 
     let errRedirectUrl = `${pagePathConstants.home}?e=1`;
 
-    if (oThis.decodedParams.code && oThis.decodedParams.id_token) {
-      let userDetails = {};
-      if(oThis.decodedParams.user){
-        userDetails = JSON.parse(oThis.decodedParams.user);
-      }
+    if (oThis.decodedParams.code) {
       const apiParams = {identity_token: oThis.decodedParams.id_token,
-          authorization_code: oThis.decodedParams.code, full_name: userDetails.name,
-          email: userDetails.email },
+          authorization_code: oThis.decodedParams.code },
 
         authenticatorApi = new AuthenticatorApi(oThis.headers),
-        resp = await authenticatorApi.appleLogin(apiParams);
+        resp = await authenticatorApi.googleLogin(apiParams);
 
       if (resp.isFailure()) {
         const responseDebugData = resp.getDebugData();
 
         return Promise.reject(responseHelper.error({
-          internal_error_identifier: 'a_s_a_a_1',
+          internal_error_identifier: 'a_s_a_g_1',
           api_error_identifier: 'unauthorized_api_request',
           debug_options: {redirectUrl: errRedirectUrl}
         }));
@@ -62,13 +57,13 @@ class GoogleAuthenticator extends AuthenticatorBase {
 
     } else {
       return Promise.reject(responseHelper.error({
-        internal_error_identifier: 'a_s_a_a_2',
+        internal_error_identifier: 'a_s_a_g_2',
         api_error_identifier: 'unauthorized_api_request',
         debug_options: {redirectUrl: errRedirectUrl}
       }));
     }
 
-    logger.log('End::_sendAppleLogin');
+    logger.log('End::_sendGoogleLogin');
 
     return responseHelper.successWithData({});
   }
