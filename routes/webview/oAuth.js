@@ -21,15 +21,7 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
 
 /* GET google oauth page. */
 router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  console.log('decodedParams: ', req.decodedParams);
-  let authenticator = new GoogleAuthenticator({headers: req.headers, decodedParams: req.decodedParams});
-  let apiResponse = await authenticator.perform();
-
-  if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'login', '', {});
-  } else {
-    return responseHelper.renderApiResponse(apiResponse, res, {});
-  }
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', '', {});
 });
 
 module.exports = router;

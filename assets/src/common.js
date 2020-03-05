@@ -4,6 +4,8 @@ import googleAuth from './login/GoogleAuth';
 import githubAuth from './login/GithubAuth';
 import twitterAuth from './login/TwitterAuth';
 
+require('../js/utils/ajaxHooks');
+
 const { $ } = window;
 
 class Common {
