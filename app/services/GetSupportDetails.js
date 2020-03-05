@@ -48,21 +48,23 @@ class GetSupportDetails extends ServiceBase {
     let supportApiObj = new SupportApi(oThis.headers);
     let resp = await supportApiObj.validateSupportLink(oThis.decodedParams);
 
+    let serviceResponse = {};
+
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
       const resultType = resp.data.result_type;
-      oThis.serviceResp.data = resp.data[resultType];
-      oThis.serviceResp.data['_supportWidgetAppId'] = coreConstants.SUPPORT_WIDGET_APP_ID;
-      let userName = oThis.serviceResp.data['user_name'];
+      serviceResponse = resp.data[resultType];
+      serviceResponse['_supportWidgetAppId'] = coreConstants.SUPPORT_WIDGET_APP_ID;
+      let userName = serviceResponse['user_name'];
       if (userName) {
-        oThis.serviceResp.data['unescaped_user_name'] = basicHelper.decodeHtmlEntity(userName);
+        serviceResponse['unescaped_user_name'] = basicHelper.decodeHtmlEntity(userName);
       } else {
-        oThis.serviceResp.data['unescaped_user_name'] = userName;
+        serviceResponse['unescaped_user_name'] = userName;
       }
     }
 
-    return responseHelper.successWithData({});
+    oThis.serviceResp = responseHelper.successWithData(serviceResponse);
   }
 
 }
