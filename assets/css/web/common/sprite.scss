@@ -60,6 +60,10 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(108px, 108px, -454px, -14px, -454px, -454px, 60);
 }
 
+.feed-video-play-icon{
+  @include icon-generator(108px, 108px, -454px, -14px, -454px, -454px, 40);
+}
+
 .modal-close-icon{
   @include icon-generator(50px, 50px, -16px, -240px, -16px, -16px, 50);
 }

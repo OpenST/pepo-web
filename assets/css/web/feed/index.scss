@@ -1,0 +1,53 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+
+.feedContainer{
+  min-height: 100%;
+  background-color: #f9f9f9;
+  .feedUnordered{
+    .feedList{
+      padding: 0;
+      flex-basis: 48%;
+      overflow: hidden;
+      margin: 0 1% 8px;
+      position: relative;
+      //border-radius: 4px;
+      @media only screen and (min-width: 768px){
+        margin: 0 1% 14px;
+      }
+      @media only screen and (min-width: 1024px){
+        flex-basis: 23%;
+        margin: 0 1% 18px;
+      }
+      @media only screen and (min-width: 1200px){
+        margin: 0 1% 20px;
+      }
+      .play-icon{
+        top: 50%;
+        left: 50%;
+        z-index: 1;
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+      .details{
+        bottom: 0;
+        z-index: 1;
+        width: 100%;
+        position: absolute;
+        padding: 0 10px 6px;
+      }
+      .desc{
+        color: #fff;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: initial;
+        display: inline-block;
+      }
+    }
+  }
+}
+
