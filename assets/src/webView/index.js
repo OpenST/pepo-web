@@ -1,4 +1,4 @@
-const { $ } = window;
+import $ from 'jquery';
 
 class WebView {
 
