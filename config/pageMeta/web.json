@@ -50,5 +50,12 @@
   "feed": {
     "page": "Feed",
     "robots": "noindex, nofollow"
+  },
+  "webView":{
+    "page" : "WebView",
+    "assets": {
+      "js_manifest" : true,
+      "css_manifest" : false
+    }
   }
 }
