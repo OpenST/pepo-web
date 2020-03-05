@@ -13,11 +13,11 @@ class GoogleAuth{
       });
   }
   disableLoginBtns = () =>{
-    $('.loginBtn').click(false);
+    $("#google-sign-in").removeClass().addClass("disableClick");
   }
 
   enableLoginBtns = () =>{
-    $('.loginBtn').click(false);
+    $("#google-sign-in").removeClass().addClass("enableClick");
   }
 
   getRedirectUrl= () =>{

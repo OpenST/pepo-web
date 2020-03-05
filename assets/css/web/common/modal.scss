@@ -37,3 +37,10 @@ span.buttonText {
 .modal-backdrop{
   opacity: 0 !important;
 }
+.disableClick{
+  pointer-events: none;
+}
+
+.enableClick{
+  pointer-events: auto;
+}

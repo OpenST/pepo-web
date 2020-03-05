@@ -11,11 +11,11 @@ class TwitterAuth{
     }
 
   disableLoginBtns = () =>{
-    $('.loginBtn').click(false);
+    $("#twitter-signin").removeClass().addClass("disableClick");
   }
 
   enableLoginBtns = () =>{
-    $('.loginBtn').click(false);
+    $("#twitter-signin").removeClass().addClass("enableClick");
   }
 
 
