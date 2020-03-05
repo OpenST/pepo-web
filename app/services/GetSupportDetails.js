@@ -48,8 +48,6 @@ class GetSupportDetails extends ServiceBase {
     let supportApiObj = new SupportApi(oThis.headers);
     let resp = await supportApiObj.validateSupportLink(oThis.decodedParams);
 
-    console.log('==resp.data====', resp.data);
-
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
