@@ -40,14 +40,15 @@
   },
   "video": {
     "page": "Video",
-    "robots": "noindex, nofollow"
+    "robots": "index, follow"
   },
   "feed": {
     "page": "Feed",
-    "robots": "noindex, nofollow"
+    "robots": "index, follow"
   },
   "webView":{
     "page" : "WebView",
+    "robots": "noindex, nofollow",
     "assets": {
       "js_manifest" : true,
       "css_manifest" : false
