@@ -20,6 +20,13 @@
    <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
   </head>
   <body contenteditable="false">
-  <%- include partials/shared/_script_webview.ejs %>
+    <%- include partials/shared/_script_webview.ejs %>
+
+    <script type="text/javascript"> 
+      window.oAuthData = '<%-JSON.stringify(locals.oauth_response) %>'
+    </script>
+
+    <div><%= JSON.stringify(locals) %></div>
   </body>
 </html>
+

@@ -140,9 +140,11 @@ var WebView = function WebView() {
 
   _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function () {
     window.addEventListener("load", function (e) {
+      var data = JSON.parse(window.oAuthData);
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
-        url: "/api/dummy",
+        url: "/api/web/google/login",
         method: 'POST',
+        data: data,
         success: function success(res) {
           console.log("success redirect ajax");
         },
