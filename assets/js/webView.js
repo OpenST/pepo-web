@@ -162,10 +162,11 @@ var WebView = function WebView() {
 
   _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function () {
     window.addEventListener("load", function (e) {
-      var data = JSON.parse(window.oAuthData);
+      var data = JSON.parse(window.oAuthData),
+          kind = window.oAuthKind;
       if (!data) return;
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
-        url: "/api/web/auth/google/login",
+        url: "/api/web/auth/".concat(kind, "/login"),
         method: 'POST',
         data: data,
         success: function success(res) {

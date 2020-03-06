@@ -24,6 +24,7 @@
 
     <script type="text/javascript"> 
       window.oAuthData = '<%-JSON.stringify(locals.oauth_response) %>'
+      window.oAuthKind = '<%= locals.oauth_kind %>'
     </script>
   </body>
 </html>

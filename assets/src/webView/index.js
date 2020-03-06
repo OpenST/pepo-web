@@ -8,10 +8,11 @@ class WebView {
 
   init =()=> {
     window.addEventListener("load", function(e){
-      let data = JSON.parse(window.oAuthData);
+      let data = JSON.parse(window.oAuthData),
+          kind = window.oAuthKind;
       if(!data) return;
       $.ajax({
-        url:"/api/web/auth/google/login",
+        url:`/api/web/auth/${kind}/login`,
         method:'POST',
         data: data,
         success:function (res) {
