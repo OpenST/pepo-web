@@ -11,8 +11,8 @@ const rootPrefix = '../..',
 /* GET github oauth page. */
 router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let locals = {};
-  if(req.decodedParams.oauth_token && req.decodedParams.oauth_verifier){
-    locals = {oauth_response: {code: ''}, oauth_kind: 'github'};
+  if(req.decodedParams.code){
+    locals = {oauth_response: {code: req.decodedParams.code}, oauth_kind: 'github'};
   }
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', {});
 });
