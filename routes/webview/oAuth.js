@@ -28,4 +28,13 @@ router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
 
+/* GET google oauth page. */
+router.post('/apple/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  let locals = {};
+  if(req.decodedParams.code){
+    locals = {oauth_response: {authorization_code: req.decodedParams.code, identity_token: req.decodedParams.id_token}};
+  }
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
+});
+
 module.exports = router;
