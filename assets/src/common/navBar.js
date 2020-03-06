@@ -36,7 +36,17 @@ class NavBar{
         });
 
         $('.loginApp').on('click',function (e) {
-            $('#loginModal').modal('show');
+            let loginModal = $('#loginModal');
+            loginModal.modal({
+              backdrop:false
+            });
+            loginModal.modal('show');
+                $('body').on('click',function () {
+                    if(loginModal.length !== 0 ){
+                    loginModal.modal('hide');
+                }
+
+            });
             e.preventDefault();
             e.stopPropagation();
         })

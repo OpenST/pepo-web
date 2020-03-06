@@ -198,7 +198,16 @@ var NavBar = /*#__PURE__*/function () {
         return false;
       });
       $('.loginApp').on('click', function (e) {
-        $('#loginModal').modal('show');
+        var loginModal = $('#loginModal');
+        loginModal.modal({
+          backdrop: false
+        });
+        loginModal.modal('show');
+        $('body').on('click', function () {
+          if (loginModal.length !== 0) {
+            loginModal.modal('hide');
+          }
+        });
         e.preventDefault();
         e.stopPropagation();
       });
