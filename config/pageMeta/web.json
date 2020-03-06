@@ -2,11 +2,6 @@
   "home": {
     "page": ""
   },
-  "account": {
-    "page": "Account",
-    "canonical": "https://pepo.com/account",
-    "robots": "noindex, nofollow"
-  },
   "doptin": {
     "page": "Double Optin",
     "canonical": "https://pepo.com/doptin",

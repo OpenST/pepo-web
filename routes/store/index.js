@@ -48,7 +48,7 @@ const csrfProtection = csrf({
     signed: true, // Indicates if the cookie should be signed
     secure: basicHelper.isProduction(), // Marks the cookie to be used with HTTPS only
     path: '/',
-    //sameSite: 'strict', // sets the same site policy for the cookie
+    sameSite: 'strict', // sets the same site policy for the cookie
     domain: coreConstants.COOKIE_DOMAIN
   }
 });

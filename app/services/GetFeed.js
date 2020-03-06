@@ -11,7 +11,7 @@ const rootPrefix = '../..',
  */
 class GetFeed extends ServiceBase {
   /**
-   * Constructor GetAccount
+   * Constructor
    *
    * @augments ServiceBase
    *
@@ -42,14 +42,14 @@ class GetFeed extends ServiceBase {
   }
 
   /**
-   * Fetch GetAccount
+   * Fetch feed
    *
    * @return {Promise<Result>}
    * @private
    */
   async _fetchFeed() {
     const oThis = this;
-    logger.log('Start::_fetchAccountInfo');
+    logger.log('Start::_fetchFeed');
 
     let resp = await new Feed(oThis.headers).getFeed();
 

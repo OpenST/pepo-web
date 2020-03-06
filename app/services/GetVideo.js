@@ -12,7 +12,7 @@ const rootPrefix = '../..',
  */
 class GetVideo extends ServiceBase {
   /**
-   * Constructor GetAccount
+   * Constructor
    *
    * @augments ServiceBase
    *
@@ -43,14 +43,14 @@ class GetVideo extends ServiceBase {
   }
 
   /**
-   * Fetch GetAccount
+   * Fetch video
    *
    * @return {Promise<Result>}
    * @private
    */
   async _fetchVideo() {
     const oThis = this;
-    logger.log('Start::_fetchAccountInfo');
+    logger.log('Start::_fetchVideo');
 
     let video = new Video(oThis.headers);
     let resp = await video.getVideoDetails(oThis.decodedParams);

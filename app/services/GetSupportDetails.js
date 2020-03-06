@@ -7,7 +7,7 @@ const rootPrefix = '../..',
 
 class GetSupportDetails extends ServiceBase {
   /**
-   * Constructor for Pre Launch User account details
+   * Constructor
    *
    * @augments ServiceBase
    *

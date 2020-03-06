@@ -4,10 +4,7 @@ const router = express.Router();
 const rootPrefix = '../..',
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
   GetFirebaseHomeUrl = require(rootPrefix + '/app/services/FireBaseUrl/Home'),
-  TwitterAuthenticate = require(rootPrefix + '/app/services/TwitterAuthenticate'),
-  apiInternalCodesConstants = require(rootPrefix + '/lib/globalConstant/apiInternalCodes'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  cookieHelper = require(rootPrefix + '/helpers/cookie'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
@@ -77,40 +74,6 @@ router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, as
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: true});
   } else {
     renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: false});
-  }
-
-});
-
-/* GET home page. */
-router.get('/twitter/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-
-  if (!req.decodedParams.rd) {
-    if (!req.decodedParams.oauth_token || !req.decodedParams.oauth_verifier) {
-      return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
-    }
-
-    let redirectUrl = req.path + `?oauth_token=${escape(req.decodedParams.oauth_token)}&oauth_verifier=${escape(req.decodedParams.oauth_verifier)}&rd=1`;
-    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
-  }
-
-  let twitterAuthenticateObj = new TwitterAuthenticate({headers: req.headers, decodedParams: req.decodedParams});
-  let apiResponse = await twitterAuthenticateObj.perform();
-
-  cookieHelper.setNewCookies(req, res);
-
-  if (apiResponse.success) {
-    let redirectUrl = pagePathConstants.account;
-    if (apiResponse.data['newSignup']) {
-      redirectUrl = redirectUrl + '#new'
-    }
-    renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: redirectUrl});
-  } else {
-    const parsedResponse = apiResponse.getDebugData();
-    if (parsedResponse.err.code === apiInternalCodesConstants.alreadyRegisteredUserInApp) {
-      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=2`});
-    } else {
-      renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {redirect_to_location: `${pagePathConstants.home}?e=1`});
-    }
   }
 
 });

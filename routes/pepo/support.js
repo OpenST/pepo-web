@@ -11,7 +11,7 @@ const rootPrefix = '../..',
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
-/* GET users account page. */
+/* GET support page. */
 router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
   let getSupportDetailsObj = new GetSupportDetails({headers: req.headers, decodedParams: req.decodedParams});
