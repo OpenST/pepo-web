@@ -1,17 +1,13 @@
 <section id="feedModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div class="container-fluid videoContainer">
-                <div class="row h-100 justify-content-center align-items-center">
-                    <div class="col-12 col-lg-8 innerContainer">
-                        <div class="row h-100">
-                            <div class="col pr-0 h-100" style="overflow: hidden">
-                                <div class="row h-100">
-                                    <%- include _feed_modal_left-%>
-                                    <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                                        <%- include _feed_video_player-%>
-                                    </div>
-                                </div>
+            <div class="container-fluid videoContainer" style="background-color: transparent">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-12 col-lg-10 col-xl-8 innerContainer">
+                        <div class="row">
+                            <%- include _feed_modal_left-%>
+                            <div class="col-md-6 col-lg-6 innerRight p-0">
+                                <%- include _feed_video_player-%>
                             </div>
                         </div>
                     </div>
