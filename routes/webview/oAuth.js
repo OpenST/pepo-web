@@ -23,7 +23,7 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
 router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let locals = {};
   if(req.decodedParams.code){
-    locals = {authorization_code: req.decodedParams.code};
+    locals = {oauth_response: {authorization_code: req.decodedParams.code}};
   }
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
