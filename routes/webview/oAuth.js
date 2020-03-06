@@ -19,6 +19,16 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
   return renderResponseHelper.renderWithLayout(req, res, 'webView', '', {});
 });
 
+/* GET twitter oauth page. */
+router.get('/twitter/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  let locals = {};
+  if(req.decodedParams.oauth_token && req.decodedParams.oauth_verifier){
+    locals = {oauth_response: {oauth_token: req.decodedParams.oauth_token,
+        oauth_verifier: req.decodedParams.oauth_verifier}};
+  }
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
+});
+
 /* GET google oauth page. */
 router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let locals = {};
@@ -28,7 +38,7 @@ router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
 
-/* GET google oauth page. */
+/* GET apple oauth page. */
 router.post('/apple/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let locals = {};
   if(req.decodedParams.code){
