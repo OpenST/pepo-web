@@ -5,6 +5,13 @@
 
     init : function () {
       var oThis = this;
+
+      $('.feedList').on('click',function (e) {
+        $('#feedModal').modal('show');
+        e.preventDefault();
+        e.stopPropagation();
+      })
+
     },
 
   };
