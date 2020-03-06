@@ -16,10 +16,10 @@ export PW_USE_BASIC_AUTH='0'
 export PW_BASIC_AUTH_USERNAME='test'
 export PW_BASIC_AUTH_PASSWORD='testpasswd'
 
-export PEPO_DOMAIN='http://pepodev.com:8080';
-export PEPO_STORE_DOMAIN='http://store.pepodev.com:8080';
-export PW_INVITE_DOMAIN='http://join.pepodev.com:8080';
-export PW_FIREBASE_DOMAIN='http://app.pepodev.com:8080';
+export PEPO_DOMAIN='http://pepodev.com';
+export PEPO_STORE_DOMAIN='http://store.pepodev.com';
+export PW_INVITE_DOMAIN='http://join.pepodev.com';
+export PW_FIREBASE_DOMAIN='http://app.pepodev.com';
 export PW_COOKIE_SECRET='6BC9B1968BBA53CA8E28878DAD4AB549B154027F10EA1C3FD2D37BAE6F9A5540'
 
 export PW_CLOUD_FRONT_BASE_DOMAIN='https://d3attjoi5jlede.cloudfront.net/'

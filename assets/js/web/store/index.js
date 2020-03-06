@@ -1,7 +1,6 @@
 ;
 (function (window, $) {
-  var ost = ns('ost');
-  var oThis = ost.storePage = {
+  var oThis = {
 
     jBackArrow: $('#backArrowAction'),
     productImgWrapper: $('.product-img'),
@@ -175,6 +174,7 @@
 
   $(document).ready(function () {
     $('.app-footer').hide();
+    oThis.init();
   });
 
 })(window, jQuery);

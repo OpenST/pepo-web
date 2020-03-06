@@ -17,29 +17,9 @@
       <link rel="icon" type="image/png" sizes="16x16" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/16x16.png">
    <%- include partials/shared/_csrf -%>
    <%- include partials/shared/_dev_env -%>
-   <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>   
+   <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
   </head>
   <body contenteditable="false">
-
-    <% include partials/shared/_script %>
-   
+  <%- include partials/shared/_script_webview.ejs %>
   </body>
-
-  <script>
-    window.addEventListener("load", function(e){
-      setTimeout(function(){
-        $.ajax({
-          url:"/api/web/auth/google/login",
-          method:'POST',
-          success:function (res) {
-            console.log("success redirect ajax")
-          },
-          error : function (err) {
-            console.log("error redirect ajax")
-          }
-        })
-      }, 10000);
-
-   });
- </script>
 </html>

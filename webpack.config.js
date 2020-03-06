@@ -3,14 +3,17 @@ const glob = require('glob');
 const webpack = require('webpack');
 
 module.exports = {
-    mode: "development",
+    mode: 'none',
     entry: glob.sync('./assets/src/**.js').reduce((obj, el) => {
         obj[path.parse(el).name] = el;
         return obj;
     },{}),
     output: {
         path: path.resolve(__dirname, './assets/js'),
-        filename: '[name].js',
+        filename: '[name].js'
+    },
+    externals: {
+        jquery: 'jQuery'
     },
     module: {
         rules: [

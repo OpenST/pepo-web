@@ -8,23 +8,32 @@
 .feedContainer{
   min-height: 100%;
   background-color: #f9f9f9;
+  .container{
+    max-width: 1000px;
+  }
   .feedUnordered{
     .feedList{
       padding: 0;
-      flex-basis: 48%;
       overflow: hidden;
-      margin: 0 1% 8px;
-      position: relative;
+      background-clip: padding-box;
+      border: 5px solid transparent;
+      @media only screen and (min-width: 768px){
+        border: 7px solid transparent;
+      }
+      //flex-basis: 48%;
+      //max-width: 236px;
+      //margin: 0 1% 8px;
+      //position: relative;
       //border-radius: 4px;
       @media only screen and (min-width: 768px){
-        margin: 0 1% 14px;
+        //margin: 0 1% 14px;
       }
       @media only screen and (min-width: 1024px){
-        flex-basis: 23%;
-        margin: 0 1% 18px;
+        //flex-basis: 23%;
+        //margin: 0 1% 18px;
       }
       @media only screen and (min-width: 1200px){
-        margin: 0 1% 20px;
+        //margin: 0 1% 20px;
       }
       .play-icon{
         top: 50%;

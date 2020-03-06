@@ -11,9 +11,6 @@ class ResponseRenderer {
   }
 
   validateCsrfToken(request, layout, locals){
-    if(layout == 'login'){
-      return;
-    }
     this.populateCSRFToken(request, locals);
   }
 
