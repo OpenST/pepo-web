@@ -26,7 +26,7 @@ const csrfProtection = csrf({
 
 router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 
-// router.use(csrfProtection);
+router.use(csrfProtection);
 
 router.use(pagePathConstants.webview, oAuthRouter);
 
