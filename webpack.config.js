@@ -15,6 +15,9 @@ module.exports = {
     externals: {
         jquery: 'jQuery'
     },
+    node: {
+        fs: 'empty'
+    },
     module: {
         rules: [
             {
@@ -36,6 +39,13 @@ module.exports = {
                             ]
                         ]
                     }
+                }
+            },
+            {
+                test: /\.html$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'html-loader'
                 }
             }
         ]
