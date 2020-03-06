@@ -1,42 +1,28 @@
-import qs from 'qs';
+import Base from './Base';
 
-const { $ } = window;
-const GITHUB_CLIENT_ID = 'dac2bcce562025beaf89';
-const GITHUB_REDIRECT_URL = 'http://pepodev.com/connect/github/oauth';
-const GITHUB_BASE_URL = 'https://github.com/login/oauth';
+class GithubAuth extends Base{
 
-class GithubAuth{
-
-    constructor(){
-        this.githubRedirectURL = '';
-    }
-    
-    init = () => {
-        let params = {
-            client_id : GITHUB_CLIENT_ID,
-            redirect_uri : GITHUB_REDIRECT_URL,
-            scope : 'read:user user:email',
-            response_type : 'code'
-            };
-            let queryParams = qs.stringify(params);
-            this.githubRedirectURL = GITHUB_BASE_URL + '/authorize?'+queryParams;
-            this.bindEvents();
-    }
-    
-    bindEvents= () => {
-        $('#github-signin').click((e) => {
-            window.location = this.githubRedirectURL;
-        })
+    constructor( params ) {
+      super( params );
     }
 
-    logout = () => {
-        $.ajax({
-            url: '/auth/github-disconnect',
-            type: "POST",
-            success: () => {
-               console.log("logged out");
-            }
-        });
+    getButtonSelector = () => {
+      return '#githubSignIn';
     }
+
+    getUrlEndpoint = () => {
+      return '/api/web/auth/github/redirect-url';
+    }
+
+    getDisconnectUrl = () => {
+      return '/auth/github-disconnect';
+    }
+ 
 }
+
 export default new GithubAuth();
+
+
+
+
+

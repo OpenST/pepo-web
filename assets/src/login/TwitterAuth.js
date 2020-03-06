@@ -1,65 +1,28 @@
-const { $ } = window;
+import Base from './Base';
 
-class TwitterAuth{
+class TwitterAuth extends Base{
 
-    constructor(){
-        this.twitterRedirectURL = '';
-    }
-    
-    init = () => {
-        this.bindEvents();
+    constructor( params ) {
+      super( params );
     }
 
-  disableLoginBtns = () =>{
-    $("#twitter-signin").removeClass().addClass("disableClick");
-  }
-
-  enableLoginBtns = () =>{
-    $("#twitter-signin").removeClass().addClass("enableClick");
-  }
-
-
-  getRedirectUrl = () => {
-        $.ajax({
-            type: "GET",
-            url: '/api/web/auth/twitter/request-token'
-        }).then(
-          ( response ) =>{
-            this.enableLoginBtns();
-              if(response && response.success){
-                this.storeCurrentURL();
-                let authUrl = response && response.data && response.data.redirect_url;
-                authUrl = authUrl + '&state='+window.location;
-                window.location = authUrl;
-              }
-          },
-          ( error ) => {
-            this.enableLoginBtns();
-            console.log(" *** error *** ",error);
-          }
-        )
+    getButtonSelector = () => {
+      return '#twitterSignIn';
     }
 
-  bindEvents = () => {
-        $('#twitter-signin').click((e)=>{
-          this.disableLoginBtns()
-          this.getRedirectUrl();
-        })
+    getUrlEndpoint = () => {
+      return '/api/web/auth/twitter/redirect-url';
     }
 
-  storeCurrentURL = () =>{
-        document.cookie = "state="+window.location;
-  }
-
-    logout = () => {
-        $.ajax({
-            url: '/auth/twitter-disconnect',
-            type: "POST",
-            success: () => {
-               console.log("logged out");
-            }
-        });
+    getDisconnectUrl = () => {
+      return '/auth/twitter-disconnect';
     }
+ 
 }
+
 export default new TwitterAuth();
+
+
+
+
 
