@@ -21,7 +21,11 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
 
 /* GET google oauth page. */
 router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', {});
+  let locals = {};
+  if(req.decodedParams.code){
+    locals = {authorization_code: req.decodedParams.code};
+  }
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
 
 module.exports = router;
