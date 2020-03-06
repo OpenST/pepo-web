@@ -14,7 +14,7 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
   if(req.decodedParams.code){
     locals = {oauth_response: {code: req.decodedParams.code}, oauth_kind: 'github'};
   }
-  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', {});
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
 
 /* GET twitter oauth page. */
