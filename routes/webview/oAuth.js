@@ -12,7 +12,7 @@ const rootPrefix = '../..',
 router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let locals = {};
   if(req.decodedParams.code){
-    locals = {oauth_response: {code: req.decodedParams.code}, oauth_kind: 'github'};
+    locals = {oauth_response: {authorization_code: req.decodedParams.code}, oauth_kind: 'github'};
   }
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
