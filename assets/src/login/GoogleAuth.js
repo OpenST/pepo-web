@@ -1,66 +1,23 @@
-const { $ } = window;
+import Base from './Base';
 
-class GoogleAuth{
+class GoogleAuth extends Base{
 
-  init =()=> {
-    this.bindEvents();
-  }
-
-  bindEvents = () =>{
-    $('#google-sign-in').on('click',()=> {
-      this.disableLoginBtns()
-      this.getRedirectUrl();
-      });
-  }
-  disableLoginBtns = () =>{
-    $("#google-sign-in").removeClass().addClass("disableClick");
-  }
-
-  enableLoginBtns = () =>{
-    $("#google-sign-in").removeClass().addClass("enableClick");
-  }
-
-  getRedirectUrl= () =>{
-    $.ajax({
-      url:'/api/web/auth/google/request-token',
-      method:'GET'
-    }).then(
-      /* success callback */
-      ( response )=>{
-        this.onSuccess(response);
-      },
-      /* error callback */
-      ( error )=>{
-       this.onError( error );
-      }
-
-    );
-  }
-
-  onSuccess =( response )=> {
-    this.enableLoginBtns();
-    if (response && response.success) {
-      console.log("*** sucesss", response);
-      let authUrl = response && response.data && response.data.redirect_url;
-      authUrl = authUrl + '&state=' + window.location;
-      window.location = authUrl;
+    constructor( params ) {
+      super( params );
     }
-  }
 
-  onError =( error )=> {
-    this.enableLoginBtns();
-    console.log("*** error *** ");
-  }
+    getButtonSelector = () => {
+      return '#googleSignIn';
+    }
 
-  logout = () => {
-    $.ajax({
-        url: '/auth/google-disconnect',
-        type: "POST",
-        success: () => {
-           console.log("logged out");
-        }
-    });
-}
+    getUrlEndpoint = () => {
+      return '/api/web/auth/google/redirect-url';
+    }
+
+    getDisconnectUrl = () => {
+      return '/api/web/auth/google-disconnect';
+    }
+ 
 }
 
 export default new GoogleAuth();

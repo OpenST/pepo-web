@@ -1,44 +1,28 @@
-const { $ } = window;
-const  APPLE_CLIENT_ID = 'com.pepo.staging.signin';
-const APPLE_REDIRECT_URL = 'http://stagingpepo.com/connect/apple/oauth';
+import Base from './Base';
 
-class AppleAuth{
+class AppleAuth extends Base{
 
-        init = () => {
-
-            $.ajax({
-                url: 'https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js',
-                dataType: 'script',
-                cache: true,
-                success: () => {
-                    AppleID.auth.init({
-                        clientId : APPLE_CLIENT_ID,
-                        scope : 'email name',
-                        redirectURI : APPLE_REDIRECT_URL,
-                        state : 'some string',
-                        responseMode : 'form_post'
-                    });
-                    this.bindEvents();
-                }
-            });
-
-        }
-
-        bindEvents= () =>{
-            $('#apple-signin').click(function(e){
-                AppleID.auth.signIn();
-            })
-        }
-
-        logout = () => {
-            $.ajax({
-                url: '/auth/apple-disconnect',
-                type: "POST",
-                success: () => {
-                   console.log("logged out");
-                }
-            });
-        }
+    constructor( params ) {
+      super( params );
     }
 
+    getButtonSelector = () => {
+      return '#appleSignIn';
+    }
+
+    getUrlEndpoint = () => {
+      return '/api/web/auth/apple/redirect-url';
+    }
+
+    getDisconnectUrl = () => {
+      return '/api/web/auth/apple-disconnect';
+    }
+ 
+}
+
 export default new AppleAuth();
+
+
+
+
+
