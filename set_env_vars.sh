@@ -20,7 +20,7 @@ export PEPO_DOMAIN='http://pepodev.com:8080';
 export PEPO_STORE_DOMAIN='http://store.pepodev.com:8080';
 export PW_INVITE_DOMAIN='http://join.pepodev.com:8080';
 export PW_FIREBASE_DOMAIN='http://app.pepodev.com:8080';
-export PW_COOKIE_SECRET='aa5298d3a3fe181a3a52d085ee1525df5asa498337f8f3b76ca7df0a5de32124'
+export PW_COOKIE_SECRET='6BC9B1968BBA53CA8E28878DAD4AB549B154027F10EA1C3FD2D37BAE6F9A5540'
 
 export PW_CLOUD_FRONT_BASE_DOMAIN='https://d3attjoi5jlede.cloudfront.net/'
 
