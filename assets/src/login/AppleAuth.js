@@ -15,7 +15,7 @@ class AppleAuth extends Base{
     }
 
     getDisconnectUrl = () => {
-      return '/auth/apple-disconnect';
+      return '/api/web/auth/apple-disconnect';
     }
  
 }

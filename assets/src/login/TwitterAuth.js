@@ -15,7 +15,7 @@ class TwitterAuth extends Base{
     }
 
     getDisconnectUrl = () => {
-      return '/auth/twitter-disconnect';
+      return '/api/web/auth/twitter-disconnect';
     }
  
 }
