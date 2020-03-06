@@ -6,7 +6,7 @@ import googleAuth from './login/GoogleAuth';
 import githubAuth from './login/GithubAuth';
 import twitterAuth from './login/TwitterAuth';
 
-// Importing ES5 JS files
+// Importing ES5 JS files (one time import if fine)
 import * as ajaxHooks from './utils/ajaxHooks';
 
 class Common {

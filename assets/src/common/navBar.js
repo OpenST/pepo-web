@@ -1,6 +1,6 @@
-const { $, jQuery } = window;
+import $ from 'jquery';
 
-class NavBar{
+class NavBar {
 
     constructor(){
         this.jNavEl = null;
@@ -8,9 +8,6 @@ class NavBar{
         this.jUberBannerMobile = null;
         this.jNavPhantomEl = null;
         this.heightTrigger = 0;
-
-        this.setupUberBanner = this.setupUberBanner.bind(this);
-        this.bindEvents = this.bindEvents.bind(this);
     }
 
     init(){
@@ -22,7 +19,7 @@ class NavBar{
         this.bindEvents();
     }
 
-    bindEvents(){
+    bindEvents = () => {
 
         $("#toggle-menu").on('click', function(){
             $(this).toggleClass("is-active");
@@ -58,7 +55,7 @@ class NavBar{
         })
     }
 
-    setupUberBanner(){
+    setupUberBanner = () => {
         if(this.jUberBannerDesktop.length === 0 && this.jUberBannerMobile.length === 0) {
             this.heightTrigger = 0;
         } else {

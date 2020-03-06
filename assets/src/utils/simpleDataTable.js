@@ -44,7 +44,7 @@ export default class SimpleDataTable {
       throw "rowTemplate is mandetory config for SimpleDataTable";
     }
 
-    oThis.jRowTemplateHtml  = oThis.jRowTemplateHtml || oThis.jParent.find( '[data-row-template]' );
+    // oThis.jRowTemplateHtml  = oThis.jRowTemplateHtml || oThis.jParent.find( '[data-row-template]' );
 
     oThis.rowTemplate       = oThis.rowTemplate;
 
@@ -55,7 +55,7 @@ export default class SimpleDataTable {
     logMe && console.log("oThis", oThis);
 
     oThis.jDataLoader       = oThis.jDataLoader || oThis.createLoadingWrap( oThis.jParent );
-    oThis.jRowTemplateHtml && oThis.jRowTemplateHtml.remove();
+    // oThis.jRowTemplateHtml && oThis.jRowTemplateHtml.remove();
 
     oThis.loadTableData();
 
@@ -178,6 +178,7 @@ export default class SimpleDataTable {
   }
 
   getRowData(result){
+    return {username:'mayur'}
     return result;
   }
 
@@ -493,22 +494,3 @@ export default class SimpleDataTable {
   }
 
 }
-
-
-
-// const simpleDataTable = new SimpleDataTable({
-//
-//   jParent: $(".asdasdsad"),
-//   jRowTemplateHtml: "aasdsad",
-//   getRowData : function (result) {
-//     const oThis =  this;
-//     return {
-//       item : {id: 1},
-//       getUserName : function () {
-//         data = data || oThis.getAssociatedData();
-//        return deepGet( data , `user_details[`${this.item.id}`]["user_name"]`);
-//       }
-//     }
-//   }
-//
-// });
