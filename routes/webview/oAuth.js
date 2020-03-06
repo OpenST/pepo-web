@@ -6,7 +6,6 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  GoogleAuthenticator = require(rootPrefix + '/app/services/Authenticate/Google'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
 /* GET twitter oauth page. */
