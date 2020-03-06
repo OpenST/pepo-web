@@ -13,11 +13,13 @@ span.label {
   font-weight: normal;
 }
 div.icon {
-  display: inline-block;
   vertical-align: middle;
-  width: 42px;
-  height: 42px;
   margin:5px;
+}
+svg{
+  &.icon-content{
+    padding-top:5px;
+  }
 }
 span.buttonText {
   display: inline-block;
