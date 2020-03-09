@@ -143,23 +143,40 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var WebView = function WebView() {
+  var _this = this;
+
   _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebView);
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "sanitizeUrl", function (url) {
+    if (url.indexOf('lerr') !== -1) {
+      url = url.replace(/(\?|&)+lerr=1/gi, ' ');
+    }
+
+    return url;
+  });
 
   _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function () {
     window.addEventListener("load", function (e) {
       var data = JSON.parse(window.oAuthData),
-          kind = window.oAuthKind;
-      if (!data || !window.redirectUrl) return;
+          kind = window.oAuthKind,
+          redirectUrl = _this.sanitizeUrl(window.redirectUrl);
+
+      if (!data || !redirectUrl) return;
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
         url: "/api/web/auth/".concat(kind, "/login"),
         method: 'POST',
         data: data,
         success: function success(res) {
-          window.location = window.redirectUrl;
+          window.location = redirectUrl;
           console.log("success redirect ajax");
         },
         error: function error(err) {
-          window.location = "".concat(window.redirectUrl, "?e=1");
+          if (redirectUrl.indexOf('?') !== -1) {
+            window.location = "".concat(redirectUrl, "&lerr=1");
+          } else {
+            window.location = "".concat(redirectUrl, "?lerr=1");
+          }
+
           console.log("error redirect ajax");
         }
       });
