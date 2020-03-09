@@ -159,6 +159,7 @@ var WebView = function WebView() {
           console.log("success redirect ajax");
         },
         error: function error(err) {
+          window.location = "".concat(window.redirectUrl, "?e=1");
           console.log("error redirect ajax");
         }
       });

@@ -20,6 +20,7 @@ class WebView {
           console.log("success redirect ajax");
         },
         error : function (err) {
+          window.location = `${window.redirectUrl}?e=1`;
           console.log("error redirect ajax");
         }
       })
