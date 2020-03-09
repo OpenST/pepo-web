@@ -7,20 +7,20 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  base64Helper = require(rootPrefix + '/lib/base64Helper'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
-getRedirectPath = function(cookie) {
-  const decodedCookie = decodeURIComponent(cookie),
-    decodedValues = decodedCookie.split('&');
-  // NOTE: Here adding '/' before redirect path for security reasons.
-  let redirectPath = '/';
-
-  for(let i=0; i<decodedValues.length; i++) {
-    if(decodedValues[i].includes('rp=')) {
-      redirectPath += decodedValues[i].replace('rp=', '');
+getRedirectPath = function(state) {
+  let redirectPath = null;
+  try {
+    if (state) {
+      const decodedState = JSON.parse(base64Helper.decode(state));
+      // Added slash to stop unwanted redirects (security fix)
+      redirectPath = decodedState.rd ? '/' + decodedState.rd : null;
     }
+  } catch (e) {
+    // Logger
   }
-
   return redirectPath;
 };
 
@@ -30,10 +30,8 @@ router.get('/github/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
   if(req.decodedParams.code){
     locals = {oauth_response: {authorization_code: req.decodedParams.code}, oauth_kind: 'github'};
   }
+  locals.redirect_url = getRedirectPath(req.decodedParams.state);
 
-  if(req.signedCookies[cookieConstants.loginRefererCookieName]) {
-    locals.redirect_url = getRedirectPath(req.signedCookies[cookieConstants.loginRefererCookieName]);
-  }
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
 
@@ -44,10 +42,8 @@ router.get('/twitter/oauth', sanitizer.sanitizeDynamicUrlParams, async function 
     locals = {oauth_response: {oauth_token: req.decodedParams.oauth_token,
         oauth_verifier: req.decodedParams.oauth_verifier}, oauth_kind: 'twitter'};
   }
+  locals.redirect_url = getRedirectPath(req.decodedParams.state);
 
-  if(req.signedCookies[cookieConstants.loginRefererCookieName]) {
-    locals.redirect_url = getRedirectPath(req.signedCookies[cookieConstants.loginRefererCookieName]);
-  }
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
 
@@ -57,10 +53,19 @@ router.get('/google/oauth', sanitizer.sanitizeDynamicUrlParams, async function (
   if(req.decodedParams.code){
     locals = {oauth_response: {authorization_code: req.decodedParams.code}, oauth_kind: 'google'};
   }
+  locals.redirect_url = getRedirectPath(req.decodedParams.state);
 
-  if(req.signedCookies[cookieConstants.loginRefererCookieName]) {
-    locals.redirect_url = getRedirectPath(req.signedCookies[cookieConstants.loginRefererCookieName]);
+  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
+});
+
+/* GET apple oauth page. */
+router.post('/apple/oauth', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+  let locals = {};
+  if(req.decodedParams.code){
+    locals = {oauth_response: {authorization_code: req.decodedParams.code, identity_token: req.decodedParams.id_token},
+              oauth_kind: 'apple'};
   }
+  locals.redirect_url = getRedirectPath(req.decodedParams.state);
 
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
