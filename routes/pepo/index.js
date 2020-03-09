@@ -13,6 +13,7 @@ const rootPrefix = '../..',
   supportRouter = require(rootPrefix + '/routes/pepo/support'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+  cookieHelper = require(rootPrefix + '/helpers/cookie'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
 
 const basicAuthentication = function(req, res, next) {
@@ -63,6 +64,10 @@ router.use(basicAuthentication);
 router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 
 router.use(csrfProtection);
+
+router.use(cookieHelper.setUserUtmCookie);
+
+router.use(cookieHelper.fetchUserUtmFromCookie);
 
 router.use(pagePathConstants.support, supportRouter); // Don't move it after home routes. permalink will match it for anything
 
