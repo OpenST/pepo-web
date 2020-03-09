@@ -1,5 +1,3 @@
-const csrf = require('csurf');
-
 const rootPrefix = '..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
@@ -15,29 +13,6 @@ const cookieDefaultOptions = {
 };
 
 class CookieHelper {
-
-  /**
-   * Set csrf for web.
-   *
-   * @returns {csrf}
-   */
-  setWebCsrf(ignorePost = false) {
-    const cookieParams = Object.assign({}, cookieDefaultOptions, {
-      maxAge: 1 * 60 * 60 * 24 * 30,
-      key: cookieConstants.csrfCookieName
-    });
-
-    const ignoreMethods = ['GET', 'HEAD', 'OPTIONS'];
-
-    if (ignorePost) {
-      ignoreMethods.push('POST');
-    }
-
-    return csrf({
-      cookie: cookieParams,
-      ignoreMethods: ignoreMethods
-    });
-  }
 
   /**
    * Set New Cookies

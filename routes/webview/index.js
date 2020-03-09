@@ -1,37 +1,33 @@
-const express = require('express');
+const express = require('express'),
+ csrf = require('csurf');
+
 const router = express.Router(),
   cookieParser = require('cookie-parser');
 
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  cookieHelper = require(rootPrefix + '/helpers/cookie'),
   oAuthRouter = require(rootPrefix + '/routes/webview/oAuth'),
-  sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
+
+const csrfProtection = csrf({
+  cookie: {
+    key: cookieConstants.csrfCookieName,
+    maxAge: 1 * 60 * 60 * 24 * 30,
+    httpOnly: true, // The cookie only accessible by the web server
+    signed: true, // Indicates if the cookie should be signed
+    secure: basicHelper.isProduction(), // Marks the cookie to be used with HTTPS only
+    path: '/',
+    sameSite: 'strict', // sets the same site policy for the cookie
+    domain: coreConstants.COOKIE_DOMAIN
+  },
+  ignoreMethods: ['GET', 'HEAD', 'OPTIONS', 'POST']
+});
 
 router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 
-
-//NOTE: CSRF DISABLED FOR POST REQ. BUT TO BE SET IN PAGE LOAD.
-/* POST apple oauth page. */
-router.post(`${pagePathConstants.webview}/apple/oauth`, cookieHelper.setWebCsrf(true), sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  let locals = {};
-  if(req.decodedParams.code){
-    locals = {oauth_response: {authorization_code: req.decodedParams.code, identity_token: req.decodedParams.id_token},
-      oauth_kind: 'apple'};
-  }
-
-  if(req.signedCookies[cookieConstants.loginRefererCookieName]) {
-    locals.redirect_url = getRedirectPath(req.signedCookies[cookieConstants.loginRefererCookieName]);
-  }
-
-  return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
-});
-
-router.use(cookieHelper.setWebCsrf());
+router.use(csrfProtection);
 
 router.use(pagePathConstants.webview, oAuthRouter);
 
