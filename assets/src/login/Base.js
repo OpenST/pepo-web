@@ -15,6 +15,9 @@ class Base{
             this.disableLoginBtns();
             this.getRedirectUrl();
         });
+        $('#logoutBtn').on('click',()=>{
+            this.logout();
+        });
     }
 
     disableLoginBtns = () =>{

@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 18);
+/******/ 	return __webpack_require__(__webpack_require__.s = 19);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -179,7 +179,8 @@ module.exports = _typeof;
 /* 15 */,
 /* 16 */,
 /* 17 */,
-/* 18 */
+/* 18 */,
+/* 19 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -188,7 +189,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _feed_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(19);
+/* harmony import */ var _feed_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(20);
 
 
 
@@ -204,7 +205,7 @@ var Feed = function Feed() {
 /* harmony default export */ __webpack_exports__["default"] = (new Feed());
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -215,11 +216,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var ejs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(20);
+/* harmony import */ var ejs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(21);
 /* harmony import */ var ejs__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(ejs__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _feedItemList_html__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(26);
+/* harmony import */ var _feedItemList_html__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(27);
 /* harmony import */ var _feedItemList_html__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_feedItemList_html__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _utils_simpleDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(27);
+/* harmony import */ var _utils_simpleDataTable__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(28);
 
 
 
@@ -271,7 +272,7 @@ var Feed = function Feed() {
 /* harmony default export */ __webpack_exports__["default"] = (new Feed());
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -321,12 +322,12 @@ var Feed = function Feed() {
  * @public
  */
 
-var fs = __webpack_require__(21);
-var path = __webpack_require__(22);
-var utils = __webpack_require__(24);
+var fs = __webpack_require__(22);
+var path = __webpack_require__(23);
+var utils = __webpack_require__(25);
 
 var scopeOptionWarned = false;
-var _VERSION_STRING = __webpack_require__(25).version;
+var _VERSION_STRING = __webpack_require__(26).version;
 var _DEFAULT_DELIMITER = '%';
 var _DEFAULT_LOCALS_NAME = 'locals';
 var _NAME = 'ejs';
@@ -1217,13 +1218,13 @@ if (typeof window != 'undefined') {
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports) {
 
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {// .dirname, .basename, and .extname methods are extracted from Node.js v8.11.1,
@@ -1529,10 +1530,10 @@ var substr = 'ab'.substr(-1) === 'b'
     }
 ;
 
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(23)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(24)))
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -1722,7 +1723,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1893,19 +1894,19 @@ exports.cache = {
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"_from\":\"ejs@2.6.1\",\"_id\":\"ejs@2.6.1\",\"_inBundle\":false,\"_integrity\":\"sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==\",\"_location\":\"/ejs\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"ejs@2.6.1\",\"name\":\"ejs\",\"escapedName\":\"ejs\",\"rawSpec\":\"2.6.1\",\"saveSpec\":null,\"fetchSpec\":\"2.6.1\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz\",\"_shasum\":\"498ec0d495655abc6f23cd61868d926464071aa0\",\"_spec\":\"ejs@2.6.1\",\"_where\":\"/Users/Mayur/Documents/workspace/pepo-web\",\"author\":{\"name\":\"Matthew Eernisse\",\"email\":\"mde@fleegix.org\",\"url\":\"http://fleegix.org\"},\"bugs\":{\"url\":\"https://github.com/mde/ejs/issues\"},\"bundleDependencies\":false,\"contributors\":[{\"name\":\"Timothy Gu\",\"email\":\"timothygu99@gmail.com\",\"url\":\"https://timothygu.github.io\"}],\"dependencies\":{},\"deprecated\":false,\"description\":\"Embedded JavaScript templates\",\"devDependencies\":{\"browserify\":\"^13.1.1\",\"eslint\":\"^4.14.0\",\"git-directory-deploy\":\"^1.5.1\",\"istanbul\":\"~0.4.3\",\"jake\":\"^8.0.16\",\"jsdoc\":\"^3.4.0\",\"lru-cache\":\"^4.0.1\",\"mocha\":\"^5.0.5\",\"uglify-js\":\"^3.3.16\"},\"engines\":{\"node\":\">=0.10.0\"},\"homepage\":\"https://github.com/mde/ejs\",\"keywords\":[\"template\",\"engine\",\"ejs\"],\"license\":\"Apache-2.0\",\"main\":\"./lib/ejs.js\",\"name\":\"ejs\",\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/mde/ejs.git\"},\"scripts\":{\"coverage\":\"istanbul cover node_modules/mocha/bin/_mocha\",\"devdoc\":\"jake doc[dev]\",\"doc\":\"jake doc\",\"lint\":\"eslint \\\"**/*.js\\\" Jakefile\",\"test\":\"jake test\"},\"version\":\"2.6.1\"}");
+module.exports = JSON.parse("{\"_from\":\"ejs@2.6.1\",\"_id\":\"ejs@2.6.1\",\"_inBundle\":false,\"_integrity\":\"sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==\",\"_location\":\"/ejs\",\"_phantomChildren\":{},\"_requested\":{\"type\":\"version\",\"registry\":true,\"raw\":\"ejs@2.6.1\",\"name\":\"ejs\",\"escapedName\":\"ejs\",\"rawSpec\":\"2.6.1\",\"saveSpec\":null,\"fetchSpec\":\"2.6.1\"},\"_requiredBy\":[\"/\"],\"_resolved\":\"https://registry.npmjs.org/ejs/-/ejs-2.6.1.tgz\",\"_shasum\":\"498ec0d495655abc6f23cd61868d926464071aa0\",\"_spec\":\"ejs@2.6.1\",\"_where\":\"/Users/shraddhapatil/Documents/workspace/pepo-web\",\"author\":{\"name\":\"Matthew Eernisse\",\"email\":\"mde@fleegix.org\",\"url\":\"http://fleegix.org\"},\"bugs\":{\"url\":\"https://github.com/mde/ejs/issues\"},\"bundleDependencies\":false,\"contributors\":[{\"name\":\"Timothy Gu\",\"email\":\"timothygu99@gmail.com\",\"url\":\"https://timothygu.github.io\"}],\"dependencies\":{},\"deprecated\":false,\"description\":\"Embedded JavaScript templates\",\"devDependencies\":{\"browserify\":\"^13.1.1\",\"eslint\":\"^4.14.0\",\"git-directory-deploy\":\"^1.5.1\",\"istanbul\":\"~0.4.3\",\"jake\":\"^8.0.16\",\"jsdoc\":\"^3.4.0\",\"lru-cache\":\"^4.0.1\",\"mocha\":\"^5.0.5\",\"uglify-js\":\"^3.3.16\"},\"engines\":{\"node\":\">=0.10.0\"},\"homepage\":\"https://github.com/mde/ejs\",\"keywords\":[\"template\",\"engine\",\"ejs\"],\"license\":\"Apache-2.0\",\"main\":\"./lib/ejs.js\",\"name\":\"ejs\",\"repository\":{\"type\":\"git\",\"url\":\"git://github.com/mde/ejs.git\"},\"scripts\":{\"coverage\":\"istanbul cover node_modules/mocha/bin/_mocha\",\"devdoc\":\"jake doc[dev]\",\"doc\":\"jake doc\",\"lint\":\"eslint \\\"**/*.js\\\" Jakefile\",\"test\":\"jake test\"},\"version\":\"2.6.1\"}");
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"feedList col-6 col-md-3 \">\n    <img src=\"https://p16.muscdn.com/obj/tos-maliva-p-0068/955818aad8094dc806ec60f458d3f1fa\" class=\"img-fluid\"/>\n    <span class=\"feed-video-play-icon play-icon ppBtn\"></span>\n    <div class=\"details\">\n        <span class=\"desc\">Lorem ipsum dolor sit amet, consectetur adipiscing elitsed</span>\n        <div class=\"d-flex flex-row justify-content-between\">\n            <span class=\"desc\">@<%= username %> </span>\n            <span class=\"desc\">777</span>\n        </div>\n    </div>\n</li>\n";
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
