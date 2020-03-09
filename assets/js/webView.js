@@ -149,12 +149,13 @@ var WebView = function WebView() {
     window.addEventListener("load", function (e) {
       var data = JSON.parse(window.oAuthData),
           kind = window.oAuthKind;
-      if (!data) return;
+      if (!data || !window.redirectUrl) return;
       jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
         url: "/api/web/auth/".concat(kind, "/login"),
         method: 'POST',
         data: data,
         success: function success(res) {
+          window.location = window.redirectUrl;
           console.log("success redirect ajax");
         },
         error: function error(err) {

@@ -25,6 +25,7 @@
     <script type="text/javascript"> 
       window.oAuthData = '<%-JSON.stringify(locals.oauth_response) %>'
       window.oAuthKind = '<%= locals.oauth_kind %>'
+      window.redirectUrl = '<%= locals.redirect_url %>'
     </script>
   </body>
 </html>
