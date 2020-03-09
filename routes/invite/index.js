@@ -50,7 +50,7 @@ const parseInviteCode = function (req, res, next) {
   } else {
     //set cookie
     req.decodedParams.code = parsedPath;
-    cookieHelper.setInviteCookie(req, req.decodedParams.code);
+    cookieHelper.setInviteCookie(res, req.decodedParams.code);
   }
 
   next();
