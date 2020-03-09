@@ -12,14 +12,16 @@ const rootPrefix = '../..',
 getRedirectPath = function(cookie) {
   const decodedCookie = decodeURIComponent(cookie),
     decodedValues = decodedCookie.split('&');
+  // NOTE: Here adding '/' before redirect path for security reasons.
+  let redirectPath = '/';
 
   for(let i=0; i<decodedValues.length; i++) {
     if(decodedValues[i].includes('rp=')) {
-      return '/' + decodedValues[i].replace('rp=', '');
+      redirectPath += decodedValues[i].replace('rp=', '');
     }
   }
 
-  return '/';
+  return redirectPath;
 };
 
 /* GET github oauth page. */
