@@ -2,6 +2,8 @@ import $ from 'jquery';
 import ejs from 'ejs';
 import feedItemList from './feedItemList.html';
 import SimpleDataTable from '../utils/simpleDataTable';
+import FeedItemData from '../utils/FeedItemData/base';
+
 
 
 
@@ -27,26 +29,19 @@ class Feed {
 
 
   fetchFeed = ()=>{
-
+    const oThis =  this;
     const simpleDataTable = new SimpleDataTable({
 
   jParent: $("#feedParent"),
   fetchResultsUrl: "/api/web/feeds",
   rowTemplate: ejs.compile(feedItemList, {client: true}),
-  // getRowData : function (result) {
-  //   return {}
-  //   const oThis =  this;
-  //   return {
-  //     item : {id: 1},
-  //     getUserName : function () {
-  //      let data = data || oThis.getAssociatedData();
-  //      return deepGet( data , `user_details[`${this.item.id}`]["user_name"]`);
-  //     }
-  //   }
-  // }
+  getRowData : function (result) {
+    console.log("getRowData:sent", result);
+    let feedItemData = new FeedItemData(result, this.getAssociatedData());
+    return feedItemData.perform();
+  }
 
-});
-
+  });
   }
 }
 

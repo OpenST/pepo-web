@@ -14,7 +14,7 @@ export default class SimpleDataTable {
     oThis.jRowTemplateHtml = null;
     oThis.rowTemplate = null;
     oThis.sScrollParent = null;
-    oThis.associatedData = null;
+    oThis.associatedData = {};
 
     oThis.events = {
       "responseProcessed": "responseProcessed"
@@ -170,7 +170,7 @@ export default class SimpleDataTable {
     }
 
     var rowTemplate   = oThis.getRowTemplate()
-      , rowMarkUp     = rowTemplate( this.getRowData() )
+      , rowMarkUp     = rowTemplate( this.getRowData(result) )
       , jResult       = $( rowMarkUp )
     ;
 
