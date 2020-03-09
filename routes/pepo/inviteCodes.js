@@ -32,6 +32,7 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
     twitterSigninError: 0,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | What grinds my gears',
       robots: 'noindex, nofollow',
@@ -56,6 +57,7 @@ router.get('/whatgrindsmygears/desktop', sanitizer.sanitizeDynamicUrlParams, asy
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/whatgrindsmygears in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | What grinds my gears',
       robots: 'noindex, nofollow',
@@ -79,6 +81,7 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
     twitterSigninError: 0,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Epicenter',
       robots: 'noindex, nofollow',
@@ -103,6 +106,7 @@ router.get('/epicenter/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/epicenter in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Epicenter',
       robots: 'noindex, nofollow',
@@ -127,6 +131,7 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, re
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Brave',
       robots: 'noindex, nofollow',
@@ -151,6 +156,7 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function 
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/brave in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Brave',
       robots: 'noindex, nofollow',
@@ -175,6 +181,7 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req,
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Linkedin',
       robots: 'noindex, nofollow',
@@ -199,6 +206,7 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/linkedin in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Linkedin',
       robots: 'noindex, nofollow',
@@ -223,6 +231,7 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req,
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Facebook',
       robots: 'noindex, nofollow',
@@ -247,6 +256,7 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/facebook in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Facebook',
       robots: 'noindex, nofollow',
@@ -271,6 +281,7 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Etherscan',
       robots: 'noindex, nofollow',
@@ -295,6 +306,7 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/etherscan in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Etherscan',
       robots: 'noindex, nofollow',
@@ -319,6 +331,7 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | PH',
       robots: 'noindex, nofollow',
@@ -343,6 +356,7 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (re
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/ph in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | PH',
       robots: 'noindex, nofollow',
@@ -367,6 +381,7 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, r
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Reddit',
       robots: 'noindex, nofollow',
@@ -391,6 +406,7 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/reddit in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Reddit',
       robots: 'noindex, nofollow',
@@ -415,6 +431,7 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, r
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Google',
       robots: 'noindex, nofollow',
@@ -439,6 +456,7 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/google in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Google',
       robots: 'noindex, nofollow',
@@ -463,6 +481,7 @@ router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, 
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Stories',
       robots: 'noindex, nofollow',
@@ -486,6 +505,7 @@ router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, async functio
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/stories in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Stories',
       robots: 'noindex, nofollow',
@@ -510,6 +530,7 @@ router.get('/tw', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
     hideUberBanner: 1,
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Twitter',
       robots: 'noindex, nofollow',
@@ -534,6 +555,7 @@ router.get('/tw/desktop', sanitizer.sanitizeDynamicUrlParams, async function (re
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/tw in your mobile browser",
     androidAppLink: appDownloadLink,
     iosAppLink: appDownloadLink,
+    firebaseUrls: {getTheApp: appDownloadLink},
     pageMeta: {
       title: 'Pepo | Twitter',
       robots: 'noindex, nofollow',
