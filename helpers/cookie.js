@@ -100,7 +100,7 @@ class CookieHelper {
     });
 
     // Set cookie
-    responseObject.cookie(userConstants.inviteCookieName, cookieValue, options); // Options is optional.
+    responseObject.cookie(cookieConstants.inviteCookieName, cookieValue, options); // Options is optional.
   }
 
 }
