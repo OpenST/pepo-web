@@ -19,12 +19,15 @@ router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 /* POST apple oauth page. */
 router.post(`${pagePathConstants.webview}/apple/oauth`, cookieHelper.setWebCsrf(true), sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let locals = {};
-  if (req.decodedParams.code) {
-    locals = {
-      oauth_response: {authorization_code: req.decodedParams.code, identity_token: req.decodedParams.id_token},
-      oauth_kind: 'apple'
-    };
+  if(req.decodedParams.code){
+    locals = {oauth_response: {authorization_code: req.decodedParams.code, identity_token: req.decodedParams.id_token},
+      oauth_kind: 'apple'};
   }
+
+  if(req.signedCookies[cookieConstants.loginRefererCookieName]) {
+    locals.redirect_url = getRedirectPath(req.signedCookies[cookieConstants.loginRefererCookieName]);
+  }
+
   return renderResponseHelper.renderWithLayout(req, res, 'webView', 'web/_webView', locals);
 });
 
