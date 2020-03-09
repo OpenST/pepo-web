@@ -19,7 +19,9 @@ const filterUtmParams = function(req) {
 
 /* GET what grinds my gears. */
 router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  
+
+  cookieHelper.setInviteCookie(res, 'whatgrindsmygears');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/whatgrindsmygears';
 
   let utmQueryString = filterUtmParams(req);
@@ -42,6 +44,8 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
 
 /* GET  What grinds my gears desktop. */
 router.get('/whatgrindsmygears/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'whatgrindsmygears');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/whatgrindsmygears';
 
@@ -67,6 +71,8 @@ router.get('/whatgrindsmygears/desktop', sanitizer.sanitizeDynamicUrlParams, asy
 /* GET epicenter */
 router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'epicenter');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/epicenter';
 
   let utmQueryString = filterUtmParams(req);
@@ -89,6 +95,8 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
 
 /* GET epicenter desktop. */
 router.get('/epicenter/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'epicenter');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/epicenter';
 
@@ -114,6 +122,8 @@ router.get('/epicenter/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
 /* GET brave. */
 router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'brave');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/brave';
 
   let utmQueryString = filterUtmParams(req);
@@ -137,6 +147,8 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, re
 
 /* GET brave desktop. */
 router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'brave');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/brave';
 
@@ -162,6 +174,8 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function 
 /* GET linkedin. */
 router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'linkedin');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/linkedin';
 
   let utmQueryString = filterUtmParams(req);
@@ -185,6 +199,8 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req,
 
 /* GET linkedin desktop. */
 router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'linkedin');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/linkedin';
 
@@ -210,6 +226,8 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
 /* GET facebook. */
 router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'facebook');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/facebook';
 
   let utmQueryString = filterUtmParams(req);
@@ -233,6 +251,8 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req,
 
 /* GET facebook desktop. */
 router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'facebook');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/facebook';
 
@@ -258,6 +278,8 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
 /* GET etherscan. */
 router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'etherscan');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/etherscan';
 
   let utmQueryString = filterUtmParams(req);
@@ -281,6 +303,8 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req
 
 /* GET etherscan desktop. */
 router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'etherscan');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/etherscan';
 
@@ -306,6 +330,8 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
 /* GET ph. */
 router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'ph');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/ph';
 
   let utmQueryString = filterUtmParams(req);
@@ -329,6 +355,8 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
 
 /* GET ph desktop. */
 router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'ph');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/ph';
 
@@ -354,6 +382,8 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (re
 /* GET reddit. */
 router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'reddit');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/reddit';
 
   let utmQueryString = filterUtmParams(req);
@@ -377,6 +407,8 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, r
 
 /* GET reddit desktop. */
 router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'reddit');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/reddit';
 
@@ -402,6 +434,8 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function
 /* GET google. */
 router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'google');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/google';
 
   let utmQueryString = filterUtmParams(req);
@@ -426,6 +460,8 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, r
 /* GET google desktop. */
 router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
 
+  cookieHelper.setInviteCookie(res, 'google');
+
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/google';
 
   let utmQueryString = filterUtmParams(req);
@@ -449,6 +485,8 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function
 
 /* GET stories. */
 router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'stories');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/stories';
 
@@ -475,6 +513,8 @@ router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, 
 router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/stories';
 
+  cookieHelper.setInviteCookie(res, 'stories');
+
   let utmQueryString = filterUtmParams(req);
   if (utmQueryString !== '') {
     appDownloadLink += '?' + utmQueryString;
@@ -496,6 +536,8 @@ router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, async functio
 
 /* GET tw. */
 router.get('/tw', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'tw');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/tw';
 
@@ -520,6 +562,8 @@ router.get('/tw', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
 
 /* GET tw desktop. */
 router.get('/tw/desktop', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
+
+  cookieHelper.setInviteCookie(res, 'tw');
 
   let appDownloadLink = coreConstants.PEPO_INVITE_DOMAIN + '/tw';
 
