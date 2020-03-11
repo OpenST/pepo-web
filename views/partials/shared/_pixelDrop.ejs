@@ -1,0 +1,31 @@
+<script type="text/javascript">
+  pageType = <%- JSON.stringify(pageMeta.pageType) %>
+  extraTrackerData = {}
+  service_id = 1
+  tracker_endpoint = <%- JSON.stringify(appMeta.TRACKER_ENDPOINT) %>
+    version = '2'
+
+  var initParamsData = {
+    ugid : 12,  //TODO: get this from backend and add pageName in this obj
+    pt : pageType,
+    v  : version,
+    serid : service_id,
+    dl : navigator.language
+  }
+  initParamsData = Object.assign(initParamsData, extraTrackerData);
+  (function (w, d, tn, p, ns, el, sel) {
+    w['PepoTrackerObject'] = ns;
+    w[ns] = w[ns] || function () {
+      (w[ns].q = w[ns].q || []).push(arguments)
+    }, w[ns].l = 1 * new Date();
+    el = d.createElement(tn),
+      sel = d.getElementsByTagName(tn)[0];
+    el.async = 1;
+    el.src = p;
+    sel.parentNode.insertBefore(el, sel);
+  })(window, document, 'script', <%- JSON.stringify(appMeta.TRACKER_URL) %> , 'pepoTracker');
+
+  pepoTracker("setPixelPath", tracker_endpoint);
+  pepoTracker("setInitParams",initParamsData);
+  pepoTracker("dropPixel", "page", "view");
+</script>

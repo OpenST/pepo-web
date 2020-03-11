@@ -1,6 +1,7 @@
 {
   "home": {
-    "page": ""
+    "page": "",
+    "pageType":"home"
   },
   "doptin": {
     "page": "Double Optin",
@@ -40,11 +41,13 @@
   },
   "video": {
     "page": "Video",
-    "robots": "index, follow"
+    "robots": "index, follow",
+    "pageType":"video"
   },
   "feed": {
     "page": "Feed",
-    "robots": "index, follow"
+    "robots": "index, follow",
+    "pageType":"feed"
   },
   "webView":{
     "page" : "WebView",
