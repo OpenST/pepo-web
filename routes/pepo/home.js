@@ -55,7 +55,8 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-      showFooter: false
+      showFooter: false,
+      currentUser: new CurrentUser()
     });
   } else {
     return responseHelper.renderApiResponse(feedApiResponse, res, errorConfig);
@@ -110,7 +111,8 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
       pageMeta: formattedData.page_meta,
       firebaseUrls: {openInApp: formattedData.firebase_video_url},
       showFooter: false,
-      formattedEntityData: formattedData
+      formattedEntityData: formattedData,
+      currentUser: new CurrentUser()
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
