@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 88);
+/******/ 	return __webpack_require__(__webpack_require__.s = 32);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -106,6 +106,88 @@ module.exports = jQuery;
 
 /***/ }),
 
+/***/ 32:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _webView_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33);
+
+
+
+var WebViewManifest = function WebViewManifest() {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebViewManifest);
+
+  _webView_index__WEBPACK_IMPORTED_MODULE_1__["default"].init();
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (new WebViewManifest());
+
+/***/ }),
+
+/***/ 33:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var WebView = function WebView() {
+  var _this = this;
+
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebView);
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "sanitizeUrl", function (url) {
+    if (url.indexOf('lerr') !== -1) {
+      url = url.replace(/(\?|&)+lerr=1/gi, ' ');
+    }
+
+    return url;
+  });
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function () {
+    window.addEventListener("load", function (e) {
+      var data = JSON.parse(window.oAuthData),
+          kind = window.oAuthKind,
+          redirectUrl = _this.sanitizeUrl(window.redirectUrl);
+
+      if (!data || !redirectUrl) return;
+      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+        url: "/api/web/auth/".concat(kind, "/login"),
+        method: 'POST',
+        data: data,
+        success: function success(res) {
+          window.location = redirectUrl;
+          console.log("success redirect ajax");
+        },
+        error: function error(err) {
+          if (redirectUrl.indexOf('?') !== -1) {
+            window.location = "".concat(redirectUrl, "&lerr=1");
+          } else {
+            window.location = "".concat(redirectUrl, "?lerr=1");
+          }
+
+          console.log("error redirect ajax");
+        }
+      });
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (new WebView());
+
+/***/ }),
+
 /***/ 5:
 /***/ (function(module, exports) {
 
@@ -125,69 +207,6 @@ function _defineProperty(obj, key, value) {
 }
 
 module.exports = _defineProperty;
-
-/***/ }),
-
-/***/ 88:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _webView_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(89);
-
-
-
-var WebViewManifest = function WebViewManifest() {
-  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebViewManifest);
-
-  _webView_index__WEBPACK_IMPORTED_MODULE_1__["default"].init();
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (new WebViewManifest());
-
-/***/ }),
-
-/***/ 89:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-
-
-
-
-var WebView = function WebView() {
-  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebView);
-
-  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function () {
-    window.addEventListener("load", function (e) {
-      var data = JSON.parse(window.oAuthData),
-          kind = window.oAuthKind;
-      if (!data) return;
-      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
-        url: "/api/web/auth/".concat(kind, "/login"),
-        method: 'POST',
-        data: data,
-        success: function success(res) {
-          console.log("success redirect ajax");
-        },
-        error: function error(err) {
-          console.log("error redirect ajax");
-        }
-      });
-    });
-  });
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (new WebView());
 
 /***/ })
 

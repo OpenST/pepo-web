@@ -86,10 +86,148 @@
 /************************************************************************/
 /******/ ({
 
-/***/ 85:
+/***/ 1:
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/Mayur/Documents/workspace/pepo-web/assets/src/home.js'");
+function _classCallCheck(instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+}
+
+module.exports = _classCallCheck;
+
+/***/ }),
+
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = jQuery;
+
+/***/ }),
+
+/***/ 5:
+/***/ (function(module, exports) {
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+module.exports = _defineProperty;
+
+/***/ }),
+
+/***/ 85:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _home_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(86);
+
+
+
+
+var Home = function Home() {
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Home);
+
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()(document).ready(function () {
+    _home_index__WEBPACK_IMPORTED_MODULE_2__["default"].init();
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).on('load', function () {
+    _home_index__WEBPACK_IMPORTED_MODULE_2__["default"].lazyLoadVideos();
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (new Home());
+
+/***/ }),
+
+/***/ 86:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+
+
+
+
+var Home = function Home() {
+  var _this = this;
+
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Home);
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function () {
+    _this.muteAll();
+
+    _this.bindEvents();
+  });
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "muteAll", function () {
+    var jqVideoMuteUnMute = jquery__WEBPACK_IMPORTED_MODULE_2___default()(".videoWrapper .videoMuteUnMute");
+    jquery__WEBPACK_IMPORTED_MODULE_2___default()("video").prop('muted', true);
+    jqVideoMuteUnMute.addClass('mute');
+    jqVideoMuteUnMute.attr('title', 'Click to Unmute');
+  });
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "bindEvents", function () {
+    var oThis = _this;
+    jquery__WEBPACK_IMPORTED_MODULE_2___default()(".videoWrapper").on("click", function () {
+      oThis.toggleVideoMuteOthers(this);
+    });
+  });
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "toggleVideoMuteOthers", function (jqVideo) {
+    var jqVideoElem = jquery__WEBPACK_IMPORTED_MODULE_2___default()(jqVideo).find("video"),
+        jqVideoMuteUnMute = jquery__WEBPACK_IMPORTED_MODULE_2___default()(jqVideo).find(".videoMuteUnMute"),
+        muted = false;
+
+    if (jquery__WEBPACK_IMPORTED_MODULE_2___default()(jqVideoElem).prop('muted')) {
+      muted = true;
+    }
+
+    _this.muteAll();
+
+    if (muted) {
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()(jqVideoElem).prop('muted', false);
+      jqVideoMuteUnMute.removeClass('mute');
+      jqVideoMuteUnMute.attr('title', 'Click to Mute');
+    } else {
+      jquery__WEBPACK_IMPORTED_MODULE_2___default()(jqVideoElem).prop('muted', true);
+      jqVideoMuteUnMute.addClass('mute');
+      jqVideoMuteUnMute.attr('title', 'Click to Unmute');
+    }
+  });
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "lazyLoadVideos", function () {
+    jquery__WEBPACK_IMPORTED_MODULE_2___default()('video').each(function () {
+      var videoUrl = jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).data('src');
+      videoUrl && jquery__WEBPACK_IMPORTED_MODULE_2___default()(this).attr('src', videoUrl);
+    });
+  });
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (new Home());
 
 /***/ })
 

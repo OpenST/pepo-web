@@ -48,9 +48,15 @@ const startRequestLogLine = function(req, res, next) {
     basicHelper.logDateFormat() +
     " from agent " +
     req.headers['user-agent'];
-  console.log(message);
+  logger.step(message);
 
-  console.log(req.headers);
+  if (!basicHelper.isProduction()) {
+    logger.step(
+      '\nHEADERS FOR CURRENT REQUEST=====================================\n',
+      JSON.stringify(req.headers),
+      '\n========================================================'
+    );
+  }
 
   next();
 };

@@ -49,7 +49,17 @@ class NavBar {
         })
 
         $('#logoutApp').on('click',function (e) {
-            $('#loginModal').modal('show');
+          let logoutModal = $('#logoutModal');
+          logoutModal.modal({
+            backdrop:false
+          });
+          logoutModal.modal('show');
+          $('body').on('click',function () {
+            if(logoutModal.length !== 0 ){
+              logoutModal.modal('hide');
+            }
+
+          });
             e.preventDefault();
             e.stopPropagation();
         })

@@ -8,6 +8,9 @@
 .customBtn:hover {
   cursor: pointer;
 }
+#logoutBtn:hover {
+  cursor: pointer;
+}
 span.label {
   font-family: serif;
   font-weight: normal;
@@ -21,21 +24,31 @@ svg{
     padding-top:5px;
   }
 }
-span.buttonText {
+div.buttonText {
   display: inline-block;
   vertical-align: middle;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .modal-dialog-login{
   margin: 68px 10px 10px auto;
 }
+.modal-dialog-logout{
+  margin: 58px 10px 10px auto;
+}
 
 .modal-content-login{
   border-radius: 5px !important;
   box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
 }
+
+.modal-content-logout{
+  border-radius: 0px !important;
+  box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+
 .disableClick{
   pointer-events: none;
 }

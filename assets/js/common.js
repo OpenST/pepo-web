@@ -197,7 +197,16 @@ var NavBar = /*#__PURE__*/function () {
         e.stopPropagation();
       });
       jquery__WEBPACK_IMPORTED_MODULE_3___default()('#logoutApp').on('click', function (e) {
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()('#loginModal').modal('show');
+        var logoutModal = jquery__WEBPACK_IMPORTED_MODULE_3___default()('#logoutModal');
+        logoutModal.modal({
+          backdrop: false
+        });
+        logoutModal.modal('show');
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()('body').on('click', function () {
+          if (logoutModal.length !== 0) {
+            logoutModal.modal('hide');
+          }
+        });
         e.preventDefault();
         e.stopPropagation();
       });
@@ -483,6 +492,9 @@ var Base = function Base() {
       _this.disableLoginBtns();
 
       _this.getRedirectUrl();
+    });
+    $('#logoutBtn').on('click', function () {
+      _this.logout();
     });
   });
 

@@ -89,7 +89,7 @@
 /***/ 18:
 /***/ (function(module, exports) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nError: ENOENT: no such file or directory, open '/Users/Mayur/Documents/workspace/pepo-web/assets/src/doptin.js'");
+
 
 /***/ })
 

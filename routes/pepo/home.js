@@ -45,7 +45,6 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   if ( feedApiResponse.success ) {
     firebaseGetTheAppUrl = feedApiResponse.data.url;
   }
-  console.log("apiResponse ===== ", feedApiResponse);
 
   if (feedApiResponse.success) {
     renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_feed', {
@@ -98,11 +97,9 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
-  console.log("apiResponse ===== ", apiResponse);
 
   if (apiResponse.success) {
     let formattedData = new videoViewFormatter(apiResponse.data).perform();
-    console.log("apiResponse ===== ", formattedData);
 
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', {
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,

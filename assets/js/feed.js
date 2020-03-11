@@ -242,7 +242,7 @@ var Feed = function Feed() {
   });
 
   _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "bindEvents", function () {
-    jquery__WEBPACK_IMPORTED_MODULE_2___default()('.feedList').on('click', function (e) {
+    jquery__WEBPACK_IMPORTED_MODULE_2___default()('#feedParent').on('click', '.feedList', function (e) {
       jquery__WEBPACK_IMPORTED_MODULE_2___default()('#feedModal').modal('show');
       e.preventDefault();
       e.stopPropagation();

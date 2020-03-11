@@ -22,7 +22,6 @@ class GetFeed extends ServiceBase {
 
     const oThis = this;
     oThis.headers = params.headers;
-    logger.log('oThis.headers === ', oThis.headers);
     oThis.decodedParams = params.decodedParams;
 
     oThis.serviceResp = {};
