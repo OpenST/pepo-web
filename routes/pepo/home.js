@@ -17,7 +17,8 @@ const rootPrefix = '../..',
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
   GetFeed = require(rootPrefix + '/app/services/GetFeed'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
+  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video'),
+  CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
@@ -28,12 +29,14 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   if ( apiResponse.success ) {
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
+
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
-    firebaseUrls: {getTheApp: firebaseGetTheAppUrl}
+    firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
+    currentUser: new CurrentUser()
   });
 
 });
@@ -52,7 +55,8 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-      showFooter: false
+      showFooter: false,
+      currentUser: new CurrentUser()
     });
   } else {
     return responseHelper.renderApiResponse(feedApiResponse, res, errorConfig);
@@ -107,7 +111,8 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
       pageMeta: formattedData.page_meta,
       firebaseUrls: {openInApp: formattedData.firebase_video_url},
       showFooter: false,
-      formattedEntityData: formattedData
+      formattedEntityData: formattedData,
+      currentUser: new CurrentUser()
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

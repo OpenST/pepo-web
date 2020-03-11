@@ -11,8 +11,8 @@
             </svg>
             <span class="mr-4">123</span>
             <div id="logoutApp" class="d-inline p-1 user-info">
-                <img src="https://imagevars.gulfnews.com/2019/06/02/tab--Katrina-Kaif-1559468024236_16b1789a1ac_medium.jpg" style="width: 30px; height: 30px; object-fit: cover;border-radius: 15px"/>
-                <span class="ml-1 mr-5">Peter samens</span>
+                <img src="<%= currentUser.getUserProfileImage() %>" style="width: 30px; height: 30px; object-fit: cover;border-radius: 15px"/>
+                <span class="ml-1 mr-5"><%= currentUser.getUserName() %></span>
                 <svg width="20" height="20" style="vertical-align: middle;">
                     <switch>
                         <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#down-arrow-icon"></use>
