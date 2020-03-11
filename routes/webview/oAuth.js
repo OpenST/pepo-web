@@ -15,7 +15,7 @@ getRedirectPath = function(state) {
   try {
     if (state) {
       const decodedState = JSON.parse(base64Helper.decode(state));
-      // Added slash to stop unwanted redirects (security fix)
+      //Note: Added slash to stop unwanted redirects (security fix)
       redirectPath = decodedState.hasOwnProperty('rd') ? '/' + decodedState.rd : null;
     }
   } catch (e) {
