@@ -15,3 +15,5 @@ var ns = window.ns || function ns(ns_string) {
 
     return parent;
 };
+
+export  default  ns;

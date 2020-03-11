@@ -128,9 +128,9 @@
 
   @media only screen and (min-width: 768px){
 
-    .main-nav-item{
-      padding: 0 12px;
-      &:hover{
+    .main-nav-item {
+      padding: 0 8px;
+      &:hover {
         text-decoration: none;
       }
     }
@@ -156,6 +156,12 @@
       display: inline-block;
     }
 
+  }
+
+  @media only screen and (min-width: 992px){
+    .main-nav-item {
+      padding: 0 12px;
+    }
   }
 
 }
