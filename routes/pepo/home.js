@@ -36,7 +36,8 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-    currentUser: new CurrentUser()
+    currentUser: new CurrentUser(),
+    pageMeta : apiResponse.data.pageMeta
   });
 
 });
