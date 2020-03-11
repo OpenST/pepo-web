@@ -50,7 +50,8 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
           image: oThis.urlParams.si,
           card: "summary"
         }
-      }
+      },
+      current_user_data: oThis.currentUserData
     });
   }
 
@@ -63,10 +64,11 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
   async _fetchProfileShareDetails() {
     const oThis = this;
 
-    let shareResponse = await new UserApi({}).getUserProfileShareDetails({username: oThis.permalink});
+    let shareResponse = await new UserApi(oThis.headers).getUserProfileShareDetails({username: oThis.permalink});
     if(shareResponse.success){
       let resultType = shareResponse.data.result_type;
       oThis.profileShareDetails = shareResponse.data[resultType];
+      oThis.currentUserData = shareResponse.data['current_user_data'];
     }
   }
 

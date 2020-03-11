@@ -15,6 +15,7 @@ class FirebaseUrlBase extends ServiceBase {
 
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
+    oThis.headers = params.headers;
 
     oThis.urlParams = {};
   }
