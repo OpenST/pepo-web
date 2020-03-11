@@ -19,7 +19,7 @@ class Feed {
 
   bindEvents = () => {
 
-    $('.feedList').on('click', (e) => {
+    $('#feedParent').on('click', '.feedList', (e) => {
       $('#feedModal').modal('show');
       e.preventDefault();
       e.stopPropagation();
@@ -40,7 +40,6 @@ class Feed {
     let feedItemData = new FeedItemData(result, this.getAssociatedData());
     return feedItemData.perform();
   }
-
   });
   }
 }
