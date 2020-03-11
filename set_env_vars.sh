@@ -39,3 +39,10 @@ export PW_ANDROID_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNati
 export PW_IOS_PACKAGE_NAME='com.pepo.staging';
 export PW_IOS_APP_LINK='http://sdk.stagingost.com.s3.amazonaws.com/ReactNative/DownloadPepoNew.html?b=staging';
 export PW_IOS_APP_ID='1161312313';
+
+export PW_TOKEN_ID='1185';
+export PW_PLATFORM_API_ENDPOINT='https://api.stagingost.com/testnet/v2';
+export PW_SDK_ENDPOINT="";
+
+export PW_TRACKER_ENDPOINT='//aqswde.fr/devp101_pixel_xyz.png';
+export PW_TRACKER_URL='//d2bcmzumnful8.cloudfront.net/tracker.js'

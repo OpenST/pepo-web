@@ -122,6 +122,26 @@ class CoreConstant {
   get DEFAULT_SHARE_TITLE(){
     return 'Meet your peeps!';
   }
+  
+  get PEPO_TOKEN_ID(){
+    return process.env.PW_TOKEN_ID;
+  }
+  
+  get PEPO_PLATFORM_API_ENDPOINT(){
+    return process.env.PW_PLATFORM_API_ENDPOINT;
+  }
+  
+  get PEPO_SDK_ENDPOINT(){
+    return process.env.PW_SDK_ENDPOINT;
+  }
+  
+  get PEPO_TRACKER_ENDPOINT(){
+    return process.env.PW_TRACKER_ENDPOINT;
+  }
+  
+  get PEPO_TRACKER_URL(){
+    return process.env.PW_TRACKER_URL;
+  }
 
 }
 

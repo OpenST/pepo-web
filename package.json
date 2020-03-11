@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@ostdotcom/base": "^2.0.0",
+    "@ostdotcom/ost-wallet-sdk-browser": "github:ostdotcom/ost-wallet-sdk-browser#pre-rc",
     "basic-auth": "2.0.0",
     "bignumber.js": "4.1.0",
     "body-parser": "1.18.3",
@@ -24,9 +25,9 @@
     "moment": "2.24.0",
     "morgan": "1.9.1",
     "node-sass": "4.13.0",
+    "qs": "6.9.1",
     "sanitize-html": "1.19.3",
-    "unescape": "1.0.1",
-    "qs": "6.9.1"
+    "unescape": "1.0.1"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",

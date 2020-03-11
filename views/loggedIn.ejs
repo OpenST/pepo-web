@@ -16,6 +16,11 @@
     <% } %>
     
     <% include partials/shared/_script %>
+
+    <% if (_endJSPartial) { %>
+        <%- include(_endJSPartial) -%>
+    <% } %>
+  
   </body>
 
 </html>
