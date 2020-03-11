@@ -178,7 +178,6 @@ export default class SimpleDataTable {
   }
 
   getRowData(result){
-    return {username:'mayur'}
     return result;
   }
 
