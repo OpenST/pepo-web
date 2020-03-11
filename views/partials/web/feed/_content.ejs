@@ -2,8 +2,24 @@
     <div class="row">
         <div class="col-12 col-md-11 col-lg-10 p-0 mx-auto">
             <div class="container p-0">
-                <ul class="mx-auto list-unstyled d-flex flex-wrap feedUnordered my-5" id="feedParent"></ul>
+                <ul class="mx-auto list-unstyled d-flex flex-wrap feedUnordered my-5" id="feedParent">
+                    <% for (let entity of Object.values(feedsModel.data.feed_entities)) { %>
+                        <li class="feedList col-6 col-md-3 ">
+                            <img src="<% feedsModel.getVideoCoverImage(entity.payload.video_id) %>" class="img-fluid"/>
+                            <span class="feed-video-play-icon play-icon ppBtn"></span>
+                            <div class="details">
+                                <span class="desc"><%= feedsModel.getVideoDescription(entity.payload.video_id) %></span>
+                                <div class="d-flex flex-row justify-content-between">
+                                    <span class="desc">@<%= feedsModel.getOwnerUserName(entity.payload.video_id) %></span>
+                                    <span class="desc"><%= feedsModel.getAmountRaised(entity.payload.video_id)  %></span>
+                                </div>
+                            </div>
+                        </li>
+                    <% }  %>
+                </ul>
             </div>
         </div>
     </div>
 </div>
+
+<%= JSON.stringify(locals)%>

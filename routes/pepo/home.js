@@ -16,6 +16,9 @@ const rootPrefix = '../..',
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
   GetFeed = require(rootPrefix + '/app/services/GetFeed'),
+  dataStoreHelper  = require(rootPrefix + '/lib/dataStoreHelper'),
+  FeedsModel = require(rootPrefix + '/lib/model/Feed'),
+
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video'),
   CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
@@ -44,23 +47,30 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
 
 /* GET feed page. */
 router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  let feedApiResponse = await new GetFeed({headers: req.headers, decodedParams: req.decodedParams}).perform();
+  let apiResponse = await new GetFeed({headers: req.headers, decodedParams: req.decodedParams}).perform();
   let firebaseGetTheAppUrl = '';
-  if ( feedApiResponse.success ) {
-    firebaseGetTheAppUrl = feedApiResponse.data.url;
+  if ( apiResponse.success ) {
+    firebaseGetTheAppUrl = apiResponse.data.url;
   }
 
-  if (feedApiResponse.success) {
+  console.log('++=======================================+++================');
+  console.log(apiResponse);
+  console.log('++=======================================+++================');
+
+  if (apiResponse.success) {
+   const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
     renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_feed', {
       success: true,
+      apiResponse : apiResponse,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
       showFooter: false,
+      feedsModel,
       currentUser: new CurrentUser()
     });
   } else {
-    return responseHelper.renderApiResponse(feedApiResponse, res, errorConfig);
+    return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
 });
 
