@@ -1,4 +1,8 @@
-<%- include('../partials/shared/_navBar', {pepoNav: "pepo-video"}) -%>
+<% if (!currentUser.isLoggedIn()) {%>
+    <%- include('../partials/shared/_navBar', {pepoNav: "pepo-nav"}) -%>    
+<% } else{ %>
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
+<% } %>
 <%- include ../partials/web/video/_content -%>
 <%- include ../partials/web/video/_toast %>
 <%- include ../partials/web/video/_video_modal %>

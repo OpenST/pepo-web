@@ -190,7 +190,7 @@ var WebView = function WebView() {
         data: data,
         success: function success(res) {
           window.location = redirectUrl;
-          console.log("success redirect ajax");
+          console.log("success redirect ajax", JSON.stringify(res));
         },
         error: function error(err) {
           if (redirectUrl.indexOf('?') !== -1) {

@@ -17,7 +17,8 @@ const rootPrefix = '../..',
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
   GetFeed = require(rootPrefix + '/app/services/GetFeed'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
+  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video'),
+  CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
@@ -28,12 +29,14 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   if ( apiResponse.success ) {
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
+
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
-    firebaseUrls: {getTheApp: firebaseGetTheAppUrl}
+    firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
+    currentUser: new CurrentUser()
   });
 
 });
