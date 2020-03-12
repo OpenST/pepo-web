@@ -19,8 +19,7 @@ const rootPrefix = '../..',
   GetFeed = require(rootPrefix + '/app/services/GetFeed'),
   dataStoreHelper  = require(rootPrefix + '/lib/dataStoreHelper'),
   FeedsModel = require(rootPrefix + '/lib/model/Feed'),
-  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video'),
-  CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
+  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
@@ -38,8 +37,6 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     layout = "loggedIn"
   }
 
-  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
-
   return webRouteHelper.perform(req, res, layout, 'web/_home', {
     apiResponseData: apiResponse.data,
     twitterRedirectUrl: '#',
@@ -47,7 +44,6 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-    currentUser: new CurrentUser(currentUserData),
     apiResponse: apiResponse,
     pageMeta : apiResponse.data.pageMeta
   });
@@ -66,8 +62,6 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   console.log(apiResponse);
   console.log('++=======================================+++================');
 
-  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
-
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
     webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', {
@@ -78,8 +72,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
       showFooter: false,
-      feedsModel,
-      currentUser: new CurrentUser(currentUserData)
+      feedsModel
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
@@ -124,7 +117,6 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
-  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
 
   if (apiResponse.success) {
     let formattedData = new videoViewFormatter(apiResponse.data).perform();
@@ -136,8 +128,7 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
       pageMeta: formattedData.page_meta,
       firebaseUrls: {openInApp: formattedData.firebase_video_url},
       showFooter: false,
-      formattedEntityData: formattedData,
-      currentUser: new CurrentUser(currentUserData)
+      formattedEntityData: formattedData
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
