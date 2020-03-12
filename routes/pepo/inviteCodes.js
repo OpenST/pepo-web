@@ -5,8 +5,7 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
-  appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
+  webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper');
 
 const filterUtmParams = function(req) {
   let utmQueryString = '';
@@ -30,7 +29,7 @@ router.get('/whatgrindsmygears', sanitizer.sanitizeDynamicUrlParams, async funct
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appDownloadLink,
@@ -56,7 +55,7 @@ router.get('/whatgrindsmygears/desktop', sanitizer.sanitizeDynamicUrlParams, asy
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/whatgrindsmygears in your mobile browser",
@@ -83,7 +82,7 @@ router.get('/epicenter', sanitizer.sanitizeDynamicUrlParams, async function (req
     appDownloadLink += '?' + utmQueryString;
   }
   
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appDownloadLink,
@@ -109,7 +108,7 @@ router.get('/epicenter/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/epicenter in your mobile browser",
@@ -136,7 +135,7 @@ router.get('/brave', sanitizer.sanitizeDynamicUrlParams, async function (req, re
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -163,7 +162,7 @@ router.get('/brave/desktop', sanitizer.sanitizeDynamicUrlParams, async function 
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/brave in your mobile browser",
@@ -190,7 +189,7 @@ router.get('/linkedin', sanitizer.sanitizeDynamicUrlParams, async function (req,
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -217,7 +216,7 @@ router.get('/linkedin/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/linkedin in your mobile browser",
@@ -244,7 +243,7 @@ router.get('/facebook', sanitizer.sanitizeDynamicUrlParams, async function (req,
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -271,7 +270,7 @@ router.get('/facebook/desktop', sanitizer.sanitizeDynamicUrlParams, async functi
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/facebook in your mobile browser",
@@ -298,7 +297,7 @@ router.get('/etherscan', sanitizer.sanitizeDynamicUrlParams, async function (req
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -325,7 +324,7 @@ router.get('/etherscan/desktop', sanitizer.sanitizeDynamicUrlParams, async funct
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/etherscan in your mobile browser",
@@ -352,7 +351,7 @@ router.get('/ph', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -379,7 +378,7 @@ router.get('/ph/desktop', sanitizer.sanitizeDynamicUrlParams, async function (re
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/ph in your mobile browser",
@@ -406,7 +405,7 @@ router.get('/reddit', sanitizer.sanitizeDynamicUrlParams, async function (req, r
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -433,7 +432,7 @@ router.get('/reddit/desktop', sanitizer.sanitizeDynamicUrlParams, async function
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/reddit in your mobile browser",
@@ -460,7 +459,7 @@ router.get('/google', sanitizer.sanitizeDynamicUrlParams, async function (req, r
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -487,7 +486,7 @@ router.get('/google/desktop', sanitizer.sanitizeDynamicUrlParams, async function
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/google in your mobile browser",
@@ -514,7 +513,7 @@ router.get('/stories', sanitizer.sanitizeDynamicUrlParams, async function (req, 
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -540,7 +539,7 @@ router.get('/stories/desktop', sanitizer.sanitizeDynamicUrlParams, async functio
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/stories in your mobile browser",
@@ -567,7 +566,7 @@ router.get('/tw', sanitizer.sanitizeDynamicUrlParams, async function (req, res, 
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     hideUberBanner: 1,
@@ -594,7 +593,7 @@ router.get('/tw/desktop', sanitizer.sanitizeDynamicUrlParams, async function (re
     appDownloadLink += '?' + utmQueryString;
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return webRouteHelper.perform(req, res, 'loggedOut', 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     uberBannerTxt: "To download the mobile app, please visit Pepo.com/tw in your mobile browser",
