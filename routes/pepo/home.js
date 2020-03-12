@@ -25,7 +25,7 @@ const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform()
+  const apiResponse = await new GetFirebaseHomeUrl({headers: req.headers, decodedParams: req.decodedParams}).perform()
    ;
   let  layout = "loggedOut";
   let firebaseGetTheAppUrl = '';
@@ -270,7 +270,7 @@ router.get(`/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (re
     );
   }
 
-  const apiResponse = await new GetFirebaseUserProfileUrl({decodedParams: req.decodedParams}).perform();
+  const apiResponse = await new GetFirebaseUserProfileUrl({headers: req.headers, decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
       apiResponseData: apiResponse.data,
