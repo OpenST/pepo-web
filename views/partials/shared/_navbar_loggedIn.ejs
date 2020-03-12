@@ -10,14 +10,12 @@
                 </switch>
             </svg>
             <span class="mr-4">123</span>
-            <div id="logoutApp" data-login-type="<%= currentUser.getLoginType() %>" class="d-inline p-1 user-info">
-                <img src="<%= currentUser.getUserProfileImage() %>" style="width: 30px; height: 30px; object-fit: cover;border-radius: 15px"/>
-                <span class="ml-1 mr-5"><%= currentUser.getUserName() %></span>
-                <svg width="20" height="20" style="vertical-align: middle;">
-                    <switch>
-                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#down-arrow-icon"></use>
-                    </switch>
-                </svg>
+            <div id="logoutApp" data-login-type="<%= currentUser.getLoginType() %>" class="user-info d-flex align-items-center justify-content-between" style="min-width: 250px">
+                <span class="d-flex align-items-center">
+                    <img src="<%= currentUser.getUserProfileImage() %>" style="width: 30px; height: 30px; object-fit: cover;border-radius: 15px"/>
+                    <span class="ml-2" style="font-family: AvenirNext-Medium;"><%= currentUser.getUserName() %></span>
+                </span>
+                <span class="downward-arrow-icon"></span>
             </div>
         </div>
     </div>
