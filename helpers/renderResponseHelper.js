@@ -2,7 +2,9 @@ const rootPrefix = "../";
 
 // All Requires
 const pageMetaProvider = require(rootPrefix + "/config/pageMetaProvider"),
-      coreConstants = require(rootPrefix + '/config/coreConstants');
+  UserApi = require(rootPrefix + '/lib/pepoApi/User'),
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
+  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
 
 class ResponseRenderer {
 
@@ -37,6 +39,11 @@ class ResponseRenderer {
       locals.showFooter = true;
     }
 
+    // if(request.headers && cookieConstants.hasWebLoginCookie(request.headers['cookie'])){
+    //
+    //   locals.current_user_data = currentUserRespdata || {};
+    // }
+
     response.render(layout, locals, callback);
   }
   
@@ -54,6 +61,10 @@ class ResponseRenderer {
 
   populateCSRFToken(request, locals) {
     locals._CSRFToken = (typeof request.csrfToken == 'function' ? request.csrfToken() : '');
+  }
+
+  async getCurrentUserData(request) {
+    let shareResponse = await new UserApi(request.headers).getUserProfileShareDetails({})
   }
 }
 
