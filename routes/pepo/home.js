@@ -18,8 +18,6 @@ const rootPrefix = '../..',
   GetFeed = require(rootPrefix + '/app/services/GetFeed'),
   dataStoreHelper  = require(rootPrefix + '/lib/dataStoreHelper'),
   FeedsModel = require(rootPrefix + '/lib/model/Feed'),
-
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video'),
   CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
 

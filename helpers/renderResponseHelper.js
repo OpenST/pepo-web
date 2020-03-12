@@ -8,19 +8,35 @@ const pageMetaProvider = require(rootPrefix + "/config/pageMetaProvider"),
 
 class ResponseRenderer {
 
+  /**
+   *
+   * @param contentPartialPath
+   * @returns {*}
+   */
   getPageMeta( contentPartialPath ) {
     return pageMetaProvider(contentPartialPath);
   }
 
-  renderWithLayout(request, response, layout, contentPartialPath, locals, callback) {
+  /**
+   *
+   * @param request
+   * @param response
+   * @param layout
+   * @param contentPartialPath
+   * @param locals
+   * @param callback
+   */
+  async renderWithLayout(request, response, layout, contentPartialPath, locals, callback) {
+    const oThis = this;
+
     locals = locals || {};
-    this.populateCSRFToken(request, locals);
-    this.populateSDKConfig(request, locals);
+    oThis.populateCSRFToken(request, locals);
+    oThis.populateSDKConfig(request, locals);
 
     if ( !locals.pageMeta ) {
-      locals.pageMeta = this.getPageMeta( contentPartialPath );
+      locals.pageMeta = oThis.getPageMeta( contentPartialPath );
     } else {
-      locals.pageMeta = Object.assign({}, this.getPageMeta( contentPartialPath ), locals.pageMeta)
+      locals.pageMeta = Object.assign({}, oThis.getPageMeta( contentPartialPath ), locals.pageMeta)
     }
 
     if ( !locals._contentPartial ) {
@@ -39,10 +55,14 @@ class ResponseRenderer {
       locals.showFooter = true;
     }
 
-    // if(request.headers && cookieConstants.hasWebLoginCookie(request.headers['cookie'])){
-    //
-    //   locals.current_user_data = currentUserRespdata || {};
-    // }
+    console.log('==111111========locals====-===================', locals);
+    if(!locals.current_user_data && request.headers && cookieConstants.hasWebLoginCookie(request.headers['cookie'])){
+      let currentUserData = await oThis.getCurrentUserData(request);
+      if(currentUserData.data){
+        locals.current_user_data = currentUserData.data;
+      }
+    }
+    console.log('==222222========locals====-===================', locals);
 
     response.render(layout, locals, callback);
   }
@@ -64,7 +84,9 @@ class ResponseRenderer {
   }
 
   async getCurrentUserData(request) {
-    let shareResponse = await new UserApi(request.headers).getUserProfileShareDetails({})
+    let currentUserResponse = await new UserApi(request.headers).getCurrentUser({});
+    console.log('==========currentUserResponse============', currentUserResponse);
+    return currentUserResponse;
   }
 }
 
