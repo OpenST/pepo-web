@@ -23,7 +23,7 @@
     el.async = 1;
     el.src = p;
     sel.parentNode.insertBefore(el, sel);
-  })(window, document, 'script', <%- JSON.stringify(appMeta.TRACKER_URL) %> , 'pepoTracker');
+  })(window, document, 'script', '<%- JSON.stringify(appMeta.TRACKER_URL) %>' , 'pepoTracker');
 
   pepoTracker("setPixelPath", tracker_endpoint);
   pepoTracker("setInitParams",initParamsData);

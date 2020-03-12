@@ -196,9 +196,10 @@ pepo.webView = new WebView();
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//Only Required client side
 /* harmony default export */ __webpack_exports__["default"] = (function (ns_string) {
   var parts = ns_string && ns_string.split('.'),
-      parent = window,
+      parent = window || {},
       pl,
       i;
   pl = parts.length;
