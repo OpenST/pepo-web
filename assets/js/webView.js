@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 127);
+/******/ 	return __webpack_require__(__webpack_require__.s = 94);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -96,69 +96,6 @@ function _classCallCheck(instance, Constructor) {
 }
 
 module.exports = _classCallCheck;
-
-/***/ }),
-
-/***/ 127:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(87);
-
-
-
-
-
-var WebView = function WebView() {
-  var _this = this;
-
-  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebView);
-
-  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "sanitizeUrl", function (url) {
-    if (url.indexOf('lerr') !== -1) {
-      url = url.replace(/(\?|&)+lerr=1/gi, ' ');
-    }
-
-    return url;
-  });
-
-  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function (params) {
-    var data = JSON.parse(params.oAuthData),
-        kind = params.oAuthKind,
-        redirectUrl = _this.sanitizeUrl(params.redirectUrl);
-
-    if (!data || !redirectUrl) return;
-    jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
-      url: "/api/web/auth/".concat(kind, "/login"),
-      method: 'POST',
-      data: data,
-      success: function success(res) {
-        window.location = redirectUrl;
-        console.log("success redirect ajax", JSON.stringify(res));
-      },
-      error: function error(err) {
-        if (redirectUrl.indexOf('?') !== -1) {
-          window.location = "".concat(redirectUrl, "&lerr=1");
-        } else {
-          window.location = "".concat(redirectUrl, "?lerr=1");
-        }
-
-        console.log("error redirect ajax");
-      }
-    });
-  });
-};
-
-var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_3__["default"])("pepo");
-pepo.webView = new WebView();
-/* harmony default export */ __webpack_exports__["default"] = (pepo.webView);
 
 /***/ }),
 
@@ -218,6 +155,69 @@ var _this = undefined;
 
   return parent;
 });
+
+/***/ }),
+
+/***/ 94:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(87);
+
+
+
+
+
+var WebView = function WebView() {
+  var _this = this;
+
+  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebView);
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "sanitizeUrl", function (url) {
+    if (url.indexOf('lerr') !== -1) {
+      url = url.replace(/(\?|&)+lerr=1/gi, ' ');
+    }
+
+    return url;
+  });
+
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function (params) {
+    var data = JSON.parse(params.oAuthData),
+        kind = params.oAuthKind,
+        redirectUrl = _this.sanitizeUrl(params.redirectUrl);
+
+    if (!data || !redirectUrl) return;
+    jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+      url: "/api/web/auth/".concat(kind, "/login"),
+      method: 'POST',
+      data: data,
+      success: function success(res) {
+        window.location = redirectUrl;
+        console.log("success redirect ajax", JSON.stringify(res));
+      },
+      error: function error(err) {
+        if (redirectUrl.indexOf('?') !== -1) {
+          window.location = "".concat(redirectUrl, "&lerr=1");
+        } else {
+          window.location = "".concat(redirectUrl, "?lerr=1");
+        }
+
+        console.log("error redirect ajax");
+      }
+    });
+  });
+};
+
+var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_3__["default"])("pepo");
+pepo.webView = new WebView();
+/* harmony default export */ __webpack_exports__["default"] = (pepo.webView);
 
 /***/ })
 

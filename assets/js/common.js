@@ -405,7 +405,7 @@ var GoogleAuth = /*#__PURE__*/function (_Base) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/google-disconnect';
+      return '/api/web/auth/google/disconnect';
     });
 
     return _this;
@@ -607,6 +607,7 @@ var Base = function Base() {
       url: _this.getDisconnectUrl(),
       type: "POST",
       success: function success(result) {
+        location.reload();
         console.log("Log out success ", result);
       },
       error: function error(xhr, status, _error2) {
@@ -673,7 +674,7 @@ var AppleAuth = /*#__PURE__*/function (_Base) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/apple-disconnect';
+      return '/api/web/auth/apple/disconnect';
     });
 
     return _this;
@@ -730,7 +731,7 @@ var GithubAuth = /*#__PURE__*/function (_Base) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/github-disconnect';
+      return '/api/web/auth/github/disconnect';
     });
 
     return _this;
@@ -787,7 +788,7 @@ var TwitterAuth = /*#__PURE__*/function (_Base) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/twitter-disconnect';
+      return '/api/web/auth/twitter/disconnect';
     });
 
     return _this;

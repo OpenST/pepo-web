@@ -15,7 +15,7 @@ class GithubAuth extends Base{
     }
 
     getDisconnectUrl = () => {
-      return '/api/web/auth/github-disconnect';
+      return '/api/web/auth/github/disconnect';
     }
  
 }
