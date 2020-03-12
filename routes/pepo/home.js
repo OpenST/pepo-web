@@ -57,16 +57,13 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
 
-  console.log('++=======================================+++================');
-  console.log(apiResponse);
-  console.log('++=======================================+++================');
+
 
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
     webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', {
       apiResponseData: apiResponse.data,
       success: true,
-      apiResponse : apiResponse,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
