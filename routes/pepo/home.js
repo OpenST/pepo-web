@@ -119,6 +119,7 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
+  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
 
   if (apiResponse.success) {
     let formattedData = new videoViewFormatter(apiResponse.data).perform();
@@ -131,7 +132,7 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
       firebaseUrls: {openInApp: formattedData.firebase_video_url},
       showFooter: false,
       formattedEntityData: formattedData,
-      currentUser: new CurrentUser()
+      currentUser: new CurrentUser(currentUserData)
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

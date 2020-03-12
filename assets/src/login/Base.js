@@ -69,6 +69,7 @@ class Base{
             url: this.getDisconnectUrl(),
             type: "POST",
             success: (result) => {
+                location.reload();
                 console.log("Log out success ", result);
             },
             error: (xhr,status,error) => {

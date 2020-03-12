@@ -15,7 +15,7 @@ class GoogleAuth extends Base{
     }
 
     getDisconnectUrl = () => {
-      return '/api/web/auth/google-disconnect';
+      return '/api/web/auth/google/disconnect';
     }
  
 }

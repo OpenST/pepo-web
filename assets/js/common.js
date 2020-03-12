@@ -95,11 +95,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _common_navBar__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3);
-/* harmony import */ var _login_AppleAuth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6);
-/* harmony import */ var _login_GoogleAuth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(14);
-/* harmony import */ var _login_GithubAuth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(15);
-/* harmony import */ var _login_TwitterAuth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(16);
-/* harmony import */ var _utils_ajaxHooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(17);
+/* harmony import */ var _login_AppleAuth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(15);
+/* harmony import */ var _login_GoogleAuth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(7);
+/* harmony import */ var _login_GithubAuth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(16);
+/* harmony import */ var _login_TwitterAuth__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(17);
+/* harmony import */ var _utils_ajaxHooks__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(18);
 /* harmony import */ var _utils_ajaxHooks__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(_utils_ajaxHooks__WEBPACK_IMPORTED_MODULE_7__);
 
 
@@ -161,6 +161,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(2);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _login_LoginServicefactory__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(6);
+
 
 
 
@@ -197,15 +199,19 @@ var NavBar = /*#__PURE__*/function () {
         e.stopPropagation();
       });
       jquery__WEBPACK_IMPORTED_MODULE_3___default()('#logoutApp').on('click', function (e) {
-        var logoutModal = jquery__WEBPACK_IMPORTED_MODULE_3___default()('#logoutModal');
+        var logoutModal = jquery__WEBPACK_IMPORTED_MODULE_3___default()('#logoutModal'),
+            loginType = jquery__WEBPACK_IMPORTED_MODULE_3___default()(this).attr('data-login-type');
         logoutModal.modal({
           backdrop: false
         });
         logoutModal.modal('show');
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()('body').on('click', function () {
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()('body').on('click', function (e) {
           if (logoutModal.length !== 0) {
             logoutModal.modal('hide');
           }
+
+          var loginInstance = _login_LoginServicefactory__WEBPACK_IMPORTED_MODULE_4__["default"].getLoginServiceInstance(loginType);
+          loginInstance.logout();
         });
         e.preventDefault();
         e.stopPropagation();
@@ -308,17 +314,70 @@ module.exports = _defineProperty;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
+/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _GoogleAuth__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(7);
+/* harmony import */ var _AppleAuth__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(15);
+/* harmony import */ var _GithubAuth__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(16);
+/* harmony import */ var _TwitterAuth__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(17);
+
+
+
+
+
+
+
+var LoginServiceFactory = /*#__PURE__*/function () {
+  function LoginServiceFactory() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, LoginServiceFactory);
+  }
+
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(LoginServiceFactory, [{
+    key: "getLoginServiceInstance",
+    value: function getLoginServiceInstance(loginType) {
+      switch (loginType) {
+        case 'google':
+          return _GoogleAuth__WEBPACK_IMPORTED_MODULE_2__["default"];
+
+        case 'apple':
+          return _AppleAuth__WEBPACK_IMPORTED_MODULE_3__["default"];
+
+        case 'github':
+          return _GithubAuth__WEBPACK_IMPORTED_MODULE_4__["default"];
+
+        case 'twitter':
+          return _TwitterAuth__WEBPACK_IMPORTED_MODULE_5__["default"];
+
+        default:
+          return null;
+      }
+    }
+  }]);
+
+  return LoginServiceFactory;
+}();
+
+/* harmony default export */ __webpack_exports__["default"] = (new LoginServiceFactory());
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
 /* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
+/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(14);
 
 
 
@@ -327,43 +386,43 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var AppleAuth = /*#__PURE__*/function (_Base) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(AppleAuth, _Base);
+var GoogleAuth = /*#__PURE__*/function (_Base) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(GoogleAuth, _Base);
 
-  function AppleAuth(params) {
+  function GoogleAuth(params) {
     var _this;
 
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, AppleAuth);
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, GoogleAuth);
 
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default()(AppleAuth).call(this, params));
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default()(GoogleAuth).call(this, params));
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getButtonSelector", function () {
-      return '#appleSignIn';
+      return '#googleSignIn';
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getUrlEndpoint", function () {
-      return '/api/web/auth/apple/redirect-url';
+      return '/api/web/auth/google/redirect-url';
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/apple-disconnect';
+      return '/api/web/auth/google/disconnect';
     });
 
     return _this;
   }
 
-  return AppleAuth;
+  return GoogleAuth;
 }(_Base__WEBPACK_IMPORTED_MODULE_6__["default"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (new AppleAuth());
+/* harmony default export */ __webpack_exports__["default"] = (new GoogleAuth());
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var _typeof = __webpack_require__(8);
+var _typeof = __webpack_require__(9);
 
-var assertThisInitialized = __webpack_require__(9);
+var assertThisInitialized = __webpack_require__(10);
 
 function _possibleConstructorReturn(self, call) {
   if (call && (_typeof(call) === "object" || typeof call === "function")) {
@@ -376,7 +435,7 @@ function _possibleConstructorReturn(self, call) {
 module.exports = _possibleConstructorReturn;
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports) {
 
 function _typeof(obj) {
@@ -396,7 +455,7 @@ function _typeof(obj) {
 module.exports = _typeof;
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports) {
 
 function _assertThisInitialized(self) {
@@ -410,7 +469,7 @@ function _assertThisInitialized(self) {
 module.exports = _assertThisInitialized;
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports) {
 
 function _getPrototypeOf(o) {
@@ -423,10 +482,10 @@ function _getPrototypeOf(o) {
 module.exports = _getPrototypeOf;
 
 /***/ }),
-/* 11 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var setPrototypeOf = __webpack_require__(12);
+var setPrototypeOf = __webpack_require__(13);
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -446,7 +505,7 @@ function _inherits(subClass, superClass) {
 module.exports = _inherits;
 
 /***/ }),
-/* 12 */
+/* 13 */
 /***/ (function(module, exports) {
 
 function _setPrototypeOf(o, p) {
@@ -461,7 +520,7 @@ function _setPrototypeOf(o, p) {
 module.exports = _setPrototypeOf;
 
 /***/ }),
-/* 13 */
+/* 14 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -492,9 +551,6 @@ var Base = function Base() {
       _this.disableLoginBtns();
 
       _this.getRedirectUrl();
-    });
-    $('#logoutBtn').on('click', function () {
-      _this.logout();
     });
   });
 
@@ -551,6 +607,7 @@ var Base = function Base() {
       url: _this.getDisconnectUrl(),
       type: "POST",
       success: function success(result) {
+        location.reload();
         console.log("Log out success ", result);
       },
       error: function error(xhr, status, _error2) {
@@ -572,63 +629,6 @@ var Base = function Base() {
 /* harmony default export */ __webpack_exports__["default"] = (Base);
 
 /***/ }),
-/* 14 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5);
-/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
-
-
-
-
-
-
-
-
-var GoogleAuth = /*#__PURE__*/function (_Base) {
-  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(GoogleAuth, _Base);
-
-  function GoogleAuth(params) {
-    var _this;
-
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, GoogleAuth);
-
-    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default()(GoogleAuth).call(this, params));
-
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getButtonSelector", function () {
-      return '#googleSignIn';
-    });
-
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getUrlEndpoint", function () {
-      return '/api/web/auth/google/redirect-url';
-    });
-
-    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/google-disconnect';
-    });
-
-    return _this;
-  }
-
-  return GoogleAuth;
-}(_Base__WEBPACK_IMPORTED_MODULE_6__["default"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (new GoogleAuth());
-
-/***/ }),
 /* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -636,17 +636,74 @@ var GoogleAuth = /*#__PURE__*/function (_Base) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
 /* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
+/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(14);
+
+
+
+
+
+
+
+
+var AppleAuth = /*#__PURE__*/function (_Base) {
+  _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default()(AppleAuth, _Base);
+
+  function AppleAuth(params) {
+    var _this;
+
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, AppleAuth);
+
+    _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default()(AppleAuth).call(this, params));
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getButtonSelector", function () {
+      return '#appleSignIn';
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getUrlEndpoint", function () {
+      return '/api/web/auth/apple/redirect-url';
+    });
+
+    _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
+      return '/api/web/auth/apple/disconnect';
+    });
+
+    return _this;
+  }
+
+  return AppleAuth;
+}(_Base__WEBPACK_IMPORTED_MODULE_6__["default"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (new AppleAuth());
+
+/***/ }),
+/* 16 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
+/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5);
+/* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(14);
 
 
 
@@ -674,7 +731,7 @@ var GithubAuth = /*#__PURE__*/function (_Base) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/github-disconnect';
+      return '/api/web/auth/github/disconnect';
     });
 
     return _this;
@@ -686,24 +743,24 @@ var GithubAuth = /*#__PURE__*/function (_Base) {
 /* harmony default export */ __webpack_exports__["default"] = (new GithubAuth());
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(7);
+/* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(8);
 /* harmony import */ var _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(10);
+/* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(11);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(9);
+/* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(10);
 /* harmony import */ var _babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(11);
+/* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(12);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(5);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(13);
+/* harmony import */ var _Base__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(14);
 
 
 
@@ -731,7 +788,7 @@ var TwitterAuth = /*#__PURE__*/function (_Base) {
     });
 
     _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_5___default()(_babel_runtime_helpers_assertThisInitialized__WEBPACK_IMPORTED_MODULE_3___default()(_this), "getDisconnectUrl", function () {
-      return '/api/web/auth/twitter-disconnect';
+      return '/api/web/auth/twitter/disconnect';
     });
 
     return _this;
@@ -743,7 +800,7 @@ var TwitterAuth = /*#__PURE__*/function (_Base) {
 /* harmony default export */ __webpack_exports__["default"] = (new TwitterAuth());
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports) {
 
 ;
