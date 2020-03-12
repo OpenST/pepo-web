@@ -37,6 +37,8 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     layout = "loggedIn"
   }
 
+  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
+
   return renderResponseHelper.renderWithLayout(req, res, layout, 'web/_home', {
     apiResponseData: apiResponse.data,
     twitterRedirectUrl: '#',
@@ -44,7 +46,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-    currentUser: new CurrentUser(),
+    currentUser: new CurrentUser(currentUserData),
     apiResponse: apiResponse,
     pageMeta : apiResponse.data.pageMeta
   });
@@ -63,6 +65,8 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   console.log(apiResponse);
   console.log('++=======================================+++================');
 
+  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
+
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
     renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_feed', {
@@ -74,7 +78,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
       showFooter: false,
       feedsModel,
-      currentUser: new CurrentUser()
+      currentUser: new CurrentUser(currentUserData)
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
