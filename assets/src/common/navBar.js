@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import LoginServiceFactory from  '../login/LoginServicefactory';
 
 class NavBar {
 
@@ -49,16 +50,18 @@ class NavBar {
         })
 
         $('#logoutApp').on('click',function (e) {
-          let logoutModal = $('#logoutModal');
+          let logoutModal = $('#logoutModal'),
+                loginType= $(this).attr('data-login-type');
           logoutModal.modal({
             backdrop:false
           });
           logoutModal.modal('show');
-          $('body').on('click',function () {
+          $('body').on('click',function (e) {
             if(logoutModal.length !== 0 ){
               logoutModal.modal('hide');
             }
-
+            let loginInstance = LoginServiceFactory.getLoginServiceInstance( loginType );
+            loginInstance.logout();
           });
             e.preventDefault();
             e.stopPropagation();

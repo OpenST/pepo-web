@@ -10,7 +10,7 @@
                 </switch>
             </svg>
             <span class="mr-4">123</span>
-            <div id="logoutApp" class="d-inline p-1 user-info">
+            <div id="logoutApp" data-login-type="<%= currentUser.getLoginType() %>" class="d-inline p-1 user-info">
                 <img src="<%= currentUser.getUserProfileImage() %>" style="width: 30px; height: 30px; object-fit: cover;border-radius: 15px"/>
                 <span class="ml-1 mr-5"><%= currentUser.getUserName() %></span>
                 <svg width="20" height="20" style="vertical-align: middle;">
