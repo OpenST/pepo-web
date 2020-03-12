@@ -34,6 +34,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   }
 
   return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+    apiResponseData: apiResponse.data,
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
@@ -60,6 +61,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
     renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_feed', {
+      apiResponseData: feedApiResponse.data,
       success: true,
       apiResponse : apiResponse,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
@@ -117,6 +119,7 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
     let formattedData = new videoViewFormatter(apiResponse.data).perform();
 
     return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', {
+      apiResponseData: apiResponse.data,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       pageMeta: formattedData.page_meta,
@@ -148,9 +151,10 @@ router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDyna
     );
   }
 
-  const apiResponse = await new GetFirebaseReplyVideoUrl({decodedParams: req.decodedParams}).perform();
+  const apiResponse = await new GetFirebaseReplyVideoUrl({headers: req.headers, decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+      apiResponseData: apiResponse.data,
       redirect_to_location: apiResponse.data.url,
       pageMeta: apiResponse.data.pageMeta
     });
@@ -177,9 +181,10 @@ router.get(`${pagePathConstants.communities}/:permalink`, sanitizer.sanitizeDyna
     );
   }
 
-  const apiResponse = await new GetFirebaseChannelUrl({decodedParams: req.decodedParams}).perform();
+  const apiResponse = await new GetFirebaseChannelUrl({headers: req.headers, decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+      apiResponseData: apiResponse.data,
       redirect_to_location: apiResponse.data.url,
       pageMeta: apiResponse.data.pageMeta
     });
@@ -262,6 +267,7 @@ router.get(`/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (re
   const apiResponse = await new GetFirebaseUserProfileUrl({decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+      apiResponseData: apiResponse.data,
       redirect_to_location: apiResponse.data.url,
       pageMeta: apiResponse.data.pageMeta
     });

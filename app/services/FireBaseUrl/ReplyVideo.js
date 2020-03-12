@@ -51,7 +51,8 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
           image: oThis.urlParams.si,
           card: "summary_large_image"
         }
-      }
+      },
+      current_user_data: oThis.currentUserData
     });
   }
 
@@ -64,10 +65,11 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
   async _fetchReplyVideoShareDetails() {
     const oThis = this;
 
-    let replyVideoShareResponse = await new ReplyVideoShareDetails({}).getReplyVideoShareDetails({reply_detail_id: oThis.replyDetailId});
+    let replyVideoShareResponse = await new ReplyVideoShareDetails(oThis.headers).getReplyVideoShareDetails({reply_detail_id: oThis.replyDetailId});
     if(replyVideoShareResponse.success){
       let resultType = replyVideoShareResponse.data.result_type;
       oThis.replyVideoShareDetails = replyVideoShareResponse.data[resultType];
+      oThis.currentUserData = replyVideoShareResponse.data['current_user_data'];
     }
   }
 
