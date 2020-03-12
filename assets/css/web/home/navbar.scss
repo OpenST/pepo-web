@@ -66,6 +66,15 @@
         padding-right: 0;
         padding-left: 0;
       }
+      &.logInOut{
+        padding: 10px 15px;
+        border-radius: 5px;
+        border: 2px solid #ff5566;
+        a{
+          color: #ff5566;
+          font-weight: 600;
+        }
+      }
     }
   }
 
