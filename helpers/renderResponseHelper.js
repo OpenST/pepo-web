@@ -1,10 +1,8 @@
-const rootPrefix = "../";
+const rootPrefix = "..";
 
 // All Requires
 const pageMetaProvider = require(rootPrefix + "/config/pageMetaProvider"),
-  UserApi = require(rootPrefix + '/lib/pepoApi/User'),
-  coreConstants = require(rootPrefix + '/config/coreConstants'),
-  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
+  coreConstants = require(rootPrefix + '/config/coreConstants');
 
 class ResponseRenderer {
 
@@ -55,15 +53,6 @@ class ResponseRenderer {
       locals.showFooter = true;
     }
 
-    console.log('==111111========locals====-===================', locals);
-    if(!locals.current_user_data && request.headers && cookieConstants.hasWebLoginCookie(request.headers['cookie'])){
-      let currentUserData = await oThis.getCurrentUserData(request);
-      if(currentUserData.data){
-        locals.current_user_data = currentUserData.data;
-      }
-    }
-    console.log('==222222========locals====-===================', locals);
-
     response.render(layout, locals, callback);
   }
   
@@ -72,7 +61,7 @@ class ResponseRenderer {
     locals['appMeta'] = {
       TOKEN_ID : coreConstants.PEPO_TOKEN_ID,
       PLATFORM_API_ENDPOINT : coreConstants.PEPO_PLATFORM_API_ENDPOINT,
-      SDK_ENDPOINT: coreConstants.PEPO_SDK_ENDPOINT,
+      SDK_ENV: coreConstants.PEPO_SDK_ENV,
       TRACKER_ENDPOINT: coreConstants.PEPO_TRACKER_ENDPOINT,
       TRACKER_URL: coreConstants.PEPO_TRACKER_URL
     }
@@ -83,11 +72,6 @@ class ResponseRenderer {
     locals._CSRFToken = (typeof request.csrfToken == 'function' ? request.csrfToken() : '');
   }
 
-  async getCurrentUserData(request) {
-    let currentUserResponse = await new UserApi(request.headers).getCurrentUser({});
-    console.log('==========currentUserResponse============', currentUserResponse);
-    return currentUserResponse;
-  }
 }
 
 

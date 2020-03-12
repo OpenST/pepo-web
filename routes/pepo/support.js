@@ -7,7 +7,7 @@ const rootPrefix = '../..',
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
+  webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
@@ -33,7 +33,7 @@ router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, ne
   //   success: true };
 
   if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'support', 'web/_support', apiResponse.data);
+    webRouteHelper.perform(req, res, 'support', 'web/_support', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }

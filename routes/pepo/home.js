@@ -13,19 +13,19 @@ const rootPrefix = '../..',
   GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
   GetFirebaseUserProfileUrl = require(rootPrefix + '/app/services/FireBaseUrl/UserProfile'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
+  webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
   GetFeed = require(rootPrefix + '/app/services/GetFeed'),
   dataStoreHelper  = require(rootPrefix + '/lib/dataStoreHelper'),
   FeedsModel = require(rootPrefix + '/lib/model/Feed'),
-  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video'),
-  CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
+  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform()
+  const apiResponse = await new GetFirebaseHomeUrl({headers: req.headers, decodedParams: req.decodedParams}).perform()
    ;
   let  layout = "loggedOut";
   let firebaseGetTheAppUrl = '';
@@ -37,14 +37,13 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     layout = "loggedIn"
   }
 
-  return renderResponseHelper.renderWithLayout(req, res, layout, 'web/_home', {
+  return webRouteHelper.perform(req, res, layout, 'web/_home', {
     apiResponseData: apiResponse.data,
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-    currentUser: new CurrentUser(),
     apiResponse: apiResponse,
     pageMeta : apiResponse.data.pageMeta
   });
@@ -58,14 +57,12 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   if ( apiResponse.success ) {
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
-
-  console.log('++=======================================+++================');
-  console.log(apiResponse);
-  console.log('++=======================================+++================');
+  
+  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
 
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
-    renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_feed', {
+    webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', {
       apiResponseData: apiResponse.data,
       success: true,
       apiResponse : apiResponse,
@@ -73,8 +70,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
       showFooter: false,
-      feedsModel,
-      currentUser: new CurrentUser()
+      feedsModel
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
@@ -92,9 +88,9 @@ router.get(pagePathConstants.doubleOptIn, sanitizer.sanitizeDynamicUrlParams, as
   // let apiResponse = {success: true, data: {oAuthToken: "11", twitterRedirectUrl:"/for-local-testing-only", twitterSigninError: 0}};
 
   if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: true});
+    webRouteHelper.perform(req, res, 'loggedOut', 'web/_doptin', {success: true});
   } else {
-    renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_doptin', {success: false});
+    webRouteHelper.perform(req, res, 'loggedOut', 'web/_doptin', {success: false});
   }
 
 });
@@ -119,20 +115,18 @@ router.get(`${pagePathConstants.video}/:video_id`, sanitizer.sanitizeDynamicUrlP
 
   let getVideoObj = new GetVideo({headers: req.headers, decodedParams: req.decodedParams});
   let apiResponse = await getVideoObj.perform();
-  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
 
   if (apiResponse.success) {
     let formattedData = new videoViewFormatter(apiResponse.data).perform();
 
-    return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_video', {
+    return webRouteHelper.perform(req, res, 'loggedOut', 'web/_video', {
       apiResponseData: apiResponse.data,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       pageMeta: formattedData.page_meta,
       firebaseUrls: {openInApp: formattedData.firebase_video_url},
       showFooter: false,
-      formattedEntityData: formattedData,
-      currentUser: new CurrentUser(currentUserData)
+      formattedEntityData: formattedData
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
@@ -159,7 +153,7 @@ router.get(`${pagePathConstants.reply}/:reply_detail_id`, sanitizer.sanitizeDyna
 
   const apiResponse = await new GetFirebaseReplyVideoUrl({headers: req.headers, decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
-    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+    return webRouteHelper.perform(req, res, 'redirect', '', {
       apiResponseData: apiResponse.data,
       redirect_to_location: apiResponse.data.url,
       pageMeta: apiResponse.data.pageMeta
@@ -189,7 +183,7 @@ router.get(`${pagePathConstants.communities}/:permalink`, sanitizer.sanitizeDyna
 
   const apiResponse = await new GetFirebaseChannelUrl({headers: req.headers, decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
-    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+    return webRouteHelper.perform(req, res, 'redirect', '', {
       apiResponseData: apiResponse.data,
       redirect_to_location: apiResponse.data.url,
       pageMeta: apiResponse.data.pageMeta
@@ -230,12 +224,12 @@ router.get(pagePathConstants.mediaKit, function (req, res) {
 
 /* content terms page */
 router.get(pagePathConstants.contentTerms, function (req, res) {
-  renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_content_terms');
+  webRouteHelper.perform(req, res, 'loggedOut', 'web/_content_terms');
 });
 
 /* about page */
 router.get(pagePathConstants.about, function (req, res) {
-  renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_about',
+  webRouteHelper.perform(req, res, 'loggedOut', 'web/_about',
     {
       view_endpoint :`${coreConstants.VIEW_WEB_ROOT}`,
       etherscan_endpoint : `${coreConstants.ETHERSCAN_WEB_ROOT}`,
@@ -270,9 +264,9 @@ router.get(`/:permalink`, sanitizer.sanitizeDynamicUrlParams, async function (re
     );
   }
 
-  const apiResponse = await new GetFirebaseUserProfileUrl({decodedParams: req.decodedParams}).perform();
+  const apiResponse = await new GetFirebaseUserProfileUrl({headers: req.headers, decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
-    return renderResponseHelper.renderWithLayout(req, res, 'redirect', '', {
+    return webRouteHelper.perform(req, res, 'redirect', '', {
       apiResponseData: apiResponse.data,
       redirect_to_location: apiResponse.data.url,
       pageMeta: apiResponse.data.pageMeta
