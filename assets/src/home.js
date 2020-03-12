@@ -1,4 +1,4 @@
-import  ns from "../js/libs/namespace";
+import  ns from "../src/libs/namespace";
 import BaseView from "../src/common/BaseView";
 import home from './home/index';
 

@@ -258,7 +258,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(11);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _js_libs_namespace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(86);
+/* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(86);
 /* harmony import */ var _src_common_BaseView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(87);
 /* harmony import */ var _home_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(89);
 
@@ -286,7 +286,7 @@ var Home = /*#__PURE__*/function (_BaseView) {
   return Home;
 }(_src_common_BaseView__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
-var pepo = Object(_js_libs_namespace__WEBPACK_IMPORTED_MODULE_4__["default"])("pepo");
+var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_4__["default"])("pepo");
 pepo.home = Home;
 /* harmony default export */ __webpack_exports__["default"] = (Home);
 
@@ -331,7 +331,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _js_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(88);
+/* harmony import */ var _src_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(88);
 
 
 
@@ -374,8 +374,7 @@ var BaseView = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-// import  CurrentUser from "../../../lib/model/CurrentUser" ;
-//
+// const CurrentUser =  require("../../../lib/model/CurrentUser") ;
 // export default  new CurrentUser();
 /* harmony default export */ __webpack_exports__["default"] = ({});
 
