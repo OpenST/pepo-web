@@ -62,9 +62,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
 
-  console.log('++=======================================+++================');
-  console.log(apiResponse);
-  console.log('++=======================================+++================');
+
 
   let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
 
@@ -73,7 +71,6 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
     webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', {
       apiResponseData: apiResponse.data,
       success: true,
-      apiResponse : apiResponse,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},

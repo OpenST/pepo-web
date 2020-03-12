@@ -1,31 +1,21 @@
 import deepGet from "lodash/get";
 import basicHelper from "../../helpers/basic";
+import  ns from "../../libs/namespace";
+const pepo = ns("pepo");
+const PREFIX = 'id_';
+
 
 class Base {
 
-  constructor(item, associatedData, params = {}){
-    this.associatedData = associatedData;
-    this.params = params;
-    this.videoId = deepGet(item, 'payload.video_id');
-    this.ownerId = deepGet(item, 'payload.user_id');
-    this.videoDetailId = deepGet(item, 'payload.video_detail_id');
-  }
-
-  perform (){
-    return {
-      userName: this.getUserName(),
-      description: this.getDescription(),
-      profileImage: this.getOwnerProfileImage(),
-      videoCoverImage: this.getVideoCoverImage(),
-      amountRaised : this.getAmountRaised()
-    }
+  constructor(videoId){
+    this.videoId = videoId;
   }
 
   getVideoCoverImage(){
     let videoInfo = this.getVideoInfo();
     let posterImageId = videoInfo.poster_image_id;
-    return deepGet(this.associatedData, `images[${posterImageId}].resolutions['576w'].url`) ||
-      deepGet(this.associatedData, `images[${posterImageId}].resolutions['original'].url`);
+    return deepGet(pepo.dataStore, `image_entities[${PREFIX}${posterImageId}].resolutions['576w'].url`) ||
+      deepGet(pepo.dataStore, `image_entities[${PREFIX}${posterImageId}].resolutions['original'].url`);
   }
 
   getAmountRaised (){
@@ -36,11 +26,12 @@ class Base {
       // creator user Id info
         let userInfo =  this.getUserInfo();
         // 144w can be used
-        return deepGet(this.associatedData, `images[${userInfo.profile_image_id}].resolutions.original.url`) || '';
+        return deepGet(pepo.dataStore, `image_entities[${PREFIX}${userInfo.profile_image_id}].resolutions.original.url`) || '';
   }
 
   getUserName () {
     let userInfo =  this.getUserInfo();
+    console.log(userInfo,'userInfo:getUserName');
     return userInfo.user_name || '';
   }
 
@@ -50,24 +41,40 @@ class Base {
 
   getDescriptionObject () {
     let videoDetails = this.getVideoDetails();
-    return deepGet(this.associatedData, `video_descriptions[${videoDetails.description_id}]`) || {};
+    return deepGet(pepo.dataStore, `video_description_entities[${PREFIX}${videoDetails.description_id}]`) || {};
   }
 
   getVideoDetails (){
-    let videoDetails =  deepGet(this.associatedData, `video_details[${this.videoId}]`);
+    let videoDetails =  deepGet(pepo.dataStore, `video_stat_entities[${PREFIX}${this.videoId}]`);
     return videoDetails || {};
   }
 
   getUserInfo (){
-    return deepGet(this.associatedData, `users[${this.ownerId}]`);
+    console.log(this.getVideoOwnerId(), 'getVideoOwnerId=====');
+    return deepGet(pepo.dataStore, `user_entities[${PREFIX}${this.getVideoOwnerId()}]`);
+  }
+
+  getVideoOwnerId(){
+    return this.getVideoDetails()['creator_user_id'];
+
   }
 
   getVideoInfo(){
-    return deepGet(this.associatedData, `videos[${this.videoId}]`);
+    return deepGet(pepo.dataStore, `video_entities[${PREFIX}${this.videoId}]`);
   }
-
-
 
 }
 
 export default Base;
+
+
+
+
+
+
+
+
+
+
+
+
