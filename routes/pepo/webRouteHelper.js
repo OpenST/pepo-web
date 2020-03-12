@@ -20,8 +20,6 @@ const UserApi = require(rootPrefix + '/lib/pepoApi/User'),
   async perform(request, response, layout, contentPartialPath, locals, callback) {
     const oThis = this;
 
-    let currentUserDetails;
-
     locals = locals || {};
     locals.apiResponseData = locals.apiResponseData || {};
 
@@ -29,12 +27,11 @@ const UserApi = require(rootPrefix + '/lib/pepoApi/User'),
       let currentUserData = await oThis.getCurrentUserData(request);
       if(currentUserData.data){
         locals.apiResponseData.current_user_data = currentUserData.data;
-        currentUserDetails = locals.apiResponseData && locals.apiResponseData.current_user_data;
       }
     }
-
+    let currentUserDetails = locals.apiResponseData && locals.apiResponseData.current_user_data;
     locals.currentUser = new CurrentUser(currentUserDetails);
-    console.log('==222222========locals====-===================', locals);
+    console.log('==222222========locals=======================', locals);
 
     renderResponseHelper.renderWithLayout(request, response, layout, contentPartialPath, locals, callback);
 
