@@ -33,7 +33,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
   
-  if( apiResponse && apiResponse.data && apiResponse.data.logined_in_user){
+  if( apiResponse && apiResponse.data && apiResponse.data.current_user_data ){
     layout = "loggedIn"
   }
 
@@ -56,8 +56,6 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   if ( apiResponse.success ) {
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
-  
-  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
 
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
