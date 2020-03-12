@@ -68,7 +68,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
     renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_feed', {
-      apiResponseData: feedApiResponse.data,
+      apiResponseData: apiResponse.data,
       success: true,
       apiResponse : apiResponse,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
