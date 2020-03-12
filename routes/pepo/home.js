@@ -27,19 +27,26 @@ const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET home page. */
 router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
-  const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform();
+  const apiResponse = await new GetFirebaseHomeUrl({decodedParams: req.decodedParams}).perform()
+   ;
+  let  layout = "loggedOut";
   let firebaseGetTheAppUrl = '';
   if ( apiResponse.success ) {
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
+  
+  if( apiResponse && apiResponse.data && apiResponse.data.logined_in_user){
+    layout = "loggedIn"
+  }
 
-  return renderResponseHelper.renderWithLayout(req, res, 'loggedOut', 'web/_home', {
+  return renderResponseHelper.renderWithLayout(req, res, layout, 'web/_home', {
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
     currentUser: new CurrentUser(),
+    apiResponse: apiResponse,
     pageMeta : apiResponse.data.pageMeta
   });
 

@@ -1,6 +1,7 @@
 //Only Required client side
 
 export default (ns_string) => {
+    console.log("NS++" , this,  window);
     var parts = ns_string && ns_string.split('.'),
       parent = window || {},
       pl, i;

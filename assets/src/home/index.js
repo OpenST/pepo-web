@@ -1,12 +1,11 @@
 import $ from 'jquery';
 
 class Home {
-
-    constructor(){}
-
-    init = () => {
+    
+    init = (data) => {
         this.muteAll();
         this.bindEvents();
+        this.lazyLoadVideos();
     };
 
     muteAll = () => {

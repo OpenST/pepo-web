@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 88);
+/******/ 	return __webpack_require__(__webpack_require__.s = 87);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -128,7 +128,7 @@ module.exports = _defineProperty;
 
 /***/ }),
 
-/***/ 88:
+/***/ 87:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -139,7 +139,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _js_libs_namespace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(89);
+/* harmony import */ var _js_libs_namespace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(88);
 
 
 
@@ -191,14 +191,18 @@ pepo.webView = new WebView();
 
 /***/ }),
 
-/***/ 89:
+/***/ 88:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+var _this = undefined;
+
+//Only Required client side
 /* harmony default export */ __webpack_exports__["default"] = (function (ns_string) {
+  console.log("NS++", _this, window);
   var parts = ns_string && ns_string.split('.'),
-      parent = window,
+      parent = window || {},
       pl,
       i;
   pl = parts.length;

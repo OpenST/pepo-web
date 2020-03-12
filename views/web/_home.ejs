@@ -7,3 +7,12 @@
 <%- include ../partials/web/home/_sideBySide -%>
 <%- include ../partials/shared/_modals %>
 <%- include ../partials/shared/_svg_sprite_common.ejs%>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+      new pepo.home({
+        "apiResponse"  : '<%-JSON.stringify(apiResponse) %>',
+      });
+    }
+</script>

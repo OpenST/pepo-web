@@ -1,21 +1,20 @@
-import $ from 'jquery';
-
+import  ns from "../js/libs/namespace";
+import BaseView from "../src/common/BaseView";
 import home from './home/index';
 
-class Home {
+class Home extends BaseView {
 
-    constructor(){
-
-        $(document).ready(() => {
-            home.init();
-        });
-
-        $(window).on('load', () => {
-            home.lazyLoadVideos();
-        });
-
+    constructor( config ){
+        super(config);
+        console.log("config====" , JSON.stringify(config));
+        home.init( config );
     }
 
 }
 
-export default new Home();
+const pepo = ns("pepo");
+pepo.home = Home;
+
+export default Home ;
+
+
