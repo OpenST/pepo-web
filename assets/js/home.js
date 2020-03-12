@@ -4231,7 +4231,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// import OstWalletSdk from '@ostdotcom/ost-wallet-sdk-browser' ;
 var BrowserSdk = /*#__PURE__*/function () {
   function BrowserSdk() {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, BrowserSdk);
@@ -4244,18 +4243,20 @@ var BrowserSdk = /*#__PURE__*/function () {
     value: function getConfig() {
       var TOKEN_ID = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var PLATFORM_API_ENDPOINT = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
-      var SDK_ENDPOINT = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+      var SDK_ENV = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
       return {
         token_id: TOKEN_ID,
         api_endpoint: PLATFORM_API_ENDPOINT,
-        sdk_endpoint: SDK_ENDPOINT
+        environment: SDK_ENV
       };
     }
   }, {
     key: "init",
     value: function init(sdkConfig) {
-      this.sdkConfig = this.getConfig(sdkConfig["TOKEN_ID"], sdkConfig["PLATFORM_API_ENDPOINT"], sdkConfig["SDK_ENDPOINT"]);
-      console.log("this.sdkConfig", this.sdkConfig, sdkConfig); // OstWalletSdk.init(sdkConfig);
+      this.sdkConfig = this.getConfig(sdkConfig["TOKEN_ID"], sdkConfig["PLATFORM_API_ENDPOINT"], sdkConfig["SDK_ENV"]);
+      OstWalletSdk.init(this.sdkConfig).then(function (res) {
+        console.log("OstWalletSdk.init : ", res);
+      });
     }
   }]);
 
