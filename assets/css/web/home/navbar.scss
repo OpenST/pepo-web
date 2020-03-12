@@ -22,7 +22,9 @@
       background: linear-gradient(90deg, rgba(255,116,153,1) 20%, rgba(255,85,102,1) 100%);
       color: $white;
       border-radius: 3px;
-      padding: 5px 12px;
+      padding: 0 12px;
+      height: 34px;
+      line-height: 34px;
       @media only screen and (min-width: 768px){
         margin-right: 16px;
       }
@@ -32,7 +34,9 @@
       border: 1.5px solid $wildWatermelon;
       color: $wildWatermelon;
       border-radius: 3px;
-      padding: 5px 12px;
+      padding: 0 12px;
+      height: 34px;
+      line-height: 31px;
       //@media only screen and (min-width: 768px){
         //margin-right: 16px;
       //}
@@ -69,9 +73,9 @@
       &.logInOut{
         padding: 10px 15px;
         border-radius: 5px;
-        border: 2px solid #ff5566;
+        border: 2px solid $wildWatermelon;
         a{
-          color: #ff5566;
+          color: $wildWatermelon;
           font-weight: 600;
         }
       }
