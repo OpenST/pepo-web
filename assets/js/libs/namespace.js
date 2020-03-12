@@ -1,6 +1,8 @@
-var ns = window.ns || function ns(ns_string) {
+//Only Required client side
+
+export default (ns_string) => {
     var parts = ns_string && ns_string.split('.'),
-      parent = this,
+      parent = window || {},
       pl, i;
 
     pl = parts.length;
@@ -12,8 +14,8 @@ var ns = window.ns || function ns(ns_string) {
 
       parent = parent[parts[i]];
     }
-
+    
     return parent;
 };
 
-export  default  ns;
+

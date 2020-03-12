@@ -22,10 +22,14 @@
   <body contenteditable="false">
     <%- include partials/shared/_script_webview.ejs %>
 
-    <script type="text/javascript"> 
-      window.oAuthData = '<%-JSON.stringify(locals.oauth_response) %>'
-      window.oAuthKind = '<%= locals.oauth_kind %>'
-      window.redirectUrl = '<%- locals.redirect_url %>'
+    <script type="text/javascript">
+      window.onload = function () {
+        pepo.webView.init({
+          oAuthData: '<%-JSON.stringify(locals.oauth_response) %>',
+          oAuthKind: '<%= locals.oauth_kind %>',
+          redirectUrl: '<%- locals.redirect_url %>'
+        });
+      };
     </script>
   </body>
 </html>

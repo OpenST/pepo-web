@@ -135,31 +135,12 @@ module.exports = _defineProperty;
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _webView_index__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(89);
-
-
-
-var WebViewManifest = function WebViewManifest() {
-  _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, WebViewManifest);
-
-  _webView_index__WEBPACK_IMPORTED_MODULE_1__["default"].init();
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (new WebViewManifest());
-
-/***/ }),
-
-/***/ 89:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _js_libs_namespace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(89);
+
 
 
 
@@ -177,36 +158,62 @@ var WebView = function WebView() {
     return url;
   });
 
-  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function () {
-    window.addEventListener("load", function (e) {
-      var data = JSON.parse(window.oAuthData),
-          kind = window.oAuthKind,
-          redirectUrl = _this.sanitizeUrl(window.redirectUrl);
+  _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default()(this, "init", function (params) {
+    var data = JSON.parse(params.oAuthData),
+        kind = params.oAuthKind,
+        redirectUrl = _this.sanitizeUrl(params.redirectUrl);
 
-      if (!data || !redirectUrl) return;
-      jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
-        url: "/api/web/auth/".concat(kind, "/login"),
-        method: 'POST',
-        data: data,
-        success: function success(res) {
-          window.location = redirectUrl;
-          console.log("success redirect ajax", JSON.stringify(res));
-        },
-        error: function error(err) {
-          if (redirectUrl.indexOf('?') !== -1) {
-            window.location = "".concat(redirectUrl, "&lerr=1");
-          } else {
-            window.location = "".concat(redirectUrl, "?lerr=1");
-          }
-
-          console.log("error redirect ajax");
+    if (!data || !redirectUrl) return;
+    jquery__WEBPACK_IMPORTED_MODULE_2___default.a.ajax({
+      url: "/api/web/auth/".concat(kind, "/login"),
+      method: 'POST',
+      data: data,
+      success: function success(res) {
+        window.location = redirectUrl;
+        console.log("success redirect ajax", JSON.stringify(res));
+      },
+      error: function error(err) {
+        if (redirectUrl.indexOf('?') !== -1) {
+          window.location = "".concat(redirectUrl, "&lerr=1");
+        } else {
+          window.location = "".concat(redirectUrl, "?lerr=1");
         }
-      });
+
+        console.log("error redirect ajax");
+      }
     });
   });
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (new WebView());
+var pepo = Object(_js_libs_namespace__WEBPACK_IMPORTED_MODULE_3__["default"])("pepo");
+pepo.webView = new WebView();
+/* harmony default export */ __webpack_exports__["default"] = (pepo.webView);
+
+/***/ }),
+
+/***/ 89:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = (function (ns_string) {
+  var parts = ns_string && ns_string.split('.'),
+      parent = window,
+      pl,
+      i;
+  pl = parts.length;
+
+  for (i = 0; i < pl; i++) {
+    //create a property if it doesn't exist
+    if (typeof parent[parts[i]] == 'undefined') {
+      parent[parts[i]] = {};
+    }
+
+    parent = parent[parts[i]];
+  }
+
+  return parent;
+});
 
 /***/ })
 
