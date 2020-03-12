@@ -12,6 +12,7 @@ const rootPrefix = '../..',
   GetFirebaseReplyVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/ReplyVideo'),
   GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
   GetFirebaseUserProfileUrl = require(rootPrefix + '/app/services/FireBaseUrl/UserProfile'),
+  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
@@ -56,10 +57,8 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   if ( apiResponse.success ) {
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
-
-  console.log('++=======================================+++================');
-  console.log(apiResponse);
-  console.log('++=======================================+++================');
+  
+  let currentUserData = apiResponse && apiResponse.data && apiResponse.data.current_user_data;
 
   if (apiResponse.success) {
    const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
