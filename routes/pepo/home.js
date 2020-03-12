@@ -38,7 +38,7 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
   }
 
   return webRouteHelper.perform(req, res, layout, 'web/_home', {
-    apiResponseData: apiResponse.data,
+    apiResponseData: {},
     twitterRedirectUrl: '#',
     twitterSigninError: 0,
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
