@@ -4,6 +4,7 @@ const router = express.Router();
 const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+  cookieHelper = require(rootPrefix + '/helpers/cookie'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
 
