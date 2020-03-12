@@ -1,5 +1,5 @@
 import $ from 'jquery';
-import  ns from "../js/libs/namespace"
+import  ns from "../src/libs/namespace";
 
 class WebView {
   

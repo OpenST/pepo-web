@@ -169,7 +169,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(2);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _js_libs_namespace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(87);
+/* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(87);
 
 
 
@@ -215,7 +215,7 @@ var WebView = function WebView() {
   });
 };
 
-var pepo = Object(_js_libs_namespace__WEBPACK_IMPORTED_MODULE_3__["default"])("pepo");
+var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_3__["default"])("pepo");
 pepo.webView = new WebView();
 /* harmony default export */ __webpack_exports__["default"] = (pepo.webView);
 

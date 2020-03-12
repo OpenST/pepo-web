@@ -1,4 +1,4 @@
-import CurrentUser from "../../js/model/CurrentUser"
+import CurrentUser from "../../src/model/CurrentUser"
 
 class BaseView {
   

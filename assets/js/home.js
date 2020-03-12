@@ -252,7 +252,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(12);
 /* harmony import */ var _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _js_libs_namespace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(87);
+/* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(87);
 /* harmony import */ var _src_common_BaseView__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(88);
 /* harmony import */ var _home_index__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(92);
 
@@ -280,7 +280,7 @@ var Home = /*#__PURE__*/function (_BaseView) {
   return Home;
 }(_src_common_BaseView__WEBPACK_IMPORTED_MODULE_5__["default"]);
 
-var pepo = Object(_js_libs_namespace__WEBPACK_IMPORTED_MODULE_4__["default"])("pepo");
+var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_4__["default"])("pepo");
 pepo.home = Home;
 /* harmony default export */ __webpack_exports__["default"] = (Home);
 
@@ -325,7 +325,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _js_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(89);
+/* harmony import */ var _src_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(89);
 
 
 
@@ -368,9 +368,9 @@ var BaseView = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-var CurrentUser = __webpack_require__(90);
-
-/* harmony default export */ __webpack_exports__["default"] = (new CurrentUser()); // export default {};
+// const CurrentUser =  require("../../../lib/model/CurrentUser") ;
+// export default  new CurrentUser();
+/* harmony default export */ __webpack_exports__["default"] = ({});
 
 /***/ }),
 
@@ -392,116 +392,6 @@ function _typeof(obj) {
 }
 
 module.exports = _typeof;
-
-/***/ }),
-
-/***/ 90:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(module) {/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1);
-/* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(4);
-/* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
-
-
-
-var CurrentUser = /*#__PURE__*/function () {
-  function CurrentUser(params) {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, CurrentUser);
-
-    this.apiData = params;
-    this.initUser();
-  }
-
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(CurrentUser, [{
-    key: "initUser",
-    value: function initUser() {
-      var user = this.apiData && this.apiData.logged_in_user,
-          userDetails = this.apiData && this.apiData.users;
-      if (!user || !userDetails) return;
-      this.user = Object.assign({}, user, userDetails[user.id]);
-    }
-  }, {
-    key: "_getUser",
-    value: function _getUser() {
-      return this.user;
-    }
-  }, {
-    key: "_getUserImage",
-    value: function _getUserImage() {
-      return this.apiData && this.apiData.images;
-    }
-  }, {
-    key: "isLoggedIn",
-    value: function isLoggedIn() {
-      return !!this._getUser();
-    }
-  }, {
-    key: "getUserName",
-    value: function getUserName() {
-      var user = this._getUser();
-
-      if (!user) return;
-      return user.name;
-    }
-  }, {
-    key: "getUserProfileImage",
-    value: function getUserProfileImage() {
-      var user = this._getUser();
-
-      if (!user) return;
-
-      var profileImageId = user.profile_image_id,
-          userImage = this._getUserImage(),
-          image = userImage && userImage[profileImageId];
-
-      return image && image.resolutions && image.resolutions['144w'] && image.resolutions['144w'].url;
-    }
-  }, {
-    key: "getLoginType",
-    value: function getLoginType() {
-      return this.apiData && this.apiData.meta && this.apiData.meta.service_type;
-    }
-  }]);
-
-  return CurrentUser;
-}();
-
-module.exports = CurrentUser;
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(91)(module)))
-
-/***/ }),
-
-/***/ 91:
-/***/ (function(module, exports) {
-
-module.exports = function(originalModule) {
-	if (!originalModule.webpackPolyfill) {
-		var module = Object.create(originalModule);
-		// module.parent = undefined by default
-		if (!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		Object.defineProperty(module, "exports", {
-			enumerable: true
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
 
 /***/ }),
 
