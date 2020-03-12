@@ -49,8 +49,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
           image: oThis.urlParams.si,
           card: "summary_large_image"
         }
-      },
-      current_user_data: oThis.currentUserData
+      }
     });
   }
 
@@ -67,7 +66,6 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
     if(shareResponse.success){
       let resultType = shareResponse.data.result_type;
       oThis.channelShareDetails = shareResponse.data[resultType];
-      oThis.currentUserData = shareResponse.data['current_user_data'];
     }
   }
 

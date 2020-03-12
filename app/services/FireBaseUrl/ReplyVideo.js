@@ -51,8 +51,7 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
           image: oThis.urlParams.si,
           card: "summary_large_image"
         }
-      },
-      current_user_data: oThis.currentUserData
+      }
     });
   }
 
@@ -69,7 +68,6 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
     if(replyVideoShareResponse.success){
       let resultType = replyVideoShareResponse.data.result_type;
       oThis.replyVideoShareDetails = replyVideoShareResponse.data[resultType];
-      oThis.currentUserData = replyVideoShareResponse.data['current_user_data'];
     }
   }
 

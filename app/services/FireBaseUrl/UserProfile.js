@@ -50,8 +50,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
           image: oThis.urlParams.si,
           card: "summary"
         }
-      },
-      current_user_data: oThis.currentUserData
+      }
     });
   }
 
@@ -68,7 +67,6 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
     if(shareResponse.success){
       let resultType = shareResponse.data.result_type;
       oThis.profileShareDetails = shareResponse.data[resultType];
-      oThis.currentUserData = shareResponse.data['current_user_data'];
     }
   }
 
