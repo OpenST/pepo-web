@@ -6,7 +6,6 @@ class Home extends BaseView {
 
     constructor( config ){
         super(config);
-        console.log("config====" , JSON.stringify(config.apiResponse));
         home.init( config );
     }
 
