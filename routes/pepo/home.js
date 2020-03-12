@@ -44,7 +44,6 @@ router.get(pagePathConstants.home, sanitizer.sanitizeDynamicUrlParams, async fun
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-    apiResponse: apiResponse,
     pageMeta : apiResponse.data.pageMeta
   });
 
@@ -65,7 +64,6 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
     webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', {
       apiResponseData: apiResponse.data,
       success: true,
-      apiResponse : apiResponse,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
