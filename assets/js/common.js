@@ -205,13 +205,16 @@ var NavBar = /*#__PURE__*/function () {
           backdrop: false
         });
         logoutModal.modal('show');
-        jquery__WEBPACK_IMPORTED_MODULE_3___default()('body').on('click', function (e) {
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()('body').off("click.logout").on('click.logout', function (e) {
           if (logoutModal.length !== 0) {
             logoutModal.modal('hide');
           }
-
+        });
+        jquery__WEBPACK_IMPORTED_MODULE_3___default()("#logoutBtn").off("click.logout").on("click.logout", function (e) {
           var loginInstance = _login_LoginServicefactory__WEBPACK_IMPORTED_MODULE_4__["default"].getLoginServiceInstance(loginType);
           loginInstance.logout();
+          e.preventDefault();
+          e.stopPropagation();
         });
         e.preventDefault();
         e.stopPropagation();

@@ -56,15 +56,19 @@ class NavBar {
             backdrop:false
           });
           logoutModal.modal('show');
-          $('body').on('click',function (e) {
+          $('body').off("click.logout").on('click.logout',function (e) {
             if(logoutModal.length !== 0 ){
               logoutModal.modal('hide');
             }
+          });
+          $("#logoutBtn").off("click.logout").on("click.logout", function (e) {
             let loginInstance = LoginServiceFactory.getLoginServiceInstance( loginType );
             loginInstance.logout();
-          });
             e.preventDefault();
             e.stopPropagation();
+          });
+          e.preventDefault();
+          e.stopPropagation();
         })
     }
 
