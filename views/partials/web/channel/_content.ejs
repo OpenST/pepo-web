@@ -10,7 +10,7 @@ imageResolutions = apiResponseData['images'][coverImageId]['resolutions']
 channelImageUrl = imageResolutions['original']['url']
 
 descriptionId = channelDetails['description_id']
-description = apiResponseData['texts'][descriptionId]['text']
+description = apiResponseData['texts'][descriptionId]['convertedText']
 
 channelStats = apiResponseData['channel_stats'][channelId]
 noOfMembers = channelStats['total_users']

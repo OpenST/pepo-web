@@ -5,7 +5,7 @@ const rootPrefix = '../..',
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   ChannelLib = require(rootPrefix + '/lib/pepoApi/Channel'),
-  channelViewFormatter = require(rootPrefix + '/lib/viewFormatter/channel');
+  basicHelper = require(rootPrefix + '/helpers/basic');
 
 /**
  * Class for Getting channel
@@ -94,7 +94,15 @@ class GetChannel extends ServiceBase {
       oThis.serviceResp.data.firebase_channel_url = resp2.data.url;
       oThis.serviceResp.data.share_url = resp2.data.pageMeta.canonical;
       oThis.serviceResp.data.page_meta = resp2.data.pageMeta;
+    }
+
+    if(oThis.serviceResp){
       oThis.apiResponseData = oThis.serviceResp.data;
+      let texts = oThis.apiResponseData.texts;
+      for(let textId in texts){
+        let textDetails = texts[textId];
+        textDetails.convertedText = basicHelper.replaceIncludesinText(textDetails.text, textDetails.includes);
+      }
     }
 
     return responseHelper.successWithData(oThis.serviceResp);
@@ -114,7 +122,6 @@ class GetChannel extends ServiceBase {
       pageMeta: oThis.apiResponseData.page_meta,
       firebaseUrls: {openInApp: oThis.serviceResp.data.share_url},
       showFooter: false,
-      //formattedEntityData: formattedData,
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser
     })

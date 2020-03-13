@@ -148,6 +148,31 @@ class BasicHelper {
 
     return oThis.convertToBigNumber(amount).round(2).toString(10);
   }
+
+  replaceIncludesinText(textToObserve, includesData) {
+    const oThis = this;
+
+    for(let textToReplace in includesData) {
+
+      var expression = "(^|\\s)(" + textToReplace + ")\\b";
+      var rx = new RegExp(expression, 'gi');
+
+      textToObserve = textToObserve.replace(rx, oThis.getIncludesReplaceText(includesData[textToReplace]["kind"]));
+    }
+    return textToObserve;
+  }
+
+  getIncludesReplaceText(kind){
+    if(kind == 'tags'){
+      return '$1<span>$2</span>';
+    } else if(kind == 'links') {
+      return '$1<a href="$2" rel="noopener noreferrer nofollow" target="_blank">$2</a>';
+    } else {
+      // Default: to handle undefined issue
+      return '$1$2';
+    }
+  }
+
 }
 
 module.exports = new BasicHelper();
