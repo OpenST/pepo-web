@@ -7,7 +7,7 @@ class Feed extends BaseView {
 
   constructor(config){
     super(config);
-    videoList.init(config);
+    videoList.init({fetchApi:  "/api/web/feeds" });
   }
 
 }

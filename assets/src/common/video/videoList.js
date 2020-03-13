@@ -7,7 +7,7 @@ import DataGetters from '../../model/DataGetters';
 import deepGet from 'lodash/get';
 
 
-class Feed {
+class VideoList {
 
   constructor(){
     this.currentItemIndex = null;
@@ -15,31 +15,32 @@ class Feed {
   }
 
   init = (config) => {
+    this.config =  config;
     this.fetchFeed();
     this.bindEvents();
   };
 
   bindEvents = () => {
-    const jFeedParent = $('#feedParent'),
-      jFeedModalWrapper = $("#feedModal .modal-dialog .modal-content .feedContainer");
-
-
-    jFeedParent.on('click', '.feedList', (e) => {
+    const jParent = $('#videoListParent'),
+      jModalWrapper = $("#videoDetailsModal .videoDetailsContainer");
+  
+  
+    jParent.on('click', '.videoList', (e) => {
         this.currentItemIndex = $(e.currentTarget).data('result-index');
         this.modalUIUpdate();
-        $('#feedModal').modal('show');
+        $('#videoDetailsModal').modal('show');
         e.preventDefault();
         e.stopPropagation();
     });
-
-    jFeedModalWrapper.on('click', '.next-video', (e) => {
+  
+    jModalWrapper.on('click', '.next-video', (e) => {
       this.currentItemIndex += 1;
       this.modalUIUpdate();
 
     });
-
-
-    jFeedModalWrapper.on('click', '.prev-video', (e) => {
+  
+  
+    jModalWrapper.on('click', '.prev-video', (e) => {
       if(this.currentItemIndex >= 1){
         this.currentItemIndex -= 1;
         this.modalUIUpdate();
@@ -50,15 +51,14 @@ class Feed {
 
 
   modalUIUpdate = () => {
-    const jFeedParentWrapper = $("#feedModal .modal-dialog .modal-content .feedContainer");
+    const jParentWrapper = $("#videoDetailsModal .videoDetailsContainer");
     let videoId = deepGet(this.getCurrentIndexResult(), 'video_id');
-    const feedModal = ejs.compile(videoModalDetail, { client : true });
-    const jFeedModal = $(feedModal({
+    const modal = ejs.compile(videoModalDetail, { client : true });
+    const jModal = $(modal({
       videoId,
       DataGetters
     }));
-    //jFeedParentWrapper.html( '');
-    jFeedParentWrapper.html(jFeedModal);
+    jParentWrapper.html(jModal);
   };
 
 
@@ -71,8 +71,8 @@ class Feed {
   fetchFeed = ()=> {
     const oThis =  this;
     this.simpleDataTable = new SimpleDataTable({
-      jParent: $("#feedParent"),
-      fetchResultsUrl: "/api/web/feeds",
+      jParent: $("#videoListParent"),
+      fetchResultsUrl: this.config.fetchApi,
       rowTemplate: ejs.compile(videoThumbnail, {client: true}),
       getRowData : function (result) {
         return {
@@ -83,6 +83,7 @@ class Feed {
       }
     });
   }
+  
 }
 
-export default new Feed();
+export default new VideoList();

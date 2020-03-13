@@ -23,7 +23,7 @@
 }
 
 
-.feedContainer{
+.videoDetailsContainer{
   min-height: calc(100% - 58px);
   background-color: #f9f9f9;
   .container{
@@ -164,7 +164,7 @@
 
 }
 
-#feedModal{
+#videoDetailsModal{
   .modal-dialog{
     margin: 0;
     @media only screen and (min-width: 768px){
