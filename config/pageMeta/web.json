@@ -42,7 +42,10 @@
   "video": {
     "page": "Video",
     "robots": "index, follow",
-    "pageType":"video"
+    "pageType":"video",
+    "assets": {
+      "js_manifest" : true
+    }
   },
   "feed": {
     "page": "Feed",
