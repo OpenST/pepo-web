@@ -7,6 +7,7 @@ tagLine = apiResponseData['texts'][taglineId]['text']
 
 coverImageId = channelDetails['cover_image_id']
 imageResolutions = apiResponseData['images'][coverImageId]['resolutions']
+channelImageUrl = imageResolutions['original']['url']
 
 descriptionId = channelDetails['description_id']
 description = apiResponseData['texts'][descriptionId]['text']
@@ -43,7 +44,7 @@ noOfVideos = channelStats['total_videos']
                         </div>
 
                         <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <p> imageUrl: <%- JSON.stringify(imageResolutions) %> </p>
+                            <p> imageUrl: <%- channelImageUrl %> </p>
                         </div>
 
                     </div>
