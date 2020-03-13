@@ -1,6 +1,6 @@
 import  ns from "../js/libs/namespace";
 import BaseView from "../src/common/BaseView";
-import video from "./video/index";
+import video from "./common/video/index";
 
 class Video extends BaseView {
 

@@ -1,6 +1,6 @@
 import $ from 'jquery';
-import BasicHelper from '../helpers/basic'
-import socketPixelCall from "../services/SocketPixelCall";
+import BasicHelper from '../../helpers/basic'
+import socketPixelCall from "../../services/SocketPixelCall";
 
 const LOG_TAG = 'PepoVideo';
 
@@ -8,11 +8,7 @@ const VIDEO_PLAY_START_EVENT_NAME = "video_play_start";
 const VIDEO_PLAY_END_EVENT_NAME = "video_play_end";
 
 class Video {
-
-  constructor(){
-
-  }
-
+  
   init = () => {
     this.bindEvents();
   };

@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import ejs from 'ejs';
-import videoModalDetail from '../video/modalDetail.html';
-import videoThumbnail from '../video/thumbnail.html';
+import videoModalDetail from '../common/video/modalDetail.html';
+import videoThumbnail from '../common/video/thumbnail.html';
 import SimpleDataTable from '../utils/simpleDataTable';
 import DataGetters from '../model/DataGetters';
 import deepGet from 'lodash/get';
@@ -17,7 +17,6 @@ class Feed {
   }
 
   init = (config) => {
-    // sequence is important.
     this.fetchFeed();
     this.bindEvents();
   };
@@ -27,7 +26,7 @@ class Feed {
       jFeedModalWrapper = $("#feedModal .modal-dialog .modal-content .feedContainer");
 
 
-      jFeedParent.on('click', '.feedList', (e) => {
+    jFeedParent.on('click', '.feedList', (e) => {
         this.currentItemIndex = $(e.currentTarget).data('result-index');
         this.modalUIUpdate();
         $('#feedModal').modal('show');
