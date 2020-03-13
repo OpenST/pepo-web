@@ -52,6 +52,11 @@
     "robots": "index, follow",
     "pageType":"feed"
   },
+  "channel": {
+    "page": "Channel",
+    "robots": "index, follow",
+    "pageType":"channel"
+  },
   "webView":{
     "page" : "WebView",
     "robots": "noindex, nofollow",
