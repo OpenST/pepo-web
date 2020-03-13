@@ -4,5 +4,14 @@
     <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
 <% } %>
 <%- include ../partials/web/feed/_content -%>
+
 <%- include ../partials/web/feed/_feed_video_modal -%>
 <%- include ../partials/shared/_modals %>
+
+
+
+<script type="text/javascript">
+  window.onload = function () {
+    new pepo.feed({"appMeta" :  <%- JSON.stringify(appMeta) %> });
+  }
+</script>

@@ -3,21 +3,6 @@
         <div class="col-12 col-md-11 col-lg-10 p-0 mx-auto">
             <div class="container p-0">
                 <ul class="mx-auto list-unstyled d-flex flex-wrap feedUnordered my-5" id="feedParent">
-                    <% for (let entity of Object.values(feedsModel.data.feed_entities)) { %>
-                        <li class="feedContainerInner col-6 col-md-4 col-lg-3 feedList">
-                            <span class="content">
-                                <img src="<% feedsModel.getVideoCoverImage(entity.payload.video_id) %>" class="img-fluid" style="object-fit: cover"/>
-                                <span class="feed-video-play-icon play-icon ppBtn"></span>
-                                <span class="details">
-                                    <span class="desc block-with-text mb-1"><%= feedsModel.getVideoDescription(entity.payload.video_id) %></span>
-                                    <span class="d-flex flex-row justify-content-between">
-                                        <span class="desc">@<%= feedsModel.getOwnerUserName(entity.payload.video_id) %></span>
-                                        <span class="desc"><%= feedsModel.getAmountRaised(entity.payload.video_id) %></span>
-                                    </span>
-                                </span>
-                            </span>
-                        </li>
-                    <% }  %>
                 </ul>
             </div>
         </div>

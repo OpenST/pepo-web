@@ -1,12 +1,12 @@
-<li class="feedContainerInner col-6 col-md-4 col-lg-3 feedList">
+<li class="feedContainerInner col-6 col-md-4 col-lg-3 feedList" data-video-id="<%= videoId %>">
     <span class="content">
-        <img src="<%= videoCoverImage %>" class="img-fluid" style="object-fit: cover"/>
+        <img src="<%= getVideoCoverImage() %>" class="img-fluid" style="object-fit: cover"/>
         <span class="feed-video-play-icon play-icon ppBtn"></span>
         <span class="details">
-            <span class="desc block-with-text mb-1"><%= description %></span>
+            <span class="desc block-with-text mb-1"><%= getDescription() %></span>
             <span class="d-flex flex-row justify-content-between">
-                <span class="desc">@<%= userName %></span>
-                <span class="desc"><%= amountRaised %></span>
+                <span class="desc">@<%= getUserName() %></span>
+                <span class="desc"><%= getAmountRaised() %></span>
             </span>
         </span>
     </span>

@@ -1,10 +1,13 @@
 import CurrentUser from "../../src/model/CurrentUser" ;
 import  BrowserSdk from "../../src/libs/browserSdk";
+import dataStoreHelper from "../../src/libs/dataStoreHelper";
+import  ns from "../../src/libs/namespace";
 import SocketManager from "../../src/services/SocketManager";
 
 class BaseView {
 
   constructor( config ){
+    console.log(config.apiResponse,"config.apiResponse");
     if(typeof config.apiResponse == "string"){
       config.apiResponse =  JSON.parse( config.apiResponse );
     }
@@ -24,19 +27,26 @@ class BaseView {
 
 
   initCurrentUser(data){
+    if(!data) return;
     CurrentUser.initUser(data);
   }
 
 
   initDataStore(data){
-    //@Mayur
+    if(!data) return;
+    const pepo = ns("pepo");
+    const dataStore = pepo.dataStore || {};
+    pepo.dataStore = dataStoreHelper(data, dataStore);
+    console.log('pepo.dataStore', pepo.dataStore);
   }
 
   initSdk(config){
+    if(!config) return;
     BrowserSdk.init(config);
   }
 
   initPixelDrop(config){
+    if(!config) return;
     //@Sharadha
   }
 

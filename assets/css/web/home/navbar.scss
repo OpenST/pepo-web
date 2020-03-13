@@ -98,9 +98,15 @@
     border-radius: 0;
     padding: 0;
     margin-left: 15px;
+    height: 58px;
+    margin-right: -15px;
+    width: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: white;
     &.is-active{
-      background-color: $white;
+      background-color: #ffdde0;
     }
     .toggle-menu{
       width: 25px;

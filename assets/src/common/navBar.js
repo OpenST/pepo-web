@@ -69,7 +69,7 @@ class NavBar {
     }
 
     setupUberBanner = () => {
-        if(this.jUberBannerDesktop.length === 0 && this.jUberBannerMobile.length === 0) {
+        if(  this.jUberBannerDesktop.length === 0 && this.jUberBannerMobile.length === 0) {
             this.heightTrigger = 0;
         } else {
             this.heightTrigger = Math.max(this.jUberBannerDesktop.outerHeight(), this.jUberBannerMobile.outerHeight())
