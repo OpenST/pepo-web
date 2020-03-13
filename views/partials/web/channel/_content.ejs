@@ -24,7 +24,7 @@ tagDetails = apiResponseData['tags']
     <div class="row">
         <div class="col-12 mx-auto">
             <div class="container p-0">
-                <div class="row">
+                <div class="row community-wid-channel-desc">
                     <div class="community-image col-12">
                         <div class="content">
                             <img src="<%= channelImageUrl %>" class="img-fluid" style="object-fit: cover"/>
@@ -40,20 +40,19 @@ tagDetails = apiResponseData['tags']
                             </div>
                         </div>
                     </div>
-
-                    <div>
-                        <p> About </p>
-                        <p><%- description %></p>
+                    <div class="px-4 py-3">
+                        <h6 class="mb-1">About</h6>
+                        <p class="mb-0"><%- description %></p>
                     </div>
-                    <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                        tagNames:
+                    <ul class="list-unstyled px-4 m-0 w-100" style="border-top: 1px solid">
+                        <li class="float-left d-inline-block py-2">All</li>
                         <%
-                            for(let i=0;i<tagIds.length;i++){
+                            for(let i=0;i<tagIds.length;i++) {
                                 tagDetail = tagDetails[tagIds[i]];
                         %>
-                               </br> <%- tagDetail['id'] %>  -  #<%- tagDetail['text'] %>
+                            <li class="float-left ml-2 py-2">#<%- tagDetail['text'] %></li>
                         <%  }%>
-                    </div>
+                    </ul>
 
                 </div>
             </div>
