@@ -3,9 +3,10 @@ const rootPrefix = "../..";
 // All Requires
 const UserApi = require(rootPrefix + '/lib/pepoApi/User'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
-  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
+  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
+  CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
 
-class webRouteHelper {
+  class webRouteHelper {
 
   /**
    *
@@ -22,15 +23,15 @@ class webRouteHelper {
     locals = locals || {};
     locals.apiResponseData = locals.apiResponseData || {};
 
-    console.log('==111111========locals====-===================', locals);
-
     if(!locals.apiResponseData.current_user_data && request.headers && cookieConstants.hasWebLoginCookie(request.headers['cookie'])){
       let currentUserData = await oThis.getCurrentUserData(request);
       if(currentUserData.data){
         locals.apiResponseData.current_user_data = currentUserData.data;
       }
     }
-    console.log('==222222========locals====-===================', locals);
+    let currentUserDetails = locals.apiResponseData && locals.apiResponseData.current_user_data;
+    locals.currentUser = new CurrentUser(currentUserDetails);
+    console.log('==222222========locals=======================', locals);
 
     renderResponseHelper.renderWithLayout(request, response, layout, contentPartialPath, locals, callback);
 

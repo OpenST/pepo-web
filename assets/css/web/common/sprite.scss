@@ -108,6 +108,18 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(48px, 29px, -598px, -262px, -598px, -598px, 50);
 }
 
+.success-circular-icon{
+  @include icon-generator(50px, 50px, -594px, -186px, -594px, -594px, 70);
+}
+
+.under-construction-icon{
+  @include icon-generator(53px, 62px, -618px, -322px, -618px, -618px, 70);
+}
+
+.timer-icon{
+  @include icon-generator(40px, 41px, -533px, -250px, -533px, -533px, 50);
+}
+
 //.pepo-logo-nav{
 //  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 25);
 //}

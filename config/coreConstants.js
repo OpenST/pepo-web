@@ -131,8 +131,8 @@ class CoreConstant {
     return process.env.PW_PLATFORM_API_ENDPOINT;
   }
   
-  get PEPO_SDK_ENDPOINT(){
-    return process.env.PW_SDK_ENDPOINT;
+  get PEPO_SDK_ENV(){
+    return process.env.PW_SDK_ENV;
   }
   
   get PEPO_TRACKER_ENDPOINT(){

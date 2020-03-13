@@ -1,3 +1,4 @@
+import PepoSocket from "../../src/services/PepoSocket";
 
 class SocketManager {
   constructor() {
@@ -6,7 +7,7 @@ class SocketManager {
 
   initSocket() {
     if (!this.pepoSocket) {
-      this.pepoSocket = new PepoSocket(this.props.currentUserId);
+      this.pepoSocket = new PepoSocket('73323346-307b-4638-b66a-6ce6c5f6f4ca');
       this.pepoSocket.connect();
     }
   }
@@ -15,8 +16,9 @@ class SocketManager {
     this.pepoSocket && this.pepoSocket.disconnect();
   }
 
-  render() {
-    if (this.props.currentUserId) {
+  init() {
+    if (true) {
+      console.log('SocketManager', 'Socket init');
       this.initSocket();
     } else {
       if(this.pepoSocket){
@@ -28,4 +30,4 @@ class SocketManager {
   }
 }
 
-module.exports = SocketManager;
+export default new SocketManager();

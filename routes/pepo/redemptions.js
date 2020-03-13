@@ -2,13 +2,10 @@ const express = require('express');
 const router = express.Router();
 
 const rootPrefix = '../..',
-  basicHelper = require(rootPrefix + '/helpers/basic'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
-
-const errorConfig = basicHelper.fetchErrorConfig();
+  webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper');
 
 /* GET redemption products. */
 router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
@@ -26,7 +23,7 @@ router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req,
     }
   }
 
-  renderResponseHelper.renderWithLayout(req, res, 'loggedIn', 'web/_redemption', {appUpdateLink: appUpdateLink});
+  webRouteHelper.perform(req, res, 'loggedIn', 'web/_redemption', {appUpdateLink: appUpdateLink});
 });
 
 module.exports = router;

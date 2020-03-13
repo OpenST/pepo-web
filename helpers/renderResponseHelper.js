@@ -61,7 +61,7 @@ class ResponseRenderer {
     locals['appMeta'] = {
       TOKEN_ID : coreConstants.PEPO_TOKEN_ID,
       PLATFORM_API_ENDPOINT : coreConstants.PEPO_PLATFORM_API_ENDPOINT,
-      SDK_ENDPOINT: coreConstants.PEPO_SDK_ENDPOINT,
+      SDK_ENV: coreConstants.PEPO_SDK_ENV,
       TRACKER_ENDPOINT: coreConstants.PEPO_TRACKER_ENDPOINT,
       TRACKER_URL: coreConstants.PEPO_TRACKER_URL
     }

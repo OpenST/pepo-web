@@ -16,11 +16,13 @@ export PW_USE_BASIC_AUTH='0'
 export PW_BASIC_AUTH_USERNAME='test'
 export PW_BASIC_AUTH_PASSWORD='testpasswd'
 
-export PEPO_DOMAIN='http://pepodev.com';
-export PEPO_STORE_DOMAIN='http://store.pepodev.com';
-export PW_INVITE_DOMAIN='http://join.pepodev.com';
-export PW_FIREBASE_DOMAIN='http://app.pepodev.com';
+export PEPO_DOMAIN='https://pepodev.com';
+export PEPO_STORE_DOMAIN='https://store.pepodev.com';
+export PW_INVITE_DOMAIN='https://join.pepodev.com';
+export PW_FIREBASE_DOMAIN='https://app.pepodev.com';
 export PW_COOKIE_SECRET='6BC9B1968BBA53CA8E28878DAD4AB549B154027F10EA1C3FD2D37BAE6F9A5540'
+
+export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 export PW_CLOUD_FRONT_BASE_DOMAIN='https://d3attjoi5jlede.cloudfront.net/'
 
@@ -42,7 +44,7 @@ export PW_IOS_APP_ID='1161312313';
 
 export PW_TOKEN_ID='1185';
 export PW_PLATFORM_API_ENDPOINT='https://api.stagingost.com/testnet/v2';
-export PW_SDK_ENDPOINT="";
+export PW_SDK_ENV="testnet";
 
 export PW_TRACKER_ENDPOINT='//aqswde.fr/devp101_pixel_xyz.png';
 export PW_TRACKER_URL='//d2bcmzumnful8.cloudfront.net/tracker.js'

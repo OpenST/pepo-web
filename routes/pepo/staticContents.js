@@ -3,10 +3,8 @@ const router = express.Router();
 
 const rootPrefix = '../..',
   deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
-  signinWithAppleConstants = require(rootPrefix + '/lib/globalConstant/signinWithApple'),
-  basicHelper = require(rootPrefix + '/helpers/basic');
+  signinWithAppleConstants = require(rootPrefix + '/lib/globalConstant/signinWithApple');
 
-const errorConfig = basicHelper.fetchErrorConfig();
 
 /* GET Deep linking for android. */
 router.get('/.well-known/assetlinks.json', async function (req, res) {
