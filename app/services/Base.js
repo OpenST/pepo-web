@@ -5,9 +5,12 @@
  */
 
 const rootPrefix = '../..',
+  UserApi = require(rootPrefix + '/lib/pepoApi/User'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
+  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
+  CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
 
 // Declare error config.
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -25,6 +28,9 @@ class ServicesBase {
    */
   constructor() {
     const oThis = this;
+
+    oThis.currentUserData = null;
+    oThis.currentUser = null;
   }
 
   /**
@@ -60,6 +66,23 @@ class ServicesBase {
    */
   async _asyncPerform() {
     throw new Error('Sub-class to implement.');
+  }
+
+  /**
+   *
+   * @returns {Promise<void>}
+   */
+  async getCurrentUser() {
+    const oThis = this;
+
+    if(!oThis.currentUserData && cookieConstants.hasWebLoginCookie(oThis.headers['cookie'])){
+      let currentUserData = await new UserApi(oThis.headers).getCurrentUser({});
+      if(currentUserData.data){
+        oThis.currentUserData = currentUserData.data;
+      }
+    }
+    oThis.currentUser = new CurrentUser(oThis.currentUserData);
+    console.log('==========oThis.currentUser=======================', oThis.currentUser);
   }
 }
 

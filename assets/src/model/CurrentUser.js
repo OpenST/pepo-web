@@ -7,29 +7,29 @@ class  CurrentUser {
     this.user = null;
   }
 
-  initUser(apiResponse){
+  initUser(currentUserData){
+    console.log(LOG_TAG, currentUserData);
 
-    if (!apiResponse) {
-      return;
-    }
-
-    const currentUserData = apiResponse.current_user_data;
     if (!currentUserData) {
+      console.warn(LOG_TAG, "CurrentUserData is null");
       return;
     }
 
     const loggedInUser = currentUserData.logged_in_user;
     if (!loggedInUser) {
+      console.warn(LOG_TAG, "LoggedInUser is null");
       return;
     }
 
     if (!currentUserData.users) {
+      console.warn(LOG_TAG, "Users are null");
       return;
     }
 
     const loggedInUserData = currentUserData.users[loggedInUser.id];
 
     if (!loggedInUserData) {
+      console.warn(LOG_TAG, "LoggedInUserData is null");
       return;
     }
 

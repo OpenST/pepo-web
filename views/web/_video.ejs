@@ -1,10 +1,19 @@
 <% if (!currentUser.isLoggedIn()) {%>
-    <%- include('../partials/shared/_navBar', {pepoNav: "pepo-nav"}) -%>    
+    <%- include('../partials/shared/_navBar', {pepoNav: "pepo-nav"}) -%>
 <% } else{ %>
-    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
 <% } %>
 <%- include ../partials/web/video/_content -%>
 <%- include ../partials/web/video/_toast %>
 <%- include ../partials/web/video/_video_modal %>
 <%- include ../partials/web/video/_svg_sprite %>
 <%- include ../partials/shared/_modals %>
+
+<script type="text/javascript">
+    window.onload = function () {
+      new pepo.video({
+        "apiResponse"  : <%- JSON.stringify(apiResponseData) %>,
+        "appMeta" : <%- JSON.stringify(appMeta)%>
+      });
+    }
+</script>
