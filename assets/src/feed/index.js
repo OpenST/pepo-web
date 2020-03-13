@@ -1,7 +1,7 @@
 import $ from 'jquery';
 import ejs from 'ejs';
-import feedItemModal from './feedItemModal.html';
-import feedItemList from './feedItemList.html';
+import videoModalDetail from '../video/modalDetail.html';
+import videoThumbnail from '../video/thumbnail.html';
 import SimpleDataTable from '../utils/simpleDataTable';
 import DataGetters from '../model/DataGetters';
 import deepGet from 'lodash/get';
@@ -55,7 +55,7 @@ class Feed {
   modalUIUpdate = () => {
     const jFeedParentWrapper = $("#feedModal .modal-dialog .modal-content .feedContainer");
     let videoId = deepGet(this.getCurrentIndexResult(), 'video_id');
-    const feedModal = ejs.compile(feedItemModal, { client : true });
+    const feedModal = ejs.compile(videoModalDetail, { client : true });
     const jFeedModal = $(feedModal({
       videoId,
       DataGetters
@@ -76,7 +76,7 @@ class Feed {
     this.simpleDataTable = new SimpleDataTable({
       jParent: $("#feedParent"),
       fetchResultsUrl: "/api/web/feeds",
-      rowTemplate: ejs.compile(feedItemList, {client: true}),
+      rowTemplate: ejs.compile(videoThumbnail, {client: true}),
       getRowData : function (result) {
         return {
           videoId: deepGet(result, 'payload.video_id'),
