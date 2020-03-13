@@ -7,7 +7,7 @@ const rootPrefix = '../..',
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
-  webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper');
+  webRouteHelper = require(rootPrefix + '/routes/pepo/helper');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 

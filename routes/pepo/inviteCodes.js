@@ -5,7 +5,7 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
-  webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper');
+  webRouteHelper = require(rootPrefix + '/routes/pepo/helper');
 
 const filterUtmParams = function(req) {
   let utmQueryString = '';
