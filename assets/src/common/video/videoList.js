@@ -5,6 +5,7 @@ import videoThumbnail from './thumbnail.html';
 import SimpleDataTable from '../../utils/simpleDataTable';
 import DataGetters from '../../model/DataGetters';
 import deepGet from 'lodash/get';
+import video from "./index";
 
 const nextFetchThreshold =  4;
 
@@ -90,6 +91,7 @@ class VideoList {
       DataGetters
     }));
     jParentWrapper.html(jModal);
+    video.bindEvents();
     this.arrowsUpdate();
   };
 

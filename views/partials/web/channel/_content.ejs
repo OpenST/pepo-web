@@ -1,0 +1,66 @@
+<%
+
+channelId = apiResponseData['channel']['id']
+channelDetails = apiResponseData['channel_details'][channelId]
+taglineId = channelDetails['tagline_id']
+tagLine = apiResponseData['texts'][taglineId]['text']
+
+coverImageId = channelDetails['cover_image_id']
+imageResolutions = apiResponseData['images'][coverImageId]['resolutions']
+channelImageUrl = imageResolutions['original']['url']
+
+descriptionId = channelDetails['description_id']
+description = apiResponseData['texts'][descriptionId]['text']
+
+channelStats = apiResponseData['channel_stats'][channelId]
+noOfMembers = channelStats['total_users']
+noOfVideos = channelStats['total_videos']
+
+tagIds = channelDetails['tag_ids']
+tagDetails = apiResponseData['tags']
+%>
+
+<div class="container-fluid videoContainer d-none d-md-block">
+    <div class="row h-100 justify-content-center align-items-center">
+        <div class="col-11 col-lg-9 col-xl-6 innerContainer">
+            <div class="row h-100">
+                <div class="col pr-0 h-100" style="overflow: hidden">
+                    <div class="row h-100">
+                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            <p> channelName: <%- apiResponseData['channel']['name'] %> </p>
+                        </div>
+                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            <p> tagLine: <%- tagLine %> </p>
+                        </div>
+
+                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            <p> description: <%- description %> </p>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            <p> <%- noOfMembers %> Members </p>
+                        </div>
+
+                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            <p> <%- noOfVideos %> Videos </p>
+                        </div>
+
+                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            <p> imageUrl: <%- channelImageUrl %> </p>
+                        </div>
+                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            tagNames:
+                            <%
+                                for(let i=0;i<tagIds.length;i++){
+                                    tagDetail = tagDetails[tagIds[i]];
+                            %>
+                                   </br> <%- tagDetail['id'] %>  -  #<%- tagDetail['text'] %>
+                            <%  }%>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

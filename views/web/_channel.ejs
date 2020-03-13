@@ -1,0 +1,13 @@
+<% if (!currentUser.isLoggedIn()) {%>
+    <%- include('../partials/shared/_navBar', {pepoNav: "pepo-nav"}) -%>
+<% } else{ %>
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
+<% } %>
+<%- include ../partials/web/channel/_content -%>
+<%- include ../partials/shared/_modals %>
+
+<script type="text/javascript">
+    window.onload = function () {
+      console.log('<%- JSON.stringify(apiResponseData) %>');
+    }
+</script>
