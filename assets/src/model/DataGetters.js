@@ -109,6 +109,10 @@ class DataGetters {
 
 }
 
+  getVideoShareUrl(id){
+    return basicHelper.getVideoShareUrl(id)
+  }
+
 }
 
 export default new DataGetters();

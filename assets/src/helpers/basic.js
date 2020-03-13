@@ -35,6 +35,10 @@ class BasicHelper {
     return number instanceof BigNumber ? number : new BigNumber(number);
   }
 
+  getVideoShareUrl(videoId){
+    return `${window.location.protocol}/${window.location.hostname}/video/${videoId}?utm_source=share&utm_medium=video&utm_campaign=${videoId}`
+  }
+
 }
 
 export default new BasicHelper();
