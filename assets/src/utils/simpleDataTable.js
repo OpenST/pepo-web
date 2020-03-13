@@ -328,7 +328,6 @@ export default class SimpleDataTable {
           newResult = newResults[ cnt ];
           oldResult = oThis.isResultPresent( newResult );
           if( !oldResult ){
-            newResult['index'] = cnt ;
             oThis.appendResult( newResult );
           }else {
             $.extend( oldResult , newResult );
