@@ -16,6 +16,8 @@ class Video {
 
   bindEvents = () => {
     
+    const oThis =this;
+    
     $(".reportVideo").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       $('#reportModal').modal('show');
       e.stopPropagation();
@@ -34,7 +36,7 @@ class Video {
     $(".report-title").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       $('#reportModal').modal('hide');
       let videoId = $(".videoContainer").data('video-id');
-      this.report(videoId);
+      oThis.report(videoId);
       e.stopPropagation();
     });
 
@@ -61,9 +63,7 @@ class Video {
         $(this).toggleClass("active");
       }
     });
-
-    //video events
-    const oThis = this;
+    
     this.videoId = $(".videoContainer").data('video-id');
 
     $('.pepoVideo').off(`play.${namespace}`).on(`play.${namespace}`, function(e){
