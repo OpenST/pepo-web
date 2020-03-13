@@ -68,6 +68,14 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(50px, 50px, -16px, -240px, -16px, -16px, 50);
 }
 
+.prev-arrow-icon{
+  @include icon-generator(54px, 88px, -430px, -496px, -430px, -430px, 50);
+}
+
+.next-arrow-icon{
+  @include icon-generator(54px, 88px, -370px, -496px, -370px, -370px, 50);
+}
+
 .user-empty-profile-icon{
   @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 17.63);
 }
@@ -100,11 +108,11 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(46px, 48px, -467px, -186px, -467px, -467px, 50);
 }
 
-.next-arrow-icon{
+.next-arrow-icon-disabled{
   @include icon-generator(54px, 88px, -475px, -310px, -475px, -475px, 50);
 }
 
-.prev-arrow-icon{
+.prev-arrow-icon-disabled{
   @include icon-generator(54px, 88px, -547px, -310px, -547px, -547px, 50);
 }
 
