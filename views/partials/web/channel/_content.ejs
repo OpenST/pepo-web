@@ -20,45 +20,41 @@ tagIds = channelDetails['tag_ids']
 tagDetails = apiResponseData['tags']
 %>
 
-<div class="container-fluid videoContainer d-none d-md-block">
-    <div class="row h-100 justify-content-center align-items-center">
-        <div class="col-11 col-lg-9 col-xl-6 innerContainer">
-            <div class="row h-100">
-                <div class="col pr-0 h-100" style="overflow: hidden">
-                    <div class="row h-100">
-                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <p> channelName: <%- apiResponseData['channel']['name'] %> </p>
+<div class="container-fluid community-channel">
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="container p-0">
+                <div class="row">
+                    <div class="community-image col-12">
+                        <div class="content">
+                            <img src="<%= channelImageUrl %>" class="img-fluid" style="object-fit: cover"/>
+                            <div class="details py-5 px-6 d-flex justify-content-between flex-column">
+                                <div>
+                                    <h6 class="desc block-with-text mb-1"><%= apiResponseData['channel']['name'] %></h6>
+                                    <p class="desc block-with-text"><%= tagLine %></p>
+                                </div>
+                                <div class="d-flex w-50">
+                                    <span class="desc" style="flex: 1"><%- noOfMembers %> Members</span>
+                                    <span class="desc" style="flex: 1"><%- noOfVideos %> Videos</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <p> tagLine: <%- tagLine %> </p>
-                        </div>
-
-                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <p> description: <%- description %> </p>
-                        </div>
-
-                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <p> <%- noOfMembers %> Members </p>
-                        </div>
-
-                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <p> <%- noOfVideos %> Videos </p>
-                        </div>
-
-                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            <p> imageUrl: <%- channelImageUrl %> </p>
-                        </div>
-                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
-                            tagNames:
-                            <%
-                                for(let i=0;i<tagIds.length;i++){
-                                    tagDetail = tagDetails[tagIds[i]];
-                            %>
-                                   </br> <%- tagDetail['id'] %>  -  #<%- tagDetail['text'] %>
-                            <%  }%>
-                        </div>
-
                     </div>
+
+                    <div>
+                        <p> About </p>
+                        <p><%- description %></p>
+                    </div>
+                    <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                        tagNames:
+                        <%
+                            for(let i=0;i<tagIds.length;i++){
+                                tagDetail = tagDetails[tagIds[i]];
+                        %>
+                               </br> <%- tagDetail['id'] %>  -  #<%- tagDetail['text'] %>
+                        <%  }%>
+                    </div>
+
                 </div>
             </div>
         </div>

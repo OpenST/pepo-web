@@ -4,11 +4,40 @@
 // Import theme variables
 @import "../../web/Starboy/variables";
 
-html, body{
-  @media only screen and (max-width: 767px){
-    overflow-y: hidden;
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: ($height / $width) * 100%;
   }
-  background-color: #f2f2f2;
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
 }
+
+.community-channel{
+  background-color: #f9f9f9;
+  .community-image{
+    @include aspect-ratio(3.41, 1);
+    padding: 0;
+    overflow: hidden;
+    background-clip: padding-box;
+  }
+  .details{
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+}
+
 
 
