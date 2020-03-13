@@ -17,8 +17,6 @@ const rootPrefix = '../..',
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetVideo = require(rootPrefix + '/app/services/GetVideo'),
   GetFeed = require(rootPrefix + '/app/services/GetFeed'),
-  dataStoreHelper  = require(rootPrefix + '/lib/dataStoreHelper'),
-  FeedsModel = require(rootPrefix + '/lib/model/Feed'),
   videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
 
 const errorConfig = basicHelper.fetchErrorConfig();
