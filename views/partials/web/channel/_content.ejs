@@ -16,6 +16,8 @@ channelStats = apiResponseData['channel_stats'][channelId]
 noOfMembers = channelStats['total_users']
 noOfVideos = channelStats['total_videos']
 
+tagIds = channelDetails['tag_ids']
+tagDetails = apiResponseData['tags']
 %>
 
 <div class="container-fluid videoContainer d-none d-md-block">
@@ -45,6 +47,15 @@ noOfVideos = channelStats['total_videos']
 
                         <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
                             <p> imageUrl: <%- channelImageUrl %> </p>
+                        </div>
+                        <div class="col-md-12 col-lg-12 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                            tagNames:
+                            <%
+                                for(let i=0;i<tagIds.length;i++){
+                                    tagDetail = tagDetails[tagIds[i]];
+                            %>
+                                   </br> <%- tagDetail['id'] %>  -  #<%- tagDetail['text'] %>
+                            <%  }%>
                         </div>
 
                     </div>
