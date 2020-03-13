@@ -2,7 +2,7 @@
 @import "../../plugins/bootstrap/scss/functions";
 
 // Import theme variables
-@import "../../web/Starboy/variables";
+@import "../Starboy/variables";
 
 
 @mixin aspect-ratio($width, $height) {
