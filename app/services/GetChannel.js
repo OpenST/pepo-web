@@ -1,19 +1,18 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  GetFirebaseVideoUrl = require(rootPrefix + '/app/services/FireBaseUrl/Video'),
   GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   ChannelLib = require(rootPrefix + '/lib/pepoApi/Channel'),
-  videoViewFormatter = require(rootPrefix + '/lib/viewFormatter/video');
+  channelViewFormatter = require(rootPrefix + '/lib/viewFormatter/channel');
 
 /**
- * Class for Getting video
+ * Class for Getting channel
  *
- * @class GetVideo
+ * @class GetChannel
  */
-class GetVideo extends ServiceBase {
+class GetChannel extends ServiceBase {
   /**
    * Constructor
    *
@@ -59,7 +58,7 @@ class GetVideo extends ServiceBase {
   }
 
   /**
-   * Fetch video
+   * Fetch channel
    *
    * @return {Promise<Result>}
    * @private
@@ -68,54 +67,50 @@ class GetVideo extends ServiceBase {
     const oThis = this;
     logger.log('Start::_fetchChannel');
 
-    let resp = await new ChannelLib(oThis.headers).getChannelDetails({permalink: oThis.permalink});
+    let promise1 = new ChannelLib(oThis.headers).getChannelDetails({permalink: oThis.permalink});
+    let promise2 = new GetFirebaseChannelUrl({headers: oThis.headers, decodedParams: oThis.decodedParams}).perform();
 
-    if (resp.isFailure()) {
+    const promises = [
+      promise1,
+      promise2
+    ];
+
+    await Promise.all(promises);
+
+    const resp1 = promises[0],
+      resp2 = promises[1];
+
+
+    if (resp1.isFailure()) {
       return Promise.reject(resp);
-    } else {
-      oThis.serviceResp = resp;
-      const apiResponse = await new GetFirebaseChannelUrl({decodedParams: oThis.decodedParams, videoResponse: resp.data}).perform();
-
-      if (apiResponse.success) {
-        oThis.serviceResp.data.firebase_video_url = apiResponse.data.url;
-        oThis.serviceResp.data.share_url = apiResponse.data.pageMeta.canonical;
-        oThis.serviceResp.data.page_meta = apiResponse.data.pageMeta;
-      }
-
     }
 
-
-
-    const apiResponse = await new GetFirebaseChannelUrl({headers: oThis.headers, decodedParams: oThis.decodedParams}).perform();
-    if (apiResponse.success) {
-      return webRouteHelper.perform(req, res, 'redirect', '', {
-        apiResponseData: apiResponse.data,
-        redirect_to_location: apiResponse.data.url,
-        pageMeta: apiResponse.data.pageMeta
-      });
-    } else {
-      return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
+    if (resp2.isFailure()) {
+      return Promise.reject(resp);
     }
 
+    oThis.serviceResp = resp1;
 
-
-
-
-
+    if (resp2.success) {
+      oThis.serviceResp.data.firebase_channel_url = resp2.data.url;
+      oThis.serviceResp.data.share_url = resp2.data.pageMeta.canonical;
+      oThis.serviceResp.data.page_meta = resp2.data.pageMeta;
+      oThis.apiResponseData = oThis.serviceResp.data;
+    }
 
     return responseHelper.successWithData(oThis.serviceResp);
   }
 
   async _prepareResponse() {
     const oThis = this;
-    let formattedData = new videoViewFormatter(oThis.serviceResp.data).perform();
+    let formattedData = new channelViewFormatter(oThis.serviceResp.data).perform();
 
     return responseHelper.successWithData({
       apiResponseData: oThis.serviceResp.data,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       pageMeta: formattedData.page_meta,
-      firebaseUrls: {openInApp: formattedData.firebase_video_url},
+      firebaseUrls: {openInApp: formattedData.firebase_channel_url},
       showFooter: false,
       formattedEntityData: formattedData,
       currentUserData: oThis.currentUserData,
@@ -125,4 +120,4 @@ class GetVideo extends ServiceBase {
 
 }
 
-module.exports = GetVideo;
+module.exports = GetChannel;
