@@ -276,6 +276,8 @@ module.exports = _setPrototypeOf;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDataStore", function() { return setDataStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDataStore", function() { return getDataStore; });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33);
@@ -298,7 +300,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 // const assignIn = require("lodash/assignIn");
 
 
- // This is data store setter which checks for
+
+var dataStore = {}; // This is data store setter which checks for
 // whitelisted entities from response and set
 
 var backendToAppEntities = {
@@ -411,39 +414,39 @@ function getEntitiesFromObj(resultObj) {
 
 ;
 
-function parser_merge(oldState, newState) {
-  return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, oldState, newState);
+function parser_merge(oldData, newData) {
+  return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, oldData, newData);
 }
 
 ;
 
-function parser_direct_assign(oldState, newState) {
-  return newState;
+function parser_direct_assign(oldData, newData) {
+  return newData;
 }
 
 ;
 
-function parser_price_points(oldState, newState) {
+function parser_price_points(oldData, newData) {
   //Make sure price_points is not null;
-  if (!newState) {
-    return oldState;
+  if (!newData) {
+    return oldData;
   } // Make sure response has keys;
 
 
-  if (!Object.keys(newState).length) {
-    return oldState;
+  if (!Object.keys(newData).length) {
+    return oldData;
   }
 
-  return _objectSpread({}, oldState, {}, newState);
+  return _objectSpread({}, oldData, {}, newData);
 }
 
 ;
-/* harmony default export */ __webpack_exports__["default"] = (function (responseData) {
-  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  // Return cloned data if no data
-  if (!responseData) return _objectSpread({}, data); // Clone data for later use
 
-  var newState = _objectSpread({}, data);
+var setDataStore = function setDataStore(responseData) {
+  // Return cloned data if no data
+  if (!responseData) return _objectSpread({}, dataStore); // Clone data for later use
+
+  var newData = _objectSpread({}, dataStore);
 
   var whitelistedEntities = []; // Loop on backend data for whitelisted processing
 
@@ -461,14 +464,14 @@ function parser_price_points(oldState, newState) {
       if (appEntity) {
         if (typeof appEntity === 'string') {
           // Default processing (assignIn)
-          newState[appEntity] = lodash_assignIn__WEBPACK_IMPORTED_MODULE_3___default()({}, data[appEntity], getEntities(entityData));
+          newData[appEntity] = lodash_assignIn__WEBPACK_IMPORTED_MODULE_3___default()({}, dataStore[appEntity], getEntities(entityData));
           whitelistedEntities.push(entity);
         } else {
           // Parser based processing
           var appEntityKey = appEntity.key;
 
           if (appEntityKey && typeof appEntity.parser === 'function') {
-            newState[appEntityKey] = appEntity.parser(data[appEntityKey], getEntities(entityData));
+            newData[appEntityKey] = appEntity.parser(dataStore[appEntityKey], getEntities(entityData));
             whitelistedEntities.push(entity);
           }
         }
@@ -477,8 +480,15 @@ function parser_price_points(oldState, newState) {
   }
 
   if (whitelistedEntities.length > 0) console.log('Upserting following whitelisted entities: ', whitelistedEntities);
-  return newState;
-});
+  dataStore = newData;
+  return newData;
+};
+
+var getDataStore = function getDataStore() {
+  return dataStore;
+};
+
+
 
 /***/ }),
 /* 33 */
@@ -4061,13 +4071,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _src_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(149);
 /* harmony import */ var _src_libs_browserSdk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(150);
-/* harmony import */ var _src_libs_dataStoreHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
-/* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(144);
-/* harmony import */ var _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(151);
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(131);
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_7__);
-
-
+/* harmony import */ var _model_DataStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
+/* harmony import */ var _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(151);
 
 
 
@@ -4112,10 +4117,7 @@ var BaseView = /*#__PURE__*/function () {
     key: "initDataStore",
     value: function initDataStore(data) {
       if (!data) return;
-      var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_5__["default"])("pepo");
-      var dataStore = pepo.dataStore || {};
-      pepo.dataStore = Object(_src_libs_dataStoreHelper__WEBPACK_IMPORTED_MODULE_4__["default"])(data, dataStore);
-      console.log('pepo.dataStore', pepo.dataStore);
+      Object(_model_DataStore__WEBPACK_IMPORTED_MODULE_4__["setDataStore"])(data);
     }
   }, {
     key: "initSdk",
@@ -4131,7 +4133,7 @@ var BaseView = /*#__PURE__*/function () {
   }, {
     key: "initSocket",
     value: function initSocket() {
-      _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_6__["default"].init();
+      _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_5__["default"].init();
     }
   }]);
 

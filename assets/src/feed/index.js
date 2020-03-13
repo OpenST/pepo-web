@@ -3,7 +3,7 @@ import ejs from 'ejs';
 import feedItemModal from './feedItemModal.html';
 import feedItemList from './feedItemList.html';
 import SimpleDataTable from '../utils/simpleDataTable';
-import FeedItemData from '../utils/FeedItemData/base';
+import DataGetters from '../model/DataGetters';
 import deepGet from 'lodash/get';
 
 
@@ -22,12 +22,13 @@ class Feed {
   bindEvents = () => {
     const jFeedParent = $('#feedParent'),
       jFeedParentWrapper = $("#feedModalWrapper");
-
-
       jFeedParent.on('click', '.feedList', (e) => {
       let videoId = $(e.currentTarget).data('video-id');
       const feedModal = ejs.compile(feedItemModal, { client : true });
-      const jFeedModal = $(feedModal(new FeedItemData(videoId)));
+      const jFeedModal = $(feedModal({
+        videoId,
+        DataGetters
+      }));
         jFeedParentWrapper.html( '');
         jFeedParentWrapper.append(jFeedModal);
         $('#feedModal').modal('show');
@@ -44,8 +45,11 @@ class Feed {
       fetchResultsUrl: "/api/web/feeds",
       rowTemplate: ejs.compile(feedItemList, {client: true}),
       getRowData : function (result) {
-        const videoId = deepGet(result, 'payload.video_id');
-        return new FeedItemData(videoId);
+        return {
+          videoId: deepGet(result, 'payload.video_id'),
+          item : result,
+          DataGetters
+        };
       }
     });
   }

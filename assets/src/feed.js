@@ -7,9 +7,7 @@ class Feed extends BaseView {
 
   constructor(config){
     super(config);
-    $(document).ready(() => {
-      feed.init(config);
-    });
+    feed.init(config);
   }
 
 }

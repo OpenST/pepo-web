@@ -295,9 +295,7 @@ var Feed = /*#__PURE__*/function (_BaseView) {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Feed);
 
     _this = _babel_runtime_helpers_possibleConstructorReturn__WEBPACK_IMPORTED_MODULE_1___default()(this, _babel_runtime_helpers_getPrototypeOf__WEBPACK_IMPORTED_MODULE_2___default()(Feed).call(this, config));
-    jquery__WEBPACK_IMPORTED_MODULE_5___default()(document).ready(function () {
-      _feed_index__WEBPACK_IMPORTED_MODULE_6__["default"].init(config);
-    });
+    _feed_index__WEBPACK_IMPORTED_MODULE_6__["default"].init(config);
     return _this;
   }
 
@@ -356,7 +354,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _feedItemList_html__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(30);
 /* harmony import */ var _feedItemList_html__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_feedItemList_html__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var _utils_simpleDataTable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(31);
-/* harmony import */ var _utils_FeedItemData_base__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(145);
+/* harmony import */ var _model_DataGetters__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(145);
 /* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(131);
 /* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_8__);
 
@@ -388,7 +386,10 @@ var Feed = function Feed() {
       var feedModal = ejs__WEBPACK_IMPORTED_MODULE_3___default.a.compile(_feedItemModal_html__WEBPACK_IMPORTED_MODULE_4___default.a, {
         client: true
       });
-      var jFeedModal = jquery__WEBPACK_IMPORTED_MODULE_2___default()(feedModal(new _utils_FeedItemData_base__WEBPACK_IMPORTED_MODULE_7__["default"](videoId)));
+      var jFeedModal = jquery__WEBPACK_IMPORTED_MODULE_2___default()(feedModal({
+        videoId: videoId,
+        DataGetters: _model_DataGetters__WEBPACK_IMPORTED_MODULE_7__["default"]
+      }));
       jFeedParentWrapper.html('');
       jFeedParentWrapper.append(jFeedModal);
       jquery__WEBPACK_IMPORTED_MODULE_2___default()('#feedModal').modal('show');
@@ -406,8 +407,11 @@ var Feed = function Feed() {
         client: true
       }),
       getRowData: function getRowData(result) {
-        var videoId = lodash_get__WEBPACK_IMPORTED_MODULE_8___default()(result, 'payload.video_id');
-        return new _utils_FeedItemData_base__WEBPACK_IMPORTED_MODULE_7__["default"](videoId);
+        return {
+          videoId: lodash_get__WEBPACK_IMPORTED_MODULE_8___default()(result, 'payload.video_id'),
+          item: result,
+          DataGetters: _model_DataGetters__WEBPACK_IMPORTED_MODULE_7__["default"]
+        };
       }
     });
   });
@@ -2047,13 +2051,13 @@ module.exports = JSON.parse("{\"_from\":\"ejs@2.6.1\",\"_id\":\"ejs@2.6.1\",\"_i
 /* 29 */
 /***/ (function(module, exports) {
 
-module.exports = "<section id=\"feedModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n        <div class=\"modal-content\">\n            <div class=\"container-fluid feedContainer\" style=\"background-color: transparent\">\n                <div class=\"row justify-content-center align-items-center\">\n                    <div class=\"col-12 col-lg-10 col-xl-8 innerContainer\" style=\"pointer-events: auto;\">\n                        <div class=\"row\">\n                            <div class=\"col-md-6 col-lg-6 innerLeft py-3 h-100\" style=\"overflow-y: scroll!important;\">\n                                <div class=\"media align-items-center\">\n                                    <div class=\"position-relative\" style=\"font-size: 0\">\n                                        <span class=\"user-empty-profile-icon\"></span>\n                                        <img class=\"profileImage img-fluid\" src=\"<%= getVideoCoverImage() %>\"  alt=\"\">\n                                    </div>\n                                    <div class=\"media-body profile-media-body\" style=\"width: calc(100% - 50px);\">\n                                        <div class=\"d-flex align-items-center\">\n                                            <h6 class=\"m-0 user-name\"></h6>\n                                            <div class=\"ml-2 d-flex align-items-center\">\n                                                <svg width=\"12\" height=\"12\">\n                                                    <switch>\n                                                        <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#video-web-cta-icon\"></use>\n                                                    </switch>\n                                                </svg>\n                                                <span class=\"timerCta web\"></span>\n                                            </div>\n                                        </div>\n                                        <span class=\"user-handle\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-0 desc\"></p>\n                                <a href=\"\" class=\"desc-link\" rel=\"noopener noreferrer nofollow\" target=\"_blank\"></a>\n                                <ul class=\"mt-3 list-unstyled channel-list web\">\n                                    <li class=\"downloadApp\"><a href=\"javascript:void(0)\"></a></li>\n                                </ul>\n                            </div>\n\n                            <div class=\"col-md-6 col-lg-6 innerRight p-0\">\n                                <div class=\"active ppBtnUi ppBtn\">\n                                    <span class=\"video-play-icon\"></span>\n                                </div>\n                                <video class=\"pepoVideo\" playsinline loop\n                                       style=\"width: 100%; height: 100%; object-fit: cover\"\n                                       poster=\"\"\n                                >\n                                    <source src=\"\" type=\"video/mp4\">\n                                </video>\n\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n";
+module.exports = "<section id=\"feedModal\" class=\"modal fade\" tabindex=\"-1\" role=\"dialog\">\n    <div class=\"modal-dialog modal-dialog-centered\" role=\"document\">\n        <div class=\"modal-content\">\n            <div class=\"container-fluid feedContainer\" style=\"background-color: transparent\">\n                <div class=\"row justify-content-center align-items-center\">\n                    <div class=\"col-12 col-lg-10 col-xl-8 innerContainer\" style=\"pointer-events: auto;\">\n                        <div class=\"row\">\n                            <div class=\"col-md-6 col-lg-6 innerLeft py-3 h-100\" style=\"overflow-y: scroll!important;\">\n                                <div class=\"media align-items-center\">\n                                    <div class=\"position-relative\" style=\"font-size: 0\">\n                                        <span class=\"user-empty-profile-icon\"></span>\n                                        <img class=\"profileImage img-fluid\" src=\"<%= DataGetters.getVideoCoverImage(videoId) %>\"  alt=\"\">\n                                    </div>\n                                    <div class=\"media-body profile-media-body\" style=\"width: calc(100% - 50px);\">\n                                        <div class=\"d-flex align-items-center\">\n                                            <h6 class=\"m-0 user-name\"></h6>\n                                            <div class=\"ml-2 d-flex align-items-center\">\n                                                <svg width=\"12\" height=\"12\">\n                                                    <switch>\n                                                        <use xmlns:xlink=\"http://www.w3.org/1999/xlink\" xlink:href=\"#video-web-cta-icon\"></use>\n                                                    </switch>\n                                                </svg>\n                                                <span class=\"timerCta web\"></span>\n                                            </div>\n                                        </div>\n                                        <span class=\"user-handle\"></span>\n                                    </div>\n                                </div>\n                                <p class=\"mb-0 desc\"></p>\n                                <a href=\"\" class=\"desc-link\" rel=\"noopener noreferrer nofollow\" target=\"_blank\"></a>\n                                <ul class=\"mt-3 list-unstyled channel-list web\">\n                                    <li class=\"downloadApp\"><a href=\"javascript:void(0)\"></a></li>\n                                </ul>\n                            </div>\n\n                            <div class=\"col-md-6 col-lg-6 innerRight p-0\">\n                                <div class=\"active ppBtnUi ppBtn\">\n                                    <span class=\"video-play-icon\"></span>\n                                </div>\n                                <video class=\"pepoVideo\" playsinline loop\n                                       style=\"width: 100%; height: 100%; object-fit: cover\"\n                                       poster=\"\"\n                                >\n                                    <source src=\"\" type=\"video/mp4\">\n                                </video>\n\n                            </div>\n                        </div>\n                    </div>\n                </div>\n            </div>\n        </div>\n    </div>\n</section>\n";
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
-module.exports = "<li class=\"feedContainerInner col-6 col-md-4 col-lg-3 feedList\" data-video-id=\"<%= videoId %>\">\n    <span class=\"content\">\n        <img src=\"<%= getVideoCoverImage() %>\" class=\"img-fluid\" style=\"object-fit: cover\"/>\n        <span class=\"feed-video-play-icon play-icon ppBtn\"></span>\n        <span class=\"details\">\n            <span class=\"desc block-with-text mb-1\"><%= getDescription() %></span>\n            <span class=\"d-flex flex-row justify-content-between\">\n                <span class=\"desc\">@<%= getUserName() %></span>\n                <span class=\"desc\"><%= getAmountRaised() %></span>\n            </span>\n        </span>\n    </span>\n</li>\n";
+module.exports = "<li class=\"feedContainerInner col-6 col-md-4 col-lg-3 feedList\" data-video-id=\"<%= videoId %>\">\n    <span class=\"content\">\n        <img src=\"<%= DataGetters.getVideoCoverImage(videoId) %>\" class=\"img-fluid\" style=\"object-fit: cover\"/>\n        <span class=\"feed-video-play-icon play-icon ppBtn\"></span>\n        <span class=\"details\">\n            <span class=\"desc block-with-text mb-1\"><%= DataGetters.getDescription(videoId) %></span>\n            <span class=\"d-flex flex-row justify-content-between\">\n                <span class=\"desc\">@<%= DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId)) %></span>\n                <span class=\"desc\"><%= DataGetters.getAmountRaised(videoId) %></span>\n            </span>\n        </span>\n    </span>\n</li>\n";
 
 /***/ }),
 /* 31 */
@@ -2068,7 +2072,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(4);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _libs_dataStoreHelper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
+/* harmony import */ var _model_DataStore__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(32);
 /* harmony import */ var _libs_namespace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(144);
 
 
@@ -2387,9 +2391,7 @@ var SimpleDataTable = /*#__PURE__*/function () {
             nextPagePayload = newMeta.next_page_payload || {},
             newResult = null,
             oldResult = null;
-        var pepo = Object(_libs_namespace__WEBPACK_IMPORTED_MODULE_4__["default"])("pepo");
-        var dataStore = pepo.dataStore || {};
-        pepo.dataStore = Object(_libs_dataStoreHelper__WEBPACK_IMPORTED_MODULE_3__["default"])(data, dataStore);
+        Object(_model_DataStore__WEBPACK_IMPORTED_MODULE_3__["setDataStore"])(data);
 
         if (newResults.length) {
           for (var cnt = 0; cnt < newResults.length; cnt++) {
@@ -2569,6 +2571,8 @@ var SimpleDataTable = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setDataStore", function() { return setDataStore; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getDataStore", function() { return getDataStore; });
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(5);
 /* harmony import */ var _babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_defineProperty__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var lodash_merge__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(33);
@@ -2591,7 +2595,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 // const assignIn = require("lodash/assignIn");
 
 
- // This is data store setter which checks for
+
+var dataStore = {}; // This is data store setter which checks for
 // whitelisted entities from response and set
 
 var backendToAppEntities = {
@@ -2704,39 +2709,39 @@ function getEntitiesFromObj(resultObj) {
 
 ;
 
-function parser_merge(oldState, newState) {
-  return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, oldState, newState);
+function parser_merge(oldData, newData) {
+  return lodash_merge__WEBPACK_IMPORTED_MODULE_1___default()({}, oldData, newData);
 }
 
 ;
 
-function parser_direct_assign(oldState, newState) {
-  return newState;
+function parser_direct_assign(oldData, newData) {
+  return newData;
 }
 
 ;
 
-function parser_price_points(oldState, newState) {
+function parser_price_points(oldData, newData) {
   //Make sure price_points is not null;
-  if (!newState) {
-    return oldState;
+  if (!newData) {
+    return oldData;
   } // Make sure response has keys;
 
 
-  if (!Object.keys(newState).length) {
-    return oldState;
+  if (!Object.keys(newData).length) {
+    return oldData;
   }
 
-  return _objectSpread({}, oldState, {}, newState);
+  return _objectSpread({}, oldData, {}, newData);
 }
 
 ;
-/* harmony default export */ __webpack_exports__["default"] = (function (responseData) {
-  var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {};
-  // Return cloned data if no data
-  if (!responseData) return _objectSpread({}, data); // Clone data for later use
 
-  var newState = _objectSpread({}, data);
+var setDataStore = function setDataStore(responseData) {
+  // Return cloned data if no data
+  if (!responseData) return _objectSpread({}, dataStore); // Clone data for later use
+
+  var newData = _objectSpread({}, dataStore);
 
   var whitelistedEntities = []; // Loop on backend data for whitelisted processing
 
@@ -2754,14 +2759,14 @@ function parser_price_points(oldState, newState) {
       if (appEntity) {
         if (typeof appEntity === 'string') {
           // Default processing (assignIn)
-          newState[appEntity] = lodash_assignIn__WEBPACK_IMPORTED_MODULE_3___default()({}, data[appEntity], getEntities(entityData));
+          newData[appEntity] = lodash_assignIn__WEBPACK_IMPORTED_MODULE_3___default()({}, dataStore[appEntity], getEntities(entityData));
           whitelistedEntities.push(entity);
         } else {
           // Parser based processing
           var appEntityKey = appEntity.key;
 
           if (appEntityKey && typeof appEntity.parser === 'function') {
-            newState[appEntityKey] = appEntity.parser(data[appEntityKey], getEntities(entityData));
+            newData[appEntityKey] = appEntity.parser(dataStore[appEntityKey], getEntities(entityData));
             whitelistedEntities.push(entity);
           }
         }
@@ -2770,8 +2775,15 @@ function parser_price_points(oldState, newState) {
   }
 
   if (whitelistedEntities.length > 0) console.log('Upserting following whitelisted entities: ', whitelistedEntities);
-  return newState;
-});
+  dataStore = newData;
+  return newData;
+};
+
+var getDataStore = function getDataStore() {
+  return dataStore;
+};
+
+
 
 /***/ }),
 /* 33 */
@@ -6352,88 +6364,81 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(131);
 /* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_2__);
 /* harmony import */ var _helpers_basic__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(146);
-/* harmony import */ var _libs_namespace__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(144);
+/* harmony import */ var _DataStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
 
 
 
 
-
-var pepo = Object(_libs_namespace__WEBPACK_IMPORTED_MODULE_4__["default"])("pepo");
 var PREFIX = 'id_';
 
-var Base = /*#__PURE__*/function () {
-  function Base(videoId) {
-    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, Base);
 
-    this.videoId = videoId;
+var DataGetters = /*#__PURE__*/function () {
+  function DataGetters() {
+    _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, DataGetters);
   }
 
-  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(Base, [{
+  _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(DataGetters, [{
     key: "getVideoCoverImage",
-    value: function getVideoCoverImage() {
-      var videoInfo = this.getVideoInfo();
+    value: function getVideoCoverImage(id) {
+      var videoInfo = this.getVideoInfo(id);
       var posterImageId = videoInfo.poster_image_id;
-      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(pepo.dataStore, "image_entities[".concat(PREFIX).concat(posterImageId, "].resolutions['576w'].url")) || lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(pepo.dataStore, "image_entities[".concat(PREFIX).concat(posterImageId, "].resolutions['original'].url"));
+      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(Object(_DataStore__WEBPACK_IMPORTED_MODULE_4__["getDataStore"])(), "image_entities[".concat(PREFIX).concat(posterImageId, "].resolutions['576w'].url")) || lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(Object(_DataStore__WEBPACK_IMPORTED_MODULE_4__["getDataStore"])(), "image_entities[".concat(PREFIX).concat(posterImageId, "].resolutions['original'].url"));
     }
   }, {
     key: "getAmountRaised",
-    value: function getAmountRaised() {
-      return _helpers_basic__WEBPACK_IMPORTED_MODULE_3__["default"].convertWeiToNormal(this.getVideoDetails().total_amount_raised_in_wei).toString(10);
+    value: function getAmountRaised(id) {
+      return _helpers_basic__WEBPACK_IMPORTED_MODULE_3__["default"].convertWeiToNormal(this.getVideoDetails(id).total_amount_raised_in_wei).toString(10);
     }
   }, {
     key: "getOwnerProfileImage",
-    value: function getOwnerProfileImage() {
-      // creator user Id info
-      var userInfo = this.getUserInfo(); // 144w can be used
-
-      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(pepo.dataStore, "image_entities[".concat(PREFIX).concat(userInfo.profile_image_id, "].resolutions.original.url")) || '';
+    value: function getOwnerProfileImage(id) {
+      var userInfo = this.getUserInfo(id);
+      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(Object(_DataStore__WEBPACK_IMPORTED_MODULE_4__["getDataStore"])(), "image_entities[".concat(PREFIX).concat(userInfo.profile_image_id, "].resolutions.original.url")) || '';
     }
   }, {
     key: "getUserName",
-    value: function getUserName() {
-      var userInfo = this.getUserInfo();
-      console.log(userInfo, 'userInfo:getUserName');
+    value: function getUserName(id) {
+      var userInfo = this.getUserInfo(id);
       return userInfo.user_name || '';
     }
   }, {
     key: "getDescription",
-    value: function getDescription() {
-      return this.getDescriptionObject()['text'] || '';
+    value: function getDescription(id) {
+      return this.getDescriptionObject(id)['text'] || '';
     }
   }, {
     key: "getDescriptionObject",
-    value: function getDescriptionObject() {
-      var videoDetails = this.getVideoDetails();
-      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(pepo.dataStore, "video_description_entities[".concat(PREFIX).concat(videoDetails.description_id, "]")) || {};
+    value: function getDescriptionObject(id) {
+      var videoDetails = this.getVideoDetails(id);
+      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(Object(_DataStore__WEBPACK_IMPORTED_MODULE_4__["getDataStore"])(), "video_description_entities[".concat(PREFIX).concat(videoDetails.description_id, "]")) || {};
     }
   }, {
     key: "getVideoDetails",
-    value: function getVideoDetails() {
-      var videoDetails = lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(pepo.dataStore, "video_stat_entities[".concat(PREFIX).concat(this.videoId, "]"));
+    value: function getVideoDetails(id) {
+      var videoDetails = lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(Object(_DataStore__WEBPACK_IMPORTED_MODULE_4__["getDataStore"])(), "video_stat_entities[".concat(PREFIX).concat(id, "]"));
       return videoDetails || {};
     }
   }, {
     key: "getUserInfo",
-    value: function getUserInfo() {
-      console.log(this.getVideoOwnerId(), 'getVideoOwnerId=====');
-      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(pepo.dataStore, "user_entities[".concat(PREFIX).concat(this.getVideoOwnerId(), "]"));
+    value: function getUserInfo(id) {
+      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(Object(_DataStore__WEBPACK_IMPORTED_MODULE_4__["getDataStore"])(), "user_entities[".concat(PREFIX).concat(id, "]"));
     }
   }, {
     key: "getVideoOwnerId",
-    value: function getVideoOwnerId() {
-      return this.getVideoDetails()['creator_user_id'];
+    value: function getVideoOwnerId(id) {
+      return this.getVideoDetails(id)['creator_user_id'];
     }
   }, {
     key: "getVideoInfo",
-    value: function getVideoInfo() {
-      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(pepo.dataStore, "video_entities[".concat(PREFIX).concat(this.videoId, "]"));
+    value: function getVideoInfo(id) {
+      return lodash_get__WEBPACK_IMPORTED_MODULE_2___default()(Object(_DataStore__WEBPACK_IMPORTED_MODULE_4__["getDataStore"])(), "video_entities[".concat(PREFIX).concat(id, "]"));
     }
   }]);
 
-  return Base;
+  return DataGetters;
 }();
 
-/* harmony default export */ __webpack_exports__["default"] = (Base);
+/* harmony default export */ __webpack_exports__["default"] = (new DataGetters());
 
 /***/ }),
 /* 146 */
@@ -9248,13 +9253,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _src_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(149);
 /* harmony import */ var _src_libs_browserSdk__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(150);
-/* harmony import */ var _src_libs_dataStoreHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
-/* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(144);
-/* harmony import */ var _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(151);
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(131);
-/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_7__);
-
-
+/* harmony import */ var _model_DataStore__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
+/* harmony import */ var _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(151);
 
 
 
@@ -9299,10 +9299,7 @@ var BaseView = /*#__PURE__*/function () {
     key: "initDataStore",
     value: function initDataStore(data) {
       if (!data) return;
-      var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_5__["default"])("pepo");
-      var dataStore = pepo.dataStore || {};
-      pepo.dataStore = Object(_src_libs_dataStoreHelper__WEBPACK_IMPORTED_MODULE_4__["default"])(data, dataStore);
-      console.log('pepo.dataStore', pepo.dataStore);
+      Object(_model_DataStore__WEBPACK_IMPORTED_MODULE_4__["setDataStore"])(data);
     }
   }, {
     key: "initSdk",
@@ -9318,7 +9315,7 @@ var BaseView = /*#__PURE__*/function () {
   }, {
     key: "initSocket",
     value: function initSocket() {
-      _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_6__["default"].init();
+      _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_5__["default"].init();
     }
   }]);
 

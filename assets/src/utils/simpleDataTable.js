@@ -1,4 +1,5 @@
-import dataStoreHelper from "../libs/dataStoreHelper";
+import {setDataStore}  from "../model/DataStore";
+
 import ns from "../libs/namespace";
 
 const  logMe = false;
@@ -319,9 +320,8 @@ export default class SimpleDataTable {
         , newResult       = null
         , oldResult       = null
       ;
-      const pepo = ns("pepo");
-      const dataStore = pepo.dataStore || {};
-      pepo.dataStore = dataStoreHelper(data, dataStore);
+
+      setDataStore(data);
 
       if ( newResults.length ) {
         for(var cnt = 0; cnt < newResults.length; cnt++ ) {
