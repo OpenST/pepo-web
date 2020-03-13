@@ -45,7 +45,7 @@ class Video {
     });
 
     $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
-      var textToCopy = $(".copyToClipboard").data('share-url');
+      var textToCopy = $(this).data('share-url');
       var isCopied = BasicHelper.copyToClipboard(textToCopy);
       if(isCopied){
         $('.toast-copied-to-clipboard').toast('show');
