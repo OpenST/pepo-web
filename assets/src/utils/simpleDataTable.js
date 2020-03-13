@@ -1,3 +1,4 @@
+require('../plugins/jquery-visible/jquery.visible');
 import {setDataStore}  from "../model/DataStore";
 
 import ns from "../libs/namespace";

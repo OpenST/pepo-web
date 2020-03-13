@@ -54,6 +54,10 @@ class VideoList {
         this.modalUIUpdate();
       }
     });
+  
+    $('#videoDetailsModal').on('hide.bs.modal', function (event) {
+      $(this).find(".videoDetailsContainer").empty();
+    })
   };
 
   modalUpdateOnNext(resultsLn){
