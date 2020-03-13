@@ -2,47 +2,89 @@ const rootPrefix = "../..";
 
 // All Requires
 const UserApi = require(rootPrefix + '/lib/pepoApi/User'),
+  responseHelper = require(rootPrefix + '/lib/formatter/response'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
+  basicHelper = require(rootPrefix + '/helpers/basic'),
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
 
-  class webRouteHelper {
+const errorConfig = basicHelper.fetchErrorConfig();
+
+class webRouteHelper {
 
   /**
    *
-   * @param request
-   * @param response
-   * @param layout
+   * @param req
+   * @param res
+   * @param serviceGetter
    * @param contentPartialPath
-   * @param locals
-   * @param callback
+   * @param errorCode
+   * @param onServiceSuccess
+   * @param onServiceFailure
+   * @returns {Promise<void>}
    */
-  async perform(request, response, layout, contentPartialPath, locals, callback) {
+  static perform(
+    req,
+    res,
+    serviceGetter,
+    layout,
+    contentPartialPath,
+    errorCode,
+    onServiceSuccess,
+    onServiceFailure
+  ) {
     const oThis = this;
 
-    locals = locals || {};
-    locals.apiResponseData = locals.apiResponseData || {};
+    return oThis
+      .asyncPerform(req, res, serviceGetter, layout, contentPartialPath,onServiceSuccess, onServiceFailure)
+      .catch(async function(error) {
+        logger.error(errorCode, 'Something went wrong', error);
 
-    if(!locals.apiResponseData.current_user_data && request.headers && cookieConstants.hasWebLoginCookie(request.headers['cookie'])){
-      let currentUserData = await oThis.getCurrentUserData(request);
-      if(currentUserData.data){
-        locals.apiResponseData.current_user_data = currentUserData.data;
-      }
-    }
-    let currentUserDetails = locals.apiResponseData && locals.apiResponseData.current_user_data;
-    locals.currentUser = new CurrentUser(currentUserDetails);
-    console.log('==222222========locals=======================', locals);
-
-    renderResponseHelper.renderWithLayout(request, response, layout, contentPartialPath, locals, callback);
-
+        return responseHelper.renderApiResponse(error, res, errorConfig);
+      });
   }
 
-  async getCurrentUserData(request) {
-    let currentUserResponse = await new UserApi(request.headers).getCurrentUser({});
-    console.log('==========currentUserResponse============', currentUserResponse);
-    return currentUserResponse;
+  /**
+   *
+   * @param req
+   * @param res
+   * @param serviceGetter
+   * @param layout
+   * @param contentPartialPath
+   * @param onServiceSuccess
+   * @param onServiceFailure
+   * @returns {Promise<void>}
+   */
+  static async asyncPerform(
+    req,
+    res,
+    serviceGetter,
+    layout,
+    contentPartialPath,
+    onServiceSuccess,
+    onServiceFailure
+  ) {
+    req.decodedParams = req.decodedParams || {};
+
+    const Service = require(rootPrefix + serviceGetter);
+    const serviceResp = await new Service({headers: req.headers, decodedParams: req.decodedParams}).perform();
+
+    if(serviceResp.isSuccess()){
+      if(onServiceSuccess){
+        await onServiceSuccess(serviceResp);
+      }
+      let locals = serviceResp.data || {};
+      renderResponseHelper.renderWithLayout(req, res, layout, contentPartialPath, locals);
+    } else {
+      if (onServiceFailure) {
+        await onServiceFailure(serviceResp);
+      }
+      return Promise.reject(serviceResp);
+    }
+
   }
 }
 
 
-module.exports = new webRouteHelper();
+module.exports = webRouteHelper;

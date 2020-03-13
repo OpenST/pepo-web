@@ -36,7 +36,7 @@ class BaseView {
   }
 
   initSdk(config){
-    if(!config) return;
+    if(!config || true) return;
     BrowserSdk.init(config);
   }
 

@@ -1,6 +1,6 @@
 
         <div class="row justify-content-center align-items-center" style="height: inherit;">
-            <div class="col-12 col-lg-10 col-xl-9 innerContainer" style="pointer-events: auto;">
+            <div class="col-12 col-lg-10 col-xl-8 innerContainer" style="pointer-events: auto;">
                 <div class="row">
                     <p class="prev-video">&larr;</p>
                     <div class="col pr-0" style="overflow: hidden">
@@ -9,7 +9,7 @@
                                 <div class="media align-items-center">
                                     <span class="position-relative">
                                         <span class="user-empty-profile-icon"></span>
-                                        <img class="profileImage img-fluid" src="<%= DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(videoId)) %>" alt="">
+                                        <img class="profileImage img-fluid" src="<%= DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(videoId)) %>" alt="Profile Image">
                                     </span>
                                     <div class="media-body profile-media-body" style="width: calc(100% - 50px);">
                                         <div class="d-flex align-items-center">
@@ -78,7 +78,7 @@
                                     </switch>
                                 </svg>
                             </li>
-                            <li class="copyToClipboard" data-share-url="">
+                            <li class="copyToClipboard" data-share-url="<%= DataGetters.getVideoShareUrl(videoId) %>">
                                 <span class="video-web-copy-icon d-inline-block d-md-none"></span>
                                 <svg width="18" height="20" class="d-none d-md-inline-block">
                                     <switch>

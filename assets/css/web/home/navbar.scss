@@ -211,3 +211,8 @@
   position: absolute;
   border-radius: 50%;
 }
+
+.downward-arrow-animation{
+  transform:  rotate(0deg);
+  transition: all 0.3s ease-in-out;
+}
