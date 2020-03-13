@@ -6,6 +6,8 @@ import SimpleDataTable from '../../utils/simpleDataTable';
 import DataGetters from '../../model/DataGetters';
 import deepGet from 'lodash/get';
 
+const nextFetchThreshold =  4;
+
 
 class VideoList {
 
@@ -34,21 +36,50 @@ class VideoList {
     });
   
     jModalWrapper.on('click', '.next-video', (e) => {
+      if(this.simpleDataTable.isLoadingData) return;
+      const resultsLn = this.simpleDataTable.getResults().length ;
       this.currentItemIndex += 1;
-      this.modalUIUpdate();
-
+      if ( this.currentItemIndex  >= resultsLn - nextFetchThreshold ){
+        this.simpleDataTable.fetchResults(false , ()=> {
+          this.modalUpdateOnLast(resultsLn);
+        });
+      }
+      this.modalUpdateOnNext(resultsLn );
     });
-  
-  
+
     jModalWrapper.on('click', '.prev-video', (e) => {
       if(this.currentItemIndex >= 1){
         this.currentItemIndex -= 1;
         this.modalUIUpdate();
       }
     });
-
   };
 
+  modalUpdateOnNext(resultsLn){
+    if( this.currentItemIndex < resultsLn ){
+      this.modalUIUpdate();
+    }
+  }
+
+  modalUpdateOnLast(resultsLn){
+    if( this.currentItemIndex + 1 == resultsLn ) {
+      this.modalUIUpdate();
+    } else if(this.currentItemIndex == resultsLn  ){
+      this.arrowsUpdate();
+    }
+  }
+
+  arrowsUpdate = () => {
+    const resultsLn = this.simpleDataTable.getResults().length ;
+    $('.prev-video').show();
+    $('.next-video').show();
+    if (this.currentItemIndex <= 0){
+      $('.prev-video').hide();
+    }
+    if( !this.simpleDataTable.hasNextPage && resultsLn - 1 <= this.currentItemIndex ){
+      $('.next-video').hide();
+    }
+  };
 
   modalUIUpdate = () => {
     const jParentWrapper = $("#videoDetailsModal .videoDetailsContainer");
@@ -59,6 +90,7 @@ class VideoList {
       DataGetters
     }));
     jParentWrapper.html(jModal);
+    this.arrowsUpdate();
   };
 
 

@@ -22,18 +22,16 @@ class DataGetters {
   }
 
   getOwnerProfileImage (id){
-    let userInfo =  this.getUserInfo(id);
-    return deepGet(getDataStore(), `image_entities[${PREFIX}${userInfo.profile_image_id}].resolutions.original.url`) || '';
+    let profileImageId =  deepGet(this.getUserInfo(id), 'profile_image_id');
+    return deepGet(getDataStore(), `image_entities[${PREFIX}${profileImageId}].resolutions.original.url`) || '';
   }
 
   getUserName (id) {
-    let userInfo =  this.getUserInfo(id);
-    return userInfo.user_name || '';
+    return deepGet(this.getUserInfo(id), 'user_name');
   }
 
   getName(id){
-    let userInfo =  this.getUserInfo(id);
-    return userInfo.name || '';
+    return deepGet(this.getUserInfo(id), 'name');
 
   }
 
