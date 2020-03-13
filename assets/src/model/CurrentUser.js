@@ -2,11 +2,11 @@ class  CurrentUser {
  
   constructor(){
     this.user = null;
-    this.userId = null;
   }
   
-  initUser(apiResponse){
-    //TODO merger logined_user and user from data.users and set it at this level
+  initUser(currentUserData){
+    if(!currentUserData) return ;
+    this.user = currentUserData;
   }
   
   _getUser(){
