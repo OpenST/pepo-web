@@ -9,6 +9,7 @@ class BaseView {
 
   constructor( config ){
     console.log(config.apiResponse,"config.apiResponse");
+    console.log(config);
     if(typeof config.apiResponse == "string"){
       config.apiResponse =  JSON.parse( config.apiResponse );
     }
@@ -19,7 +20,7 @@ class BaseView {
     if(!this.config) return;
     this.initCurrentUser( config.apiResponse );
     this.initDataStore( config.apiResponse  );
-    this.initSdk(config.appMeta);
+    this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
     this.initPixelDrop(config.appMeta);
 
     $(document).ready(() => {
@@ -41,9 +42,9 @@ class BaseView {
     console.log('pepo.dataStore', pepo.dataStore);
   }
 
-  initSdk(config){
+  initSdk(config, params){
     if(!config) return;
-    BrowserSdk.init(config);
+    BrowserSdk.init(config, params);
   }
 
   initPixelDrop(config){
