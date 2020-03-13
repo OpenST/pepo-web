@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "webpack-dev": "webpack --watch --config webpack.config.js",
-    "webpack-build": "webpack --config webpack.config.js"
+    "webpack-dev": "webpack --watch --config webpack.config.js --env.development",
+    "webpack-build": "webpack --config webpack.config.js --env.production"
   },
   "dependencies": {
     "@ostdotcom/base": "^2.0.0",
