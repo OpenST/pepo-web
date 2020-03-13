@@ -3,6 +3,7 @@ import BasicHelper from '../../helpers/basic'
 import socketPixelCall from "../../services/SocketPixelCall";
 
 const LOG_TAG = 'PepoVideo';
+const namespace = "video";
 
 const VIDEO_PLAY_START_EVENT_NAME = "video_play_start";
 const VIDEO_PLAY_END_EVENT_NAME = "video_play_end";
@@ -14,29 +15,30 @@ class Video {
   };
 
   bindEvents = () => {
-    $(".reportVideo").on('click', function (e) {
+    
+    $(".reportVideo").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       $('#reportModal').modal('show');
       e.stopPropagation();
     });
 
 
-    $('.actionButtonsWeb .downloadApp, .channel-list.web .downloadApp').on('click', function () {
+    $('.actionButtonsWeb .downloadApp, .channel-list.web .downloadApp').off(`click.${namespace}`).on(`click.${namespace}`, function () {
       $('#downloadModal').modal('show');
     });
 
-    $('.actionButtonsMobile .downloadApp, .channel-list.mobile .downloadApp').on('click', function (e) {
+    $('.actionButtonsMobile .downloadApp, .channel-list.mobile .downloadApp').off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       $('#downloadModalSingleCTA').modal('show');
       e.stopPropagation();
     });
 
-    $(".report-title").on('click', function (e) {
+    $(".report-title").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       $('#reportModal').modal('hide');
       let videoId = $(".videoContainer").data('video-id');
       this.report(videoId);
       e.stopPropagation();
     });
 
-    $(".copyToClipboard").on('click', function (e) {
+    $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       var textToCopy = $(".copyToClipboard").data('share-url');
       var isCopied = BasicHelper.copyToClipboard(textToCopy);
       if(isCopied){
@@ -47,7 +49,7 @@ class Video {
       e.stopPropagation();
     });
 
-    $('.video-container-wrapper').on('click', function(e){
+    $('.video-container-wrapper').off(`click.${namespace}`).on(`click.${namespace}`, function(e){
       let ctrlVideo = $(this).find('video.pepoVideo')[0];
       if($(this).hasClass("active")){
         ctrlVideo.play();
@@ -64,13 +66,13 @@ class Video {
     const oThis = this;
     this.videoId = $(".videoContainer").data('video-id');
 
-    $('.pepoVideo').on('play', function(e){
+    $('.pepoVideo').off(`play.${namespace}`).on(`play.${namespace}`, function(e){
       if (!this.videoStarted) {
         this.videoStarted = true;
         oThis.sendVideoEvent(VIDEO_PLAY_START_EVENT_NAME);
         console.log(LOG_TAG, 'Video Started');
       }
-    }).on('canplaythrough', function(e){
+    }).off(`canplaythrough.${namespace}`).on(`canplaythrough.${namespace}`, function(e){
       if (!this.videoEnded) {
         this.videoEnded = true;
         oThis.sendVideoEvent(VIDEO_PLAY_END_EVENT_NAME);
