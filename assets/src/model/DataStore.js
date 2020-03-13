@@ -191,7 +191,9 @@ const setDataStore = (responseData) => {
   if(whitelistedEntities.length > 0) console.log('Upserting following whitelisted entities: ', whitelistedEntities);
 
   dataStore = newData;
-
+  console.log('==============newAppState=========================');
+  console.log(newData);
+  console.log('==============newAppState=========================');
   return newData;
 
 };

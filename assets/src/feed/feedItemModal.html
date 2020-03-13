@@ -7,9 +7,16 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-6 innerLeft py-3 h-100" style="overflow-y: scroll!important;">
                                 <div class="media align-items-center">
-                                    <div class="position-relative" style="font-size: 0">
+                                    <div class="position-relative" style="font-size: 10px">
                                         <span class="user-empty-profile-icon"></span>
-                                        <img class="profileImage img-fluid" src="<%= DataGetters.getVideoCoverImage(videoId) %>"  alt="">
+                                        <img class="profileImage img-fluid" src="<%= DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(videoId)) %>"  alt="">
+                                        <p>getDisplayDescriptionLink: <%= DataGetters.getDisplayDescriptionLink(videoId) %></p>
+                                        <p>getDescription: <%= DataGetters.getDescription(videoId) %></p>
+                                        <p>getUserName: <%=DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId))%>  </p>
+                                        <p>getName: <%= DataGetters.getName(DataGetters.getVideoOwnerId(videoId)) %> </p>
+                                        <p>getChannelList: <%= DataGetters.getChannelList(videoId) %> </p>
+                                        <p>getDisplayCTS: <%= DataGetters.getDisplayCTS(videoId) %> </p>
+
                                     </div>
                                     <div class="media-body profile-media-body" style="width: calc(100% - 50px);">
                                         <div class="d-flex align-items-center">
@@ -41,7 +48,7 @@
                                        style="width: 100%; height: 100%; object-fit: cover"
                                        poster=""
                                 >
-                                    <source src="" type="video/mp4">
+                                    <source src="<%=DataGetters.getVideoUrl(videoId)%>" type="video/mp4">
                                 </video>
 
                             </div>

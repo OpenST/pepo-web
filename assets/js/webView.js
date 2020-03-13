@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 156);
+/******/ 	return __webpack_require__(__webpack_require__.s = 210);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -129,7 +129,14 @@ var _this = undefined;
 
 /***/ }),
 
-/***/ 156:
+/***/ 2:
+/***/ (function(module, exports) {
+
+module.exports = jQuery;
+
+/***/ }),
+
+/***/ 210:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -189,13 +196,6 @@ var WebView = function WebView() {
 var pepo = Object(_src_libs_namespace__WEBPACK_IMPORTED_MODULE_3__["default"])("pepo");
 pepo.webView = new WebView();
 /* harmony default export */ __webpack_exports__["default"] = (pepo.webView);
-
-/***/ }),
-
-/***/ 2:
-/***/ (function(module, exports) {
-
-module.exports = jQuery;
 
 /***/ }),
 
