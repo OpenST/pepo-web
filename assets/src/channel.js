@@ -6,6 +6,7 @@ class Channel extends BaseView {
 
   constructor(config){
     super(config);
+    console.log("this.config",  this.config);
     const channelId = "";
     videoList.init({fetchApi:  `/api/web/channels/${channelId}/videos` });
   }
