@@ -1,4 +1,5 @@
 import PepoSocket from "../../src/services/PepoSocket";
+import CurrentUser from "../model/CurrentUser";
 
 class SocketManager {
   constructor() {
@@ -7,7 +8,7 @@ class SocketManager {
 
   initSocket() {
     if (!this.pepoSocket) {
-      this.pepoSocket = new PepoSocket('73323346-307b-4638-b66a-6ce6c5f6f4ca');
+      this.pepoSocket = new PepoSocket(CurrentUser.getUserId());
       this.pepoSocket.connect();
     }
   }
@@ -17,7 +18,9 @@ class SocketManager {
   }
 
   init() {
-    if (true) {
+    let userId = CurrentUser.getUserId();
+    console.log('PepoSocket', userId);
+    if (CurrentUser.getUserId()) {
       console.log('SocketManager', 'Socket init');
       this.initSocket();
     } else {
