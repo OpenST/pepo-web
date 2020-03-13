@@ -19,7 +19,11 @@ class Video {
     const oThis =this;
     
     $(".reportVideo").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
-      $('#reportModal').modal('show');
+      const videoId = $(this).closest(".videoContainer").data("video-id"),
+            jModal = $('#reportModal')
+      ;
+      jModal.modal('show');
+      jModal.data("video-id", videoId);
       e.stopPropagation();
     });
 
@@ -35,7 +39,7 @@ class Video {
 
     $(".report-title").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       $('#reportModal').modal('hide');
-      let videoId = $(".videoContainer").data('video-id');
+      let videoId = $(this).closest("#reportModal").data('video-id');
       oThis.report(videoId);
       e.stopPropagation();
     });
@@ -63,25 +67,26 @@ class Video {
         $(this).toggleClass("active");
       }
     });
-    
-    this.videoId = $(".videoContainer").data('video-id');
 
     $('.pepoVideo').off(`play.${namespace}`).on(`play.${namespace}`, function(e){
+      let videoId = $(this).closest(".videoContainer").data('video-id');
       if (!this.videoStarted) {
         this.videoStarted = true;
-        oThis.sendVideoEvent(VIDEO_PLAY_START_EVENT_NAME);
+        oThis.sendVideoEvent(VIDEO_PLAY_START_EVENT_NAME , videoId );
         console.log(LOG_TAG, 'Video Started');
       }
-    }).off(`canplaythrough.${namespace}`).on(`canplaythrough.${namespace}`, function(e){
-      if (!this.videoEnded) {
-        this.videoEnded = true;
-        oThis.sendVideoEvent(VIDEO_PLAY_END_EVENT_NAME);
-        console.log(LOG_TAG, 'Video Ended');
-      }
+    }).off(`play.${namespace}`).on(`canplaythrough.${namespace}`, function(e){
+      //TODO @Sachin canplaythrough is not working.
+      // let videoId = $(this).closest(".videoContainer").data('video-id');
+      // if (!this.videoEnded) {
+      //   this.videoEnded = true;
+      //   oThis.sendVideoEvent(VIDEO_PLAY_END_EVENT_NAME , videoId);
+      //   console.log(LOG_TAG, 'Video Ended');
+      // }
     });
   };
 
-  sendVideoEvent(eventKind) {
+  sendVideoEvent(eventKind , id) {
     let feedId = 0; // For non-feed video elements.
     if (this.feedId) {
       feedId = this.feedId;
@@ -89,7 +94,7 @@ class Video {
 
     let data = {
       kind: eventKind,
-      payload: {feed_id: feedId, video_id: this.videoId}
+      payload: {feed_id: feedId, video_id:id}
     };
     socketPixelCall.fireEvent(data);
   }
