@@ -28,6 +28,7 @@ class GetVideo extends ServiceBase {
     oThis.decodedParams = params.decodedParams;
     oThis.videoId = oThis.decodedParams.video_id;
 
+    oThis.apiResponseData = {};
     oThis.serviceResp = {};
   }
 
@@ -90,6 +91,7 @@ class GetVideo extends ServiceBase {
         oThis.serviceResp.data.firebase_video_url = apiResponse.data.url;
         oThis.serviceResp.data.share_url = apiResponse.data.pageMeta.canonical;
         oThis.serviceResp.data.page_meta = apiResponse.data.pageMeta;
+        oThis.apiResponseData = oThis.serviceResp.data;
       }
 
     }
@@ -101,8 +103,12 @@ class GetVideo extends ServiceBase {
     const oThis = this;
     let formattedData = new videoViewFormatter(oThis.serviceResp.data).perform();
 
+    if(oThis.currentUserData){
+      oThis.apiResponseData.current_user_data = oThis.currentUserData;
+    }
+
     return responseHelper.successWithData({
-      apiResponseData: oThis.serviceResp.data,
+      apiResponseData: oThis.apiResponseData,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       pageMeta: formattedData.page_meta,
