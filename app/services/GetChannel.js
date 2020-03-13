@@ -75,18 +75,17 @@ class GetChannel extends ServiceBase {
       promise2
     ];
 
-    await Promise.all(promises);
+    const promiseResponses = await Promise.all(promises);
 
-    const resp1 = promises[0],
-      resp2 = promises[1];
-
+    const resp1 = promiseResponses[0],
+      resp2 = promiseResponses[1];
 
     if (resp1.isFailure()) {
-      return Promise.reject(resp);
+      return Promise.reject(resp1);
     }
 
     if (resp2.isFailure()) {
-      return Promise.reject(resp);
+      return Promise.reject(resp2);
     }
 
     oThis.serviceResp = resp1;
@@ -103,16 +102,19 @@ class GetChannel extends ServiceBase {
 
   async _prepareResponse() {
     const oThis = this;
-    let formattedData = new channelViewFormatter(oThis.serviceResp.data).perform();
+
+    if(oThis.currentUserData){
+      oThis.apiResponseData.current_user_data = oThis.currentUserData;
+    }
 
     return responseHelper.successWithData({
       apiResponseData: oThis.serviceResp.data,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
-      pageMeta: formattedData.page_meta,
-      firebaseUrls: {openInApp: formattedData.firebase_channel_url},
+      pageMeta: oThis.apiResponseData.page_meta,
+      firebaseUrls: {openInApp: oThis.serviceResp.data.share_url},
       showFooter: false,
-      formattedEntityData: formattedData,
+      //formattedEntityData: formattedData,
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser
     })
