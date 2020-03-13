@@ -166,7 +166,11 @@
 
 #feedModal{
   .modal-dialog{
-    max-width: 70%;
+    margin: 0;
+    @media only screen and (min-width: 768px){
+      max-width: 70%;
+      margin: auto;
+    }
     //max-height: 100%;
     //margin: 0 auto;
     .modal-content{
