@@ -28,6 +28,8 @@ router.get('/:permalink', sanitizer.sanitizeDynamicUrlParams, async function (re
     );
   }
 
+  ////
+
   const apiResponse = await new GetFirebaseChannelUrl({headers: req.headers, decodedParams: req.decodedParams}).perform();
   if (apiResponse.success) {
     return webRouteHelper.perform(req, res, 'redirect', '', {
@@ -38,6 +40,14 @@ router.get('/:permalink', sanitizer.sanitizeDynamicUrlParams, async function (re
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }
+});
+
+/* Redirect video pages */
+router.get('/:permalink', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+
+  req.decodedParams.permalink =  req.params.permalink;
+
+  return webRouteHelper.perform(req, res, '/app/services/GetVideo', 'loggedOut', 'web/_video', 'r_p_v_1');
 });
 
 module.exports = router;
