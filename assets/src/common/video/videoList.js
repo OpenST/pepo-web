@@ -1,12 +1,10 @@
 import $ from 'jquery';
 import ejs from 'ejs';
-import videoModalDetail from '../common/video/modalDetail.html';
-import videoThumbnail from '../common/video/thumbnail.html';
-import SimpleDataTable from '../utils/simpleDataTable';
-import DataGetters from '../model/DataGetters';
+import videoModalDetail from './modalDetail.html';
+import videoThumbnail from './thumbnail.html';
+import SimpleDataTable from '../../utils/simpleDataTable';
+import DataGetters from '../../model/DataGetters';
 import deepGet from 'lodash/get';
-
-
 
 
 class Feed {
