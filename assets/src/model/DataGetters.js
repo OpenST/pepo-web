@@ -1,5 +1,6 @@
 import deepGet from "lodash/get";
 import basicHelper from "../helpers/basic";
+import shortenedFromNow from '../helpers/moment';
 
 
 const PREFIX = 'id_';
@@ -30,6 +31,12 @@ class DataGetters {
     return userInfo.user_name || '';
   }
 
+  getName(id){
+    let userInfo =  this.getUserInfo(id);
+    return userInfo.name || '';
+
+  }
+
   getDescription (id) {
     return this.getDescriptionObject(id)['text'] || '';
   }
@@ -57,13 +64,127 @@ class DataGetters {
     return deepGet( getDataStore(), `video_entities[${PREFIX}${id}]`);
   }
 
+  getVideoUrl(id) {
+    const oThis = this;
+    const videoData = oThis.getVideoInfo(id);
+    return deepGet(videoData, `resolutions['576w'].url` ) || deepGet(videoData, `resolutions['original'].url` );
+  }
+
+
+  getTotalVideoReplies (id){
+    let videoDetails  = this.getVideoDetails(id);
+    return deepGet(videoDetails, 'total_replies');
+  }
+
+  getDescriptionLink(id){
+    let videoDetails  = this.getVideoDetails(id);
+    let linkId = deepGet(videoDetails, 'link_ids[0]');
+    return deepGet(getDataStore(), `link_entities[${linkId}].url` );
+
+  }
+
+  getDisplayDescriptionLink(id){
+    let videoDetails  = this.getVideoDetails(id);
+    let linkId = deepGet(videoDetails, 'link_ids[0]');
+    return deepGet(getDataStore(), `link_entities[${linkId}].url`) &&
+      deepGet(getDataStore(), `link_entities[${linkId}].url`).replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').replace(/\/$/, '');
+  }
+
+  getChannelEntity(id){
+    return deepGet(getDataStore(), `channel_entities[${PREFIX}${id}]`)
+  }
+
+  getChannelList (id) {
+    let channelsList  = deepGet(this.getVideoDetails(id), 'channel_ids') || [];
+    let channelNames = [];
+    for (let channelId of channelsList){
+      channelNames.push(deepGet(this.getChannelEntity(channelId), 'name'));
+    }
+    return channelNames;
+  }
+
+  getDisplayCTS(id) {
+    let videoDetails  = this.getVideoDetails(id);
+    return shortenedFromNow(videoDetails.cts * 1000);
+
+}
+
+  getVideoShareUrl(id){
+    return basicHelper.getVideoShareUrl(id)
+  }
+
 }
 
 export default new DataGetters();
 
 
+const a = {
+
+  'video_id'
+:
+  '',
+    'web_video_url'
+:
+  '',
+    'mobile_video_url'
+:
+  '',
+    'web_video_poster_url'
+:
+  '',
+    'mobile_video_poster_url'
+:
+  '',
+    'tokens_raised'
+:
+  null,
+    'replies_count'
+:
+  null,
+    'description_link'
+:
+  '',
+    'description_display_link'
+:
+  '',
+    'description_text'
+:
+  '',
+    'channels_list'
+:
+  [],
+    'profile_name'
+:
+  '',
+    'profile_username'
+:
+  '',
+    'original_profile_image_url'
+:
+  '',
+    '144w_profile_image_url'
+:
+  '',
+    'firebase_video_url'
+:
+  '',
+    'share_url'
+:
+  '',
+    'page_meta'
+:
+  {
+  }
+,
+  'home_url'
+:
+  '',
+    'display_cts'
+:
+  ''
 
 
+}
 
 
 
