@@ -8,7 +8,7 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  webRouteHelper = require(rootPrefix + '/routes/pepo/helper'),
+  webRouteHelper = require(rootPrefix + '/routes/pepo/helperBack'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   GetFeed = require(rootPrefix + '/app/services/GetFeed');
 

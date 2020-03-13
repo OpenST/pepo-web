@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const rootPrefix = '../..',
-  webRouteHelper = require(rootPrefix + '/routes/pepo/helper');
+  webRouteHelper = require(rootPrefix + '/routes/pepo/helperBack');
 
 /* privacy page */
 router.get('/privacy', function (req, res) {

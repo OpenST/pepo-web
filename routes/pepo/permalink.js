@@ -5,7 +5,7 @@ const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   GetFirebaseUserProfileUrl = require(rootPrefix + '/app/services/FireBaseUrl/UserProfile'),
-  webRouteHelper = require(rootPrefix + '/routes/pepo/helper'),
+  webRouteHelper = require(rootPrefix + '/routes/pepo/helperBack'),
   responseHelper = require(rootPrefix + '/lib/formatter/response');
 
 const errorConfig = basicHelper.fetchErrorConfig();
