@@ -67,19 +67,19 @@ class Video {
     $('.pepoVideo').on('play', function(e){
       if (!this.videoStarted) {
         this.videoStarted = true;
-        oThis.sendFeedVideoEvent(VIDEO_PLAY_START_EVENT_NAME);
+        oThis.sendVideoEvent(VIDEO_PLAY_START_EVENT_NAME);
         console.log(LOG_TAG, 'Video Started');
       }
     }).on('canplaythrough', function(e){
       if (!this.videoEnded) {
         this.videoEnded = true;
-        oThis.sendFeedVideoEvent(VIDEO_PLAY_END_EVENT_NAME);
+        oThis.sendVideoEvent(VIDEO_PLAY_END_EVENT_NAME);
         console.log(LOG_TAG, 'Video Ended');
       }
     });
   };
 
-  sendFeedVideoEvent(eventKind) {
+  sendVideoEvent(eventKind) {
     let feedId = 0; // For non-feed video elements.
     if (this.feedId) {
       feedId = this.feedId;
