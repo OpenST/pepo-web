@@ -1,5 +1,6 @@
 import deepGet from 'lodash/get';
 import io from 'socket.io-client';
+import SocketPixelCall from "./SocketPixelCall";
 
 const {$} = window;
 
@@ -62,8 +63,8 @@ class PepoSocket {
       }
     );
 
-    // //Assign socket object to emitters
-    // socketPixelCall.setPepoSocket(this.socket);
+    //Assign socket object to emitters
+    SocketPixelCall.setPepoSocket(this.socket);
 
     this.socket.on('connect', () => {
       console.log(LOG_TAG, `Connected to socket server ${this.protocol}://${this.endPoint} successfully!`);
