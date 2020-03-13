@@ -1,12 +1,13 @@
 import  ns from "../js/libs/namespace";
 import BaseView from "../src/common/BaseView";
-import video from "./common/video/index";
+import videoList from "./common/video/videoList";
 
 class Channel extends BaseView {
 
   constructor(config){
     super(config);
-    video.init();
+    const channelId = "";
+    videoList.init({fetchApi:  `/api/web/channels/${channelId}/videos` });
   }
 
 }

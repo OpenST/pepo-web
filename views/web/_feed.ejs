@@ -3,9 +3,9 @@
 <% } else{ %>
     <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
 <% } %>
-<%- include ../partials/web/feed/_content -%>
+<%- include ../partials/shared/_videoListWrapper -%>
 
-<%- include ../partials/web/feed/_feed_video_modal -%>
+<%- include ../partials/shared/_video_modal -%>
 
 <%- include ../partials/shared/_modals %>
 <%- include ../partials/web/video/_svg_sprite %>
@@ -15,6 +15,9 @@
 
 <script type="text/javascript">
   window.onload = function () {
-    new pepo.feed({"appMeta" :  <%- JSON.stringify(appMeta) %> });
+    new pepo.feed({
+      "apiResponse"  : <%- JSON.stringify(apiResponseData) %>,
+      "appMeta" : <%- JSON.stringify(appMeta)%>
+    });
   }
 </script>
