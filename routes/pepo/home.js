@@ -58,15 +58,13 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   }
 
   if (apiResponse.success) {
-   const feedsModel = new FeedsModel(dataStoreHelper( apiResponse) );
     webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', {
       apiResponseData: apiResponse.data,
       success: true,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-      showFooter: false,
-      feedsModel
+      showFooter: false
     });
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);

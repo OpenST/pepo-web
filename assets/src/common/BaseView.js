@@ -3,6 +3,7 @@ import  BrowserSdk from "../../src/libs/browserSdk";
 import dataStoreHelper from "../../src/libs/dataStoreHelper";
 import  ns from "../../src/libs/namespace";
 import SocketManager from "../../src/services/SocketManager";
+import deepGet from 'lodash/get';
 
 class BaseView {
 
@@ -15,6 +16,7 @@ class BaseView {
       config.appMeta =  JSON.parse( config.appMeta );
     }
     this.config = config;
+    if(!this.config) return;
     this.initCurrentUser( config.apiResponse );
     this.initDataStore( config.apiResponse  );
     this.initSdk(config.appMeta);
@@ -26,9 +28,8 @@ class BaseView {
   }
 
 
-  initCurrentUser(data){
-    if(!data) return;
-    CurrentUser.initUser(data);
+  initCurrentUser(apiResponse={}){
+    CurrentUser.initUser(apiResponse["current_user_data"]);
   }
 
 

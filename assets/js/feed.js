@@ -9251,6 +9251,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _src_libs_dataStoreHelper__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(32);
 /* harmony import */ var _src_libs_namespace__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(144);
 /* harmony import */ var _src_services_SocketManager__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(155);
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(131);
+/* harmony import */ var lodash_get__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(lodash_get__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -9276,6 +9279,7 @@ var BaseView = /*#__PURE__*/function () {
     }
 
     this.config = config;
+    if (!this.config) return;
     this.initCurrentUser(config.apiResponse);
     this.initDataStore(config.apiResponse);
     this.initSdk(config.appMeta);
@@ -9287,9 +9291,9 @@ var BaseView = /*#__PURE__*/function () {
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(BaseView, [{
     key: "initCurrentUser",
-    value: function initCurrentUser(data) {
-      if (!data) return;
-      _src_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__["default"].initUser(data);
+    value: function initCurrentUser() {
+      var apiResponse = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+      _src_model_CurrentUser__WEBPACK_IMPORTED_MODULE_2__["default"].initUser(apiResponse["current_user_data"]);
     }
   }, {
     key: "initDataStore",
@@ -9341,12 +9345,13 @@ var CurrentUser = /*#__PURE__*/function () {
     _babel_runtime_helpers_classCallCheck__WEBPACK_IMPORTED_MODULE_0___default()(this, CurrentUser);
 
     this.user = null;
-    this.userId = null;
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(CurrentUser, [{
     key: "initUser",
-    value: function initUser(apiResponse) {//TODO merger logined_user and user from data.users and set it at this level
+    value: function initUser(currentUserData) {
+      if (!currentUserData) return;
+      this.user = currentUserData;
     }
   }, {
     key: "_getUser",

@@ -83,7 +83,7 @@ function onError(error) {
 process.send = process.send || function () {};
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Event listener for HTTP server "listening" event
  */
 
 function onListening() {
