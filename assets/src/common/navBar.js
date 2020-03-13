@@ -51,14 +51,17 @@ class NavBar {
 
         $('#logoutApp').on('click',function (e) {
           let logoutModal = $('#logoutModal'),
+              arrowIcon   = logoutModal.closest('body').find('.downward-arrow-icon'),
               loginType   = $(this).attr('data-login-type');
           logoutModal.modal({
             backdrop:false
           });
           logoutModal.modal('show');
+          arrowIcon.css({'transform': "rotate(180deg)"});
           $('body').off("click.logout").on('click.logout',function (e) {
             if(logoutModal.length !== 0 ){
               logoutModal.modal('hide');
+              arrowIcon.css({'transform': "rotate(0deg)"});
             }
           });
           $("#logoutBtn").off("click.logout").on("click.logout", function (e) {
