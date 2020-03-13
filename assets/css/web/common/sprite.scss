@@ -72,6 +72,10 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 17.63);
 }
 
+.nav-bar-user-empty-profile-icon{
+  @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 10.55);
+}
+
 .login-twitter-icon{
   @include icon-generator(45px, 40px, -502px, -130px, -502px, -502px, 45);
 }

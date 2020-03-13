@@ -51,7 +51,7 @@ class NavBar {
 
         $('#logoutApp').on('click',function (e) {
           let logoutModal = $('#logoutModal'),
-                loginType= $(this).attr('data-login-type');
+              loginType   = $(this).attr('data-login-type');
           logoutModal.modal({
             backdrop:false
           });
