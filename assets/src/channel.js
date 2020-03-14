@@ -37,8 +37,7 @@ class Channel extends BaseView {
 
   descShowMoreLessHandling = () => {
     const jMobileAfterText = $(".channel-description-mobile .afterText");
-    jMobileAfterText.append("<span class='showLess'> Show Less...</span>");
-    jMobileAfterText.hide();
+    jMobileAfterText.append("<span class='showLess'> Show Less</span>");
 
   }
 

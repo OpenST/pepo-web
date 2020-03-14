@@ -3,7 +3,7 @@ import {setDataStore}  from "../model/DataStore";
 
 import ns from "../libs/namespace";
 
-const  logMe = false;
+const  logMe = true;
 
 export default class SimpleDataTable {
 

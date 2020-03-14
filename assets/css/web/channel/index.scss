@@ -112,10 +112,20 @@
       }
     }
     .channel-description-web{
-      .showMore{
+       .showMore{
+         display: none;
+       }
+     }
+
+    .channel-description-mobile{
+      .afterText{
         display: none;
       }
+      span.showMore, span.showLess{
+        font-weight: $font-weight-600;
+      }
     }
+
   .channel-description-about{
     color: $valhalla;
     font-weight: 600;
