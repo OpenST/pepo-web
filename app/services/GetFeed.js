@@ -2,6 +2,7 @@ const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
+  GetFirebaseFeedUrl = require(rootPrefix + '/app/services/FireBaseUrl/Feed'),
   Feed = require(rootPrefix + '/lib/pepoApi/Feed');
 
 /**
@@ -56,6 +57,14 @@ class GetFeed extends ServiceBase {
       return Promise.reject(resp);
     } else {
       oThis.serviceResp = resp;
+
+      const firebaseResp = await new GetFirebaseFeedUrl({decodedParams: oThis.decodedParams}).perform();
+
+      if (firebaseResp.success) {
+        oThis.serviceResp.data.firebase_video_url = firebaseResp.data.url;
+        oThis.serviceResp.data.share_url = firebaseResp.data.pageMeta.canonical;
+        oThis.serviceResp.data.page_meta = firebaseResp.data.pageMeta;
+      }
     }
 
     return responseHelper.successWithData(oThis.serviceResp);
