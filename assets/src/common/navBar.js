@@ -5,16 +5,14 @@ class NavBar {
 
     constructor(){
         this.jNavEl = null;
-        this.jUberBannerDesktop = null;
-        this.jUberBannerMobile = null;
+        this.jUberBanner = null;
         this.jNavPhantomEl = null;
         this.heightTrigger = 0;
     }
 
     init(){
         this.jNavEl =  $('.pepo-nav');
-        this.jUberBannerDesktop = $('.uber-banner-desktop');
-        this.jUberBannerMobile = $('.uber-banner-mobile');
+        this.jUberBanner = $('.uber-banner');
         this.jNavPhantomEl = $('.navbar-phatom-el');
 
         this.bindEvents();
@@ -76,10 +74,10 @@ class NavBar {
     }
 
     setupUberBanner = () => {
-        if(  this.jUberBannerDesktop.length === 0 && this.jUberBannerMobile.length === 0) {
+        if( this.jUberBanner.length === 0 ) {
             this.heightTrigger = 0;
         } else {
-            this.heightTrigger = Math.max(this.jUberBannerDesktop.outerHeight(), this.jUberBannerMobile.outerHeight())
+            this.heightTrigger = Math.max(this.jUberBanner.outerHeight())
         }
     }
 
