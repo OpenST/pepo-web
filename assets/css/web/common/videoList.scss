@@ -67,10 +67,11 @@
         z-index: 1;
         width: 100%;
         position: absolute;
-        padding: 0 5px 6px;
+        padding: 5px;
+        background: linear-gradient(to top, transparent 60%, rgba(0, 0, 0, 0.1));
 
         @media only screen and (min-width: 768px){
-          padding: 0 8px 6px;
+          padding: 3px 5px;
         }
       }
       .desc{
@@ -367,7 +368,10 @@
 .block-with-text {
   display: -webkit-box;
   max-width: 100%;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
+  @media screen and (min-width: 768px){
+    -webkit-line-clamp: 3;
+  }
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
