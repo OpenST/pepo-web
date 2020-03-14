@@ -3,7 +3,6 @@ module.exports = {
   "page": null,
   "description": "Meet your peeps!",
   "canonical": "https://pepo.com",
-  "keywords": "pepo",
   "name": "Pepo",
   "robots": 'index, follow',
   "og": {

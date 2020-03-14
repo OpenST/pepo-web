@@ -1,4 +1,4 @@
-<% 
+<%
   const getPageTitle = (pageMeta) => {
 
     var defaultPageTitle = "Pepo";
@@ -22,7 +22,9 @@
 <% if(pageMeta.description) { %>
 <meta name="description" content="<%= pageMeta.description %>">
 <% } %>
+<% if(pageMeta.keywords) { %>
 <meta name="keywords" content="<%= pageMeta.keywords %>">
+<% } %>
 <meta name="robots" content="<%= pageMeta.robots%>">
 <link rel="canonical" href="<%= pageMeta.canonical %>" />
 
