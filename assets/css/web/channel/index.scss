@@ -22,6 +22,21 @@
 }
 
 .community-channel{
+  .list-parent{
+    height: 45px;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    border-top: 1px solid #e9e9e9;
+    .list-ul{
+      white-space: nowrap;
+      li{
+        color: $valhalla;
+        font-size: 12px;
+        font-family: AvenirNext-Regular;
+        font-weight: $font-weight-normal;
+      }
+    }
+  }
   background-color: #f9f9f9;
   .community-image{
     @include aspect-ratio(21, 9);
@@ -50,20 +65,32 @@
       color: $white;
     }
     .desc{
+      font-family:  AvenirNext-Regular;
       font-weight: $font-weight-normal;
       font-size: $font-size-sm;
+      span{
+        font-weight: 500 ;
+        font-family: AvenirNext-Medium;
+      }
     }
     .header{
-      font-weight: $font-weight-600;
+      font-weight: $font-weight-normal;
+      font-family: AvenirNext-DemiBold;
       font-size: $font-size-base;
     }
     @media screen and (min-width: 768px){
       .desc{
         font-weight: $font-weight-normal;
+        font-family: AvenirNext-Regular;
         font-size: $font-size-base;
+        span{
+          font-weight: 500;
+          font-family: AvenirNext-Medium;
+        }
       }
       .header{
         font-weight: $font-weight-600;
+        font-family: AvenirNext-DemiBold;
         font-size: $font-size-lg;
       }
     }
@@ -71,10 +98,22 @@
   .community-wid-channel-desc{
     box-shadow: 0 3px 9px 1px rgba(0, 0, 0, 0.13);
   }
-  .channel-description-web{
-    .showMore{
-      display: none;
+
+    .channel-description-web,.channel-description-mobile{
+      color: $valhalla;
+      font-weight: $font-weight-normal;
+      font-family: AvenirNext-Regular;
+      font-size: 14px;
+
+      .showMore{
+        display: none;
+      }
     }
+  .channel-description-about{
+    color: $valhalla;
+    font-weight: 600;
+    font-family: AvenirNext-DemiBold;
+    font-size: 14px;
   }
 
 }
