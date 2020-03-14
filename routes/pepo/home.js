@@ -45,7 +45,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   let apiResponse = await new GetFeed({headers: req.headers, decodedParams: req.decodedParams}).perform();
   let firebaseGetTheAppUrl = '';
   if ( apiResponse.success ) {
-    firebaseGetTheAppUrl = apiResponse.data.url;
+    firebaseGetTheAppUrl = apiResponse.data.firebase_video_url;
   }
 
   if (apiResponse.success) {
