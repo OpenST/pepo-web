@@ -99,12 +99,20 @@
     box-shadow: 0 3px 9px 1px rgba(0, 0, 0, 0.13);
   }
 
-    .channel-description-web,.channel-description-mobile{
+    .channel-description-web .channel-description-mobile{
       color: $valhalla;
       font-weight: $font-weight-normal;
       font-family: AvenirNext-Regular;
       font-size: 14px;
-
+      b{
+        font-weight: $font-weight-600;
+      }
+      a{
+        font-weight: $font-weight-600;
+        color: $valhalla;
+      }
+    }
+    .channel-description-web{
       .showMore{
         display: none;
       }
