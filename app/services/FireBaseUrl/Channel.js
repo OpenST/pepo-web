@@ -34,7 +34,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
       pageMeta: {
         title: oThis.urlParams.st,
         description: oThis.urlParams.sd,
-        robots: 'noindex, nofollow',
+        robots: 'index, follow',
         canonical: oThis._channelBaseUrl(),
         og: {
           title: oThis.urlParams.st,

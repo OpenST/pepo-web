@@ -30,7 +30,7 @@ class GetFeedUrl extends FirebaseUrlBase {
       pageMeta: {
         title: oThis.urlParams.st,
         description: '',
-        robots: 'noindex, nofollow',
+        robots: 'index, follow',
         canonical: oThis._feedUrl(),
         og: {
           title: oThis.urlParams.st,

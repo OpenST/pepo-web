@@ -126,7 +126,7 @@ class GetChannel extends ServiceBase {
 
   async _convertDescriptionForDisplay() {
     const oThis = this,
-      maxPositionToSplit = 110,
+      maxPositionToSplit = 120,
       channelId = oThis.apiResponseData['channel'].id,
       channelDetails = oThis.apiResponseData['channel_details'][channelId],
       descriptionId = channelDetails['description_id'],
@@ -139,7 +139,7 @@ class GetChannel extends ServiceBase {
     const splitablePosition = description.lastIndexOf(' ', maxPositionToSplit);
 
     oThis.apiResponseData['texts'][descriptionId]['text'] = description.slice(0, splitablePosition) +
-      '<span class="showMore"> Show More...</span><span class="afterText">' + description.slice(splitablePosition) + '</span>'
+      '<span class="showMore"> ...Show More</span><span class="afterText">' + description.slice(splitablePosition) + '</span>'
   }
 
   /**
