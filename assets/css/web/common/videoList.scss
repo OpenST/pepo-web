@@ -268,13 +268,14 @@
 
 .channel-list{
   &.mobile{
+    font-size: 0;
     overflow: auto;
     white-space:nowrap;
     width: calc(100vw - 80px);
   }
   > li {
     display: inline-block;
-    margin: 0 5px 12px 0;
+    margin: 0 10px 12px 0;
     a {
       color: $white;
       border: none;
