@@ -1,11 +1,22 @@
+<%
+profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(videoId))
+%>
 <li class="videoContainerInner col-6 col-md-4 col-lg-3 videoList" data-video-id="<%= videoId %>">
     <span class="content">
         <img src="<%= DataGetters.getVideoCoverImage(videoId) %>" class="img-fluid" style="object-fit: cover"/>
         <span class="thumbnail-video-play-icon play-icon ppBtn"></span>
         <span class="details">
             <span class="desc block-with-text mb-1"><%= DataGetters.getDescription(videoId) %></span>
-            <span class="d-flex flex-row justify-content-between">
-                <span class="desc">@<%= DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId)) %></span>
+            <span class="d-flex align-items-center justify-content-between">
+                <span class="d-flex align-items-center">
+                    <span class="position-relative mr-1" style="font-size: 0">
+                        <span class="user-empty-profile-icon-video-thumbnail empty-profile"></span>
+                        <% if (profileImage) { %>
+                            <img class="profileImage img-fluid" src="<%= profileImage %>">
+                        <% } %>
+                    </span>
+                    <span class="desc">@<%= DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId)) %></span>
+                </span>
                 <span class="desc"><%= DataGetters.getAmountRaised(videoId) %></span>
             </span>
         </span>
