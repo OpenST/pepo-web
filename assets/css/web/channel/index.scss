@@ -33,6 +33,9 @@
         font-size: 12px;
         font-family: AvenirNext-Regular;
         font-weight: $font-weight-normal;
+        &:last-child{
+          margin-right: 15px;
+        }
       }
     }
   }
@@ -66,7 +69,10 @@
     .desc{
       font-family:  AvenirNext-Regular;
       font-weight: $font-weight-normal;
-      font-size: $font-size-sm;
+      font-size: 12px;
+      @media screen and (min-width: 768px){
+        font-size: 14px;
+      }
       span{
         font-weight: 500 ;
         font-family: AvenirNext-Medium;
@@ -75,7 +81,10 @@
     .header{
       font-weight: $font-weight-normal;
       font-family: AvenirNext-DemiBold;
-      font-size: $font-size-base;
+      font-size: 14px;
+      @media screen and (min-width: 768px){
+        font-size: $font-size-base;
+      }
     }
     @media screen and (min-width: 768px){
       .desc{
@@ -102,7 +111,10 @@
       color: $valhalla;
       font-weight: $font-weight-normal;
       font-family: AvenirNext-Regular;
-      font-size: 14px;
+      font-size: 12px;
+      @media screen and (min-width: 768px){
+        font-size: 14px;
+      }
       b{
         font-weight: $font-weight-600;
       }
