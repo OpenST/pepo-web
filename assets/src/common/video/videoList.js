@@ -19,6 +19,8 @@ class VideoList {
 
   init = (config) => {
     this.config =  config;
+    this.currentItemIndex = null;
+    this.simpleDataTable = null;
     this.fetchFeed();
     this.bindEvents();
   };
@@ -26,16 +28,17 @@ class VideoList {
   bindEvents = () => {
     const jParent = $('#videoListParent'),
       jModalWrapper = $("#videoDetailsModal .videoDetailsContainer");
-  
-  
-    jParent.on('click', '.videoList', (e) => {
+
+
+    jParent.off().on('click', '.videoList', (e) => {
         this.currentItemIndex = $(e.currentTarget).data('result-index');
         this.modalUIUpdate();
         $('#videoDetailsModal').modal('show');
         e.preventDefault();
         e.stopPropagation();
     });
-  
+    jModalWrapper.off();
+
     jModalWrapper.on('click', '.next-video', (e) => {
       if(this.simpleDataTable.isLoadingData) return;
       const resultsLn = this.simpleDataTable.getResults().length ;

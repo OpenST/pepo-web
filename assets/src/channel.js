@@ -28,6 +28,11 @@ class Channel extends BaseView {
       jMobileAfterText.hide();
       jMobileShowMore.show();
     });
+
+    $(".list-unstyled .float-left").on('click', (e)=>{
+      videoList.init({fetchApi:  `/api/web/feeds` });
+    });
+
   };
 
   descShowMoreLessHandling = () => {
