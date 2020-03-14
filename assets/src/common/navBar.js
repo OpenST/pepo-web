@@ -18,7 +18,7 @@ class NavBar {
         this.jNavTogglerEl = $('#navbarToggler');
 
         this.bindEvents();
-        this.setupUberBanner();
+        this.fixedNavBarMenu();
     }
 
     bindEvents = () => {
@@ -77,7 +77,7 @@ class NavBar {
     }
 
     setupUberBanner = () => {
-        if( this.jUberBanner.length === 0 ) {
+        if( this.jUberBanner && this.jUberBanner.length === 0 ) {
             this.heightTrigger = 0;
         } else {
             this.heightTrigger = this.jUberBanner.outerHeight();
