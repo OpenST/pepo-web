@@ -186,6 +186,7 @@
   }
 
   .video-action-list{
+    pointer-events: auto;
     > li {
       font-size: 0;
       cursor: pointer;
