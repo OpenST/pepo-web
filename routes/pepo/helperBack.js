@@ -31,7 +31,6 @@ const UserApi = require(rootPrefix + '/lib/pepoApi/User'),
     }
     let currentUserDetails = locals.apiResponseData && locals.apiResponseData.current_user_data;
     locals.currentUser = new CurrentUser(currentUserDetails);
-    console.log('==222222========locals=======================', locals);
 
     renderResponseHelper.renderWithLayout(request, response, layout, contentPartialPath, locals, callback);
 
