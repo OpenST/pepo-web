@@ -24,16 +24,18 @@
 .community-channel{
   background-color: #f9f9f9;
   .community-image{
-    @include aspect-ratio(3.41, 1);
+    @include aspect-ratio(21, 9);
+    @media screen and (min-width: 768px){
+      @include aspect-ratio(3.41, 1);
+    }
     padding: 0;
     overflow: hidden;
     background-clip: padding-box;
 
     .cover-image{
       object-fit: cover;
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
+      width: 100%;
+      height: 100%;
     }
   }
   .details{
@@ -49,9 +51,21 @@
     }
     .desc{
       font-weight: $font-weight-normal;
+      font-size: $font-size-sm;
     }
     .header{
-      font-weight: $font-weight-600
+      font-weight: $font-weight-600;
+      font-size: $font-size-base;
+    }
+    @media screen and (min-width: 768px){
+      .desc{
+        font-weight: $font-weight-normal;
+        font-size: $font-size-base;
+      }
+      .header{
+        font-weight: $font-weight-600;
+        font-size: $font-size-lg;
+      }
     }
   }
   .community-wid-channel-desc{
