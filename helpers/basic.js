@@ -164,7 +164,7 @@ class BasicHelper {
 
   getIncludesReplaceText(kind){
     if(kind == 'tags'){
-      return '$1<span>$2</span>';
+      return '$1<b>$2</b>';
     } else if(kind == 'links') {
       return '$1<a href="$2" rel="noopener noreferrer nofollow" target="_blank">$2</a>';
     } else {

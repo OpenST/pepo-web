@@ -112,8 +112,8 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(54px, 88px, -475px, -310px, -475px, -475px, 50);
 }
 
-.prev-arrow-icon-disabled{
-  @include icon-generator(54px, 88px, -547px, -310px, -547px, -547px, 50);
+.video-back-icon{
+  @include icon-generator(54px, 88px, -547px, -310px, -547px, -547px, 25);
 }
 
 .downward-arrow-icon{

@@ -43,6 +43,8 @@ class GetChannel extends ServiceBase {
 
     await oThis._fetchChannel();
 
+    await oThis._convertDescriptionForDisplay();
+
     await oThis._parseTexts();
 
     await oThis.getCurrentUser();
@@ -75,22 +77,13 @@ class GetChannel extends ServiceBase {
     }
     oThis.apiResponseData = serviceResp.data;
 
-    const channelId = oThis.apiResponseData['channel'].id,
-      channelName = oThis.apiResponseData['channel'].name,
-      channelDetails = oThis.apiResponseData['channel_details'][channelId],
-      descriptionId = channelDetails['description_id'],
-      description = oThis.apiResponseData['texts'][descriptionId]['text'],
-      coverImageId = channelDetails['cover_image_id'],
-      imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'],
-      channelImageUrl = imageResolutions['original']['url'];
-
     let pageMetaResponse = await new GetFirebaseChannelUrl({
       headers: oThis.headers,
       decodedParams: oThis.decodedParams,
       channelShareDetails: {
-        title: channelName,
-        description: description,
-        poster_image_url: channelImageUrl
+        title: oThis._getChannelName(),
+        description: oThis._getDescription(),
+        poster_image_url: oThis._getChannelImageUrl()
       }
     }).perform();
 
@@ -105,6 +98,48 @@ class GetChannel extends ServiceBase {
     }
 
     return responseHelper.successWithData({});
+  }
+
+  _getChannelName() {
+    const oThis = this;
+    return oThis.apiResponseData['channel'].name;
+  }
+
+  _getDescription() {
+    const oThis = this,
+      channelId = oThis.apiResponseData['channel'].id,
+      channelDetails = oThis.apiResponseData['channel_details'][channelId],
+      descriptionId = channelDetails['description_id'];
+
+    return oThis.apiResponseData['texts'][descriptionId]['text'];
+  }
+
+  _getChannelImageUrl() {
+    const oThis = this,
+      channelId = oThis.apiResponseData['channel'].id,
+      channelDetails = oThis.apiResponseData['channel_details'][channelId],
+      coverImageId = channelDetails['cover_image_id'],
+      imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'];
+
+    return imageResolutions['original']['url'];
+  }
+
+  async _convertDescriptionForDisplay() {
+    const oThis = this,
+      maxPositionToSplit = 110,
+      channelId = oThis.apiResponseData['channel'].id,
+      channelDetails = oThis.apiResponseData['channel_details'][channelId],
+      descriptionId = channelDetails['description_id'],
+      description = oThis.apiResponseData['texts'][descriptionId]['text'];
+
+    if(maxPositionToSplit > description.length){
+      return;
+    }
+
+    const splitablePosition = description.lastIndexOf(' ', maxPositionToSplit);
+
+    oThis.apiResponseData['texts'][descriptionId]['text'] = description.slice(0, splitablePosition) +
+      '<span class="showMore"> Show More...</span><span class="afterText">' + description.slice(splitablePosition) + '</span>'
   }
 
   /**
