@@ -171,7 +171,7 @@ class GetChannel extends ServiceBase {
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       pageMeta: oThis.apiResponseData.page_meta,
-      firebaseUrls: {openInApp: oThis.apiResponseData.share_url},
+      firebaseUrls: {openInApp: oThis.apiResponseData.firebase_channel_url},
       showFooter: false,
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser
