@@ -36,7 +36,7 @@ class GetFeedUrl extends FirebaseUrlBase {
           title: oThis.urlParams.st,
           description: '',
           image: oThis.urlParams.si,
-          url: oThis._fetchAppLaunchLink()
+          url: oThis._feedUrl()
         },
         twitter: {
           title: oThis.urlParams.st,
