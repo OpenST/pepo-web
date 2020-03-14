@@ -42,7 +42,8 @@ tagDetails = apiResponseData['tags']
                     </div>
                     <div class="px-4 py-3">
                         <h6 class="mb-1">About</h6>
-                        <p class="mb-0"><%- description %></p>
+                        <p class="mb-0 d-none d-md-block channel-description-web"><%- description %></p>
+                        <p class="mb-0 d-block d-md-none channel-description-mobile"><%- description %></p>
                     </div>
                     <ul class="list-unstyled px-4 m-0 w-100" style="border-top: 1px solid">
                         <li class="float-left d-inline-block py-2">All</li>

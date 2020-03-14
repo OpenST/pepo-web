@@ -9,6 +9,32 @@ class Channel extends BaseView {
     super(config);
     const channelId = deepGet(this.config,  "apiResponse.channel.id");
     videoList.init({fetchApi:  `/api/web/channels/${channelId}/videos` });
+    this.descShowMoreLessHandling();
+    this.eventBindings();
+
+
+  }
+
+  eventBindings = () => {
+    const jMobileAfterText = $(".channel-description-mobile .afterText"),
+    jMobileShowMore = $(".channel-description-mobile .showMore"),
+    jMobileShowLess = $(".channel-description-mobile .showLess");
+
+    jMobileShowMore.on('click', (e)=>{
+      jMobileAfterText.show();
+      jMobileShowMore.hide();
+    });
+    jMobileShowLess.on('click', (e)=>{
+      jMobileAfterText.hide();
+      jMobileShowMore.show();
+    });
+  };
+
+  descShowMoreLessHandling = () => {
+    const jMobileAfterText = $(".channel-description-mobile .afterText");
+    jMobileAfterText.append("<span class='showLess'> Show Less...</span>");
+    jMobileAfterText.hide();
+
   }
 
 }
