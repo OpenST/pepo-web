@@ -1,12 +1,10 @@
 import CurrentUser from "../../src/model/CurrentUser" ;
-import  BrowserSdk from "../../src/libs/browserSdk";
 import {setDataStore} from "../model/DataStore";
 import SocketManager from "../../src/services/SocketManager";
 
 class BaseView {
 
   constructor( config ){
-    console.log(config.apiResponse,"config.apiResponse");
     if(typeof config.apiResponse == "string"){
       config.apiResponse =  JSON.parse( config.apiResponse );
     }
@@ -37,7 +35,7 @@ class BaseView {
 
   initSdk(config){
     if(!config || true) return;
-    BrowserSdk.init(config);
+    //BrowserSdk.init(config);
   }
 
   initPixelDrop(config){

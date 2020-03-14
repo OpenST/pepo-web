@@ -49,14 +49,16 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
   }
 
   if (apiResponse.success) {
-    webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', {
+    let locals = {
       apiResponseData: apiResponse.data,
       success: true,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {openInApp: firebaseGetTheAppUrl},
       showFooter: false
-    });
+    };
+
+    webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', locals);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }

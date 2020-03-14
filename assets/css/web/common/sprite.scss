@@ -80,6 +80,10 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 17.63);
 }
 
+.user-empty-profile-icon-video-thumbnail{
+  @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 7);
+}
+
 .nav-bar-user-empty-profile-icon{
   @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 10.55);
 }

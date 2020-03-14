@@ -7,6 +7,7 @@ class NavBar {
         this.jNavEl = null;
         this.jUberBanner = null;
         this.jNavPhantomEl = null;
+        this.jNavTogglerEl = null;
         this.heightTrigger = 0;
     }
 
@@ -14,8 +15,10 @@ class NavBar {
         this.jNavEl =  $('.pepo-nav');
         this.jUberBanner = $('.uber-banner');
         this.jNavPhantomEl = $('.navbar-phatom-el');
+        this.jNavTogglerEl = $('#navbarToggler');
 
         this.bindEvents();
+        this.setupUberBanner();
     }
 
     bindEvents = () => {
@@ -77,7 +80,7 @@ class NavBar {
         if( this.jUberBanner.length === 0 ) {
             this.heightTrigger = 0;
         } else {
-            this.heightTrigger = Math.max(this.jUberBanner.outerHeight())
+            this.heightTrigger = this.jUberBanner.outerHeight();
         }
     }
 
@@ -87,9 +90,11 @@ class NavBar {
         if(scrollTop > this.heightTrigger){
             this.jNavPhantomEl.height( this.jNavEl.outerHeight() );
             this.jNavEl.addClass('nav-box-shadow fixed-top');
+            this.jNavTogglerEl.css({top: this.jNavEl.outerHeight()});
         } else{
             this.jNavPhantomEl.height( 0 );
             this.jNavEl.removeClass('nav-box-shadow fixed-top');
+            this.jNavTogglerEl.css({top: this.jNavEl.outerHeight() + this.jUberBanner.outerHeight()});
         }
 
     }
