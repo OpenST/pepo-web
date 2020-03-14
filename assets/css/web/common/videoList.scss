@@ -190,6 +190,7 @@
   }
 
   .video-action-list{
+    pointer-events: auto;
     > li {
       font-size: 0;
       cursor: pointer;
@@ -211,13 +212,15 @@
       max-width: 70%;
       margin: auto;
     }
-    //max-height: 100%;
-    //margin: 0 auto;
     .modal-content{
       padding: 0;
       border: none;
       pointer-events: none;
       background-color: transparent;
+      height: 100%;
+      @media only screen and (min-width: 768px){
+        height: auto;
+      }
     }
   }
 }

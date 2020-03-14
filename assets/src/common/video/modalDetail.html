@@ -8,7 +8,7 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
     <div class="next-arrow next-video">
         <span class="next-arrow-icon  "></span>
     </div>
-    <div class="col-12 col-lg-10 col-xl-8 innerContainer mx-auto" style="pointer-events: auto;">
+    <div class="col-12 col-lg-10 col-xl-8 innerContainer mx-auto" style="pointer-events: auto; height: <%=innerContainerHeight%>">
 
         <div class="row">
             <div class="col pr-0" style="overflow: hidden">
@@ -52,7 +52,7 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
                         </div>
                         <video class="pepoVideo" playsinline loop
                                style="width: 100%; height: 100%; object-fit: cover"
-                               poster=""
+                               poster="<%=DataGetters.getVideoCoverImage(videoId)%>"
                         >
                             <source src="<%=DataGetters.getVideoUrl(videoId)%>" type="video/mp4">
                         </video>
@@ -104,15 +104,16 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
 </div>
 
 <div class="container-fluid videoContainer d-block d-md-none h-100">
-    <div class="row">
-        <div class="col p-0 video-container-wrapper active">
-            <div class="col-md-6 col-lg-6 innerRight p-0">
+    <div class="row h-100">
+        <div class="col p-0 video-container-wrapper active h-100">
+            <div class="col-md-6 col-lg-6 innerRight p-0 h-100">
                 <div class="active ppBtnUi ppBtn">
                     <span class="video-play-icon"></span>
                 </div>
-                <video class="pepoVideo" playsinline loop
+                <video class="pepoVideo h-100" playsinline loop
                        style="width: 100%; height: 100%; object-fit: cover; pointer-events: auto;"
-                       poster=""
+                       poster="<%=DataGetters.getVideoCoverImage(videoId)%>"
+                       data-video-id="<%=videoId%>"
                 >
                     <source src="<%=DataGetters.getVideoUrl(videoId)%>" type="video/mp4">
                 </video>

@@ -57,7 +57,7 @@ class VideoList {
         this.modalUIUpdate();
       }
     });
-  
+
     $('#videoDetailsModal').on('hide.bs.modal', function (event) {
       $(this).find(".videoDetailsContainer").empty();
     })
@@ -95,11 +95,13 @@ class VideoList {
     const modal = ejs.compile(videoModalDetail, { client : true });
     const jModal = $(modal({
       videoId,
-      DataGetters
+      DataGetters,
+      innerContainerHeight: this.innerContainerHeight
     }));
     jParentWrapper.html(jModal);
     video.bindEvents();
     this.arrowsUpdate();
+    this.innerContainerHeight = $('.videoContainer .innerContainer').height();
   };
 
 
@@ -124,7 +126,7 @@ class VideoList {
       }
     });
   }
-  
+
 }
 
 export default new VideoList();
