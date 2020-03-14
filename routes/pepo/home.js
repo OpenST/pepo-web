@@ -23,7 +23,7 @@ router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, ne
   if ( apiResponse.success ) {
     firebaseGetTheAppUrl = apiResponse.data.url;
   }
-  
+
   if( apiResponse && apiResponse.data && apiResponse.data.current_user_data ){
     layout = "loggedIn"
   }
@@ -54,7 +54,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       success: true,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
-      firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
+      firebaseUrls: {openInApp: firebaseGetTheAppUrl},
       showFooter: false
     });
   } else {
