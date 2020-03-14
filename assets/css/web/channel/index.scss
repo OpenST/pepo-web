@@ -28,6 +28,13 @@
     padding: 0;
     overflow: hidden;
     background-clip: padding-box;
+
+    .cover-image{
+      object-fit: cover;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+    }
   }
   .details{
     top: 0;
