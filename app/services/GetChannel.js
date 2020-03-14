@@ -43,6 +43,8 @@ class GetChannel extends ServiceBase {
 
     await oThis._fetchChannel();
 
+    await oThis._convertDescriptionForDisplay();
+
     await oThis._parseTexts();
 
     await oThis.getCurrentUser();
@@ -120,6 +122,24 @@ class GetChannel extends ServiceBase {
       imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'];
 
     return imageResolutions['original']['url'];
+  }
+
+  async _convertDescriptionForDisplay() {
+    const oThis = this,
+      maxPositionToSplit = 110,
+      channelId = oThis.apiResponseData['channel'].id,
+      channelDetails = oThis.apiResponseData['channel_details'][channelId],
+      descriptionId = channelDetails['description_id'],
+      description = oThis.apiResponseData['texts'][descriptionId]['text'];
+
+    if(maxPositionToSplit > description.length){
+      return;
+    }
+
+    const splitablePosition = description.lastIndexOf(' ', maxPositionToSplit);
+
+    oThis.apiResponseData['texts'][descriptionId]['text'] = description.slice(0, splitablePosition) +
+      '<span class="showMore"> ...</span><span class="afterText">' + description.slice(splitablePosition) + '</span>'
   }
 
   /**
