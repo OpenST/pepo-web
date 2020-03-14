@@ -77,15 +77,15 @@ class DataGetters {
   getDescriptionLink(id){
     let videoDetails  = this.getVideoDetails(id);
     let linkId = deepGet(videoDetails, 'link_ids[0]');
-    return deepGet(getDataStore(), `link_entities[${linkId}].url` );
+    return deepGet(getDataStore(), `link_entities[${PREFIX}${linkId}].url` );
 
   }
 
   getDisplayDescriptionLink(id){
     let videoDetails  = this.getVideoDetails(id);
     let linkId = deepGet(videoDetails, 'link_ids[0]');
-    return deepGet(getDataStore(), `link_entities[${linkId}].url`) &&
-      deepGet(getDataStore(), `link_entities[${linkId}].url`).replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').replace(/\/$/, '');
+    return deepGet(getDataStore(), `link_entities[${PREFIX}${linkId}].url`) &&
+      deepGet(getDataStore(), `link_entities[${PREFIX}${linkId}].url`).replace(/^(?:https?:\/\/)?(?:www\.)?/i, '').replace(/\/$/, '');
   }
 
   getChannelEntity(id){
