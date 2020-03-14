@@ -68,6 +68,7 @@
         width: 100%;
         position: absolute;
         padding: 0 5px 6px;
+
         @media only screen and (min-width: 768px){
           padding: 0 8px 6px;
         }
@@ -370,4 +371,12 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+
+#videoDetailsModal {
+  body.modal-open & {
+    font-size: 0;
+    height: 100%;
+  }
 }
