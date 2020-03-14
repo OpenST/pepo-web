@@ -116,75 +116,75 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
                 >
                     <source src="<%=DataGetters.getVideoUrl(videoId)%>" type="video/mp4">
                 </video>
-
-            </div>
-            <div style="position: absolute; bottom: 0;">
+              <div style="position: absolute; bottom: 0;">
                 <div class="d-flex justify-content-between pl-3">
 
-                    <ul class="list-unstyled channel-list mobile mb-0 align-self-end">
-                        <% var channelList = DataGetters.getChannelList(videoId) %>
-                        <% for(var i=0; i < channelList.length; i++) { %>
-                        <li class="downloadApp"><a href="javascript:void(0)"><%= channelList[i] %></a></li>
-                        <% } %>
-                    </ul>
+                  <ul class="list-unstyled channel-list mobile mb-0 align-self-end" style="pointer-events: auto">
+                    <% var channelList = DataGetters.getChannelList(videoId) %>
+                    <% for(var i=0; i < channelList.length; i++) { %>
+                    <li class="downloadApp"><a href="javascript:void(0)"><%= channelList[i] %></a></li>
+                    <% } %>
+                  </ul>
 
-                    <div class="actionButtonsWeb align-items-end d-flex justify-content-center">
-                        <ul class="list-unstyled m-0 p-0 text-center video-action-list mb-3 mb-md-4">
-                            <li class="downloadApp">
-                                <span class="countTxt" style="color: #FFFFFF"><%= DataGetters.getAmountRaised(videoId) %></span>
-                                <svg width="40" height="40">
-                                    <switch>
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-pepo-icon"></use>
-                                    </switch>
-                                </svg>
-                            </li>
-                            <li class="downloadApp">
-                                <span class="countTxt" style="color: #FFFFFF"><%= DataGetters.getTotalVideoReplies(videoId) %></span>
-                                <span class="video-web-replies-icon d-inline-block d-md-none"></span>
-                                <svg width="21" height="19" class="d-none d-md-inline-block">
-                                    <switch>
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-replies-icon"></use>
-                                    </switch>
-                                </svg>
-                            </li>
-                            <li class="reportVideo">
-                                <span class="video-web-report-icon d-inline-block d-md-none"></span>
-                                <svg width="17" height="21" class="d-none d-md-inline-block">
-                                    <switch>
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-report-icon"></use>
-                                    </switch>
-                                </svg>
-                            </li>
-                            <li class="copyToClipboard" data-share-url="<%= DataGetters.getVideoShareUrl(videoId) %>">
-                                <span class="video-web-copy-icon d-inline-block d-md-none"></span>
-                                <svg width="18" height="20" class="d-none d-md-inline-block">
-                                    <switch>
-                                        <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-copy-icon"></use>
-                                    </switch>
-                                </svg>
-                            </li>
-                        </ul>
-                    </div>
+                  <div class="actionButtonsWeb align-items-end d-flex justify-content-center">
+                    <ul class="list-unstyled m-0 p-0 text-center video-action-list mb-3 mb-md-4">
+                      <li class="downloadApp">
+                        <span class="countTxt" style="color: #FFFFFF"><%= DataGetters.getAmountRaised(videoId) %></span>
+                        <svg width="40" height="40">
+                          <switch>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-pepo-icon"></use>
+                          </switch>
+                        </svg>
+                      </li>
+                      <li class="downloadApp">
+                        <span class="countTxt" style="color: #FFFFFF"><%= DataGetters.getTotalVideoReplies(videoId) %></span>
+                        <span class="video-web-replies-icon d-inline-block d-md-none"></span>
+                        <svg width="21" height="19" class="d-none d-md-inline-block">
+                          <switch>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-replies-icon"></use>
+                          </switch>
+                        </svg>
+                      </li>
+                      <li class="reportVideo">
+                        <span class="video-web-report-icon d-inline-block d-md-none"></span>
+                        <svg width="17" height="21" class="d-none d-md-inline-block">
+                          <switch>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-report-icon"></use>
+                          </switch>
+                        </svg>
+                      </li>
+                      <li class="copyToClipboard" data-share-url="<%= DataGetters.getVideoShareUrl(videoId) %>">
+                        <span class="video-web-copy-icon d-inline-block d-md-none"></span>
+                        <svg width="18" height="20" class="d-none d-md-inline-block">
+                          <switch>
+                            <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-copy-icon"></use>
+                          </switch>
+                        </svg>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
                 <div class="desc mobile" onclick="event.stopPropagation()">
-                    <div class="d-flex align-items-center" style="line-height: initial">
-                        <div class="desc mobile-user-name">@<%=DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId))%></div>
-                        <div class="ml-2 d-flex align-items-center">
-                            <svg width="12" height="12">
-                                <switch>
-                                    <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-cta-icon"></use>
-                                </switch>
-                            </svg>
-                            <span class="timerCta mobile"><%= DataGetters.getDisplayCTS(videoId) %></span>
-                        </div>
+                  <div class="d-flex align-items-center" style="line-height: initial">
+                    <div class="desc mobile-user-name">@<%=DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId))%></div>
+                    <div class="ml-2 d-flex align-items-center">
+                      <svg width="12" height="12">
+                        <switch>
+                          <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#video-cta-icon"></use>
+                        </switch>
+                      </svg>
+                      <span class="timerCta mobile"><%= DataGetters.getDisplayCTS(videoId) %></span>
                     </div>
-                    <% if (DataGetters.getDescription(videoId)) { %>
-                    <p class="mb-0 desc mobile-text"><%- DataGetters.getDescription(videoId) %></p>
-                    <% } %>
-                    <% if (DataGetters.getDisplayDescriptionLink(videoId)) { %>
-                    <a href="<%= DataGetters.getDisplayDescriptionLink(videoId) %>" class="mb-0 mt-2 desc mobile-link" rel="noopener noreferrer nofollow" target="_blank" onclick="event.stopPropagation();"><%- DataGetters.getDisplayDescriptionLink(videoId) %></a>
-                    <% } %>
+                  </div>
+                  <% if (DataGetters.getDescription(videoId)) { %>
+                  <p class="mb-0 desc mobile-text"><%- DataGetters.getDescription(videoId) %></p>
+                  <% } %>
+                  <% if (DataGetters.getDisplayDescriptionLink(videoId)) { %>
+                  <a href="<%= DataGetters.getDisplayDescriptionLink(videoId) %>" class="mb-0 mt-2 desc mobile-link" rel="noopener noreferrer nofollow" target="_blank" onclick="event.stopPropagation();"><%- DataGetters.getDisplayDescriptionLink(videoId) %></a>
+                  <% } %>
                 </div>
+              </div>
+
             </div>
         </div>
     </div>
