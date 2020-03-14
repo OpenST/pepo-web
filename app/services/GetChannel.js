@@ -139,7 +139,7 @@ class GetChannel extends ServiceBase {
     const splitablePosition = description.lastIndexOf(' ', maxPositionToSplit);
 
     oThis.apiResponseData['texts'][descriptionId]['text'] = description.slice(0, splitablePosition) +
-      '<span class="showMore"> ...</span><span class="afterText">' + description.slice(splitablePosition) + '</span>'
+      '<span class="showMore"> Show More...</span><span class="afterText">' + description.slice(splitablePosition) + '</span>'
   }
 
   /**
