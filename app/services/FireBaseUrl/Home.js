@@ -29,7 +29,7 @@ class GetHomeUrl extends FirebaseUrlBase {
       pageMeta: {
         title: oThis.urlParams.st,
         description: 'Real People. Real Connections.',
-        robots: 'noindex, nofollow',
+        robots: 'index, follow',
         canonical: oThis._pepoHomeBaseUrl(),
         og: {
           title: oThis.urlParams.st,

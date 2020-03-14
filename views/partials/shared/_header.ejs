@@ -7,9 +7,7 @@
     }
 
     var title = pageMeta.title.replace(/(- |)http(s|):\/\/.*\S/g, "").trim();
-    if ( pageMeta.page ) {
-      title = title + " - Pepo";
-    }
+
     return title;
 
   }
@@ -28,7 +26,7 @@
 <meta name="robots" content="<%= pageMeta.robots%>">
 <link rel="canonical" href="<%= pageMeta.canonical %>" />
 
-<meta property="og:title" content="<%= pageMeta.og.title %> - Pepo"/>
+<meta property="og:title" content="<%= pageMeta.og.title %>"/>
 <% if(pageMeta.og.description) { %>
 <meta property="og:description" content="<%= pageMeta.og.description %>"/>
 <% } %>
@@ -40,7 +38,7 @@
 <meta property="og:video" content="<%= pageMeta.og.video %>"/>
 <% } %>
 
-<meta name="twitter:title" content="<%= pageMeta.twitter.title %> - Pepo" />
+<meta name="twitter:title" content="<%= pageMeta.twitter.title %>" />
 <% if(pageMeta.og.description) { %>
 <meta name="twitter:description" content="<%= pageMeta.twitter.description %>" />
 <% } %>

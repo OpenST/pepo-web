@@ -81,7 +81,7 @@ class GetChannel extends ServiceBase {
       headers: oThis.headers,
       decodedParams: oThis.decodedParams,
       channelShareDetails: {
-        title: oThis._getChannelName(),
+        title: oThis._getChannelName() + ' - Pepo',
         description: oThis._getDescription(),
         poster_image_url: oThis._getChannelImageUrl()
       }
