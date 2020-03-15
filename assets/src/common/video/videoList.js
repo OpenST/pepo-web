@@ -21,13 +21,15 @@ class VideoList {
     this.config =  config;
     this.currentItemIndex = null;
     this.simpleDataTable = null;
+    this.jModalWrapper =  $("#videoDetailsModal .videoDetailsContainer");
+    this.arrowClickTimeOut = 0;
     this.fetchFeed();
     this.bindEvents();
   };
 
   bindEvents = () => {
     const jParent = $('#videoListParent'),
-      jModalWrapper = $("#videoDetailsModal .videoDetailsContainer");
+      jModalWrapper = this.jModalWrapper;
 
 
     jParent.off().on('click', '.videoList', (e) => {
@@ -90,20 +92,55 @@ class VideoList {
   };
 
   modalUIUpdate = () => {
-    const jParentWrapper = $("#videoDetailsModal .videoDetailsContainer");
+    this.pauseAllVideos();
+    const jModal = this.getModalMarkup();
+    this.updateModalUI(jModal);
+    this.arrowsUpdate();
+    clearTimeout(  this.arrowClickTimeOut );
+    this.arrowClickTimeOut = setTimeout(()=> {
+      video.bindEvents();
+      this.autoPlayVideo( jModal );
+      this.updateModalHeight();
+    }, 300);
+  };
+  
+  pauseAllVideos = ( ) => {
+    const jVideos = $("video.pepoVideo");
+    for(let cnt = 0 ;  cnt < jVideos.length ; cnt++){
+      jVideos[cnt].pause();
+    }
+  };
+  
+  
+  getModalMarkup = () => {
     let videoId = deepGet(this.getCurrentIndexResult(), 'video_id');
-    const modal = ejs.compile(videoModalDetail, { client : true });
-    const jModal = $(modal({
+    const modal = ejs.compile(videoModalDetail, {client: true});
+    return $(modal({
       videoId,
       DataGetters,
       innerContainerHeight: this.innerContainerHeight
     }));
-    jParentWrapper.html(jModal);
-    video.bindEvents();
-    this.arrowsUpdate();
+  };
+  
+  updateModalUI = ( jModal ) => {
+    this.jModalWrapper.empty();
+    this.jModalWrapper.html(jModal);
+  };
+  
+
+  autoPlayVideo = (jModal) =>{
+    const jVideos =  jModal.find(".video-container-wrapper");
+    for(let cnt = 0 ;  cnt < jVideos.length ; cnt++){
+      if(jVideos.eq(cnt).visible()){
+        jVideos.eq(cnt).trigger("click");
+        return;
+      }
+    }
+  };
+  
+  updateModalHeight = () => {
     this.innerContainerHeight = $('.videoContainer .innerContainer').height();
   };
-
 
   getCurrentIndexResult = () => {
     let results = this.simpleDataTable.getResults();

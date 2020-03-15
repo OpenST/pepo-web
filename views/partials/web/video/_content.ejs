@@ -5,7 +5,7 @@
                 <div class="col pr-0 h-100" style="overflow: hidden">
                     <div class="row h-100">
                         <%- include _video_left -%>
-                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper active">
+                        <div class="col-md-6 col-lg-6 innerRight d-flex align-items-center justify-content-center video-container-wrapper">
                             <%- include('../partials/web/video/_video_player', {video_link: formattedEntityData.web_video_url, video_poster_url: formattedEntityData.web_video_poster_url }) -%>
                         </div>
                     </div>
@@ -18,7 +18,7 @@
 
 <div class="container-fluid videoContainer d-block d-md-none" data-video-id="<%= formattedEntityData.video_id %>">
     <div class="row" style="height: inherit">
-        <div class="col p-0 video-container-wrapper active" style="height: inherit">
+        <div class="col p-0 video-container-wrapper" style="height: inherit">
             <%- include('../partials/web/video/_video_player', {video_link: formattedEntityData.mobile_video_url, video_poster_url:  formattedEntityData.mobile_video_poster_url }) -%>
             <div style="position: absolute; bottom: 0;">
                 <div class="d-flex justify-content-between pl-3">

@@ -58,12 +58,12 @@ class Video {
     $('.video-container-wrapper').off(`click.${namespace}`).on(`click.${namespace}`, function(e){
       let ctrlVideo = $(this).find('video.pepoVideo')[0];
       if($(this).hasClass("active")){
-        ctrlVideo.play();
-        $(this).find('.ppBtn').hide();
-        $(this).toggleClass("active");
-      } else {
         ctrlVideo.pause();
         $(this).find('.ppBtn').show();
+        $(this).toggleClass("active");
+      } else {
+        ctrlVideo.play();
+        $(this).find('.ppBtn').hide();
         $(this).toggleClass("active");
       }
     });
