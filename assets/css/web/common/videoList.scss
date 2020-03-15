@@ -339,13 +339,13 @@
     font-family: AvenirNext-Medium;
   }
   &.mobile-link{
-    color: $white;
+    //color: $white;
     overflow: hidden;
     white-space: nowrap;
     display: block;
     text-overflow: ellipsis;
-    font-size: 14px;
-    line-height: 100%;
+    //font-size: 14px;
+    //line-height: 100%;
     font-family: AvenirNext-Medium;
   }
   &.mobile-text{
@@ -373,7 +373,7 @@
 .block-with-text {
   display: -webkit-box;
   max-width: 100%;
-  -webkit-line-clamp: 1;
+  -webkit-line-clamp: 2;
   @media screen and (min-width: 768px){
     -webkit-line-clamp: 3;
   }

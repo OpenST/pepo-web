@@ -6,17 +6,17 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
         <img src="<%= DataGetters.getVideoCoverImage(videoId) %>" class="img-fluid" style="object-fit: cover"/>
         <span class="thumbnail-video-play-icon play-icon ppBtn"></span>
         <span class="details">
-            <span class="desc block-with-text mb-1">
-                <span class=""><%- DataGetters.getDescription(videoId) %></span>
+            <!--<span class="desc mb-1">-->
+                <span class="block-with-text desc mb-1"><%- DataGetters.getDescription(videoId) %></span>
                 <% if (DataGetters.getDisplayDescriptionLink(videoId)) { %>
                   <a href="<%= DataGetters.getDisplayDescriptionLink(videoId) %>"
-                     class="mt-1 desc mobile-link"
+                     class="mb-2 desc mobile-link"
                      rel="noopener noreferrer nofollow"
                      target="_blank">
                       <%- DataGetters.getDisplayDescriptionLink(videoId) %>
                   </a>
                 <% } %>
-            </span>
+            <!--</span>-->
             <span class="d-flex align-items-center justify-content-between">
                 <span class="d-flex align-items-center">
                     <span class="position-relative mr-1" style="font-size: 0">
