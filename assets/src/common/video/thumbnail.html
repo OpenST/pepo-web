@@ -6,17 +6,17 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
         <img src="<%= DataGetters.getVideoCoverImage(videoId) %>" class="img-fluid" style="object-fit: cover"/>
         <span class="thumbnail-video-play-icon play-icon ppBtn"></span>
         <span class="details">
-            <!--<span class="desc mb-1">-->
+            <% if (DataGetters.getDescription(videoId)) { %>
                 <span class="block-with-text desc mb-1"><%- DataGetters.getDescription(videoId) %></span>
-                <% if (DataGetters.getDisplayDescriptionLink(videoId)) { %>
-                  <a href="<%= DataGetters.getDisplayDescriptionLink(videoId) %>"
-                     class="mb-2 desc mobile-link"
-                     rel="noopener noreferrer nofollow"
-                     target="_blank">
-                      <%- DataGetters.getDisplayDescriptionLink(videoId) %>
-                  </a>
-                <% } %>
-            <!--</span>-->
+            <% } %>
+            <% if (DataGetters.getDisplayDescriptionLink(videoId)) { %>
+              <a href="<%= DataGetters.getDisplayDescriptionLink(videoId) %>"
+                 class="mb-2 desc mobile-link"
+                 rel="noopener noreferrer nofollow"
+                 target="_blank">
+                  <%- DataGetters.getDisplayDescriptionLink(videoId) %>
+              </a>
+            <% } %>
             <span class="d-flex align-items-center justify-content-between">
                 <span class="d-flex align-items-center">
                     <span class="position-relative mr-1" style="font-size: 0">
@@ -27,7 +27,10 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
                     </span>
                     <span class="desc">@<%= DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId)) %></span>
                 </span>
-                <span class="desc"><%= DataGetters.getAmountRaised(videoId) %></span>
+                <span class="d-flex align-items-center">
+                    <span class="thumbnail-pepo-icon" style="margin-right: 2px"></span>
+                    <span class="desc"><%= DataGetters.getAmountRaised(videoId) %></span>
+                </span>
             </span>
         </span>
     </span>
