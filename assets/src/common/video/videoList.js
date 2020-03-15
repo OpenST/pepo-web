@@ -132,7 +132,7 @@ class VideoList {
     const jVideos =  jModal.find(".video-container-wrapper");
     for(let cnt = 0 ;  cnt < jVideos.length ; cnt++){
       if(jVideos.eq(cnt).visible()){
-        jVideos.eq(cnt).trigger("click");
+        video.playVideo( jVideos.eq(cnt) );
         return;
       }
     }

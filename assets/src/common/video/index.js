@@ -56,15 +56,10 @@ class Video {
     });
 
     $('.video-container-wrapper').off(`click.${namespace}`).on(`click.${namespace}`, function(e){
-      let ctrlVideo = $(this).find('video.pepoVideo')[0];
       if($(this).hasClass("active")){
-        ctrlVideo.pause();
-        $(this).find('.ppBtn').show();
-        $(this).toggleClass("active");
+        oThis.pauseVideo( $(this) );
       } else {
-        ctrlVideo.play();
-        $(this).find('.ppBtn').hide();
-        $(this).toggleClass("active");
+        oThis.playVideo( $(this) );
       }
     });
 
@@ -86,6 +81,22 @@ class Video {
     });
   };
 
+  playVideo(jEl){
+    if(!jEl) return;
+    let ctrlVideo =  jEl.find('video.pepoVideo')[0];
+    ctrlVideo.play();
+    jEl.find('.ppBtn').hide();
+    jEl.toggleClass("active");
+  }
+  
+  pauseVideo(jEl){
+    if(!jEl) return;
+    let ctrlVideo =jEl.find('video.pepoVideo')[0];
+    ctrlVideo.pause();
+    jEl.find('.ppBtn').show();
+    jEl.toggleClass("active");
+  }
+  
   sendVideoEvent(eventKind , id) {
     let feedId = 0; // For non-feed video elements.
     if (this.feedId) {
