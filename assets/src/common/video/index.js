@@ -9,15 +9,15 @@ const VIDEO_PLAY_START_EVENT_NAME = "video_play_start";
 const VIDEO_PLAY_END_EVENT_NAME = "video_play_end";
 
 class Video {
-  
+
   init = () => {
     this.bindEvents();
   };
 
   bindEvents = () => {
-    
+
     const oThis =this;
-    
+
     $(".reportVideo").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       const videoId = $(this).closest(".videoContainer").data("video-id"),
             jModal = $('#reportModal')
@@ -46,7 +46,7 @@ class Video {
 
     $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       var textToCopy = $(this).data('share-url');
-      var isCopied = BasicHelper.copyToClipboard(textToCopy);
+      var isCopied = BasicHelper.copyToClipboard(textToCopy, this);
       if(isCopied){
         $('.toast-copied-to-clipboard').toast('show');
       } else {
@@ -88,7 +88,7 @@ class Video {
     jEl.find('.ppBtn').hide();
     jEl.toggleClass("active");
   }
-  
+
   pauseVideo(jEl){
     if(!jEl) return;
     let ctrlVideo =jEl.find('video.pepoVideo')[0];
@@ -96,7 +96,7 @@ class Video {
     jEl.find('.ppBtn').show();
     jEl.toggleClass("active");
   }
-  
+
   sendVideoEvent(eventKind , id) {
     let feedId = 0; // For non-feed video elements.
     if (this.feedId) {

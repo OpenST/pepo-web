@@ -39,10 +39,13 @@ class BasicHelper {
     return `${window.location.protocol}/${window.location.hostname}/video/${videoId}?utm_source=share&utm_medium=video&utm_campaign=${videoId}`
   }
 
-  copyToClipboard(str) {
+  copyToClipboard(str, context = null) {
     let el = document.createElement('textarea');
     el.value = str;
-    document.body.appendChild(el);
+    if(!context){
+      context = document.body;
+    }
+    context.appendChild(el);
     el.select();
     // For old iOS devices
     let range = document.createRange();
@@ -54,10 +57,10 @@ class BasicHelper {
     try{
       document.execCommand('copy');
     } catch (e) {
-      document.body.removeChild(el);
+      context.removeChild(el);
       return 0;
     }
-    document.body.removeChild(el);
+    context.removeChild(el);
     return 1;
   }
 
