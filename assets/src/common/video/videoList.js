@@ -63,6 +63,12 @@ class VideoList {
     $('#videoDetailsModal').on('hide.bs.modal', function (event) {
       $(this).find(".videoDetailsContainer").empty();
     })
+
+    $('#reportModal, #downloadModal').on('hidden.bs.modal', function (e) {
+      if($('.modal.show').length > 0){
+        $('body').addClass('modal-open');
+      }
+    });
   };
 
   modalUpdateOnNext(resultsLn){
@@ -103,15 +109,15 @@ class VideoList {
       this.updateModalHeight();
     }, 100);
   };
-  
+
   pauseAllVideos = ( ) => {
     const jVideos = $("video.pepoVideo");
     for(let cnt = 0 ;  cnt < jVideos.length ; cnt++){
       jVideos[cnt].pause();
     }
   };
-  
-  
+
+
   getModalMarkup = () => {
     let videoId = deepGet(this.getCurrentIndexResult(), 'video_id');
     const modal = ejs.compile(videoModalDetail, {client: true});
@@ -121,12 +127,12 @@ class VideoList {
       innerContainerHeight: this.innerContainerHeight
     }));
   };
-  
+
   updateModalUI = ( jModal ) => {
     this.jModalWrapper.empty();
     this.jModalWrapper.html(jModal);
   };
-  
+
 
   autoPlayVideo = (jModal) =>{
     const jVideos =  jModal.find(".video-container-wrapper");
@@ -137,7 +143,7 @@ class VideoList {
       }
     }
   };
-  
+
   updateModalHeight = () => {
     this.innerContainerHeight = $('.videoContainer .innerContainer').height();
   };

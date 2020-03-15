@@ -117,7 +117,7 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
 }
 
 .video-back-icon{
-  @include icon-generator(54px, 88px, -547px, -310px, -547px, -547px, 25);
+  @include icon-generator(32px, 50px, -610px, -410px, -610px, -610px, 65);
 }
 
 .downward-arrow-icon{
@@ -134,6 +134,10 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
 
 .timer-icon{
   @include icon-generator(40px, 41px, -533px, -250px, -533px, -533px, 30);
+}
+
+.thumbnail-pepo-icon{
+  @include icon-generator(27px, 27px, -652px, -422px, -652px, -652px, 40);
 }
 
 //.pepo-logo-nav{
