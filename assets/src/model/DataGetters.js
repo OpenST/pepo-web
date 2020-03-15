@@ -21,9 +21,11 @@ class DataGetters {
     return basicHelper.convertWeiToNormal(this.getVideoDetails(id).total_amount_raised_in_wei).toString(10);
   }
 
-  getOwnerProfileImage (id){
+  getOwnerProfileImage (id , size){
     let profileImageId =  deepGet(this.getUserInfo(id), 'profile_image_id');
-    return deepGet(getDataStore(), `image_entities[${PREFIX}${profileImageId}].resolutions.original.url`) || '';
+    size = size || "144w" ;
+    return deepGet(getDataStore(), `image_entities[${PREFIX}${profileImageId}].resolutions.${size}.url`)
+      || deepGet(getDataStore(), `image_entities[${PREFIX}${profileImageId}].resolutions.original.url`) ;
   }
 
   getUserName (id) {
