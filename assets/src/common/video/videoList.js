@@ -101,7 +101,7 @@ class VideoList {
       video.bindEvents();
       this.autoPlayVideo( jModal );
       this.updateModalHeight();
-    }, 300);
+    }, 100);
   };
   
   pauseAllVideos = ( ) => {
