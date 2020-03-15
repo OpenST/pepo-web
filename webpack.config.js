@@ -8,13 +8,13 @@ const devConf = {
 };
 
 const prodConf = {
-  mode: 'none',
+  mode: 'development'
 };
 
 module.exports = env => {
-  
+
     const envConf = env.development ? devConf : prodConf;
-    
+
     return {
       ...envConf,
       entry: glob.sync('./assets/src/**.js').reduce((obj, el) => {
