@@ -36,7 +36,7 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
                         <p class="mb-0 desc"><%- DataGetters.getDescription(videoId) %></p>
                         <% } %>
                         <% if (DataGetters.getDisplayDescriptionLink(videoId)) { %>
-                        <a href="<%= DataGetters.getDisplayDescriptionLink(videoId) %>" class="desc-link" rel="noopener noreferrer nofollow" target="_blank"><%- DataGetters.getDisplayDescriptionLink(videoId) %></a>
+                        <a href="<%= DataGetters.getDescriptionLink(videoId) %>" class="desc-link" rel="noopener noreferrer nofollow" target="_blank"><%- DataGetters.getDisplayDescriptionLink(videoId) %></a>
                         <% } %>
                         <ul class="mt-3 list-unstyled channel-list web">
                             <% var channelList = DataGetters.getChannelList(videoId) %>
