@@ -1,6 +1,6 @@
 <%- include ../partials/web/home/_uberBanner -%>
 <% if (!currentUser.isLoggedIn()) {%>
-    <%- include('../partials/shared/_navBar', {pepoNav: "pepo-nav"}) -%>    
+    <%- include('../partials/shared/_navBar', {pepoNav: ""}) -%>
 <% } else{ %>
     <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
 <% } %>
