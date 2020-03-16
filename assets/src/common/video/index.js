@@ -22,18 +22,24 @@ class Video {
       const videoId = $(this).closest(".videoContainer").data("video-id"),
             jModal = $('#reportModal')
       ;
-      jModal.modal('show');
+      jModal.modal({
+        backdrop: !($('.modal.show').length > 0)
+      });
       jModal.data("video-id", videoId);
       e.stopPropagation();
     });
 
 
     $('.actionButtonsWeb .downloadApp, .channel-list.web .downloadApp').off(`click.${namespace}`).on(`click.${namespace}`, function () {
-      $('#downloadModal').modal('show');
+      $('#downloadModal').modal({
+        backdrop: !($('.modal.show').length > 0)
+      });
     });
 
     $('.actionButtonsMobile .downloadApp, .channel-list.mobile .downloadApp').off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
-      $('#downloadModalSingleCTA').modal('show');
+      $('#downloadModalSingleCTA').modal({
+        backdrop: !($('.modal.show').length > 0)
+      });
       e.stopPropagation();
     });
 
