@@ -60,12 +60,8 @@
         z-index: 1;
         width: 100%;
         position: absolute;
-        padding: 5px;
+        padding: 0 7px 7px;
         //background: linear-gradient(to top, transparent 60%, rgba(0, 0, 0, 0.1));
-
-        @media only screen and (min-width: 768px){
-          padding: 3px 5px;
-        }
       }
       .desc{
         color: #fff;
