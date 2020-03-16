@@ -22,6 +22,14 @@
   }
 }
 
+.videoDetailsContainerModalBody {
+  min-height: calc(100% - 58px);
+  max-height: inherit!important;
+  overflow: inherit!important;
+  @media only screen and (max-width: 767px){
+    height: 100%!important;
+  }
+}
 
 .videoDetailsContainer{
   min-height: calc(100% - 58px);
