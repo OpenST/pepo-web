@@ -62,7 +62,7 @@ class GetFeedUrl extends FirebaseUrlBase {
     let urlParams = oThis._getFirebaseCommonUrlParams();
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
-      st: 'Feed - Pepo',
+      st: 'Browse - Pepo',
       sd: coreConstants.DEFAULT_SHARE_DESCRIPTION,
       si: coreConstants.DEFAULT_SHARE_IMAGE,
       ofl: oThis._fetchOflLink()
