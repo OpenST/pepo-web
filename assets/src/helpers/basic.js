@@ -40,27 +40,11 @@ class BasicHelper {
   }
 
   copyToClipboard(str, context = null) {
-    let el = document.createElement('textarea');
-    el.value = str;
-    if(!context){
-      context = document.body;
-    }
-    context.appendChild(el);
-    el.select();
-    // For old iOS devices
-    let range = document.createRange();
-    range.selectNodeContents(el);
-    let sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-    el.setSelectionRange(0, el.value.length);
-    try{
-      document.execCommand('copy');
-    } catch (e) {
-      context.removeChild(el);
-      return 0;
-    }
-    context.removeChild(el);
+    var dummy = $('<input style="font-size: 3px; display: inline"/>').val(str).appendTo(context);
+    dummy[0].select();
+    dummy[0].setSelectionRange(0, 99999);
+    document.execCommand('copy');
+    dummy.remove();
     return 1;
   }
 
