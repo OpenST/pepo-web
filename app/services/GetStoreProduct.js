@@ -60,7 +60,8 @@ class GetStoreProducts extends ServiceBase {
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
-      oThis.serviceResp = resp
+      const resultType = resp.data.result_type;
+      oThis.serviceResp = responseHelper.successWithData(resp.data[resultType]);
     }
 
     return responseHelper.successWithData({});
