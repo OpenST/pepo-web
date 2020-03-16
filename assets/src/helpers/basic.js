@@ -36,7 +36,7 @@ class BasicHelper {
   }
 
   getVideoShareUrl(videoId) {
-    return `${window.location.protocol}/${window.location.hostname}/video/${videoId}?utm_source=share&utm_medium=video&utm_campaign=${videoId}`
+    return `${window.location.protocol}//${window.location.hostname}/video/${videoId}?utm_source=share&utm_medium=video&utm_campaign=${videoId}`
   }
 
   copyToClipboard(str, context = null) {
