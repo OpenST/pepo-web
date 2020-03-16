@@ -355,7 +355,7 @@ export default class SimpleDataTable {
   }
 
   createLoadingWrap ( jParent ) {
-    var jWrap = $('<div data-simple-table-end class="w-100" style="min-height: 1px;" ></div>');
+    var jWrap = $('<div data-simple-table-end class="w-100" style="min-height: 10px;" ></div>');
     //Do you magic here.
     var jContent = $(''
       + '<div class="container simple-data-table-loader mb-4" style="display: none;">'
