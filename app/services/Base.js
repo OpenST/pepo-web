@@ -82,7 +82,6 @@ class ServicesBase {
       }
     }
     oThis.currentUser = new CurrentUser(oThis.currentUserData);
-    console.log('==========oThis.currentUser=======================', oThis.currentUser);
   }
 }
 

@@ -38,7 +38,6 @@ const UserApi = require(rootPrefix + '/lib/pepoApi/User'),
 
   async getCurrentUserData(request) {
     let currentUserResponse = await new UserApi(request.headers).getCurrentUser({});
-    console.log('==========currentUserResponse============', currentUserResponse);
     return currentUserResponse;
   }
 }
