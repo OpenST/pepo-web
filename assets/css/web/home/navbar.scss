@@ -4,8 +4,18 @@
 // Import theme variables
 @import "../../web/Starboy/variables";
 
+.pepo-feed{
+  ul{
+    li:first-child{
+      a{
+        color: #ff5566!important;
+      }
+    }
+  }
+}
+
 .pepo-nav,
-.pepo-video{
+.pepo-feed{
   min-height: 58px;
   background-color: $white;
 

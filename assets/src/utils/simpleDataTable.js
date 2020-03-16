@@ -359,7 +359,7 @@ export default class SimpleDataTable {
     //Do you magic here.
     var jContent = $(''
       + '<div class="container simple-data-table-loader mb-4" style="display: none;">'
-        + '<div class="loader" style="margin-left: 50%;margin-right: 25px;">'
+        + '<div class="loader d-flex align-items-center justify-content-center">'
           + '<span class="pepo-loading-icon pepo-loader-scale"></span>'
         + '</div>'
       + '</div>'
