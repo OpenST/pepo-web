@@ -111,6 +111,10 @@ class GetChannel extends ServiceBase {
       channelDetails = oThis.apiResponseData['channel_details'][channelId],
       descriptionId = channelDetails['description_id'];
 
+    if(!descriptionId || !oThis.apiResponseData['texts'] || !oThis.apiResponseData['texts'][descriptionId]){
+      return '';
+    }
+
     return oThis.apiResponseData['texts'][descriptionId]['text'];
   }
 
@@ -129,9 +133,13 @@ class GetChannel extends ServiceBase {
       maxPositionToSplit = 120,
       channelId = oThis.apiResponseData['channel'].id,
       channelDetails = oThis.apiResponseData['channel_details'][channelId],
-      descriptionId = channelDetails['description_id'],
-      description = oThis.apiResponseData['texts'][descriptionId]['text'];
+      descriptionId = channelDetails['description_id'];
 
+    if(!descriptionId || !oThis.apiResponseData['texts'] || !oThis.apiResponseData['texts'][descriptionId]){
+      return;
+    }
+
+    const description = oThis.apiResponseData['texts'][descriptionId]['text'];
     if(maxPositionToSplit > description.length){
       return;
     }

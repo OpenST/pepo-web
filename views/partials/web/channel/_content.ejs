@@ -3,14 +3,14 @@
 channelId = apiResponseData['channel']['id']
 channelDetails = apiResponseData['channel_details'][channelId]
 taglineId = channelDetails['tagline_id']
-tagLine = apiResponseData['texts'][taglineId]['text']
+tagLine = (taglineId ? apiResponseData['texts'][taglineId]['text'] : '')
 
 coverImageId = channelDetails['cover_image_id']
 imageResolutions = apiResponseData['images'][coverImageId]['resolutions']
 channelImageUrl = imageResolutions['original']['url']
 
 descriptionId = channelDetails['description_id']
-description = apiResponseData['texts'][descriptionId]['convertedText']
+description = (descriptionId ? apiResponseData['texts'][descriptionId]['convertedText'] : '')
 
 channelStats = apiResponseData['channel_stats'][channelId]
 noOfMembers = channelStats['total_users']
