@@ -70,20 +70,27 @@ class CookieHelper {
   fetchUserUtmFromCookie(requestObj, responseObj, next) {
     let cookieVal = requestObj.signedCookies[cookieConstants.utmCookieName];
 
-    if (cookieVal) {
-      const arr = cookieVal.split(':');
-      for (let ind = 0; ind < arr.length; ind++) {
-        if (ind % 2 === 0) {
-          if (arr[ind] === 'uc') {
-            requestObj.decodedParams.utm_campaign = arr[ind + 1];
-          } else if (arr[ind] === 'um') {
-            requestObj.decodedParams.utm_medium = arr[ind + 1];
-          } else if (arr[ind] === 'us') {
-            requestObj.decodedParams.utm_source = arr[ind + 1];
+    if (!requestObj.decodedParams.utm_campaign &&
+      !requestObj.decodedParams.utm_medium &&
+      !requestObj.decodedParams.utm_source) {
+
+
+      if (cookieVal) {
+        const arr = cookieVal.split(':');
+        for (let ind = 0; ind < arr.length; ind++) {
+          if (ind % 2 === 0) {
+            if (arr[ind] === 'uc') {
+              requestObj.decodedParams.utm_campaign = arr[ind + 1];
+            } else if (arr[ind] === 'um') {
+              requestObj.decodedParams.utm_medium = arr[ind + 1];
+            } else if (arr[ind] === 'us') {
+              requestObj.decodedParams.utm_source = arr[ind + 1];
+            }
           }
         }
       }
     }
+
 
     next();
   }
