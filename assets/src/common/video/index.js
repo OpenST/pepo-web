@@ -63,21 +63,22 @@ class Video {
       }
     });
 
-    $('.pepoVideo').off(`play.${namespace}`).on(`play.${namespace}`, function(e){
-      let videoId = $(this).closest(".videoContainer").data('video-id');
+    $('.pepoVideo').off(`play.${namespace}`).on(`play.${namespace}`, function (e) {
       if (!this.videoStarted) {
         this.videoStarted = true;
-        oThis.sendVideoEvent(VIDEO_PLAY_START_EVENT_NAME , videoId );
         console.log(LOG_TAG, 'Video Started');
+        let videoId = $(this).closest(".videoContainer").data('video-id');
+        oThis.sendVideoEvent(VIDEO_PLAY_START_EVENT_NAME, videoId);
       }
-    }).off(`play.${namespace}`).on(`canplaythrough.${namespace}`, function(e){
-      //TODO @Sachin canplaythrough is not working.
-      // let videoId = $(this).closest(".videoContainer").data('video-id');
-      // if (!this.videoEnded) {
-      //   this.videoEnded = true;
-      //   oThis.sendVideoEvent(VIDEO_PLAY_END_EVENT_NAME , videoId);
-      //   console.log(LOG_TAG, 'Video Ended');
-      // }
+    }).off(`ended.${namespace}`).on(`ended.${namespace}`, function (e) {
+      const jEl = $(this).closest(".video-container-wrapper");
+      oThis.playVideo(jEl);
+      if (!this.videoEnded) {
+        this.videoEnded = true;
+        console.log(LOG_TAG, 'Video Ended');
+        let videoId = $(this).closest(".videoContainer").data('video-id');
+        oThis.sendVideoEvent(VIDEO_PLAY_END_EVENT_NAME, videoId);
+      }
     });
   };
 

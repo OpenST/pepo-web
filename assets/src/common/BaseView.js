@@ -1,4 +1,5 @@
 import CurrentUser from "../../src/model/CurrentUser" ;
+import  BrowserSdk from "../../src/libs/browserSdk";
 import {setDataStore} from "../model/DataStore";
 import SocketManager from "../../src/services/SocketManager";
 
