@@ -9,8 +9,8 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
             <% if (DataGetters.getDescription(videoId)) { %>
                 <span class="block-with-text desc mb-1"><%- DataGetters.getDescription(videoId) %></span>
             <% } %>
-            <% if (DataGetters.getDisplayDescriptionLink(videoId)) { %>
-              <a href="<%= DataGetters.getDisplayDescriptionLink(videoId) %>"
+            <% if (DataGetters.getDescriptionLink(videoId)) { %>
+              <a href="<%= DataGetters.getDescriptionLink(videoId) %>"
                  class="mb-2 desc mobile-link"
                  rel="noopener noreferrer nofollow"
                  target="_blank">

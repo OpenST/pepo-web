@@ -355,12 +355,14 @@ export default class SimpleDataTable {
   }
 
   createLoadingWrap ( jParent ) {
-    var jWrap = $('<div data-simple-table-end class="w-100" style="min-height: 1px;" ></div>');
+    var jWrap = $('<div data-simple-table-end class="w-100" style="min-height:10px;" ></div>');
     //Do you magic here.
     var jContent = $(''
       + '<div class="container simple-data-table-loader mb-4" style="display: none;">'
-      + '<div class="text-center">'
-      + '<img src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif" height="30" width="30"/>'
+      // + '<div class="text-center">'
+      // + '<img src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif" height="30" width="30"/>'
+      // + '<div class="loader-container">'  + '<span class="pepo-loading-inner"> <span class="pepo-loading-icon"></span> </span>'
+      + '<div class="loader" style="margin-left: 50%;margin-right: 25px;">' + '<span class="pepo-loading-icon pepo-loader-scale"></span>'
       + '</div>'
       + '</div>'
     );
