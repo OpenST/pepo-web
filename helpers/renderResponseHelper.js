@@ -31,16 +31,22 @@ class ResponseRenderer {
     oThis.populateCSRFToken(request, locals);
     oThis.populateSDKConfig(request, locals);
 
-    if ( !locals.pageMeta ) {
-      locals.pageMeta = oThis.getPageMeta( contentPartialPath );
+    let pageMetaFromLocals = locals.pageMeta;
+    let pageMetaFromApiResponse = (locals.apiResponseData && locals.apiResponseData.page_meta) ? locals.apiResponseData.page_meta : null;
+
+
+    if(pageMetaFromApiResponse) {
+      locals.pageMeta = Object.assign({}, oThis.getPageMeta( contentPartialPath ), pageMetaFromApiResponse);
+    } else if (pageMetaFromLocals) {
+      locals.pageMeta = Object.assign({}, oThis.getPageMeta( contentPartialPath ), pageMetaFromLocals)
     } else {
-      locals.pageMeta = Object.assign({}, oThis.getPageMeta( contentPartialPath ), locals.pageMeta)
+      locals.pageMeta = oThis.getPageMeta( contentPartialPath );
     }
 
     if ( !locals._contentPartial ) {
       locals._contentPartial = contentPartialPath;
     }
-    
+
     if ( !locals._endJSPartial ) {
       locals._endJSPartial = null;
     }
@@ -55,7 +61,7 @@ class ResponseRenderer {
 
     response.render(layout, locals, callback);
   }
-  
+
   populateSDKConfig(request, locals){
     if(locals.skipAppMeta) return;
     locals['appMeta'] = {
@@ -66,7 +72,7 @@ class ResponseRenderer {
       TRACKER_URL: coreConstants.PEPO_TRACKER_URL
     }
   }
-  
+
 
   populateCSRFToken(request, locals) {
     locals._CSRFToken = (typeof request.csrfToken == 'function' ? request.csrfToken() : '');

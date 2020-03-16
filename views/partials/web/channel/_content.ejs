@@ -1,0 +1,69 @@
+<%
+
+channelId = apiResponseData['channel']['id']
+channelDetails = apiResponseData['channel_details'][channelId]
+taglineId = channelDetails['tagline_id']
+tagLine = apiResponseData['texts'][taglineId]['text']
+
+coverImageId = channelDetails['cover_image_id']
+imageResolutions = apiResponseData['images'][coverImageId]['resolutions']
+channelImageUrl = imageResolutions['original']['url']
+
+descriptionId = channelDetails['description_id']
+description = apiResponseData['texts'][descriptionId]['convertedText']
+
+channelStats = apiResponseData['channel_stats'][channelId]
+noOfMembers = channelStats['total_users']
+noOfVideos = channelStats['total_videos']
+
+tagIds = channelDetails['tag_ids']
+tagDetails = apiResponseData['tags']
+%>
+
+<div class="container-fluid community-channel">
+    <div class="row">
+        <div class="col-12 mx-auto">
+            <div class="container p-0">
+                <div class="row community-wid-channel-desc">
+                    <div class="community-image col-12">
+                        <div class="content">
+                            <img src="<%= channelImageUrl %>" class="img-fluid cover-image"/>
+                            <div class="details py-lg-5 px-lg-6 p-3 d-flex justify-content-between flex-column">
+                                <div>
+                                    <h6 class="header block-with-text mb-1 mb-md-2"><%= apiResponseData['channel']['name'] %></h6>
+                                    <p class="desc block-with-text mb-0"><%= tagLine %></p>
+                                </div>
+                                <div class="d-flex">
+                                    <span class="desc" >
+                                        <span><%- noOfMembers %></span>
+                                        Members</span>
+                                    <span class="desc ml-5">
+                                        <span><%- noOfVideos %></span>
+                                        Videos</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <h6 class="mb-1 channel-description-about">About</h6>
+                        <p class="mb-0 d-none d-md-block channel-description-web"><%- description %></p>
+                        <p class="mb-0 d-block d-md-none channel-description-mobile"><%- description %></p>
+                    </div>
+                    <div class="list-parent w-100">
+                        <ul class="list-unstyled list-ul px-3 m-0 w-100">
+                            <li class=" d-inline-block py-2">All</li>
+                            <%
+                            for(let i=0;i<tagIds.length;i++) {
+                                tagDetail = tagDetails[tagIds[i]];
+                            %>
+                            <li class="d-inline-block ml-2 py-2">#<%- tagDetail['text'] %></li>
+                            <%  }%>
+                        </ul>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

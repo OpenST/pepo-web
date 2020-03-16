@@ -42,12 +42,20 @@
   "video": {
     "page": "Video",
     "robots": "index, follow",
-    "pageType":"video"
+    "pageType":"video",
+    "assets": {
+      "js_manifest" : true
+    }
   },
   "feed": {
     "page": "Feed",
     "robots": "index, follow",
     "pageType":"feed"
+  },
+  "channel": {
+    "page": "Channel",
+    "robots": "index, follow",
+    "pageType":"channel"
   },
   "webView":{
     "page" : "WebView",

@@ -5,7 +5,7 @@ const rootPrefix = '../..',
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  webRouteHelper = require(rootPrefix + '/routes/pepo/webRouteHelper');
+  webRouteHelper = require(rootPrefix + '/routes/pepo/helperBack');
 
 /* GET redemption products. */
 router.get('/products', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {

@@ -5,19 +5,20 @@ class NavBar {
 
     constructor(){
         this.jNavEl = null;
-        this.jUberBannerDesktop = null;
-        this.jUberBannerMobile = null;
+        this.jUberBanner = null;
         this.jNavPhantomEl = null;
+        this.jNavTogglerEl = null;
         this.heightTrigger = 0;
     }
 
     init(){
         this.jNavEl =  $('.pepo-nav');
-        this.jUberBannerDesktop = $('.uber-banner-desktop');
-        this.jUberBannerMobile = $('.uber-banner-mobile');
+        this.jUberBanner = $('.uber-banner');
         this.jNavPhantomEl = $('.navbar-phatom-el');
+        this.jNavTogglerEl = $('#navbarToggler');
 
         this.bindEvents();
+        this.fixedNavBarMenu();
     }
 
     bindEvents = () => {
@@ -51,14 +52,17 @@ class NavBar {
 
         $('#logoutApp').on('click',function (e) {
           let logoutModal = $('#logoutModal'),
-                loginType= $(this).attr('data-login-type');
+              arrowIcon   = logoutModal.closest('body').find('.downward-arrow-icon'),
+              loginType   = $(this).attr('data-login-type');
           logoutModal.modal({
             backdrop:false
           });
           logoutModal.modal('show');
+          arrowIcon.css({'transform': "rotate(180deg)"});
           $('body').off("click.logout").on('click.logout',function (e) {
             if(logoutModal.length !== 0 ){
               logoutModal.modal('hide');
+              arrowIcon.css({'transform': "rotate(0deg)"});
             }
           });
           $("#logoutBtn").off("click.logout").on("click.logout", function (e) {
@@ -73,10 +77,10 @@ class NavBar {
     }
 
     setupUberBanner = () => {
-        if(  this.jUberBannerDesktop.length === 0 && this.jUberBannerMobile.length === 0) {
+        if( this.jUberBanner && this.jUberBanner.length === 0 ) {
             this.heightTrigger = 0;
         } else {
-            this.heightTrigger = Math.max(this.jUberBannerDesktop.outerHeight(), this.jUberBannerMobile.outerHeight())
+            this.heightTrigger = this.jUberBanner.outerHeight();
         }
     }
 
@@ -86,9 +90,11 @@ class NavBar {
         if(scrollTop > this.heightTrigger){
             this.jNavPhantomEl.height( this.jNavEl.outerHeight() );
             this.jNavEl.addClass('nav-box-shadow fixed-top');
+            this.jNavTogglerEl.css({top: this.jNavEl.outerHeight()});
         } else{
             this.jNavPhantomEl.height( 0 );
             this.jNavEl.removeClass('nav-box-shadow fixed-top');
+            this.jNavTogglerEl.css({top: this.jNavEl.outerHeight() + this.jUberBanner.outerHeight()});
         }
 
     }

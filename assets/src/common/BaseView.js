@@ -1,15 +1,10 @@
 import CurrentUser from "../../src/model/CurrentUser" ;
-import  BrowserSdk from "../../src/libs/browserSdk";
-import dataStoreHelper from "../../src/libs/dataStoreHelper";
-import  ns from "../../src/libs/namespace";
+import {setDataStore} from "../model/DataStore";
 import SocketManager from "../../src/services/SocketManager";
-import deepGet from 'lodash/get';
 
 class BaseView {
 
   constructor( config ){
-    console.log(config.apiResponse,"config.apiResponse");
-    console.log(config);
     if(typeof config.apiResponse == "string"){
       config.apiResponse =  JSON.parse( config.apiResponse );
     }
@@ -28,7 +23,6 @@ class BaseView {
     });
   }
 
-
   initCurrentUser(apiResponse={}){
     CurrentUser.initUser(apiResponse["current_user_data"]);
   }
@@ -36,10 +30,7 @@ class BaseView {
 
   initDataStore(data){
     if(!data) return;
-    const pepo = ns("pepo");
-    const dataStore = pepo.dataStore || {};
-    pepo.dataStore = dataStoreHelper(data, dataStore);
-    console.log('pepo.dataStore', pepo.dataStore);
+    setDataStore(data);
   }
 
   initSdk(config, params){

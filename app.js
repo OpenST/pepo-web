@@ -180,7 +180,7 @@ app.use('/', function(request, response, next){
 const connectAssetConfig = {
   paths: [path.join(__dirname, 'assets/css'), path.join(__dirname, 'assets/js')],
   buildDir: path.join(__dirname, 'builtAssets'),
-  fingerprinting: true,
+  fingerprinting: (coreConstants.environment !== 'development'),
   servePath: 'assets'
 };
 

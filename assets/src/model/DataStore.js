@@ -14,6 +14,8 @@ import deepGet from 'lodash/get';
 import assignIn  from 'lodash/assignIn';
 
 
+let dataStore = {};
+
 
 // This is data store setter which checks for
 // whitelisted entities from response and set
@@ -116,39 +118,41 @@ function getEntitiesFromObj (resultObj, key = 'id'){
   return entities;
 };
 
-function parser_merge (oldState, newState)  {
-  return merge({}, oldState, newState);
+function parser_merge (oldData, newData)  {
+  return merge({}, oldData, newData);
 };
 
-function parser_direct_assign (oldState, newState) {
-  return newState;
+function parser_direct_assign (oldData, newData) {
+  return newData;
 };
 
-function parser_price_points (oldState, newState) {
+function parser_price_points (oldData, newData) {
   //Make sure price_points is not null;
-  if (!newState) {
-    return oldState;
+  if (!newData) {
+    return oldData;
   }
 
   // Make sure response has keys;
-  if ( !Object.keys(newState).length ) {
-    return oldState;
+  if ( !Object.keys(newData).length ) {
+    return oldData;
   }
 
+
+
   return {
-    ...oldState,
-    ...newState
+    ...oldData,
+    ...newData
   };
 };
 
-export default (responseData, data = {}) => {
+const setDataStore = (responseData) => {
 
 
   // Return cloned data if no data
-  if (!responseData) return {...data};
+  if (!responseData) return {...dataStore};
 
   // Clone data for later use
-  let newState = {...data};
+  let newData = {...dataStore};
 
   let whitelistedEntities = [];
 
@@ -170,13 +174,13 @@ export default (responseData, data = {}) => {
       if(appEntity) {
         if(typeof appEntity === 'string'){
           // Default processing (assignIn)
-          newState[appEntity] = assignIn({}, data[appEntity], getEntities(entityData));
+          newData[appEntity] = assignIn({}, dataStore[appEntity], getEntities(entityData));
           whitelistedEntities.push(entity);
         } else {
           // Parser based processing
           const appEntityKey = appEntity.key;
           if( appEntityKey && typeof appEntity.parser === 'function'){
-            newState[appEntityKey] = appEntity.parser(data[appEntityKey], getEntities(entityData));
+            newData[appEntityKey] = appEntity.parser(dataStore[appEntityKey], getEntities(entityData));
             whitelistedEntities.push(entity);
           }
         }
@@ -185,6 +189,17 @@ export default (responseData, data = {}) => {
     }
   }
   if(whitelistedEntities.length > 0) console.log('Upserting following whitelisted entities: ', whitelistedEntities);
-  return newState;
+
+  dataStore = newData;
+  console.log('==============newAppState=========================');
+  console.log(newData);
+  console.log('==============newAppState=========================');
+  return newData;
 
 };
+
+const getDataStore = () => {
+  return dataStore;
+};
+
+export {setDataStore, getDataStore};

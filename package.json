@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "webpack-dev": "webpack --watch --config webpack.config.js",
-    "webpack-build": "webpack --config webpack.config.js"
+    "webpack-dev": "webpack --watch --config webpack.config.js --env.development",
+    "webpack-build": "webpack --config webpack.config.js --env.production"
   },
   "dependencies": {
     "@ostdotcom/base": "^2.0.0",
@@ -26,12 +26,12 @@
     "node-sass": "4.13.0",
     "qs": "6.9.1",
     "sanitize-html": "1.19.3",
-    "unescape": "1.0.1"
+    "unescape": "1.0.1",
+    "socket.io-client": "2.3.0"
   },
   "devDependencies": {
     "@babel/cli": "7.0.0",
     "@babel/core": "7.7.7",
-    "@ostdotcom/ost-wallet-sdk-browser": "github:ostdotcom/ost-wallet-sdk-browser#pre-rc",
     "@babel/plugin-proposal-class-properties": "7.0.0",
     "@babel/plugin-proposal-export-default-from": "7.0.0",
     "@babel/plugin-transform-async-to-generator": "7.8.3",
@@ -48,7 +48,6 @@
     "html-loader": "^0.5.5",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.10.1",
-    "socket.io-client": "2.3.0"
+    "webpack-dev-server": "3.10.1"
   }
 }

@@ -35,6 +35,35 @@ class BasicHelper {
     return number instanceof BigNumber ? number : new BigNumber(number);
   }
 
+  getVideoShareUrl(videoId) {
+    return `${window.location.protocol}/${window.location.hostname}/video/${videoId}?utm_source=share&utm_medium=video&utm_campaign=${videoId}`
+  }
+
+  copyToClipboard(str, context = null) {
+    let el = document.createElement('textarea');
+    el.value = str;
+    if(!context){
+      context = document.body;
+    }
+    context.appendChild(el);
+    el.select();
+    // For old iOS devices
+    let range = document.createRange();
+    range.selectNodeContents(el);
+    let sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    el.setSelectionRange(0, el.value.length);
+    try{
+      document.execCommand('copy');
+    } catch (e) {
+      context.removeChild(el);
+      return 0;
+    }
+    context.removeChild(el);
+    return 1;
+  }
+
 }
 
 export default new BasicHelper();

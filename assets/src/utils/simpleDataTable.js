@@ -1,4 +1,6 @@
-import dataStoreHelper from "../libs/dataStoreHelper";
+require('../plugins/jquery-visible/jquery.visible');
+import {setDataStore}  from "../model/DataStore";
+
 import ns from "../libs/namespace";
 
 const  logMe = false;
@@ -319,9 +321,8 @@ export default class SimpleDataTable {
         , newResult       = null
         , oldResult       = null
       ;
-      const pepo = ns("pepo");
-      const dataStore = pepo.dataStore || {};
-      pepo.dataStore = dataStoreHelper(data, dataStore);
+
+      setDataStore(data);
 
       if ( newResults.length ) {
         for(var cnt = 0; cnt < newResults.length; cnt++ ) {
@@ -354,7 +355,7 @@ export default class SimpleDataTable {
   }
 
   createLoadingWrap ( jParent ) {
-    var jWrap = $('<div data-simple-table-end class="w-100"></div>');
+    var jWrap = $('<div data-simple-table-end class="w-100" style="min-height: 1px;" ></div>');
     //Do you magic here.
     var jContent = $(''
       + '<div class="container simple-data-table-loader mb-4" style="display: none;">'

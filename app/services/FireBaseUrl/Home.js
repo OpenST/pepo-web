@@ -28,18 +28,18 @@ class GetHomeUrl extends FirebaseUrlBase {
       url: url,
       pageMeta: {
         title: oThis.urlParams.st,
-        description: '',
-        robots: 'noindex, nofollow',
+        description: 'Real People. Real Connections.',
+        robots: 'index, follow',
         canonical: oThis._pepoHomeBaseUrl(),
         og: {
           title: oThis.urlParams.st,
-          description: '',
+          description: 'Real People. Real Connections.',
           image: oThis.urlParams.si,
           url: oThis._fetchAppLaunchLink()
         },
         twitter: {
           title: oThis.urlParams.st,
-          description: '',
+          description: 'Real People. Real Connections.',
           image: oThis.urlParams.si,
           card: "summary_large_image"
         }

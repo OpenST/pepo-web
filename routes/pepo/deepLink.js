@@ -5,7 +5,6 @@ const rootPrefix = '../..',
   deepLinkingConstants = require(rootPrefix + '/lib/globalConstant/deepLinking'),
   signinWithAppleConstants = require(rootPrefix + '/lib/globalConstant/signinWithApple');
 
-
 /* GET Deep linking for android. */
 router.get('/.well-known/assetlinks.json', async function (req, res) {
 
@@ -29,7 +28,6 @@ router.get('/.well-known/apple-developer-domain-association.txt', async function
 
   let apiResponse = signinWithAppleConstants.getAppleDeveloperDomainAssociation();
 
-  console.log('apiResponse', apiResponse);
   res.set('Content-Type', 'text/plain');
   res.status(200).send(apiResponse);
 });

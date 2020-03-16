@@ -1,4 +1,4 @@
-<% 
+<%
   const getPageTitle = (pageMeta) => {
 
     var defaultPageTitle = "Pepo";
@@ -7,9 +7,7 @@
     }
 
     var title = pageMeta.title.replace(/(- |)http(s|):\/\/.*\S/g, "").trim();
-    if ( pageMeta.page ) {
-      title = title + " | " + pageMeta.page;
-    }
+
     return title;
 
   }
@@ -22,7 +20,9 @@
 <% if(pageMeta.description) { %>
 <meta name="description" content="<%= pageMeta.description %>">
 <% } %>
+<% if(pageMeta.keywords) { %>
 <meta name="keywords" content="<%= pageMeta.keywords %>">
+<% } %>
 <meta name="robots" content="<%= pageMeta.robots%>">
 <link rel="canonical" href="<%= pageMeta.canonical %>" />
 

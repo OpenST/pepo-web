@@ -2,7 +2,7 @@
 @import "../../plugins/bootstrap/scss/functions";
 
 // Import theme variables
-@import "../../web/Starboy/variables";
+@import "../Starboy/variables";
 
 
 @mixin aspect-ratio($width, $height) {
@@ -23,14 +23,14 @@
 }
 
 
-.feedContainer{
+.videoDetailsContainer{
   min-height: calc(100% - 58px);
   background-color: #f9f9f9;
   .container{
     max-width: 1000px;
   }
-  .feedUnordered{
-    .feedContainerInner{
+  .videoUnordered{
+    .videoContainerInner{
       @include aspect-ratio(10, 16);
       padding: 0;
       overflow: hidden;
@@ -67,9 +67,11 @@
         z-index: 1;
         width: 100%;
         position: absolute;
-        padding: 0 5px 6px;
+        padding: 5px;
+        //background: linear-gradient(to top, transparent 60%, rgba(0, 0, 0, 0.1));
+
         @media only screen and (min-width: 768px){
-          padding: 0 8px 6px;
+          padding: 3px 5px;
         }
       }
       .desc{
@@ -79,6 +81,38 @@
         line-height: initial;
         //display: inline-block;
       }
+    }
+  }
+  .next-video{
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translate(0, -50%);
+    font-size: 10px;
+    pointer-events: auto;
+  }
+  .prev-video{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(0, -50%);
+    font-size: 10px;
+    pointer-events: auto;
+  }
+  @media only screen and (max-width: 1024px) {
+    .next-video{
+      position: absolute;
+      top: 50%;
+      right: -40px;
+      transform: translate(0, -50%);
+      font-size: 0;
+    }
+    .prev-video{
+      position: absolute;
+      top: 50%;
+      left: -40px;
+      transform: translate(0, -50%);
+      font-size: 0;
     }
   }
 
@@ -95,6 +129,7 @@
         left: 0;
         width: 50px;
         height: 50px;
+        object-fit: cover;
         position: absolute;
         border-radius: 50%;
       }
@@ -149,6 +184,7 @@
   }
 
   .video-action-list{
+    pointer-events: auto;
     > li {
       font-size: 0;
       cursor: pointer;
@@ -163,16 +199,22 @@
 
 }
 
-#feedModal{
+#videoDetailsModal{
   .modal-dialog{
-    max-width: 70%;
-    //max-height: 100%;
-    //margin: 0 auto;
+    margin: 0;
+    @media only screen and (min-width: 768px){
+      max-width: 70%;
+      margin: auto;
+    }
     .modal-content{
       padding: 0;
       border: none;
       pointer-events: none;
       background-color: transparent;
+      height: 100%;
+      @media only screen and (min-width: 768px){
+        height: auto;
+      }
     }
   }
 }
@@ -197,9 +239,12 @@
 }
 
 .toast {
-  top: 78px;
+  top: 50px;
+  @media only screen and (min-width: 768px){
+    top: 78px;
+  }
   left: 50%;
-  z-index:2;
+  //z-index: 1051;
   border-radius: 5px;
   position: absolute;
   background-color: $white;
@@ -226,13 +271,14 @@
 
 .channel-list{
   &.mobile{
+    font-size: 0;
     overflow: auto;
     white-space:nowrap;
     width: calc(100vw - 80px);
   }
   > li {
     display: inline-block;
-    margin: 0 5px 12px 0;
+    margin: 0 10px 12px 0;
     a {
       color: $white;
       border: none;
@@ -327,8 +373,32 @@
 .block-with-text {
   display: -webkit-box;
   max-width: 100%;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
+  @media screen and (min-width: 768px){
+    -webkit-line-clamp: 3;
+  }
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.profileImage{
+  left: 0;
+  width: 20px;
+  top:0;
+  height: 20px;
+  position: absolute;
+  border-radius: 50%;
+}
+
+#videoDetailsModal {
+  body.modal-open & {
+    font-size: 0;
+    height: 100%;
+  }
+}
+
+.toast.show {
+  body.modal-open & {
+    z-index: 1051;
+  }
 }
