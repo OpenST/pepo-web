@@ -1,5 +1,6 @@
 
 import OstWalletSdk from '@ostdotcom/ost-wallet-sdk-browser'
+import OstSetupDeviceDelegate from '@ostdotcom/ost-wallet-sdk-browser';
 
 //TODO lets see
 const sdkConfig = {
@@ -12,6 +13,7 @@ class BrowserSdk {
 
   constructor(){
     OstWalletSdk.init( sdkConfig );
+    const sdkDelegate = new OstSetupDeviceDelegate();
   }
 
 
