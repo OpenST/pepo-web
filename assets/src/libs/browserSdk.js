@@ -1,4 +1,7 @@
-const LOG_TAG = "BrowserSdk";
+import CurrentUser from "../../src/model/CurrentUser" ;
+import CreateSessionHelper from "../../src/services/CreateSessionHelper";
+
+const LOG_TAG = "BrowserSdk ::";
 
 class BrowserSdk {
 
@@ -14,27 +17,54 @@ class BrowserSdk {
     }
   }
   
-  init( sdkConfig, params ){
+  init( sdkConfig ){
     const oThis = this;
     this.sdkConfig = this.getConfig(sdkConfig["TOKEN_ID"] , sdkConfig["PLATFORM_API_ENDPOINT"] , sdkConfig["SDK_ENV"]);
+    const userData = CurrentUser.getUserData();
     OstWalletSdk.init(this.sdkConfig).then((res)=> {
       console.log("OstWalletSdk.init : ", res);
-      oThis.setupDeviceWorkflow(params);
+      if(userData){
+        return oThis.setupDeviceWorkflow(userData);
+      }
+    })
+    .then(()=>{
+      oThis.createSessionHelper = new CreateSessionHelper(userData);
+    })
+    .catch((err)=>{
+      console.error(err);
     })
   }
 
-  setupDeviceWorkflow( config ){
+  setupDeviceWorkflow( userData ){
     const oThis = this;
+    let _resolve, _reject;
     const sdkDelegate = new OstSetupDeviceDelegate();
     console.log("sdkDelegate=",sdkDelegate);
     sdkDelegate.registerDevice = function( apiParams ) {
       console.log("registerDevice");
       return oThis.postRegisterDevice(apiParams);
     };
-    const user_id = config.logged_in_user.user_id;
-    const ost_user_id = config.users[user_id].ost_user_id;
-    const ost_token_id = config.token.ost_token_id;
-    OstWalletSdk.setupDevice(ost_user_id, ost_token_id, sdkDelegate);
+
+    //Define flowComplete
+    sdkDelegate.flowComplete = (ostWorkflowContext , ostContextEntity ) => {
+      _resolve( ostContextEntity );
+    };
+
+    //Define flowInterrupt
+    sdkDelegate.flowInterrupt = (ostWorkflowContext , ostError) => {
+      _reject( ostError );
+    };
+
+    const user_id = userData.logged_in_user.user_id;
+    const ost_user_id = userData.users[user_id].ost_user_id;
+    const ost_token_id = userData.token.ost_token_id;
+    
+    return new Promise( (res,rej) => {
+      _resolve = res;
+      _reject  = rej;
+
+      OstWalletSdk.setupDevice(ost_user_id, ost_token_id, sdkDelegate);
+    });
   }
 
   postRegisterDevice(apiParams) {

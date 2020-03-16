@@ -71,6 +71,12 @@ class NavBar {
             e.preventDefault();
             e.stopPropagation();
           });
+
+          $('#createSession').on('click', function(e){
+            let createSessionModal = $('#create-session-modal');
+            createSessionModal.modal('show');
+          });
+
           e.preventDefault();
           e.stopPropagation();
         })

@@ -5,6 +5,7 @@ class  CurrentUser {
 
   constructor(){
     this.user = null;
+    this.userData = null;
   }
 
   initUser(currentUserData){
@@ -36,7 +37,13 @@ class  CurrentUser {
     this.user = Object.assign({}, loggedInUserData, loggedInUser);
 
     this.userId = loggedInUser.id;
+
+    this.userData = currentUserData;
     
+  }
+
+  getUserData() {
+    return this.userData;
   }
 
   getUserId() {
