@@ -15,7 +15,7 @@ class BaseView {
     if(!this.config) return;
     this.initCurrentUser( config.apiResponse );
     this.initDataStore( config.apiResponse  );
-    this.initSdk(config.appMeta);
+    this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
     this.initPixelDrop(config.appMeta);
 
     $(document).ready(() => {
@@ -33,9 +33,9 @@ class BaseView {
     setDataStore(data);
   }
 
-  initSdk(config){
-    if(!config || true) return;
-    //BrowserSdk.init(config);
+  initSdk(config, params){
+    if(!config) return;
+    BrowserSdk.init(config, params);
   }
 
   initPixelDrop(config){
