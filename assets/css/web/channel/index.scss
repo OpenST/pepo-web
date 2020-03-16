@@ -31,7 +31,6 @@
       li{
         color: $valhalla;
         font-size: 12px;
-        font-family: AvenirNext-Regular;
         font-weight: $font-weight-normal;
         &:last-child{
           margin-right: 15px;
@@ -67,7 +66,6 @@
       color: $white;
     }
     .desc{
-      font-family:  AvenirNext-Regular;
       font-weight: $font-weight-normal;
       font-size: 12px;
       @media screen and (min-width: 768px){
@@ -80,7 +78,7 @@
     }
     .header{
       font-weight: $font-weight-normal;
-      font-family: AvenirNext-DemiBold;
+      font-family: "AvenirNext-DemiBold", Source Sans Pro, sans-serif;
       font-size: 14px;
       @media screen and (min-width: 768px){
         font-size: $font-size-base;
@@ -89,7 +87,6 @@
     @media screen and (min-width: 768px){
       .desc{
         font-weight: $font-weight-normal;
-        font-family: AvenirNext-Regular;
         font-size: $font-size-base;
         span{
           font-weight: 500;
@@ -98,7 +95,7 @@
       }
       .header{
         font-weight: $font-weight-600;
-        font-family: AvenirNext-DemiBold;
+        font-family: "AvenirNext-DemiBold", Source Sans Pro, sans-serif;
         font-size: $font-size-lg;
       }
     }
@@ -110,7 +107,6 @@
     .channel-description-web, .channel-description-mobile{
       color: $valhalla;
       font-weight: $font-weight-normal;
-      font-family: AvenirNext-Regular;
       font-size: 12px;
       @media screen and (min-width: 768px){
         font-size: 14px;
@@ -142,7 +138,7 @@
   .channel-description-about{
     color: $valhalla;
     font-weight: 600;
-    font-family: AvenirNext-DemiBold;
+    font-family: "AvenirNext-DemiBold", Source Sans Pro, sans-serif;
     font-size: 14px;
   }
 
