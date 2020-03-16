@@ -9,7 +9,7 @@ const rootPrefix = '../..',
 
 class GetStoreProducts extends ServiceBase {
   /**
-   * Constructor for Pre Launch User account details
+   * Constructor
    *
    * @augments ServiceBase
    *
@@ -46,7 +46,7 @@ class GetStoreProducts extends ServiceBase {
   }
 
   /**
-   * Fetch products
+   * Fetch products.
    *
    * @return {Promise<Result>}
    * @private
@@ -57,10 +57,14 @@ class GetStoreProducts extends ServiceBase {
     let redemptionApiObj = new StoreRedemptionApi(oThis.headers);
     let resp = await redemptionApiObj.getProductList(oThis.decodedParams);
 
+    let serviceResponse = {};
+
     if (resp.isFailure()) {
       return Promise.reject(resp);
     } else {
-      oThis.serviceResp = resp
+      const resultType = resp.data.result_type;
+      serviceResponse = resp.data[resultType];
+      oThis.serviceResp = responseHelper.successWithData(serviceResponse);
     }
 
     return responseHelper.successWithData({});

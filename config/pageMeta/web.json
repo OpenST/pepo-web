@@ -1,11 +1,7 @@
 {
   "home": {
-    "page": ""
-  },
-  "account": {
-    "page": "Account",
-    "canonical": "https://pepo.com/account",
-    "robots": "noindex, nofollow"
+    "page": "",
+    "pageType":"home"
   },
   "doptin": {
     "page": "Double Optin",
@@ -45,6 +41,28 @@
   },
   "video": {
     "page": "Video",
-    "robots": "noindex, nofollow"
+    "robots": "index, follow",
+    "pageType":"video",
+    "assets": {
+      "js_manifest" : true
+    }
+  },
+  "feed": {
+    "page": "Feed",
+    "robots": "index, follow",
+    "pageType":"feed"
+  },
+  "channel": {
+    "page": "Channel",
+    "robots": "index, follow",
+    "pageType":"channel"
+  },
+  "webView":{
+    "page" : "WebView",
+    "robots": "noindex, nofollow",
+    "assets": {
+      "js_manifest" : true,
+      "css_manifest" : false
+    }
   }
 }

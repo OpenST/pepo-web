@@ -1,6 +1,20 @@
-<%#- include ../partials/web/shared/_navBar -%>
-<%- include('../partials/shared/_navBar', {pepoNav: "pepo-nav"}) -%>
-<%#- include ../partials/web/home/_appPage -%>
+<%- include ../partials/web/home/_uberBanner -%>
+<% if (!currentUser.isLoggedIn()) {%>
+    <%- include('../partials/shared/_navBar', {pepoNav: ""}) -%>
+<% } else{ %>
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
+<% } %>
 <%- include ../partials/web/home/_content -%>
 <%- include ../partials/web/home/_sideBySide -%>
 <%- include ../partials/shared/_modals %>
+<%- include ../partials/shared/_svg_sprite_common.ejs%>
+
+
+<script type="text/javascript">
+    window.onload = function () {
+      new pepo.home({
+        "apiResponse"  : <%- JSON.stringify(apiResponseData) %>,
+        "appMeta" : <%- JSON.stringify(appMeta)%>
+      });
+    }
+</script>

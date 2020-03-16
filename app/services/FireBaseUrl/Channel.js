@@ -15,6 +15,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
 
     const oThis = this;
     oThis.permalink = oThis.decodedParams.permalink;
+    oThis.channelShareDetails = params.channelShareDetails;
   }
 
   /**
@@ -26,47 +27,29 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
   async _asyncPerform() {
     const oThis = this;
 
-    await oThis._fetchChannelShareDetails();
-
     const url = oThis._generateFireBaseUrl();
 
     return responseHelper.successWithData({
       url: url,
       pageMeta: {
         title: oThis.urlParams.st,
-        description: '',
-        robots: 'noindex, nofollow',
+        description: oThis.urlParams.sd,
+        robots: 'index, follow',
         canonical: oThis._channelBaseUrl(),
         og: {
           title: oThis.urlParams.st,
-          description: '',
+          description: oThis.urlParams.sd,
           image: oThis.urlParams.si,
           url: oThis._fetchAppLaunchLink()
         },
         twitter: {
           title: oThis.urlParams.st,
-          description: '',
+          description: oThis.urlParams.sd,
           image: oThis.urlParams.si,
           card: "summary_large_image"
         }
       }
     });
-  }
-
-  /**
-   * Fetch video share details
-   *
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _fetchChannelShareDetails() {
-    const oThis = this;
-
-    let shareResponse = await new ChannelShareDetails({}).getChannelShareDetails({channel_permalink: oThis.permalink});
-    if(shareResponse.success){
-      let resultType = shareResponse.data.result_type;
-      oThis.channelShareDetails = shareResponse.data[resultType];
-    }
   }
 
   /**
@@ -82,7 +65,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
       st: oThis.channelShareDetails.title || '',
-      sd: oThis.channelShareDetails.message ? oThis.channelShareDetails.message : coreConstants.DEFAULT_SHARE_DESCRIPTION,
+      sd: oThis.channelShareDetails.description ? oThis.channelShareDetails.description : coreConstants.DEFAULT_SHARE_DESCRIPTION,
       si: oThis.channelShareDetails.poster_image_url ? oThis.channelShareDetails.poster_image_url : coreConstants.DEFAULT_SHARE_IMAGE,
       ofl: oThis._fetchOflLink()
     });

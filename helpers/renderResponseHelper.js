@@ -1,27 +1,54 @@
-const rootPrefix = "../";
+const rootPrefix = "..";
 
 // All Requires
 const pageMetaProvider = require(rootPrefix + "/config/pageMetaProvider"),
-      coreConstants = require(rootPrefix + '/config/coreConstants');
+  coreConstants = require(rootPrefix + '/config/coreConstants');
 
 class ResponseRenderer {
 
+  /**
+   *
+   * @param contentPartialPath
+   * @returns {*}
+   */
   getPageMeta( contentPartialPath ) {
     return pageMetaProvider(contentPartialPath);
   }
 
-  renderWithLayout(request, response, layout, contentPartialPath, locals, callback) {
-    locals = locals || {};
-    this.populateCSRFToken(request, locals);
+  /**
+   *
+   * @param request
+   * @param response
+   * @param layout
+   * @param contentPartialPath
+   * @param locals
+   * @param callback
+   */
+  async renderWithLayout(request, response, layout, contentPartialPath, locals, callback) {
+    const oThis = this;
 
-    if ( !locals.pageMeta ) {
-      locals.pageMeta = this.getPageMeta( contentPartialPath );
+    locals = locals || {};
+    oThis.populateCSRFToken(request, locals);
+    oThis.populateSDKConfig(request, locals);
+
+    let pageMetaFromLocals = locals.pageMeta;
+    let pageMetaFromApiResponse = (locals.apiResponseData && locals.apiResponseData.page_meta) ? locals.apiResponseData.page_meta : null;
+
+
+    if(pageMetaFromApiResponse) {
+      locals.pageMeta = Object.assign({}, oThis.getPageMeta( contentPartialPath ), pageMetaFromApiResponse);
+    } else if (pageMetaFromLocals) {
+      locals.pageMeta = Object.assign({}, oThis.getPageMeta( contentPartialPath ), pageMetaFromLocals)
     } else {
-      locals.pageMeta = Object.assign({}, this.getPageMeta( contentPartialPath ), locals.pageMeta)
+      locals.pageMeta = oThis.getPageMeta( contentPartialPath );
     }
 
     if ( !locals._contentPartial ) {
       locals._contentPartial = contentPartialPath;
+    }
+
+    if ( !locals._endJSPartial ) {
+      locals._endJSPartial = null;
     }
 
     if ( !locals._environment ) {
@@ -35,9 +62,22 @@ class ResponseRenderer {
     response.render(layout, locals, callback);
   }
 
-  populateCSRFToken(request, locals) {
-    locals._CSRFToken = request.csrfToken();
+  populateSDKConfig(request, locals){
+    if(locals.skipAppMeta) return;
+    locals['appMeta'] = {
+      TOKEN_ID : coreConstants.PEPO_TOKEN_ID,
+      PLATFORM_API_ENDPOINT : coreConstants.PEPO_PLATFORM_API_ENDPOINT,
+      SDK_ENV: coreConstants.PEPO_SDK_ENV,
+      TRACKER_ENDPOINT: coreConstants.PEPO_TRACKER_ENDPOINT,
+      TRACKER_URL: coreConstants.PEPO_TRACKER_URL
+    }
   }
+
+
+  populateCSRFToken(request, locals) {
+    locals._CSRFToken = (typeof request.csrfToken == 'function' ? request.csrfToken() : '');
+  }
+
 }
 
 

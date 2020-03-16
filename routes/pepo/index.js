@@ -6,14 +6,19 @@ const router = express.Router(),
 
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  staticContentsRoute = require(rootPrefix + '/routes/pepo/staticContents'),
-  homeRouter = require(rootPrefix + '/routes/pepo/home'),
-  inviteCodesRouter = require(rootPrefix + '/routes/pepo/inviteCodes'),
-  usersRouter = require(rootPrefix + '/routes/pepo/users'),
-  redemptionsRouter = require(rootPrefix + '/routes/pepo/redemptions'),
-  supportRouter = require(rootPrefix + '/routes/pepo/support'),
-  pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
+  deepLinkRoutes = require(rootPrefix + '/routes/pepo/deepLink'),
+  staticRoutes = require(rootPrefix + '/routes/pepo/static'),
+  videoRoutes = require(rootPrefix + '/routes/pepo/video'),
+  replyRoutes = require(rootPrefix + '/routes/pepo/reply'),
+  communityRoutes = require(rootPrefix + '/routes/pepo/communities'),
+  tagRoutes = require(rootPrefix + '/routes/pepo/tags'),
+  homeRoutes = require(rootPrefix + '/routes/pepo/home'),
+  permalinkRoutes = require(rootPrefix + '/routes/pepo/permalink'),
+  inviteCodesRoutes = require(rootPrefix + '/routes/pepo/inviteCodes'),
+  redemptionsRoutes = require(rootPrefix + '/routes/pepo/redemptions'),
+  supportRoutes = require(rootPrefix + '/routes/pepo/support'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+  cookieHelper = require(rootPrefix + '/helpers/cookie'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
 
 const basicAuthentication = function(req, res, next) {
@@ -56,21 +61,41 @@ const csrfProtection = csrf({
   }
 });
 
-router.use('/', staticContentsRoute);
+// Deep link routes should be above basic auth.
+router.use('/', deepLinkRoutes);
 
 // Add basic auth in chain
 router.use(basicAuthentication);
+
+router.use('/', staticRoutes);
 
 router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 
 router.use(csrfProtection);
 
-router.use(pagePathConstants.support, supportRouter); // Don't move it after home routes. permalink will match it for anything
+router.use(cookieHelper.setUserUtmCookie);
 
-router.use(pagePathConstants.home, inviteCodesRouter);
+router.use(cookieHelper.fetchUserUtmFromCookie);
 
-router.use(pagePathConstants.home, homeRouter);
-// router.use(pagePathConstants.account, usersRouter);
-router.use(pagePathConstants.redemptions, redemptionsRouter);
+router.use('/support', supportRoutes);
+
+router.use('/redemptions', redemptionsRoutes);
+
+router.use('/video', videoRoutes);
+
+router.use('/reply', replyRoutes);
+
+router.use('/communities', communityRoutes);
+
+router.use('/tags', tagRoutes);
+
+router.use('/', inviteCodesRoutes);
+
+router.use('/', homeRoutes);
+
+// IMPORTANT NOTE: Please keep '/:permalink' route at the END.
+router.use('/', permalinkRoutes);
+
+
 
 module.exports = router;

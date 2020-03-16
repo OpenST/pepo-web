@@ -1,0 +1,41 @@
+<nav class="<%= pepoNav %> container-fluid">
+    <span class="row align-items-center justify-content-between" style="min-height: 58px;padding: 0 15px">
+        <a class="pepo-brand" href="/" title="Pepo">
+            <span class="pepo-logo-nav"></span>
+        </a>
+        <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-3" id="navbarToggler">
+
+            <li id="logoutApp" data-login-type="<%= currentUser.getLoginType() %>" class="user-info d-flex align-items-center" style="min-width: 200px">
+                <span class="position-relative d-none d-md-block" style="font-size: 0">
+                    <span class="nav-bar-user-empty-profile-icon"></span>
+                    <img src="<%= currentUser.getUserProfileImage() %>" class="user-profile-icon"/>
+                </span>
+                <span class="ml-2 d-none d-md-block" style="font-family: AvenirNext-Medium;color: #ff5566"><%= currentUser.getUserName() %></span>
+                <span class="downward-arrow-icon downward-arrow-animation ml-auto d-none d-md-block"></span>
+                <span class="d-block d-md-none d-flex align-items-center p-3 justify-content-between w-100" style="color: #ff5566; font-family: AvenirNext-Medium">Logout<span class="login-icon mr-2"></span></span>
+            </li>
+
+        </ul>
+        <label for="tm" id="toggle-menu" class="mb-0 navbar-toggler" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="d-flex align-items-center">
+                <span class="position-relative" style="font-size: 0">
+                    <span class="nav-bar-user-empty-profile-icon"></span>
+                    <img src="<%= currentUser.getUserProfileImage() %>" class="user-profile-icon"/>
+                </span>
+             </span>
+        </label>
+        <!--<div class="row align-items-center ml-auto mr-1 logged-in">-->
+            <!--<svg width="24" height="24" class="mr-1">-->
+                <!--<switch>-->
+                    <!--<use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#wallet-icon"></use>-->
+                <!--</switch>-->
+            <!--</svg>-->
+            <!--<span class="mr-4">123</span>-->
+            <!--<div >-->
+
+            <!--</div>-->
+        <!--</div>-->
+    </span>
+</nav>
+
+<div class="navbar-phatom-el"></div>

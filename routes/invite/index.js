@@ -10,6 +10,7 @@ const rootPrefix = '../..',
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   GetFirebaseInviteUrl = require(rootPrefix + '/app/services/FireBaseUrl/Invite'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
+  cookieHelper = require(rootPrefix + '/helpers/cookie'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
 
 const errorConfig = basicHelper.fetchErrorConfig();
@@ -31,12 +32,34 @@ router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));
 
 router.use(csrfProtection);
 
-router.get('*', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+/**
+ * Parse and set invite code in cookie
+ *
+ * @param req
+ * @param res
+ * @param next
+ */
+const parseInviteCode = function (req, res, next) {
   // Extract invite code from url
   // Step 1: Remove first and last slash from path, if present.
   const parsedPath = req.path.replace(/\/*$/, "").replace(/^\/*/, "").trim();
   // Step 2: If parsedPath doesn't contain slash and is not blank, then consider it as invite code.
-  req.decodedParams.code = (parsedPath === '' || parsedPath.includes('/')) ? '' : parsedPath;
+
+  if (parsedPath === '' || parsedPath.includes('/')) {
+    req.decodedParams.code = '';
+  } else {
+    //set cookie
+    req.decodedParams.code = parsedPath;
+    cookieHelper.setInviteCookie(res, req.decodedParams.code);
+  }
+
+  next();
+};
+
+router.use(parseInviteCode, cookieHelper.setUserUtmCookie);
+router.use(cookieHelper.fetchUserUtmFromCookie);
+
+router.get('*', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
   // Process the data received in req.body.
   const apiResponse = await new GetFirebaseInviteUrl({decodedParams: req.decodedParams}).perform();

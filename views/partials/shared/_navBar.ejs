@@ -1,27 +1,13 @@
-<%
-ost_watch_link = "https://ostwatch.com/mainnet"
-calendly_link = "https://calendly.com/ostdotcom"
-%>
-<nav class="<%= pepoNav %> container-fluid">
-    <div class="row align-items-center" style="min-height: 58px;padding: 0 15px;">
+<nav class="<%= pepoNav %> pepo-nav container-fluid">
+    <div class="row align-items-center" style="min-height: 58px;padding: 0 15px">
         <a class="pepo-brand" href="/" title="Pepo">
             <span class="pepo-logo-nav"></span>
         </a>
-        <div class="nav-item-wrapper ml-auto">
-            <% if (firebaseUrls.openInApp) { %>
-                <a href="<%= firebaseUrls.openInApp %>" class="downloadApp main-nav-item d-app-nav-item d-inline-block d-md-none mobile" title="Open in App" rel="noopener noreferrer nofollow">Open in App</a>
-            <% } else if (firebaseUrls.getTheApp) { %>
-                <a href="<%= firebaseUrls.getTheApp %>" class="downloadApp main-nav-item d-app-nav-item d-inline-block d-md-none mobile" title="Get the App" rel="noopener noreferrer nofollow">Get the App</a>
-            <% } %>
-            <a href="javascript:void(0)" rel="noopener noreferrer nofollow" class="downloadApp main-nav-item d-app-nav-item d-none d-md-inline-block web" title="Get the App">Get the App</a>
-        </div>
-        <label for="tm" id="toggle-menu" class="mb-0 navbar-toggler" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="toggle-menu"></span>
-            <span class="toggle-menu"></span>
-            <span class="toggle-menu"></span>
-        </label>
-        <input type="checkbox" id="tm">
-        <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse" style="" id="navbarToggler">
+        <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-3" id="navbarToggler">
+
+            <li class="nav-item-wrapper">
+                <a href="/feed" class="main-nav-item" title="Browse">Browse</a>
+            </li>
 
             <li class="nav-item-wrapper">
                 <a href="https://medium.com/@thepepoapp" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item" title="Blog">Blog</a>
@@ -32,15 +18,35 @@ calendly_link = "https://calendly.com/ostdotcom"
             </li>
 
             <li class="nav-item-wrapper">
-                <a href="https://www.notion.so/ostdotcom/Pepo-Webhooks-6d1681c40d0d4699888a3dd09efb93a4" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item" title="Webhooks">Webhooks</a>
+                <a href="https://www.notion.so/ostdotcom/Pepo-Webhooks-6d1681c40d0d4699888a3dd09efb93a4" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item d-block d-md-none d-lg-block" title="Webhooks">Webhooks</a>
             </li>
 
             <li class="nav-item-wrapper">
-                <a href="https://ost.com/" target="_blank" rel="noopener noreferrer nofollow" class="main-nav-item" title="Ost Technology">Ost Technology</a>
+                <a href="https://ost.com/" target="_blank" class="main-nav-item" title="Ost Technology">Ost Technology</a>
             </li>
 
-        </ul>
+            <!--<li class="nav-item-wrapper logInOut mx-3 mb-3 d-block d-md-none">-->
+                <!--<a href="" class="main-nav-item p-0 d-flex align-items-center justify-content-between" title="Login">Login<span class="login-icon"></span></a>-->
+            <!--</li>-->
 
+        </ul>
+        <div class="nav-item-wrapper ml-auto d-flex align-items-center">
+            <% if (firebaseUrls.openInApp) { %>
+                <a href="<%= firebaseUrls.openInApp %>" class="downloadApp main-nav-item d-app-nav-item d-inline-block d-md-none mobile" title="Open in App" rel="noopener noreferrer nofollow">Open in App</a>
+            <% } else if (firebaseUrls.getTheApp) { %>
+                <a href="<%= firebaseUrls.getTheApp %>" class="downloadApp main-nav-item d-app-nav-item d-inline-block d-md-none mobile" title="Get the App" rel="noopener noreferrer nofollow">Get the App</a>
+            <% } %>
+            <a href="javascript:void(0)" rel="noopener noreferrer nofollow" class="downloadApp main-nav-item d-app-nav-item d-none d-md-inline-block web mr-0" title="Get the App">Get the App</a>
+            <!--<a href="javascript:void(0)" class="loginApp main-nav-item d-app-nav-item-secondary d-none d-md-inline-block" title="Login">Login</a>-->
+        </div>
+        <label for="tm" id="toggle-menu" class="mb-0 navbar-toggler" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
+            <span>
+                <span class="toggle-menu"></span>
+                <span class="toggle-menu"></span>
+                <span class="toggle-menu"></span>
+            </span>
+        </label>
+        <input type="checkbox" id="tm">
     </div>
 </nav>
 

@@ -64,7 +64,7 @@ class GetFirebaseReplyVideoUrl extends FirebaseUrlBase {
   async _fetchReplyVideoShareDetails() {
     const oThis = this;
 
-    let replyVideoShareResponse = await new ReplyVideoShareDetails({}).getReplyVideoShareDetails({reply_detail_id: oThis.replyDetailId});
+    let replyVideoShareResponse = await new ReplyVideoShareDetails(oThis.headers).getReplyVideoShareDetails({reply_detail_id: oThis.replyDetailId});
     if(replyVideoShareResponse.success){
       let resultType = replyVideoShareResponse.data.result_type;
       oThis.replyVideoShareDetails = replyVideoShareResponse.data[resultType];

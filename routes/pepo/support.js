@@ -7,11 +7,11 @@ const rootPrefix = '../..',
   cookieHelper = require(rootPrefix + '/helpers/cookie'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper');
+  webRouteHelper = require(rootPrefix + '/routes/pepo/helperBack');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 
-/* GET users account page. */
+/* GET support page. */
 router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, next) {
   // Comment following 3 lines for local development of pepo-web. DO NOT COMMIT COMMENTED.
   let getSupportDetailsObj = new GetSupportDetails({headers: req.headers, decodedParams: req.decodedParams});
@@ -33,7 +33,7 @@ router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, ne
   //   success: true };
 
   if (apiResponse.success) {
-    renderResponseHelper.renderWithLayout(req, res, 'support', 'web/_support', apiResponse.data);
+    webRouteHelper.perform(req, res, 'support', 'web/_support', apiResponse.data);
   } else {
     return responseHelper.renderApiResponse(apiResponse, res, errorConfig);
   }

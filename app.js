@@ -48,7 +48,15 @@ const startRequestLogLine = function(req, res, next) {
     basicHelper.logDateFormat() +
     " from agent " +
     req.headers['user-agent'];
-  console.log(message);
+  logger.step(message);
+
+  if (!basicHelper.isProduction()) {
+    logger.step(
+      '\nHEADERS FOR CURRENT REQUEST=====================================\n',
+      JSON.stringify(req.headers),
+      '\n========================================================'
+    );
+  }
 
   next();
 };
@@ -127,7 +135,7 @@ app.use(
 
 // Helmet helps secure Express apps by setting various HTTP headers.
 app.use(helmet());
-app.use(helmet.referrerPolicy({ policy: 'no-referrer' }));
+app.use(helmet.referrerPolicy({ policy: 'same-origin' }));
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -172,7 +180,7 @@ app.use('/', function(request, response, next){
 const connectAssetConfig = {
   paths: [path.join(__dirname, 'assets/css'), path.join(__dirname, 'assets/js')],
   buildDir: path.join(__dirname, 'builtAssets'),
-  fingerprinting: true,
+  fingerprinting: (coreConstants.environment !== 'development'),
   servePath: 'assets'
 };
 

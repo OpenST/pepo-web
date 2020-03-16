@@ -60,12 +60,88 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(108px, 108px, -454px, -14px, -454px, -454px, 60);
 }
 
+.thumbnail-video-play-icon{
+  @include icon-generator(120px, 120px, -448px, -8px, -448px, -448px, 40);
+}
+
 .modal-close-icon{
   @include icon-generator(50px, 50px, -16px, -240px, -16px, -16px, 50);
 }
 
+.prev-arrow-icon{
+  @include icon-generator(54px, 88px, -430px, -496px, -430px, -430px, 50);
+}
+
+.next-arrow-icon{
+  @include icon-generator(54px, 88px, -370px, -496px, -370px, -370px, 50);
+}
+
 .user-empty-profile-icon{
   @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 17.63);
+}
+
+.user-empty-profile-icon-video-thumbnail{
+  @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 6);
+}
+
+.nav-bar-user-empty-profile-icon{
+  @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 10.55);
+}
+
+.login-twitter-icon{
+  @include icon-generator(45px, 40px, -502px, -130px, -502px, -502px, 45);
+}
+
+.login-google-icon{
+  @include icon-generator(45px, 40px, -451px, -130px, -451px, -451px, 45);
+}
+
+.login-github-icon{
+  @include icon-generator(45px, 40px, -551px, -130px, -551px, -551px, 45);
+}
+
+.login-apple-id-icon{
+  @include icon-generator(45px, 40px, -594px, -130px, -594px, -594px, 45);
+}
+
+.login-icon{
+  @include icon-generator(46px, 48px, -531px, -186px, -531px, -531px, 50);
+}
+
+.logout-icon{
+  @include icon-generator(46px, 48px, -467px, -186px, -467px, -467px, 50);
+}
+
+.next-arrow-icon-disabled{
+  @include icon-generator(54px, 88px, -475px, -310px, -475px, -475px, 50);
+}
+
+.video-back-icon{
+  @include icon-generator(32px, 50px, -610px, -410px, -610px, -610px, 65);
+}
+
+.downward-arrow-icon{
+  @include icon-generator(48px, 29px, -598px, -262px, -598px, -598px, 40);
+}
+
+.success-circular-icon{
+  @include icon-generator(50px, 50px, -594px, -186px, -594px, -594px, 70);
+}
+
+.under-construction-icon{
+  @include icon-generator(53px, 62px, -618px, -322px, -618px, -618px, 70);
+}
+
+.timer-icon{
+  @include icon-generator(40px, 41px, -533px, -250px, -533px, -533px, 30);
+}
+
+.thumbnail-pepo-icon{
+  @include icon-generator(27px, 27px, -652px, -422px, -652px, -652px, 40);
+}
+
+.pepo-loading-icon{
+  @include icon-generator(90px, 90px, -94px, -246px, -94px, -94px, 40);
 }
 
 //.pepo-logo-nav{

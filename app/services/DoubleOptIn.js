@@ -1,13 +1,13 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  PreLaunchInvite = require(rootPrefix + '/lib/pepoApi/PreLaunchInvite'),
+  UserApi = require(rootPrefix + '/lib/pepoApi/User'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
 
 /**
  * Class for double opt in.
  *
- * @class PreLaunchTwitterConnect
+ * @class DoubleOptIn
  */
 class DoubleOptIn extends ServiceBase {
   /**
@@ -50,8 +50,8 @@ class DoubleOptIn extends ServiceBase {
     const oThis = this;
     logger.log('Start::_validateDoptin');
 
-    let PreLaunchInviteObj = new PreLaunchInvite(oThis.headers);
-    let resp = await PreLaunchInviteObj.doubleOptIn(oThis.decodedParams);
+    let UserApiObj = new UserApi(oThis.headers);
+    let resp = await UserApiObj.doubleOptIn(oThis.decodedParams);
 
     if (resp.isFailure()) {
       return Promise.reject(resp);

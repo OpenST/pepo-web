@@ -4,15 +4,23 @@
    <%- include partials/shared/_header -%>
    <%- include partials/shared/_css -%>
    <%- include partials/shared/_csrf -%>
+   <%- include partials/shared/_dev_env -%>
    <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
   </head>
   <body contenteditable="false">
 
     <%- include(_contentPartial) -%>
 
-    <%- include partials/shared/_footer -%>
+    <% if (showFooter) { %>
+        <%- include partials/shared/_footer -%>
+    <% } %>
     
     <% include partials/shared/_script %>
+
+    <% if (_endJSPartial) { %>
+        <%- include(_endJSPartial) -%>
+    <% } %>
+  
   </body>
 
 </html>

@@ -15,6 +15,7 @@ class FirebaseUrlBase extends ServiceBase {
 
     const oThis = this;
     oThis.decodedParams = params.decodedParams;
+    oThis.headers = params.headers;
 
     oThis.urlParams = {};
   }
@@ -62,7 +63,7 @@ class FirebaseUrlBase extends ServiceBase {
    * @returns {Object}
    * @private
    */
-  _getFirebaseUrlParams(){
+  _getFirebaseUrlParams() {
     throw new Error('Sub-class to implement');
   }
 
@@ -72,7 +73,7 @@ class FirebaseUrlBase extends ServiceBase {
    * @returns {{efr: string, ibi: *, st: string, apn: *, isi: *, ipbi: *}}
    * @private
    */
-  _getFirebaseCommonUrlParams(){
+  _getFirebaseCommonUrlParams() {
     return {
       apn: coreConstants.PEPO_ANDROID_PACKAGE_NAME,
       ibi: coreConstants.PEPO_IOS_PACKAGE_NAME,
@@ -107,11 +108,11 @@ class FirebaseUrlBase extends ServiceBase {
     const oThis = this;
 
     let queryString = '';
-    queryString +=  oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';
-    queryString +=  oThis.decodedParams.utm_medium ? '&utm_medium=' + oThis.decodedParams.utm_medium : '';
-    queryString +=  oThis.decodedParams.utm_source ? '&utm_source=' + oThis.decodedParams.utm_source : '';
-    queryString +=  oThis.decodedParams.utm_term ? '&utm_term=' + oThis.decodedParams.utm_term : '';
-    queryString +=  oThis.decodedParams.utm_content ? '&utm_content=' + oThis.decodedParams.utm_content : '';
+    queryString += oThis.decodedParams.utm_campaign ? '&utm_campaign=' + oThis.decodedParams.utm_campaign : '';
+    queryString += oThis.decodedParams.utm_medium ? '&utm_medium=' + oThis.decodedParams.utm_medium : '';
+    queryString += oThis.decodedParams.utm_source ? '&utm_source=' + oThis.decodedParams.utm_source : '';
+    queryString += oThis.decodedParams.utm_term ? '&utm_term=' + oThis.decodedParams.utm_term : '';
+    queryString += oThis.decodedParams.utm_content ? '&utm_content=' + oThis.decodedParams.utm_content : '';
 
     return queryString;
   }
@@ -148,7 +149,10 @@ class FirebaseUrlBase extends ServiceBase {
     const searchParams = new urlParser.URLSearchParams(url.searchParams);
     for (let key in oThis.urlParams) {
       let val = oThis.urlParams[key];
-      searchParams.append(key, val);
+      if (/^[A-Z0-9\.\+\-\_\/=&#:?]*$/i.test(val) && /^[A-Z0-9\-]*$/i.test(key)) {
+        searchParams.append(key, val);
+      }
+
     }
     url.search = searchParams;
 

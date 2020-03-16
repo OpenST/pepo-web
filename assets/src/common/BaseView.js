@@ -1,0 +1,52 @@
+import CurrentUser from "../../src/model/CurrentUser" ;
+import {setDataStore} from "../model/DataStore";
+import SocketManager from "../../src/services/SocketManager";
+
+class BaseView {
+
+  constructor( config ){
+    
+    if(typeof config.apiResponse == "string"){
+      config.apiResponse =  JSON.parse( config.apiResponse );
+    }
+    if(typeof config.appMeta == "string"){
+      config.appMeta =  JSON.parse( config.appMeta );
+    }
+    this.config = config;
+    if(!this.config || true) return;
+    this.initCurrentUser( config.apiResponse );
+    this.initDataStore( config.apiResponse  );
+    this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
+    this.initPixelDrop(config.appMeta);
+    this.initSocket();
+
+  }
+
+  initCurrentUser(apiResponse={}){
+    CurrentUser.initUser(apiResponse["current_user_data"]);
+  }
+
+
+  initDataStore(data){
+    if(!data) return;
+    setDataStore(data);
+  }
+
+  initSdk(config, params){
+    if(!config) return;
+    BrowserSdk.init(config, params);
+  }
+
+  initPixelDrop(config){
+    if(!config) return;
+    //@Sharadha
+  }
+
+  initSocket() {
+    SocketManager.init();
+  }
+
+}
+
+
+export default BaseView;

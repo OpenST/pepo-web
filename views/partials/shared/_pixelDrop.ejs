@@ -1,0 +1,45 @@
+<script type="text/javascript">
+  var OSName="MacOS";
+  if (navigator.appVersion.indexOf("Win")!=-1) {OSName="Windows"};
+  if (navigator.appVersion.indexOf("Mac")!=-1) {OSName="MacOS"};
+  if (navigator.appVersion.indexOf("X11")!=-1) {OSName="UNIX"};
+  if (navigator.appVersion.indexOf("Linux")!=-1) {OSName="Linux"};
+
+    var videoData = <%- JSON.stringify(apiResponseData.api_response_data)%>,
+        resultType = videoData && videoData['result_type'],
+        userVideo =  videoData[resultType],
+        videoId   = userVideo && userVideo[0] && userVideo[0].payload && userVideo[0].payload.video_id || '',;
+    var userData = <%- JSON.stringify(apiResponseData.current_user_data)%>,
+        resultType = userData && userData['result_type'],
+        loggedInUser =  userData[resultType],
+        currentUserId   = loggedInUser && loggedInUser.id || 0;
+
+    var  commonParams = {
+        dl     :navigator.language,
+        v      : 2,
+        serid  : 1,
+        dt     : 'web_app',
+        p_url  : window.location.href,
+        dos    : OSName,
+        pn     : videoId,
+        u_id   : currentUserId
+      },
+        extraTrackerData = {},
+        tracker_endpoint = <%- JSON.stringify(appMeta.TRACKER_ENDPOINT) %>,
+        initParamsData = Object.assign({},commonParams, extraTrackerData);
+    (function (w, d, tn, p, ns, el, sel) {
+        w['PepoTrackerObject'] = ns;
+        w[ns] = w[ns] || function () {
+          (w[ns].q = w[ns].q || []).push(arguments)
+        }, w[ns].l = 1 * new Date();
+        el = d.createElement(tn),
+          sel = d.getElementsByTagName(tn)[0];
+        el.async = 1;
+        el.src = p;
+        sel.parentNode.insertBefore(el, sel);
+    })(window, document, 'script', <%-JSON.stringify(appMeta.TRACKER_URL)%>, 'pepoTracker');
+
+    pepoTracker("setPixelPath", tracker_endpoint);
+    pepoTracker("setInitParams",initParamsData);
+    pepoTracker("dropPixel", "test_s", "test_s");
+</script>

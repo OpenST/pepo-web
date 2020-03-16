@@ -1,14 +1,14 @@
-const express = require('express');
+const express = require('express'),
+ csrf = require('csurf');
+
 const router = express.Router(),
-  cookieParser = require('cookie-parser'),
-  csrf = require('csurf');
+  cookieParser = require('cookie-parser');
 
 const rootPrefix = '../..',
   basicHelper = require(rootPrefix + '/helpers/basic'),
   oAuthRouter = require(rootPrefix + '/routes/webview/oAuth'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
   cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie');
 
 const csrfProtection = csrf({
@@ -21,7 +21,8 @@ const csrfProtection = csrf({
     path: '/',
     sameSite: 'strict', // sets the same site policy for the cookie
     domain: coreConstants.COOKIE_DOMAIN
-  }
+  },
+  ignoreMethods: ['GET', 'HEAD', 'OPTIONS', 'POST']
 });
 
 router.use(cookieParser(coreConstants.WEB_COOKIE_SECRET));

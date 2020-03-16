@@ -3,7 +3,7 @@ const rootPrefix = '../../..',
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
-  UserProfileShareDetails = require(rootPrefix + '/lib/pepoApi/UserProfile');
+  UserApi = require(rootPrefix + '/lib/pepoApi/User');
 
 /**
  * Class to get firebase redirection url for profile url
@@ -63,7 +63,7 @@ class GetFirebaseUserProfileUrl extends FirebaseUrlBase {
   async _fetchProfileShareDetails() {
     const oThis = this;
 
-    let shareResponse = await new UserProfileShareDetails({}).getUserProfileShareDetails({username: oThis.permalink});
+    let shareResponse = await new UserApi(oThis.headers).getUserProfileShareDetails({username: oThis.permalink});
     if(shareResponse.success){
       let resultType = shareResponse.data.result_type;
       oThis.profileShareDetails = shareResponse.data[resultType];
