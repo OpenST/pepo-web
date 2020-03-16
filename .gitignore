@@ -5,6 +5,9 @@
 /.idea
 /.idea/*
 
+# Ignore build folder
+/assets/js/*.js
+
 package-lock.json
 
 # Runtime data
