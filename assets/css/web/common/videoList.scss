@@ -387,6 +387,13 @@
   }
 }
 
+
+body.modal-open {
+  .modal-backdrop.show{
+    opacity: 0.75;
+  }
+}
+
 .toast.show {
   body.modal-open & {
     z-index: 1051;
