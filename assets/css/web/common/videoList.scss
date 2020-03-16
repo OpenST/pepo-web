@@ -39,21 +39,6 @@
       @media only screen and (min-width: 768px){
         border: 7px solid transparent;
       }
-      //flex-basis: 48%;
-      //max-width: 236px;
-      //margin: 0 1% 8px;
-      //position: relative;
-      //border-radius: 4px;
-      @media only screen and (min-width: 768px){
-        //margin: 0 1% 14px;
-      }
-      @media only screen and (min-width: 1024px){
-        //flex-basis: 23%;
-        //margin: 0 1% 18px;
-      }
-      @media only screen and (min-width: 1200px){
-        //margin: 0 1% 20px;
-      }
       .play-icon{
         top: 50%;
         left: 50%;
@@ -383,9 +368,9 @@
 }
 .profileImage{
   left: 0;
-  width: 20px;
+  width: 18px;
   top:0;
-  height: 20px;
+  height: 18px;
   position: absolute;
   border-radius: 50%;
 }
