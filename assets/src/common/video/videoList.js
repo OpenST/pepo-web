@@ -137,7 +137,7 @@ class VideoList {
   autoPlayVideo = (jModal) =>{
     const jVideos =  jModal.find(".video-container-wrapper");
     for(let cnt = 0 ;  cnt < jVideos.length ; cnt++){
-      if(jVideos.eq(cnt).visible()){
+      if(jVideos.eq(cnt).visible(true, true)){
         video.playVideo( jVideos.eq(cnt) );
         return;
       }

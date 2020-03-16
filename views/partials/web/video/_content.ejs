@@ -25,7 +25,7 @@
 
                     <ul class="list-unstyled channel-list mobile mb-0 align-self-end">
                         <% for(var i=0; i < formattedEntityData.channels_list.length; i++) { %>
-                            <li class="downloadApp"><a href="javascript:void(0)"><%= formattedEntityData.channels_list[i] %></a></li>
+                            <li><a href="/communities/<%= formattedEntityData.channels_list[i].permalink %>"><%= formattedEntityData.channels_list[i].name %></a></li>
                         <% } %>
                     </ul>
 

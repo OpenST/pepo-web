@@ -96,11 +96,11 @@ class DataGetters {
 
   getChannelList (id) {
     let channelsList  = deepGet(this.getVideoDetails(id), 'channel_ids') || [];
-    let channelNames = [];
+    let channelArray = [];
     for (let channelId of channelsList){
-      channelNames.push(deepGet(this.getChannelEntity(channelId), 'name'));
+      channelArray.push({name: deepGet(this.getChannelEntity(channelId), 'name'), permalink: deepGet(this.getChannelEntity(channelId), 'permalink')});
     }
-    return channelNames;
+    return channelArray;
   }
 
   getDisplayCTS(id) {
