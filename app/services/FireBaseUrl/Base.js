@@ -149,7 +149,7 @@ class FirebaseUrlBase extends ServiceBase {
     const searchParams = new urlParser.URLSearchParams(url.searchParams);
     for (let key in oThis.urlParams) {
       let val = oThis.urlParams[key];
-      if (/^[A-Z0-9\.\+\-\_\/=&#:?]*$/i.test(val)) {
+      if (/^[A-Z0-9\.\+\-\_\/=&#:?]*$/i.test(val) && /^[A-Z0-9\-]*$/i.test(key)) {
         searchParams.append(key, val);
       }
 
