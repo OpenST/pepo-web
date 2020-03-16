@@ -5,6 +5,7 @@ import SocketManager from "../../src/services/SocketManager";
 class BaseView {
 
   constructor( config ){
+    
     if(typeof config.apiResponse == "string"){
       config.apiResponse =  JSON.parse( config.apiResponse );
     }
@@ -12,15 +13,13 @@ class BaseView {
       config.appMeta =  JSON.parse( config.appMeta );
     }
     this.config = config;
-    if(!this.config) return;
+    if(!this.config || true) return;
     this.initCurrentUser( config.apiResponse );
     this.initDataStore( config.apiResponse  );
     this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
     this.initPixelDrop(config.appMeta);
+    this.initSocket();
 
-    $(document).ready(() => {
-      this.initSocket();
-    });
   }
 
   initCurrentUser(apiResponse={}){
