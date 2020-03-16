@@ -52,7 +52,7 @@ class Video {
 
     $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       var textToCopy = $(this).data('share-url');
-      var isCopied = BasicHelper.copyToClipboard(textToCopy, this);
+      var isCopied = BasicHelper.copyToClipboard(textToCopy, $(this));
       if(isCopied){
         $('.toast-copied-to-clipboard').toast('show');
       } else {
