@@ -140,6 +140,10 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(27px, 27px, -652px, -422px, -652px, -652px, 40);
 }
 
+.pepo-loading-icon{
+  @include icon-generator(90px, 90px, -94px, -246px, -94px, -94px, 40);
+}
+
 //.pepo-logo-nav{
 //  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 25);
 //}
