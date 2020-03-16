@@ -123,8 +123,7 @@ class VideoList {
     const modal = ejs.compile(videoModalDetail, {client: true});
     return $(modal({
       videoId,
-      DataGetters,
-      innerContainerHeight: this.innerContainerHeight
+      DataGetters
     }));
   };
 

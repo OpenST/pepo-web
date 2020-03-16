@@ -117,7 +117,7 @@
   }
 
   .innerContainer{
-    height: 85%;
+    //height: 85%;
     overflow: hidden;
     border-radius: 0 50px;
     background-color: $white;
@@ -170,7 +170,7 @@
         margin-top: 10px;
         overflow: hidden;
         font-weight: 500;
-        line-height: 100%;
+        //line-height: 100%;
         white-space: nowrap;
         color: $wildWatermelon;
         text-overflow: ellipsis;
