@@ -3,7 +3,7 @@ import {setDataStore}  from "../model/DataStore";
 
 import ns from "../libs/namespace";
 
-const  logMe = false;
+const  logMe = true;
 
 export default class SimpleDataTable {
 
@@ -355,16 +355,15 @@ export default class SimpleDataTable {
   }
 
   createLoadingWrap ( jParent ) {
-    var jWrap = $('<div data-simple-table-end class="w-100" style="min-height:10px;" ></div>');
+    var jWrap = $('<div data-simple-table-end class="w-100 position-relative" style="min-height:1px;" ></div>');
     //Do you magic here.
     var jContent = $(''
       + '<div class="container simple-data-table-loader mb-4" style="display: none;">'
-      // + '<div class="text-center">'
-      // + '<img src="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/processed-loader-1.gif" height="30" width="30"/>'
-      // + '<div class="loader-container">'  + '<span class="pepo-loading-inner"> <span class="pepo-loading-icon"></span> </span>'
-      + '<div class="loader" style="margin-left: 50%;margin-right: 25px;">' + '<span class="pepo-loading-icon pepo-loader-scale"></span>'
+        + '<div class="loader" style="margin-left: 50%;margin-right: 25px;">'
+          + '<span class="pepo-loading-icon pepo-loader-scale"></span>'
+        + '</div>'
       + '</div>'
-      + '</div>'
+      + '<div class="jPObserver w-100 position-absolute" style="height:1px; top: -100px; right: 0" ></div>'
     );
 
     jWrap.append( jContent );
@@ -400,9 +399,10 @@ export default class SimpleDataTable {
       , hidden  = null
       , direction   = "vertical"
       , container   = oThis.sScrollParent
+      , jObserver   = oThis.jDataLoader.find(".jPObserver")
     ;
 
-    if ( oThis.jDataLoader.visible(partial,hidden,direction,container) ) {
+    if ( jObserver.visible(partial,hidden,direction,container) ) {
       logMe && console.log("---->> oThis.jDataLoader is Visible");
       oThis.fetchResults();
     } else {
