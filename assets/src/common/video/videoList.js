@@ -9,6 +9,7 @@ import video from "./index";
 
 const nextFetchThreshold =  4;
 
+const namespace = "videoList"
 
 class VideoList {
 
@@ -32,16 +33,17 @@ class VideoList {
       jModalWrapper = this.jModalWrapper;
 
 
-    jParent.off().on('click', '.videoList', (e) => {
+    jParent.off(`click.${namespace}`).on(`click.${namespace}`, '.videoList', (e) => {
         this.currentItemIndex = $(e.currentTarget).data('result-index');
         this.modalUIUpdate();
         $('#videoDetailsModal').modal('show');
         e.preventDefault();
         e.stopPropagation();
     });
-    jModalWrapper.off();
+    
+    jModalWrapper.off(`click.${namespace}`);
 
-    jModalWrapper.on('click', '.next-video', (e) => {
+    jModalWrapper.on(`click.${namespace}`, '.next-video', (e) => {
       if(this.simpleDataTable.isLoadingData) return;
       const resultsLn = this.simpleDataTable.getResults().length ;
       this.currentItemIndex += 1;
@@ -53,7 +55,7 @@ class VideoList {
       this.modalUpdateOnNext(resultsLn );
     });
 
-    jModalWrapper.on('click', '.prev-video', (e) => {
+    jModalWrapper.on(`click.${namespace}`, '.prev-video', (e) => {
       if(this.currentItemIndex >= 1){
         this.currentItemIndex -= 1;
         this.modalUIUpdate();
@@ -62,7 +64,7 @@ class VideoList {
 
     $('#videoDetailsModal').on('hide.bs.modal', function (event) {
       $(this).find(".videoDetailsContainer").empty();
-    })
+    });
 
     $('#reportModal, #downloadModal').on('hidden.bs.modal', function (e) {
       if($('.modal.show').length > 0){
