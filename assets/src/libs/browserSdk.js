@@ -28,7 +28,9 @@ class BrowserSdk {
       }
     })
     .then(()=>{
-      oThis.createSessionHelper = new CreateSessionHelper(userData);
+      if(userData){
+        oThis.createSessionHelper = new CreateSessionHelper(userData);
+      }
     })
     .catch((err)=>{
       console.error(err);
