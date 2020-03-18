@@ -93,7 +93,7 @@ function initializeSession() {
     // insertDefaultUI: true,
     resolution: "1280x720",
     frameRate: 30,
-    audioSource: false,
+    audioSource: true,
     publishAudio: false
   }, handleError);
 
