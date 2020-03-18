@@ -12,16 +12,20 @@ var mainAdded = false;
 // (optional) add server code here
 initializeSession();
 
-function handleError(error) {
-  if (error) {
-    alert(error.message);
-  }
-
+function addSubscriberToMain() {
+  setTimeout(function(){
+    a = $("#subscriber > div.OT_subscriber");
+    console.log("HERE====================",a.length);
+    if (!mainAdded) {
+      mainAdded = true;
+      $("#main").append(a[0]);
+    }
+  }, 1000);
 }
 
-function handleSuccess(success) {
-  console.log("heresuccesssuccess");
-  console.log(success);
+function handleError(err) {
+  console.log("handleError===============");
+  console.log(err);
 }
 
 function initializeSession() {
@@ -39,17 +43,13 @@ function initializeSession() {
       resolution: "1280x720",
       audioSource: false,
       // insertMode: 'after',
-      publishAudio: false,
+      publishAudio: true,
       // insertDefaultUI: false
     }, handleError);
 
-    subscriber.on('videoElementCreated', function (event) {
-      // console.log("VideoElementCreatedEvent======",event.element);
-      // console.log("VideoElementCreatedEvent======",$("#main > div"));
-
-
-
-    });
+    //
+    // subscriber.on('videoElementCreated', function (event) {
+    // });
 
   });
 
@@ -62,31 +62,26 @@ function initializeSession() {
   // });
 
 
-
   session.on("connectionCreated", function (event) {
     // console.log("HERE connectionCreated",session);
-    console.log($("#subscriber > div"));
+    console.log("connectionCreated========",$("#subscriber > div"));
 
+    addSubscriberToMain();
+  });
+
+  session.on("connectionDestroyed", function (event) {
 
     setTimeout(function(){
-      a = $("#subscriber > div.OT_subscriber");
-      console.log("HERE====================",a.length);
-      if (!mainAdded) {
-        mainAdded = true;
-        $("#main").append(a[0]);
+      a = $("#main > div");
+      console.log("HERE=======connectionDestroyed=============",a.length, a);
+      if (a.length == 0) {
+        mainAdded = false;
+        addSubscriberToMain();
       }
-
-      }, 1000);
-
-
-
-    //
-    // if ((a.length > 0) && ($("#main > div").length == 0)) {
-    //   a[0].remove();
-    //   $("#main").append(a[0]);
-    // }
+    }, 1000);
 
   });
+
 
   // Create a publisher
   var publisher = OT.initPublisher('subscriber', {
