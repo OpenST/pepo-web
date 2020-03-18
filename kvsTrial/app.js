@@ -92,11 +92,13 @@ $('#master-button').click(async () => {
     const remoteMessage = $('#master .remote-message')[0];
     const formValues = getFormValues();
 
+    const nVideoTemplate = '<div class="col-4"><h5>Participant #</h5><div class="video-container"><video class="remote-view" autoplay playsinline controls /></div></div>';
+
     $(remoteMessage).empty();
     localMessage.value = '';
     toggleDataChannelElements();
 
-    startMaster(localView, remoteView, formValues, onStatsReport, event => {
+    startMaster(localView, nVideoTemplate, formValues, onStatsReport, event => {
         remoteMessage.append(`${event.data}\n`);
     });
 });

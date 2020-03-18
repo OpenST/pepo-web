@@ -10,9 +10,13 @@ const master = {
     peerConnectionStatsInterval: null,
 };
 
+const hasDisplayed = {};
+
 async function startMaster(localView, remoteView, formValues, onStatsReport, onRemoteDataMessage) {
     master.localView = localView;
     master.remoteView = remoteView;
+
+    $('.master-section').text(`Master #${formValues.clientId}`);
 
     // Create KVS client
     const kinesisVideoClient = new AWS.KinesisVideo({
@@ -53,12 +57,7 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
         channelARN,
         channelEndpoint: endpointsByProtocol.WSS,
         role: KVSWebRTC.Role.MASTER,
-        region: formValues.region,
-        credentials: {
-            accessKeyId: formValues.accessKeyId,
-            secretAccessKey: formValues.secretAccessKey,
-            sessionToken: formValues.sessionToken,
-        },
+        region: formValues.region
     });
 
     // Get ICE server configuration
@@ -110,6 +109,7 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
 
     master.signalingClient.on('open', async () => {
         console.log('[MASTER] Connected to signaling service');
+        console.log('master.peerConnectionByClientId', master.peerConnectionByClientId);
     });
 
     master.signalingClient.on('sdpOffer', async (offer, remoteClientId) => {
@@ -155,10 +155,15 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
         // As remote tracks are received, add them to the remote view
         peerConnection.addEventListener('track', event => {
             console.log('[MASTER] Received remote track from client: ' + remoteClientId);
-            if (remoteView.srcObject) {
+            if (hasDisplayed[remoteClientId]) {
                 return;
             }
-            remoteView.srcObject = event.streams[0];
+            $('.masterView').append(remoteView);
+            const ele = $('.masterView .col-4').last();
+            hasDisplayed[remoteClientId] = 1;
+            ele.find('h5').text(`Participant #${remoteClientId}`);
+            ele.find('video')[0].srcObject = event.streams[0];
+            //remoteView.srcObject = event.streams[0];
         });
 
         master.localStream.getTracks().forEach(track => peerConnection.addTrack(track, master.localStream));
