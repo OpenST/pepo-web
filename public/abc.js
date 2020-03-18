@@ -105,7 +105,7 @@ function initializeSession() {
     resolution: "1280x720",
     frameRate: 30,
     audioSource: true,
-    publishAudio: true
+    publishAudio: false
   }, handleError);
 
   publisher.on('streamCreated', function (event) {
