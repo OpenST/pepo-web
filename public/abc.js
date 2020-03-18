@@ -27,7 +27,7 @@ var lastSwitched = null;
 var switchVideoTimeOut = 0;
 function switchMarkup(id) {
   clearTimeout(switchVideoTimeOut);
-  setTimeout(()=> {
+  switchVideoTimeOut = setTimeout(()=> {
     __switchMarkup(id);
   }, 1000)
 }
