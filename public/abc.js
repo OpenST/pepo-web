@@ -23,7 +23,10 @@ function handleError(err) {
   console.log(err);
 }
 
+var lastSwitched = null;
 function switchMarkup(id) {
+    if(id == lastSwitched) return;
+    lastSwitched = id;
     var jMainMarkup = $("#main .OT_subscriber").get(0);
     var jSubscriberMarkup = $(`#${id}`).get(0);
     if(!jSubscriberMarkup) return;
@@ -76,10 +79,10 @@ function initializeSession() {
         logLevel = Math.min(Math.max(logLevel, 0), 1);
         if(logLevel > 0.5){
           console.log('logLevel > 0.5 for target', event , event.target , event.target.id, logLevel);
-          clearTimeout(switchVideoTimeOut);
-          switchVideoTimeOut =  setTimeout(()=> {
+          // clearTimeout(switchVideoTimeOut);
+          // switchVideoTimeOut =  setTimeout(()=> {
             switchMarkup(event.target.id);
-          }, 500);
+        //  }, 500);
         }
       }
     });
@@ -90,7 +93,7 @@ function initializeSession() {
   session.on("connectionCreated", function (event) {
     // console.log("HERE connectionCreated",session);
     console.log("connectionCreated========", $("#subscriber > div"));
-
+    mainAdded = false;
     addSubscriberToMain();
   });
 
