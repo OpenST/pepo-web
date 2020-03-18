@@ -88,7 +88,7 @@ function initializeSession() {
       frameRate: 30,
       // insertDefaultUI: true,
       resolution: "1280x720",
-      audioSource: false,
+      audioSource: true,
       // insertMode: 'after',
       publishAudio: true,
       // insertDefaultUI: false
