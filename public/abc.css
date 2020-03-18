@@ -23,7 +23,7 @@ body, html {
 
     position: absolute;
     height: 100%;
-    width: 30%;
+    width: 20vw!important;
     right: 0!important;
     top: 0!important;
 }
@@ -46,8 +46,9 @@ body, html {
 }
 
 #main > div{
-    /*width: 70%!important;*/
-    height: 70%!important;
+    width: 80%!important;
+    height: 90%!important;
+    margin: 0 auto;
 }
 
 #subscriber > div{
