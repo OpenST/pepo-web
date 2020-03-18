@@ -54,7 +54,7 @@ function switchMarkup(id) {
 function switchMarkupWithTimeout(id) {
 
   var jMainMarkup = $("#main .OT_subscriber").get(0);
-  if (!jMainMarkup || (jMainMarkup.id == id) {
+  if (!jMainMarkup || (jMainMarkup.id == id)) {
     return;
   }
 
