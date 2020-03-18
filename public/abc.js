@@ -23,18 +23,24 @@ function handleError(err) {
   console.log(err);
 }
 
-var lastSwitched = null;
+var lastSwitchedId = null;
+var idToSwitch = {};
 var switchVideoTimeOut = 0;
+
 function switchMarkup(id) {
-  clearTimeout(switchVideoTimeOut);
-  switchVideoTimeOut = setTimeout(()=> {
+  var preTime = idToSwitch["id"] && idToSwitch["id"]["uts"] || 0;  //GET previous time for id
+  if(!preTime) return ; //Return As a person should speak for at least 1 second
+  var currTime = Date.now() ; //TIME in milliseconds
+  if( currTime - preTime  >= 1000) { //IF differences is greater than 1s, switch video
+      idToSwitch[id] ={};
+      idToSwitch[id]["uts"] = currTime;
     __switchMarkup(id);
-  }, 300)
+  }
 }
 
 function __switchMarkup (id) {
-  if(id == lastSwitched) return;
-  lastSwitched = id;
+  if(id == lastSwitchedId) return;
+  lastSwitchedId = id;
   var jMainMarkup = $("#main .OT_subscriber").get(0);
   var jSubscriberMarkup = $(`#${id}`).get(0);
   if(!jSubscriberMarkup) return;
@@ -44,7 +50,7 @@ function __switchMarkup (id) {
 
 $("#subscriber").on("click" , ".OT_subscriber" , function (e){
   var id = $(this).attr("id");
-  switchMarkup(id);
+  __switchMarkup(id);
 });
 
 function initializeSession() {
