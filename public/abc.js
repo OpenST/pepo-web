@@ -3,22 +3,22 @@ var sessionId = "1_MX40NjU1OTY4Mn5-MTU4NDQ2ODkzNjY1MX5OMjNqYnNxSFBIN3hXK1BOV2lQe
 var token = "T1==cGFydG5lcl9pZD00NjU1OTY4MiZzaWc9NWQxNWIzYmM2MzljNjhlOGQyNzIyOTVjZWI0ZDJmNjE0OWI5YjIyODpzZXNzaW9uX2lkPTFfTVg0ME5qVTFPVFk0TW41LU1UVTRORFEyT0Rrek5qWTFNWDVPTWpOcVluTnhTRkJJTjNoWEsxQk9WMmxRZVVKUWVXWi1mZyZjcmVhdGVfdGltZT0xNTg0NTA5OTQ5Jm5vbmNlPTAuOTczNDc3MTMxMjMxNjI5JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1ODUxMTQ3MjcmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
 
 var mainAdded = false;
-// var apiKey = "46560962";
-// var sessionId = "1_MX40NjU1OTY4Mn5-MTU4NDQ2Mzc5NTI0M35zdEUrZjhMZWlaNnROaUhyRWI2d0g5MVN-UH4";
-// var token = "T1==cGFydG5lcl9pZD00NjU1OTY4MiZzaWc9ZWQ1YjMyMGExMjA4MGM0NGYyMWFmYmM0Zjc5NDE0ZjBiYjhhODU0YzpzZXNzaW9uX2lkPTFfTVg0ME5qVTFPVFk0TW41LU1UVTRORFEyTXpjNU5USTBNMzV6ZEVVclpqaE1aV2xhTm5ST2FVaHlSV0kyZDBnNU1WTi1VSDQmY3JlYXRlX3RpbWU9MTU4NDQ2MzgwNSZub25jZT0wLjY3NjcwMTI5MDM5ODU1NTkmcm9sZT1wdWJsaXNoZXImZXhwaXJlX3RpbWU9MTU4NDQ4NTQwNCZpbml0aWFsX2xheW91dF9jbGFzc19saXN0PQ==";
+var audioEvent = null;
+var audioEvent1 = null;
 
-
-// 7bff3a4e2c23bdf50541431ce6e945a9029ddd4b
-// (optional) add server code here
 initializeSession();
 
 function addSubscriberToMain() {
-  setTimeout(function(){
+  setTimeout(function () {
     a = $("#subscriber > div.OT_subscriber");
-    console.log("HERE====================",a.length);
+    console.log("HERE====================", a.length);
     if (!mainAdded) {
       mainAdded = true;
-      $("#main").append(a[0]);
+      // $("#main").appendTo(a[0]);
+      // let data = a.cloneNode();
+      // $("#main").append(a[0]);
+      // console.log("HERE====================", a.length);
+      // $("#main").apppend();
     }
   }, 1000);
 }
@@ -29,6 +29,7 @@ function handleError(err) {
 }
 
 function initializeSession() {
+
   var session = OT.initSession(apiKey, sessionId);
 
   // Subscribe to a newly created stream
@@ -47,26 +48,38 @@ function initializeSession() {
       // insertDefaultUI: false
     }, handleError);
 
-    //
-    // subscriber.on('videoElementCreated', function (event) {
-    // });
-  
-    subscriber.subscribeToAudio(true);
+    var movingAvg = null;
+
+    subscriber.on('audioLevelUpdated', function (event) {
+
+      // console.log('AudioLevelUpdatedEvent RECEIVED');
+      if (!audioEvent1) {
+        audioEvent1 = event;
+      }
+
+      if (event && event.audioLevel) {
+        // console.log('AudioLevelUpdatedEvent: ', event.audioLevel, event.target.id);
+        if (movingAvg === null || movingAvg <= event.audioLevel) {
+          movingAvg = event.audioLevel;
+        } else {
+          movingAvg = 0.7 * movingAvg + 0.3 * event.audioLevel;
+        }
+
+        // 1.5 scaling to map the -30 - 0 dBm range to [0,1]
+        var logLevel = (Math.log(movingAvg) / Math.LN10) / 1.5 + 1;
+        logLevel = Math.min(Math.max(logLevel, 0), 1);
+        if(logLevel > 0.5){
+          console.log('logLevel > 0.5 for target', event.target.id, logLevel);
+        }
+      }
+    });
+
 
   });
 
-  // session.on('subscribe', function (event) {
-  //   console.log("HEREsubscribesubscribesubscribe",event);
-  // });
-  //
-  // session.on('videoElementCreated', function (event) {
-  //   console.log("VideoElementCreatedEvent======",event);
-  // });
-
-
   session.on("connectionCreated", function (event) {
     // console.log("HERE connectionCreated",session);
-    console.log("connectionCreated========",$("#subscriber > div"));
+    console.log("connectionCreated========", $("#subscriber > div"));
 
     addSubscriberToMain();
   });
@@ -74,6 +87,7 @@ function initializeSession() {
   session.on("connectionDestroyed", function (event) {
     setTimeout(function(){
       a = $("#main > div");
+      console.log("HERE=======connectionDestroyed=============", a.length);
       if (a.length == 0) {
         mainAdded = false;
         addSubscriberToMain();
@@ -93,15 +107,15 @@ function initializeSession() {
     resolution: "1280x720",
     frameRate: 30,
     audioSource: true,
-    publishAudio: false
+    publishAudio: true
   }, handleError);
 
-  // publisher.on('streamCreated', function (event) {
-  //   console.log('Stream resolution: ' +
-  //     event.stream.videoDimensions.width +
-  //     'x' + event.stream.videoDimensions.height);
-  //   console.log('Frame rate: ' + event.stream.frameRate);
-  // });
+  publisher.on('streamCreated', function (event) {
+    console.log('Stream resolution: ' +
+      event.stream.videoDimensions.width +
+      'x' + event.stream.videoDimensions.height);
+    console.log('Frame rate: ' + event.stream.frameRate);
+  });
 
   // Connect to the session
   session.connect(token, function (error) {
@@ -112,4 +126,5 @@ function initializeSession() {
       session.publish(publisher, handleError);
     }
   });
+
 }
