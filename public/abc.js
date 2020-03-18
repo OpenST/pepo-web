@@ -19,6 +19,8 @@ function addSubscriberToMain() {
   if (!mainAdded && jEls.length > 0) {
     mainAdded = true;
     $("#main").append(jEls[0]);
+  }else{
+    mainAdded = false;
   }
 }
 
