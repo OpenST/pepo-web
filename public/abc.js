@@ -1,6 +1,11 @@
 var apiKey = "46559682";
 var sessionId = "1_MX40NjU1OTY4Mn5-MTU4NDQ2ODkzNjY1MX5OMjNqYnNxSFBIN3hXK1BOV2lQeUJQeWZ-fg";
 var token = "T1==cGFydG5lcl9pZD00NjU1OTY4MiZzaWc9NWQxNWIzYmM2MzljNjhlOGQyNzIyOTVjZWI0ZDJmNjE0OWI5YjIyODpzZXNzaW9uX2lkPTFfTVg0ME5qVTFPVFk0TW41LU1UVTRORFEyT0Rrek5qWTFNWDVPTWpOcVluTnhTRkJJTjNoWEsxQk9WMmxRZVVKUWVXWi1mZyZjcmVhdGVfdGltZT0xNTg0NTA5OTQ5Jm5vbmNlPTAuOTczNDc3MTMxMjMxNjI5JnJvbGU9cHVibGlzaGVyJmV4cGlyZV90aW1lPTE1ODUxMTQ3MjcmaW5pdGlhbF9sYXlvdXRfY2xhc3NfbGlzdD0=";
+//
+// var apiKey = "46566572";
+// var sessionId = "2_MX40NjU2NjU3Mn5-MTU4NDUzODg2MTA1Mn5UUzVhY1ppWDRHQTE4ak4ycTRwaG0zVjB-fg";
+// var token = "T1==cGFydG5lcl9pZD00NjU2NjU3MiZzaWc9MmE2NWQ4NWZmNDg5MDJkMzdhOTAzMzgwNzMzN2Y0MTA3MTNkMDlhMDpzZXNzaW9uX2lkPTJfTVg0ME5qVTJOalUzTW41LU1UVTRORFV6T0RnMk1UQTFNbjVVVXpWaFkxcHBXRFJIUVRFNGFrNHljVFJ3YUcwelZqQi1mZyZjcmVhdGVfdGltZT0xNTg0NTM4ODg1Jm5vbmNlPTAuMjM0MTk3OTAxMDUwNDA1NCZyb2xlPXB1Ymxpc2hlciZleHBpcmVfdGltZT0xNTg1MTQzNjg0JmluaXRpYWxfbGF5b3V0X2NsYXNzX2xpc3Q9";
+
 
 var mainAdded = false;
 var audioEvent1 = null;
@@ -49,13 +54,13 @@ function switchMarkup(id) {
 function switchMarkupWithTimeout(id) {
 
   var jMainMarkup = $("#main .OT_subscriber").get(0);
-  if (jMainMarkup.id == id) {
+  if (!jMainMarkup || (jMainMarkup.id == id) {
     return;
   }
 
   var jSubscriberMarkup = $(`#${id}`).get(0);
   if (!jSubscriberMarkup) {
-    if (!jMainMarkup.id) {
+    if (!jMainMarkup || !jMainMarkup.id) {
       console.log("addSubscriberToMain CALLED from switchMarkupWithTimeout because no main id and subscriber id found ");
       addSubscriberToMain();
     }
@@ -118,7 +123,7 @@ function initializeSession() {
         movingAvg[id] = currentAvg;
 
         var jMainMarkup = $("#main .OT_subscriber").get(0);
-        if (!jMainMarkup.id) {
+        if (!jMainMarkup || !jMainMarkup.id) {
           console.log("switchMarkupWithTimeout CALLED from voice event because no main id");
           switchMarkupWithTimeout(id);
         } else if (jMainMarkup.id != id) {
