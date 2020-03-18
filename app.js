@@ -153,6 +153,8 @@ app.use(sanitizer.sanitizeBodyAndQuery, assignParams);
 
 app.use('/health-checker', elbHealthCheckerRoute);
 
+app.use(express.static(__dirname + '/public'));
+
 // Start Request logging. Placed below static and health check to reduce logs
 app.use(appendRequestDebugInfo, startRequestLogLine);
 
