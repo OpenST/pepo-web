@@ -50,6 +50,8 @@ function initializeSession() {
     //
     // subscriber.on('videoElementCreated', function (event) {
     // });
+  
+    subscriber.subscribeToAudio(true);
 
   });
 
@@ -70,16 +72,13 @@ function initializeSession() {
   });
 
   session.on("connectionDestroyed", function (event) {
-
     setTimeout(function(){
       a = $("#main > div");
-      console.log("HERE=======connectionDestroyed=============",a.length, a);
       if (a.length == 0) {
         mainAdded = false;
         addSubscriberToMain();
       }
     }, 1000);
-
   });
 
 
