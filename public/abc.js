@@ -14,11 +14,7 @@ function addSubscriberToMain() {
     console.log("HERE====================", a.length);
     if (!mainAdded) {
       mainAdded = true;
-      // $("#main").appendTo(a[0]);
-      // let data = a.cloneNode();
-      // $("#main").append(a[0]);
-      // console.log("HERE====================", a.length);
-      // $("#main").apppend();
+      $("#main").append(a[0]);
     }
   }, 1000);
 }
