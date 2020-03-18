@@ -29,7 +29,7 @@ function initializeSession() {
 
   // Subscribe to a newly created stream
   session.on('streamCreated', function (event) {
-    var subscriber = session.subscribe(event.stream, null, {
+    var subscriber = session.subscribe(event.stream, 'subscriber', {
       insertMode: 'append',
       width: '100%',
       height: '100%',
@@ -40,19 +40,14 @@ function initializeSession() {
       audioSource: false,
       // insertMode: 'after',
       publishAudio: false,
-      insertDefaultUI: false
+      // insertDefaultUI: false
     }, handleError);
 
     subscriber.on('videoElementCreated', function (event) {
-      console.log("VideoElementCreatedEvent======",event.element);
-      console.log("VideoElementCreatedEvent======",$("#main > div"));
+      // console.log("VideoElementCreatedEvent======",event.element);
+      // console.log("VideoElementCreatedEvent======",$("#main > div"));
 
-      if (!mainAdded) {
-        mainAdded = true;
-        $("#main").append(event.element);
-      }else{
-        $("#subscriber").append(event.element);
-      }
+
 
     });
 
@@ -71,8 +66,20 @@ function initializeSession() {
   session.on("connectionCreated", function (event) {
     // console.log("HERE connectionCreated",session);
     console.log($("#subscriber > div"));
-    a = $("#subscriber > div.OT_subscriber");
-    // console.log("HERE====================",a.length);
+
+
+    setTimeout(function(){
+      a = $("#subscriber > div.OT_subscriber");
+      console.log("HERE====================",a.length);
+      if (!mainAdded) {
+        mainAdded = true;
+        $("#main").append(a[0]);
+      }
+
+      }, 1000);
+
+
+
     //
     // if ((a.length > 0) && ($("#main > div").length == 0)) {
     //   a[0].remove();
