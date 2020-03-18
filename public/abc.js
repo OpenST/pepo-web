@@ -48,6 +48,8 @@ function initializeSession() {
       // insertDefaultUI: false
     }, handleError);
 
+    // subscriber.subscribeToAudio(true);
+
     var movingAvg = null;
 
     subscriber.on('audioLevelUpdated', function (event) {
