@@ -57,7 +57,12 @@ async function startMaster(localView, remoteView, formValues, onStatsReport, onR
         channelARN,
         channelEndpoint: endpointsByProtocol.WSS,
         role: KVSWebRTC.Role.MASTER,
-        region: formValues.region
+        region: formValues.region,
+        credentials: {
+            accessKeyId: formValues.accessKeyId,
+            secretAccessKey: formValues.secretAccessKey,
+            sessionToken: formValues.sessionToken,
+        },
     });
 
     // Get ICE server configuration
