@@ -29,7 +29,7 @@ function switchMarkup(id) {
   clearTimeout(switchVideoTimeOut);
   setTimeout(()=> {
     __switchMarkup(id);
-  }, 300)
+  }, 1000)
 }
 
 function __switchMarkup (id) {
