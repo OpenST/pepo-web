@@ -10,11 +10,10 @@ initializeSession();
 
 function addSubscriberToMain() {
   setTimeout(function () {
-    a = $("#subscriber > div.OT_subscriber");
-    console.log("HERE====================", a.length);
+    var jEls = $("#subscriber > div.OT_subscriber");
     if (!mainAdded) {
       mainAdded = true;
-      $("#main").append(a[0]);
+      $("#main").append(jEls[0]);
     }
   }, 1000);
 }
@@ -24,10 +23,19 @@ function handleError(err) {
   console.log(err);
 }
 
+function switchMarkup(id) {
+    var jMainMarkup = $("#main .OT_subscriber").get(0);
+    var jSubscriberMarkup = $(`#${id}`).get(0);
+    if(!jSubscriberMarkup) return;
+    $("#main").append(jSubscriberMarkup);
+    $("#subscriber").append(jMainMarkup);
+}
+
 function initializeSession() {
 
   var session = OT.initSession(apiKey, sessionId);
 
+  var switchVideoTimeOut = 0;
   // Subscribe to a newly created stream
   session.on('streamCreated', function (event) {
     var subscriber = session.subscribe(event.stream, 'subscriber', {
@@ -67,7 +75,11 @@ function initializeSession() {
         var logLevel = (Math.log(movingAvg) / Math.LN10) / 1.5 + 1;
         logLevel = Math.min(Math.max(logLevel, 0), 1);
         if(logLevel > 0.5){
-          console.log('logLevel > 0.5 for target', event.target.id, logLevel);
+          console.log('logLevel > 0.5 for target', event , event.target , event.target.id, logLevel);
+          clearTimeout(switchVideoTimeOut);
+          switchVideoTimeOut =  setTimeout(()=> {
+            switchMarkup(event.target.id);
+          }, 500);
         }
       }
     });

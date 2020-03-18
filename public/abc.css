@@ -13,14 +13,7 @@ body, html {
 }
 
 #subscriber {
-    /*position: absolute;*/
-    /*left: 0;*/
-    /*bottom: 20px;*/
-    /*width: 100%;*/
-    /*height: 20%;*/
-    /*z-index: 10;*/
     overflow-y: auto!important;
-
     position: absolute;
     height: 100%;
     width: 20vw!important;
@@ -36,10 +29,10 @@ body, html {
 
 #publisher {
     position: absolute;
-    width: 100%;
-    height: 75%;
+    width: 18%;
+    height: 23%;
     top: 0;
-    right: 0;
+    left: 0;
     z-index: 100;
     border: 3px solid white;
     border-radius: 3px;
