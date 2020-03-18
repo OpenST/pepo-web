@@ -112,8 +112,8 @@ function initializeSession() {
 
 
       if (event && event.audioLevel) {
-        const id = event.target.id;
-        let currentAvg = movingAvg[id] || null;
+        var id = event.target.id;
+        var currentAvg = movingAvg[id] || null;
 
         // console.log('AudioLevelUpdatedEvent: ', event.audioLevel, event.target.id);
         if (currentAvg === null || currentAvg <= event.audioLevel) {
@@ -129,7 +129,7 @@ function initializeSession() {
           console.log("switchMarkupWithTimeout CALLED from voice event because no main id");
           switchMarkupWithTimeout(id);
         } else if (jMainMarkup.id != id) {
-          const mainAvg = (movingAvg[jMainMarkup.id] || 0);
+          var mainAvg = (movingAvg[jMainMarkup.id] || 0);
           if (mainAvg < currentAvg - 0.1) {
 
             // 1.5 scaling to map the -30 - 0 dBm range to [0,1]
