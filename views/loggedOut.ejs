@@ -1,20 +1,26 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title> OpenTok Getting Started </title>
-        <link href="abc.css" rel="stylesheet" type="text/css">
-    <script src="https://static.opentok.com/v2/js/opentok.min.js"></script>
+    <%- include partials/shared/_header -%>
+    <%- include partials/shared/_css -%>
+    <%- include partials/shared/_csrf -%>
+    <%- include partials/shared/_dev_env -%>
+    <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
 </head>
-<body>
+<body contenteditable="false">
 
-<div id="main">
+<%- include(_contentPartial) -%>
 
-</div>
+<% if (showFooter) { %>
+<%- include partials/shared/_footer -%>
+<% } %>
 
-<div id="subscriber" style="width: 24vw;right: 0!important;top: 0!important;">
-</div>
+<% include partials/shared/_script %>
 
+<% if (_endJSPartial) { %>
+<%- include(_endJSPartial) -%>
+<% } %>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-<script type="text/javascript" src="abc.js"></script>
 </body>
+
 </html>

@@ -63,7 +63,7 @@ const csrfProtection = csrf({
 
 /* about page */
 router.get('/abc', function (req, res) {
-  res.render('loggedOut', {}, null);
+  res.render('tokbox', {}, null);
 });
 
 
