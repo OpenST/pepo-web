@@ -1,6 +1,6 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  GetFirebaseChannelUrl = require(rootPrefix + '/app/services/FireBaseUrl/Channel'),
+  GetFirebaseChannelListUrl = require(rootPrefix + '/app/services/FireBaseUrl/ChannelList'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
@@ -71,15 +71,9 @@ class GetChannel extends ServiceBase {
     }
     oThis.apiResponseData = serviceResp.data;
 
-    // TODO - Tejas - Change below.
-    let pageMetaResponse = await new GetFirebaseChannelUrl({
+    let pageMetaResponse = await new GetFirebaseChannelListUrl({
       headers: oThis.headers,
-      decodedParams: oThis.decodedParams,
-      channelShareDetails: {
-        title: oThis._getChannelName() + ' - Pepo',
-        description: oThis._getDescription(),
-        poster_image_url: oThis._getChannelImageUrl()
-      }
+      decodedParams: oThis.decodedParams
     }).perform();
 
     if (pageMetaResponse.isFailure()) {
