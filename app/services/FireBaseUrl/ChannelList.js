@@ -26,7 +26,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
 
     const url = oThis._generateFireBaseUrl();
 
-    const title = 'Pepo communities',
+    const title = 'Communities - Pepo',
       description = 'Pepo communities',
       image = coreConstants.DEFAULT_SHARE_IMAGE;
 
