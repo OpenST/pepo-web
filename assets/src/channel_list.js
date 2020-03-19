@@ -7,18 +7,12 @@ class ChannelList extends BaseView {
 
   constructor(config){
     super(config);
-    const channelId = deepGet(this.config,  "apiResponse.channel.id");
-    videoList.init({fetchApi:  `/api/web/channels/${channelId}/videos` });
-    this.descShowMoreLessHandling();
-    this.eventBindings();
-
-
   }
 
 }
-
+console.log('HHHeyyye');
 const pepo = ns("pepo");
 
-pepo.channel_list = ChannelList;
+pepo.channelList = ChannelList;
 
 export default ChannelList;
