@@ -8,9 +8,7 @@ const rootPrefix = '../..',
 /* Communities list page */
 router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
-  req.decodedParams.permalink =  'covid19';
-
-  return webRouteHelper.perform(req, res, '/app/services/GetChannel', 'loggedOut', 'web/_channel_list', 'r_p_v_1');
+  return webRouteHelper.perform(req, res, '/app/services/GetChannelList', 'loggedOut', 'web/_channel_list', 'r_p_v_1');
 });
 
 /* Specific community page */

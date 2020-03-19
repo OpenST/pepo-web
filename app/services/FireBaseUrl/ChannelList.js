@@ -2,8 +2,7 @@ const rootPrefix = '../../..',
   FirebaseUrlBase = require(rootPrefix + '/app/services/FireBaseUrl/Base'),
   pagePathConstants = require(rootPrefix + '/lib/globalConstant/pagePath'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  coreConstants = require(rootPrefix + '/config/coreConstants'),
-  ChannelShareDetails = require(rootPrefix + '/lib/pepoApi/Channel');
+  coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
  * Class to get firebase redirection url for channel url
@@ -14,8 +13,6 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
     super(params);
 
     const oThis = this;
-    oThis.permalink = oThis.decodedParams.permalink;
-    oThis.channelShareDetails = params.channelShareDetails;
   }
 
   /**
@@ -29,23 +26,27 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
 
     const url = oThis._generateFireBaseUrl();
 
+    const title = 'Pepo communities',
+      description = 'Pepo communities',
+      image = coreConstants.DEFAULT_SHARE_IMAGE;
+
     return responseHelper.successWithData({
       url: url,
       pageMeta: {
-        title: oThis.urlParams.st,
-        description: oThis.urlParams.sd,
+        title: title,
+        description: description,
         robots: 'index, follow',
-        canonical: oThis._channelBaseUrl(),
+        canonical: oThis._channelListUrl(),
         og: {
-          title: oThis.urlParams.st,
-          description: oThis.urlParams.sd,
-          image: oThis.urlParams.si,
+          title: title,
+          description: description,
+          image: image,
           url: oThis._fetchAppLaunchLink()
         },
         twitter: {
-          title: oThis.urlParams.st,
-          description: oThis.urlParams.sd,
-          image: oThis.urlParams.si,
+          title: title,
+          description: description,
+          image: image,
           card: "summary_large_image"
         }
       }
@@ -64,9 +65,9 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
     let urlParams = oThis._getFirebaseCommonUrlParams();
     Object.assign(urlParams, {
       link: oThis._fetchAppLaunchLink(),
-      st: oThis.channelShareDetails.title || '',
-      sd: oThis.channelShareDetails.description ? oThis.channelShareDetails.description : coreConstants.DEFAULT_SHARE_DESCRIPTION,
-      si: oThis.channelShareDetails.poster_image_url ? oThis.channelShareDetails.poster_image_url : coreConstants.DEFAULT_SHARE_IMAGE,
+      st: 'Pepo communities',
+      sd: coreConstants.DEFAULT_SHARE_DESCRIPTION,
+      si: coreConstants.DEFAULT_SHARE_IMAGE,
       ofl: oThis._fetchOflLink()
     });
     // Assign all url params
@@ -93,10 +94,10 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
    * @returns {string}
    * @private
    */
-  _channelListBaseUrl() {
+  _channelListUrl() {
     const oThis = this;
 
-    return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.communities}/${oThis.permalink}`;
+    return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.communities}`;
   }
 
 }
