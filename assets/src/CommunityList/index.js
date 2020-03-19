@@ -1,7 +1,7 @@
 import Search from '../common/Search';
 import SimpleDataTable from '../utils/simpleDataTable';
 import ejs from "ejs";
-import videoThumbnail from "../common/video/thumbnail.html";
+import communityListItem from "./communityListItem.html";
 import DataGetters from "../model/DataGetters";
 import deepGet from 'lodash/get';
 
@@ -20,7 +20,8 @@ class CommunityList{
 
 
   getFetchUrl = () => {
-
+    // for time being, IT will change when backend will ready.
+    return "/api/web/feeds";
   };
 
   onSearchHandler = ( searchTerm ) => {
@@ -34,9 +35,9 @@ class CommunityList{
 
   initSimpleDataTable = () => {
     let simpleDataTable = new SimpleDataTable({
-      jParent: $("#videoListParent"),
+      jParent: $("#communityListParent"),
       fetchResultsUrl: this.getFetchUrl(),
-      rowTemplate: ejs.compile(videoThumbnail, {client: true}),
+      rowTemplate: ejs.compile(communityListItem, {client: true}),
       getRowData : function (result) {
         return {
           videoId: deepGet(result, 'payload.video_id'),

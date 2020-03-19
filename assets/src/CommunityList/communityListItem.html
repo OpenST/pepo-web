@@ -1,0 +1,39 @@
+<%
+profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(videoId))
+%>
+<li class="videoContainerInner col-6 col-md-4 col-lg-3 videoList" data-video-id="<%= videoId %>">
+    <span class="content">
+        <img src="<%= DataGetters.getVideoCoverImage(videoId) %>" class="img-fluid" style="object-fit: cover;cursor: pointer"/>
+        <a href="/video/<%= videoId %>"><span class="thumbnail-video-play-icon play-icon ppBtn"></span></a>
+        <span class="details">
+            <% if (DataGetters.getDescription(videoId)) { %>
+                <span class="block-with-text desc mb-1"><%- DataGetters.getDescription(videoId) %></span>
+            <% } %>
+            <% if (DataGetters.getDescriptionLink(videoId)) { %>
+              <a href="<%= DataGetters.getDescriptionLink(videoId) %>"
+                 class="mb-2 desc mobile-link"
+                 rel="noopener noreferrer nofollow"
+                 target="_blank">
+                  <%- DataGetters.getDisplayDescriptionLink(videoId) %>
+              </a>
+            <% } %>
+            <span class="d-flex align-items-center justify-content-between">
+                <span class="text-truncate">
+                    <span class="d-flex align-items-center">
+                        <span class="position-relative mr-1 d-flex align-items-center" style="width: 18px; height: 18px">
+                            <span class="user-empty-profile-icon-video-thumbnail empty-profile"></span>
+                            <% if (profileImage) { %>
+                                <img class="profileImage img-fluid" src="<%= profileImage %>">
+                            <% } %>
+                        </span>
+                        <span class="desc text-truncate">@<%= DataGetters.getUserName(DataGetters.getVideoOwnerId(videoId)) %></span>
+                    </span>
+                </span>
+                <span class="d-flex align-items-center" style="margin-left: 1px">
+                    <span class="thumbnail-pepo-icon" style="margin-right: 2px"></span>
+                    <span class="desc" style="line-height: 100%"><%= DataGetters.getAmountRaised(videoId) %></span>
+                </span>
+            </span>
+        </span>
+    </span>
+</li>
