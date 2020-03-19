@@ -1,14 +1,12 @@
-<%- include ../partials/web/home/_uberBanner -%>
-<div class="feed-container">
+<div class="channel-container">
     <% if (!currentUser.isLoggedIn()) {%>
         <%- include('../partials/shared/_navBar', {pepoNav: "pepo-feed"}) -%>
     <% } else{ %>
         <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
     <% } %>
 </div>
-<%- include ../partials/shared/_videoListWrapper -%>
 
-<%- include ../partials/shared/_video_modal -%>
+
 
 <%- include ../partials/shared/_modals %>
 <%- include ../partials/web/video/_svg_sprite %>
@@ -17,7 +15,7 @@
 
 <script type="text/javascript">
   window.onload = function () {
-    new pepo.feed({
+    new pepo.channel_list({
       "apiResponse"  : <%- JSON.stringify(apiResponseData) %>,
       "appMeta" : <%- JSON.stringify(appMeta)%>
     });

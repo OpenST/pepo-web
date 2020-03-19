@@ -7,10 +7,15 @@
 .pepo-feed{
   ul{
     li:first-child{
-      a{
-        color: #ff5566!important;
-      }
+
     }
+  }
+}
+
+.feed-container .feed-tab, .channel-container .channel-tab{
+  border: 1px solid red;
+  a{
+    color: #ff5566!important;
   }
 }
 
