@@ -43,6 +43,7 @@ class GetChannel extends ServiceBase {
 
     await oThis.getCurrentUser();
 
+    await oThis._fetchChannelList();
     return oThis._prepareResponse();
 
   }
@@ -56,20 +57,14 @@ class GetChannel extends ServiceBase {
   }
 
   /**
-   * Fetch channel
+   * Fetch channel list
    *
    * @return {Promise<Result>}
    * @private
    */
-  async _fetchChannel() {
+  async _fetchChannelList() {
     const oThis = this;
     logger.log('Start::_fetchChannel');
-
-    const serviceResp = await new ChannelLib(oThis.headers).getChannelDetails({permalink: oThis.permalink});
-    if (serviceResp.isFailure()) {
-      return Promise.reject(serviceResp);
-    }
-    oThis.apiResponseData = serviceResp.data;
 
     let pageMetaResponse = await new GetFirebaseChannelListUrl({
       headers: oThis.headers,
@@ -81,8 +76,7 @@ class GetChannel extends ServiceBase {
     }
 
     if (pageMetaResponse.success) {
-      oThis.apiResponseData.firebase_channel_url = pageMetaResponse.data.url;
-      oThis.apiResponseData.share_url = pageMetaResponse.data.pageMeta.canonical;
+      oThis.apiResponseData.firebase_channel_list_url = pageMetaResponse.data.url;
       oThis.apiResponseData.page_meta = pageMetaResponse.data.pageMeta;
     }
 
@@ -130,7 +124,7 @@ class GetChannel extends ServiceBase {
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       pageMeta: oThis.apiResponseData.page_meta,
-      firebaseUrls: {openInApp: oThis.apiResponseData.firebase_channel_url},
+      firebaseUrls: {openInApp: oThis.apiResponseData.firebase_channel_list_url},
       showFooter: false,
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser

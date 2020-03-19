@@ -36,7 +36,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
         title: title,
         description: description,
         robots: 'index, follow',
-        canonical: oThis._channelListUrl(),
+        canonical: oThis._channelBaseUrl(),
         og: {
           title: title,
           description: description,
@@ -94,7 +94,7 @@ class GetFirebaseChannelUrl extends FirebaseUrlBase {
    * @returns {string}
    * @private
    */
-  _channelListUrl() {
+  _channelBaseUrl() {
     const oThis = this;
 
     return `${coreConstants.PEPO_DOMAIN}${pagePathConstants.communities}`;
