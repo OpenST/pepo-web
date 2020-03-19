@@ -41,10 +41,6 @@ class GetChannel extends ServiceBase {
 
     await oThis._validateAndSanitize();
 
-    await oThis._convertDescriptionForDisplay();
-
-    await oThis._parseTexts();
-
     await oThis.getCurrentUser();
 
     return oThis._prepareResponse();
@@ -125,44 +121,6 @@ class GetChannel extends ServiceBase {
       imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'];
 
     return imageResolutions['original']['url'];
-  }
-
-  async _convertDescriptionForDisplay() {
-    const oThis = this,
-      maxPositionToSplit = 120,
-      channelId = oThis.apiResponseData['channel'].id,
-      channelDetails = oThis.apiResponseData['channel_details'][channelId],
-      descriptionId = channelDetails['description_id'];
-
-    if(!descriptionId || !oThis.apiResponseData['texts'] || !oThis.apiResponseData['texts'][descriptionId]){
-      return;
-    }
-
-    const description = oThis.apiResponseData['texts'][descriptionId]['text'];
-    if(maxPositionToSplit > description.length){
-      return;
-    }
-
-    const splitablePosition = description.lastIndexOf(' ', maxPositionToSplit);
-
-    oThis.apiResponseData['texts'][descriptionId]['text'] = description.slice(0, splitablePosition) +
-      '<span class="showMore">... Show More</span><span class="afterText">' + description.slice(splitablePosition) + '</span>'
-  }
-
-  /**
-   *
-   * @returns {Promise<void>}
-   * @private
-   */
-  async _parseTexts() {
-    const oThis = this,
-      texts = oThis.apiResponseData.texts;
-
-    for(let textId in texts){
-      let textDetails = texts[textId];
-      textDetails.convertedText = basicHelper.replaceIncludesinText(textDetails.text, textDetails.includes);
-    }
-
   }
 
   /**
