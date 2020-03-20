@@ -57,7 +57,7 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {openInApp: firebaseGetTheAppUrl},
       showFooter: false,
-      highlightLink: 'feed-list-link'
+      highlightLink: 'feed-page'
     };
 
     webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', locals);

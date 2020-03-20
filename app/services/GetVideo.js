@@ -116,7 +116,8 @@ class GetVideo extends ServiceBase {
       showFooter: false,
       formattedEntityData: formattedData,
       currentUserData: oThis.currentUserData,
-      currentUser: oThis.currentUser
+      currentUser: oThis.currentUser,
+      highlightLink: ''
     })
   }
 

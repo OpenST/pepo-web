@@ -128,7 +128,7 @@ class GetChannel extends ServiceBase {
       showFooter: false,
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser,
-      highlightLink: 'channel-list-link'
+      highlightLink: 'channel-list-page'
     })
   }
 
