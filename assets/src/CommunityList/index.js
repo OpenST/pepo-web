@@ -45,8 +45,7 @@ class CommunityList{
       getRowData : function (result) {
         console.log('result',result);
         return {
-          videoId: deepGet(result, 'payload.video_id'),
-          item : result,
+          channelId: deepGet(result, 'id'),
           DataGetters
         };
       }
