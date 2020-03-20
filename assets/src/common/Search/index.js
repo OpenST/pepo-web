@@ -3,6 +3,7 @@ import $ from 'jquery';
 export default class Search{
 
   constructor(params) {
+    this.searchTimeout = null;
     this.selector = params.searchSelector;
     this.onSearchHandler = params.onSearchHandler;
     this.minLengthForSearch = params.minLengthForSearch || 1;
