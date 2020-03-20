@@ -1,10 +1,9 @@
-<div class="channel-container">
-    <% if (!currentUser.isLoggedIn()) {%>
-        <%- include('../partials/shared/_navBar', {pepoNav: "pepo-feed"}) -%>
-    <% } else{ %>
-        <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
-    <% } %>
-</div>
+<% if (!currentUser.isLoggedIn()) {%>
+  <%- include ../partials/shared/_navBar -%>
+<% } else{ %>
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
+<% } %>
+
 
 <input id="community-search" type="text" />
 

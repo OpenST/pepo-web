@@ -1,16 +1,16 @@
-<nav class="<%= pepoNav %> pepo-nav container-fluid">
+<nav class="pepo-nav container-fluid">
     <div class="row align-items-center" style="min-height: 58px;padding: 0 15px">
         <a class="pepo-brand" href="/" title="Pepo">
             <span class="pepo-logo-nav"></span>
         </a>
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-3" id="navbarToggler">
 
-            <li class="nav-item-wrapper feed-tab">
-                <a href="/feed" class="main-nav-item" title="Browse">Browse</a>
+            <li class="nav-item-wrapper">
+                <a href="/feed" class="main-nav-item <%- highlightLink === 'feed-list-link' ? 'active-link' : '' %>" title="Browse">Browse</a>
             </li>
 
-            <li class="nav-item-wrapper channel-tab">
-                <a href="/communities" class="main-nav-item" title="Browse">Communities</a>
+            <li class="nav-item-wrapper">
+                <a href="/communities" class="main-nav-item <%- highlightLink === 'channel-list-link' ? 'active-link' : '' %>" title="Browse">Communities</a>
             </li>
 
             <li class="nav-item-wrapper">

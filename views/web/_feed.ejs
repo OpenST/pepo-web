@@ -1,11 +1,9 @@
 <%- include ../partials/web/home/_uberBanner -%>
-<div class="feed-container">
-    <% if (!currentUser.isLoggedIn()) {%>
-        <%- include('../partials/shared/_navBar', {pepoNav: "pepo-feed"}) -%>
-    <% } else{ %>
-        <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
-    <% } %>
-</div>
+<% if (!currentUser.isLoggedIn()) {%>
+    <%- include ../partials/shared/_navBar -%>
+<% } else{ %>
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
+<% } %>
 <%- include ../partials/shared/_videoListWrapper -%>
 
 <%- include ../partials/shared/_video_modal -%>

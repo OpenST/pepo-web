@@ -127,7 +127,8 @@ class GetChannel extends ServiceBase {
       firebaseUrls: {openInApp: oThis.apiResponseData.firebase_channel_list_url},
       showFooter: false,
       currentUserData: oThis.currentUserData,
-      currentUser: oThis.currentUser
+      currentUser: oThis.currentUser,
+      highlightLink: 'channel-list-link'
     })
   }
 
