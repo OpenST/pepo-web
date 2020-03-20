@@ -21,6 +21,6 @@ export default class Search{
       return;
     }
     clearTimeout(this.searchTimeout);
-    this.searchTimeout = setTimeout(()=>{this.onSearchHandler(text)}, 300);
+    this.searchTimeout = setTimeout(()=>{this.onSearchHandler(text)}, 500);
   };
 }

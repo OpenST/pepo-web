@@ -35,9 +35,9 @@ class CommunityList{
 
   initSimpleDataTable = () => {
     const oThis = this;
-    if(this.simpleDataTable && this.simpleDataTable.isLoadingData){
-      return;
-    }
+    // if(this.simpleDataTable && this.simpleDataTable.isLoadingData){
+    //   return;
+    // }
     this.simpleDataTable = new SimpleDataTable({
       jParent: $("#communityListParent"),
       fetchResultsUrl: this.getFetchUrl(),
