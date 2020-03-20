@@ -1,10 +1,17 @@
-import CurrentUser from "../../src/model/CurrentUser" ;
+import $ from 'jquery';
+import CurrentUser from "../model/CurrentUser" ;
 import {setDataStore} from "../model/DataStore";
 import SocketManager from "../../src/services/SocketManager";
+import appleAuth from "../login/AppleAuth";
+import googleAuth from "../login/GoogleAuth";
+import navBar from "./navBar";
+import twitterAuth from "../login/TwitterAuth";
 
 class BaseView {
 
   constructor( config ){
+    
+    this.initLogin();
     
     if(typeof config.apiResponse == "string"){
       config.apiResponse =  JSON.parse( config.apiResponse );
@@ -13,13 +20,24 @@ class BaseView {
       config.appMeta =  JSON.parse( config.appMeta );
     }
     this.config = config;
-    if(!this.config || true) return;
+    if(!this.config ) return;
     this.initCurrentUser( config.apiResponse );
+    return;
     this.initDataStore( config.apiResponse  );
     this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
     this.initPixelDrop(config.appMeta);
     this.initSocket();
 
+  }
+  
+  initLogin (){
+    navBar.init();
+    appleAuth.init();
+    twitterAuth.init();
+    googleAuth.init();
+    $(window).on('resize scroll', () => {
+      navBar.fixedNavBarMenu();
+    });
   }
 
   initCurrentUser(apiResponse={}){
