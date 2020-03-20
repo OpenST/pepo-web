@@ -122,6 +122,11 @@ class DataGetters {
     return deepGet(this.getChannelEntity(id), 'name');
   }
 
+  getChannelPermalink(id){
+    return deepGet(this.getChannelEntity(id), 'permalink');
+  }
+
+
   getChannelTagText(id){
     return this.getText(deepGet(this.getChannelDetailEntity(id), 'tagline_id'));
   }
