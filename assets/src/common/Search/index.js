@@ -1,4 +1,4 @@
-import $ from 'jquery';
+const {$} = window;
 
 export default class Search{
 

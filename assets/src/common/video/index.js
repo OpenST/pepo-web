@@ -1,4 +1,4 @@
-import $ from 'jquery';
+const {$} = window;
 import BasicHelper from '../../helpers/basic'
 import socketPixelCall from "../../services/SocketPixelCall";
 

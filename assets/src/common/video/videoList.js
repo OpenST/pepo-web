@@ -1,4 +1,4 @@
-import $ from 'jquery';
+const {$} = window;
 import ejs from 'ejs';
 import videoModalDetail from './modalDetail.html';
 import videoThumbnail from './thumbnail.html';

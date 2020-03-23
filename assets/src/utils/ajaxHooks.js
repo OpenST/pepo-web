@@ -1,5 +1,6 @@
+const {$} = window;
 ;
-(function(window, $){
+(function(window){
 
   // //Add CSRF TOKEN
   $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
@@ -57,4 +58,4 @@
 
     return msg;
   });
-})(window, jQuery);
+})(window);

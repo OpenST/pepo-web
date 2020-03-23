@@ -1,5 +1,7 @@
-import $ from 'jquery';
+const {$} = window;
 import  ns from "../src/libs/namespace";
+
+import * as ajaxHooks from './utils/ajaxHooks';
 
 class WebView {
   

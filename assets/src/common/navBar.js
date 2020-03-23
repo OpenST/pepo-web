@@ -1,4 +1,4 @@
-import $ from 'jquery';
+const {$} = window;
 import CurrentUser from "../model/CurrentUser";
 import LoginServiceFactory from  '../login/LoginServicefactory';
 

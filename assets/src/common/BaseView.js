@@ -1,4 +1,4 @@
-import $ from 'jquery';
+const {$} = window;
 import CurrentUser from "../model/CurrentUser" ;
 import {setDataStore} from "../model/DataStore";
 import SocketManager from "../../src/services/SocketManager";
@@ -6,6 +6,8 @@ import appleAuth from "../login/AppleAuth";
 import googleAuth from "../login/GoogleAuth";
 import navBar from "./navBar";
 import twitterAuth from "../login/TwitterAuth";
+
+import * as ajaxHooks from '../utils/ajaxHooks';
 
 class BaseView {
 
