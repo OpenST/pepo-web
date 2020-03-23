@@ -23,7 +23,6 @@ class WebView {
         data: data,
         success:function (res) {
           window.location = redirectUrl;
-          console.log("success redirect ajax", JSON.stringify(res));
         },
         error : function (err) {
           if(redirectUrl.indexOf('?') !== -1){
@@ -31,7 +30,6 @@ class WebView {
           } else {
             window.location = `${redirectUrl}?lerr=1`;
           }
-          console.log("error redirect ajax");
         }
       })
   }
