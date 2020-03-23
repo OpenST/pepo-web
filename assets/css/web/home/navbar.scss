@@ -22,6 +22,11 @@
     font-weight: 500;
     color: #ababab;
   }
+
+  input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
+  }
+
   .navbar-extended{
     text-align: center;
     h2,h4{

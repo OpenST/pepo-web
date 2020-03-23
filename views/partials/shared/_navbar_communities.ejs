@@ -3,7 +3,7 @@
         <a class="pepo-brand" href="/" title="Pepo">
             <span class="pepo-logo-nav"></span>
         </a>
-        <input class="mx-auto search-box" placeholder="Search communities by name" type="search" id="community-search" type="text" />
+        <input class="mx-auto search-box d-none d-md-block" placeholder="Search communities by name" type="search" id="community-search" type="text" />
 
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-3" id="navbarToggler">
 
@@ -14,7 +14,7 @@
                 <a href="" class="main-nav-item p-0 d-flex align-items-center justify-content-between loginApp" title="Login">Login<span class="login-icon"></span></a>
             </li>
         </ul>
-        <div class="nav-item-wrapper d-flex align-items-center">
+        <div class="nav-item-wrapper d-flex align-items-center ml-auto ml-md-0">
             <% if (firebaseUrls.openInApp) { %>
             <a href="<%= firebaseUrls.openInApp %>" class="downloadApp main-nav-item d-app-nav-item d-inline-block d-md-none mobile" title="Open in App" rel="noopener noreferrer nofollow">Open in App</a>
             <% } else if (firebaseUrls.getTheApp) { %>
@@ -32,7 +32,7 @@
         </label>
         <input type="checkbox" id="tm">
     </div>
-    <div class="navbar-extended mt-3">
+    <div class="navbar-extended mt-3 d-none d-md-block">
         <h2>Meet Your Peeps!</h2>
         <h4>Real People. Real Connections. </h4>
     </div>
