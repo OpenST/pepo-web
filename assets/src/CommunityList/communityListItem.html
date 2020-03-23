@@ -1,22 +1,23 @@
-<li class="videoContainerInner col-12 col-md-4 p-1">
+<li class="communityContainerInner col-12 col-md-6 col-lg-4 ">
     <a href="/communities/<%= DataGetters.getChannelPermalink(channelId) %>"
        class="d-block"
+       style="box-shadow: 0 3px 9px 1px rgba(0, 0, 0, 0.13);overflow: hidden;border-radius: 3px"
        rel="noopener noreferrer nofollow"
     >
-        <span class="channel-list-image d-block">
+        <span class="community-list-image d-block">
             <span class="content">
-                <img src="<%= DataGetters.getChannelCoverImage(channelId) %>" class="img-fluid h-100" style="object-fit: cover"/>
-            <span class="position-absolute d-flex justify-content-between flex-column h-100 w-100 p-2" style="left: 0; top: 0;    background-color: rgba(0, 0, 0, 0.4);">
+                <img src="<%= DataGetters.getChannelCoverImage(channelId) %>" class="img-fluid h-100"/>
+            <span class="position-absolute d-flex justify-content-between flex-column h-100 w-100 p-3" style="left: 0; top: 0;background-color: rgba(0, 0, 0, 0.4);">
                 <span class="details">
-                    <p class="mb-0" style="color: #FFFFFF"><%= DataGetters.getChannelName(channelId) %></p>
-                    <p class="mb-0" style="color: #FFFFFF"><%= DataGetters.getChannelTagText(channelId) %></p>
+                    <p class="mb-2 text-truncate" style="color: #FFFFFF;font-family: AvenirNext-DemiBold;font-size: 18px;line-height: 100%;"><%= DataGetters.getChannelName(channelId) %></p>
+                    <p class="mb-0 text-truncate" style="color: #FFFFFF;font-size: 14px;line-height: 100%;"><%= DataGetters.getChannelTagText(channelId) %></p>
                 </span>
 
                 <span class="details d-flex justify-content-between align-items-center">
                     <span>
-                        <span class="d-flex">
-                            <span class="desc" style="color: #FFFFFF">Members <%= DataGetters.getChannelMemberCount(channelId) %></span>
-                            <span class="desc ml-5" style="color: #FFFFFF">Videos <%= DataGetters.getChannelVideoCount(channelId) %></span>
+                        <span class="d-flex" style="line-height: 100%">
+                            <span class="desc" style="color: #FFFFFF;font-family: AvenirNext-Medium;font-size: 14px;font-weight: 500;"><%= DataGetters.getChannelMemberCount(channelId) %> <span style="font-family: AvenirNext-Regular;">Members</span></span>
+                            <span class="desc ml-4" style="color: #FFFFFF;font-family: AvenirNext-Medium;font-size: 14px;font-weight: 500;"><%= DataGetters.getChannelVideoCount(channelId) %> <span style="font-family: AvenirNext-Regular;">Videos</span></span>
                         </span>
                     </span>
                     <!--                    <span style="color: #FFFFFF">Joined</span>-->
@@ -24,15 +25,12 @@
             </span>
             </span>
         </span>
-        <span class="p-2"  style="background-color: #FFFFFF;box-shadow: 0 3px 9px 1px rgba(0, 0, 0, 0.13);display: block;">
-        <span style="display: -webkit-box;
-    max-width: 100%;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;">
-            <%= DataGetters.getChannelDesc(channelId) %>
-        </span>
-        </span>
+        <% if (DataGetters.getChannelDesc(channelId)) { %>
+            <span class="p-2" style="background-color: #FFFFFF;display: block;">
+                <span style="display: -webkit-box;max-width: 100%;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: #6a6a76;font-size: 12px">
+                    <%= DataGetters.getChannelDesc(channelId) %>
+                </span>
+            </span>
+        <% } %>
     </a>
 </li>

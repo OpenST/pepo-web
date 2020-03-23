@@ -21,8 +21,32 @@
   }
 }
 
-.channel-list-image{
-  @include aspect-ratio(19, 10);
+
+.communityList{
+  .container{
+    max-width: 1140px;
+  }
+  .community-list-image{
+    @include aspect-ratio(21, 9);
+    @media only screen and (min-width: 768px) {
+      @include aspect-ratio(19, 10);
+    }
+  }
+  .communityContainerInner{
+    padding: 0;
+    //overflow: hidden;
+    background-clip: padding-box;
+    border: 5px solid transparent;
+    @media only screen and (min-width: 768px){
+      border: 7px solid transparent;
+    }
+    a{
+      &:hover{
+        color: #6a6a76;
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 .community-channel{
