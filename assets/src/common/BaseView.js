@@ -22,12 +22,11 @@ class BaseView {
     this.config = config;
     if(!this.config ) return;
     this.initCurrentUser( config.apiResponse );
-    return;
     this.initDataStore( config.apiResponse  );
+    this.initSocket();
+    return;
     this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
     this.initPixelDrop(config.appMeta);
-    this.initSocket();
-
   }
   
   initLogin (){
