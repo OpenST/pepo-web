@@ -71,6 +71,19 @@ export default class SimpleDataTable {
     };
   }
 
+  updateFetchUrlAndLoad(url){
+    var oThis = this;
+    if(url !== this.fetchResultsUrl){
+      this.fetchResultsUrl = url;
+      oThis.loadTableData();
+    }
+  }
+
+  refresh(){
+    var oThis = this;
+    oThis.loadTableData();
+  }
+
   getRowTemplate () {
     var oThis = this;
     return oThis.rowTemplate;

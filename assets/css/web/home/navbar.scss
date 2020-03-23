@@ -11,8 +11,10 @@
 .pepo-nav{
   min-height: 58px;
   background-color: $white;
-
   .search-box{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     height: 40px;
     width: 340px;
     border-radius: 5px;
@@ -21,12 +23,14 @@
     font-size: $font-size-sm;
     font-weight: 500;
     color: #ababab;
-  }
-  .navbar-extended{
-    text-align: center;
-    h2,h4{
-      color: #2c2c3d;
+    .search-input{
+      border: none;
+      width: 340px;
     }
+  }
+
+  input[type=search]::-webkit-search-cancel-button {
+    -webkit-appearance: searchfield-cancel-button;
   }
 
   .main-nav-item{

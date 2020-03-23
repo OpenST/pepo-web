@@ -1,11 +1,13 @@
 <nav class="pepo-nav container-fluid">
-    <div class="row align-items-center" style="min-height: 58px;padding: 0 15px">
+    <div class="row align-items-center position-md-relative" style="min-height: 58px;padding: 0 15px">
         <a class="pepo-brand" href="/" title="Pepo">
             <span class="pepo-logo-nav"></span>
         </a>
-        <input class="mx-auto search-box" placeholder="Search communities by name" type="search" id="community-search" type="text" />
-
-        <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-3" id="navbarToggler">
+        <div class="mx-auto px-2 search-box  d-md-flex  d-none align-items-center justify-content-center">
+            <div class="search-icon"></div>
+            <input class="search-input ml-2 community-search" placeholder="Search communities by name" type="search" type="text" />
+        </div>
+        <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-auto" id="navbarToggler">
 
             <li class="nav-item-wrapper">
                 <a class="main-nav-item" title="Go Live!">Go Live!</a>
@@ -14,7 +16,7 @@
                 <a href="" class="main-nav-item p-0 d-flex align-items-center justify-content-between loginApp" title="Login">Login<span class="login-icon"></span></a>
             </li>
         </ul>
-        <div class="nav-item-wrapper d-flex align-items-center">
+        <div class="nav-item-wrapper d-flex align-items-center ml-auto ml-md-0">
             <% if (firebaseUrls.openInApp) { %>
             <a href="<%= firebaseUrls.openInApp %>" class="downloadApp main-nav-item d-app-nav-item d-inline-block d-md-none mobile" title="Open in App" rel="noopener noreferrer nofollow">Open in App</a>
             <% } else if (firebaseUrls.getTheApp) { %>
@@ -31,10 +33,6 @@
             </span>
         </label>
         <input type="checkbox" id="tm">
-    </div>
-    <div class="navbar-extended mt-3">
-        <h2>Meet Your Peeps!</h2>
-        <h4>Real People. Real Connections. </h4>
     </div>
 </nav>
 

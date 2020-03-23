@@ -11,36 +11,29 @@ class CommunityList{
 
 
   init = () => {
-    console.log('init==');
     this.searchTerm = '';
-    this.simpleDataTable = null;
-    let searchComponent = new Search({searchSelector: '#community-search', onSearchHandler: this.onSearchHandler });
-    this.initSimpleDataTable();
-  };
-
-
-  getFetchUrl = () => {
-    // for time being, IT will change when backend will ready.
-    return `api/web/search/channels?q=${this.searchTerm}`;
+    this.queryDataTable = null;
+    this.searchedResults = [];
+    let searchComponent = new Search({searchSelector: '.community-search', onSearchHandler: this.onSearchHandler });
+    this.initDefaultDataTable();
   };
 
   onSearchHandler = ( searchTerm ) => {
-    console.log("search term =====", searchTerm);
     if ( searchTerm === this.searchTerm ){
       return;
     }
     this.searchTerm = searchTerm;
-    this.initSimpleDataTable();
+    this.updateUIOnSearch(searchTerm);
+    if(this.searchTerm){
+      this.hideNoResults();
+      this.fetchQueryDataTable();
+    }
   };
 
-  initSimpleDataTable = () => {
-    const oThis = this;
-    // if(this.simpleDataTable && this.simpleDataTable.isLoadingData){
-    //   return;
-    // }
-    this.simpleDataTable = new SimpleDataTable({
-      jParent: $("#communityListParent"),
-      fetchResultsUrl: this.getFetchUrl(),
+  initDefaultDataTable = () => {
+    let params = {
+      jParent: $("#default-community-list-parent"),
+      fetchResultsUrl: 'api/web/search/channels',
       rowTemplate: ejs.compile(communityListItem, {client: true}),
       getRowData : function (result) {
         console.log('result',result);
@@ -49,8 +42,98 @@ class CommunityList{
           DataGetters
         };
       }
-    });
-  }
+    };
+    let defaultDataTable = new SimpleDataTable(params);
+  };
+
+  fetchQueryDataTable = () => {
+    if(this.queryDataTable){
+      this.queryDataTable.updateFetchUrlAndLoad(this.getFetchUrl());
+      return;
+    }
+    let params = {
+      jParent: $("#searched-community-list-parent"),
+      fetchResultsUrl: this.getFetchUrl(),
+      rowTemplate: ejs.compile(communityListItem, {client: true}),
+      getRowData : function (result) {
+        console.log('result',result);
+        return {
+          channelId: deepGet(result, 'id'),
+          DataGetters
+        };
+      },
+      resultFetcherCallback:  (results) => {
+        this.searchedResults = results;
+        this.updateUIOnResults();
+      }
+    };
+    this.queryDataTable = new SimpleDataTable(params);
+  };
+
+  getFetchUrl = () => {
+    return `api/web/search/channels?q=${this.searchTerm}`;
+  };
+
+  updateUIOnResults = () => {
+    this.updateUIOnSearch();
+    if(!this.searchTerm){
+      return;
+    }
+    if(this.searchedResults.length > 0){
+      this.hideNoResults();
+      this.hideDefaultSearchDiv();
+    } else {
+      this.showNoResults();
+      this.showExploreCategories();
+      this.showDefaultSearchDiv();
+    }
+  };
+
+  updateUIOnSearch = () => {
+    if(this.searchTerm){
+      this.showSearchedDiv();
+      this.hideDefaultSearchDiv();
+    } else {
+      this.hideSearchedDiv();
+      this.showDefaultSearchDiv();
+      this.showMeetPeeps();
+    }
+  };
+
+  showSearchedDiv = () => {
+    $(".searched-community-wrapper").show();
+  };
+
+  hideSearchedDiv = () => {
+    $(".searched-community-wrapper").hide();
+  };
+
+  showDefaultSearchDiv = () => {
+    $(".default-community-wrapper").show();
+  };
+
+  hideDefaultSearchDiv = () => {
+    $(".default-community-wrapper").hide();
+  };
+
+  showNoResults = () => {
+    $(".no-result-found").show();
+  };
+
+  hideNoResults = () => {
+    $(".no-result-found").hide();
+  };
+
+  showMeetPeeps = () => {
+    $(".explore-categories").hide();
+    $(".meet-your-peeps").show();
+  };
+
+  showExploreCategories = () => {
+    $(".explore-categories").show();
+    $(".meet-your-peeps").hide();
+  };
+
 
 }
 

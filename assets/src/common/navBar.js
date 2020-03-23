@@ -72,7 +72,7 @@ class NavBar {
           e.preventDefault();
           e.stopPropagation();
         });
-  
+
       $(".logoutBtn").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
         let loginType = CurrentUser.getLoginType(),
             loginInstance = LoginServiceFactory.getLoginServiceInstance( loginType );
