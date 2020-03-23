@@ -39,6 +39,12 @@
       -webkit-appearance: searchfield-cancel-button;
     }
   }
+  .meet-your-peeps{
+    text-align: center;
+    h3,h5{
+      color: #2c2c3d;
+    }
+  }
   .community-list-image{
     @include aspect-ratio(21, 9);
     @media only screen and (min-width: 768px) {
