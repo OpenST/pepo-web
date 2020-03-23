@@ -2,11 +2,10 @@
 <% if (!currentUser.isLoggedIn()) {%>
     <%- include ../partials/shared/_navBar -%>
 <% } else{ %>
-    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
 <% } %>
 <%- include ../partials/web/home/_content -%>
 <%- include ../partials/web/home/_sideBySide -%>
-<%- include ../partials/shared/_modals %>
 <%- include ../partials/shared/_svg_sprite_common.ejs%>
 
 

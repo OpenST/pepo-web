@@ -3,3 +3,14 @@
 <% } else{ %>
     <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
 <% } %>
+
+<%- include('../partials/web/meeting/_zoomIframe') -%>
+
+<script type="text/javascript">
+    window.onload = function () {
+        new pepo.meeting({
+            "apiResponse"  : <%- JSON.stringify(apiResponseData) %>,
+            "appMeta" : <%- JSON.stringify(appMeta)%>
+        });
+    }
+</script>

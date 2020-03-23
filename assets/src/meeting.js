@@ -1,6 +1,7 @@
+import  ns from "../js/libs/namespace";
 import BaseView from "../src/common/BaseView";
 
-class Feed extends BaseView {
+class Meeting extends BaseView {
 
     constructor(config){
         super(config);
@@ -8,4 +9,5 @@ class Feed extends BaseView {
 
 }
 
-export default Feed;
+const pepo = ns("pepo");
+pepo.meeting = Meeting;
