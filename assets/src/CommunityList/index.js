@@ -14,7 +14,7 @@ class CommunityList{
     this.searchTerm = '';
     this.queryDataTable = null;
     this.searchedResults = [];
-    let searchComponent = new Search({searchSelector: '#community-search', onSearchHandler: this.onSearchHandler });
+    let searchComponent = new Search({searchSelector: '.community-search', onSearchHandler: this.onSearchHandler });
     this.initDefaultDataTable();
   };
 
