@@ -1,5 +1,8 @@
 import $ from 'jquery';
+import CurrentUser from "../model/CurrentUser";
 import LoginServiceFactory from  '../login/LoginServicefactory';
+
+const namespace = "navbar";
 
 class NavBar {
 
@@ -23,21 +26,23 @@ class NavBar {
 
     bindEvents = () => {
 
-        $("#toggle-menu").on('click', function(){
+        $("#toggle-menu").off(`click.${namespace}`).on(`click.${namespace}`, function(){
             $(this).toggleClass("is-active");
         });
 
-        $('nav .downloadApp.web').on('click', function (e) {
+        $('nav .downloadApp.web').off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
             $('#downloadModal').modal('show');
             e.preventDefault();
             e.stopPropagation();
             return false;
         });
 
-        $('.loginApp').on('click',function (e) {
-            let loginModal = $('#loginModal');
+        $('.loginApp').off(`click.${namespace}`).on(`click.${namespace}`,function (e) {
+            let loginModal = $('#loginModal') ,
+              backdrop = window.innerWidth < 768  ? true: false
+            ;
             loginModal.modal({
-              backdrop:false
+              backdrop:backdrop
             });
             loginModal.modal('show');
                 $('body').on('click',function () {
@@ -48,33 +53,33 @@ class NavBar {
             });
             e.preventDefault();
             e.stopPropagation();
-        })
+        });
 
-        $('#logoutApp').on('click',function (e) {
+        $('#logoutAppWeb').off(`click.${namespace}`).on(`click.${namespace}`,function (e) {
           let logoutModal = $('#logoutModal'),
-              arrowIcon   = logoutModal.closest('body').find('.downward-arrow-icon'),
-              loginType   = $(this).attr('data-login-type');
+              arrowIcon   = logoutModal.closest('body').find('.downward-arrow-icon');
           logoutModal.modal({
             backdrop:false
           });
           logoutModal.modal('show');
           arrowIcon.css({'transform': "rotate(180deg)"});
-          $('body').off("click.logout").on('click.logout',function (e) {
+          $('body').off(`click.${namespace}`).on(`click.${namespace}`,function (e) {
             if(logoutModal.length !== 0 ){
               logoutModal.modal('hide');
               arrowIcon.css({'transform': "rotate(0deg)"});
             }
           });
-          $("#logoutBtn").off("click.logout").on("click.logout", function (e) {
-            let loginInstance = LoginServiceFactory.getLoginServiceInstance( loginType );
-            loginInstance.logout();
-            e.preventDefault();
-            e.stopPropagation();
-          });
           e.preventDefault();
           e.stopPropagation();
-        })
-    }
+        });
+  
+      $(".logoutBtn").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
+        let loginType = CurrentUser.getLoginType(),
+            loginInstance = LoginServiceFactory.getLoginServiceInstance( loginType );
+        loginInstance.logout();
+        e.stopPropagation();
+      });
+    };
 
     setupUberBanner = () => {
         if( this.jUberBanner && this.jUberBanner.length === 0 ) {
