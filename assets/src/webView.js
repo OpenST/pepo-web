@@ -13,27 +13,45 @@ class WebView {
   };
   
   init =(params)=> {
-      let data = JSON.parse(params.oAuthData),
-        kind = params.oAuthKind,
-        redirectUrl = this.sanitizeUrl(params.redirectUrl);
+      let oThis = this,
+          data = JSON.parse(params.oAuthData),
+          kind = params.oAuthKind,
+          redirectUrl = this.sanitizeUrl(params.redirectUrl);
       if(!data || !redirectUrl) return;
       $.ajax({
         url:`/api/web/auth/${kind}/login`,
         method:'POST',
         data: data,
         success:function (res) {
-          window.location = redirectUrl;
+          if(res && res.success ){
+            window.location = redirectUrl;
+          }else {
+            oThis.onError( res , redirectUrl );
+          }
         },
         error : function (err) {
           if(redirectUrl.indexOf('?') !== -1){
-            window.location = `${redirectUrl}&lerr=1`;
+            oThis.onError( err , `${redirectUrl}&lerr=1`);
           } else {
-            window.location = `${redirectUrl}?lerr=1`;
+            oThis.onError( err , `${redirectUrl}?lerr=1`);
           }
         }
       })
-  }
-}
+  };
+  
+  onError = (res, redirectUrl) => {
+    let error = "Failed to login please try again later!";
+    if(res){
+      error = "Sorry! We have disabled sign up on web for now."
+    }
+    $(".error-msg").html( error );
+    $(".error-block").show();
+    $(".navigate-link").off("click.webView").on("click.webView", function (e) {
+      window.location = redirectUrl;
+    });
+  };
+  
+};
 
 const pepo = ns("pepo");
 pepo.webView = new WebView();

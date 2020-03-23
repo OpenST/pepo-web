@@ -67,7 +67,7 @@
     "robots": "noindex, nofollow",
     "assets": {
       "js_manifest" : true,
-      "css_manifest" : false
+      "css_manifest" : true
     }
   }
 }
