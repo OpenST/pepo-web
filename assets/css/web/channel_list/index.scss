@@ -47,6 +47,47 @@
       }
     }
   }
+
+  #ribbon-container {
+    position: absolute;
+    top: 15px;
+    right: -5px;
+  }
+
+
+
+  #ribbon-container a {
+    display:block;
+    padding-right: 10px;
+    position:relative; /* allows us to position our pseudo-elements properly */
+    background: linear-gradient(45deg, rgb(255, 116, 153) 0%, rgb(255, 85, 102) 100%);
+    overflow:visible;
+    height: 24px;
+    color:#fff;
+    border-radius: 0 7px;
+    //font-size: 14px;
+    line-height: 24px;
+    text-decoration:none;
+    font-family: AvenirNext-DemiBold;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+  }
+
+  #ribbon-container a:after { /* this creates the "folded" part of our ribbon */
+    content:"";
+    height: 0;
+    width: 0;
+    display: block;
+    position: absolute;
+    bottom: -13px;
+    right: 0;
+    border-top: 13px solid #a5a4a4;
+    border-right: 13px solid transparent;
+    z-index: -1;
+  }
+
+
 }
 
 .community-channel{
