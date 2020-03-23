@@ -62,6 +62,11 @@
     "robots": "index, follow",
     "pageType":"channel_list"
   },
+  "meeting": {
+    "page": "Meeting",
+    "robots": "index, follow",
+    "pageType":"channel"
+  },
   "webView":{
     "page" : "WebView",
     "robots": "noindex, nofollow",

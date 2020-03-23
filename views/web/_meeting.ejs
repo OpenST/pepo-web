@@ -1,0 +1,5 @@
+<% if (!currentUser.isLoggedIn()) {%>
+    <%- include('../partials/shared/_navBar', {pepoNav: ""}) -%>
+<% } else{ %>
+    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
+<% } %>
