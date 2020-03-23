@@ -12,6 +12,23 @@
   min-height: 58px;
   background-color: $white;
 
+  .search-box{
+    height: 40px;
+    width: 340px;
+    border-radius: 5px;
+    border: 1px solid #cdd7da;
+    text-align: center;
+    font-size: $font-size-sm;
+    font-weight: 500;
+    color: #ababab;
+  }
+  .navbar-extended{
+    text-align: center;
+    h2,h4{
+      color: #2c2c3d;
+    }
+  }
+
   .main-nav-item{
     position: relative;
     letter-spacing: 0.4px;
@@ -66,6 +83,9 @@
   .main-menu {
     width: 100%;
     background-color: $white;
+    .login-details-section{
+      border-left: 1px solid #d8d8d8;
+    }
     .nav-item-wrapper{
       padding-right: 15px;
       padding-left: 15px;
