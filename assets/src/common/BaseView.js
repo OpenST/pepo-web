@@ -48,10 +48,14 @@ class BaseView {
     if(!data) return;
     setDataStore(data);
   }
+  
+  initSocket() {
+    SocketManager.init();
+  }
 
   initSdk(config, params){
     if(!config) return;
-    BrowserSdk.init(config, params);
+    //BrowserSdk.init(config, params);
   }
 
   initPixelDrop(config){
@@ -59,9 +63,7 @@ class BaseView {
     //@Sharadha
   }
 
-  initSocket() {
-    SocketManager.init();
-  }
+  
 
 }
 
