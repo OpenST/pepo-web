@@ -21,6 +21,10 @@
     font-size: $font-size-sm;
     font-weight: 500;
     color: #ababab;
+    .search-input{
+      border: none;
+      width: 340px;
+    }
   }
 
   input[type=search]::-webkit-search-cancel-button {
