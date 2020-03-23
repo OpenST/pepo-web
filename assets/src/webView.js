@@ -13,6 +13,11 @@ class WebView {
   };
   
   init =(params)=> {
+      if(!params || !params.oAuthData){
+        window.location ="/";
+        return;
+      }
+    
       let oThis = this,
           data = JSON.parse(params.oAuthData),
           kind = params.oAuthKind,
@@ -41,10 +46,11 @@ class WebView {
   
   onError = (res, redirectUrl) => {
     let error = "Failed to login please try again later!";
-    if(res){
+    if(res && res.err && res.err.code == "web_signup_prohibited"){
       error = "Sorry! We have disabled sign up on web for now."
     }
     $(".error-msg").html( error );
+    $(".pepo-loading-icon").hide();
     $(".error-block").show();
     $(".navigate-link").off("click.webView").on("click.webView", function (e) {
       window.location = redirectUrl;
