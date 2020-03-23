@@ -12,20 +12,27 @@
   min-height: 58px;
   background-color: $white;
   .search-box{
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    height: 40px;
-    width: 340px;
+    @media only screen and (min-width: 992px){
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 340px;
+      height: 40px;
+    }
     border-radius: 5px;
     border: 1px solid #cdd7da;
     text-align: center;
     font-size: $font-size-sm;
     font-weight: 500;
     color: #ababab;
+    overflow: hidden;
     .search-input{
       border: none;
-      width: 340px;
+      width: inherit;
+      height: 36px;
+      &:focus{
+        outline: none;
+      }
     }
   }
 
