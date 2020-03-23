@@ -11,8 +11,10 @@
 .pepo-nav{
   min-height: 58px;
   background-color: $white;
-
   .search-box{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     height: 40px;
     width: 340px;
     border-radius: 5px;
