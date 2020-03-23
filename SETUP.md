@@ -105,7 +105,7 @@ You need to install the following to run `pepo-web`
         ```
         sudo nginx -c /usr/local/etc/nginx/nginx.conf -t
         ```
-        **Please note**: Sudo command is used, because the nginx is trying to access 443 port which is accessable only by the super user.
+        **Please note**: Sudo command is used, because the nginx is trying to access 443 port which is accessible only by the super user.
         The output should look like the following
         ```
         sudo nginx -c /usr/local/etc/nginx/nginx.conf -t
@@ -161,6 +161,8 @@ You need to install the following to run `pepo-web`
         - `npm install`
         - `source set_env_vars.sh`
         - `npm run webpack-dev`
+    - Open a new tab
+        - `source set_env_vars.sh`
         - `npm start`
 
 6. Go to browser and type `https://pepodev.com`
