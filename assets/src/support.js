@@ -1,3 +1,4 @@
+import * as ajaxHooks from './utils/ajaxHooks';
 class Support {
     constructor(){
         // Set Intercom Settings (Before it is initialized)
