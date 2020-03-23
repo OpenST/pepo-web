@@ -35,7 +35,8 @@ router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res, ne
     androidAppLink: appUpdateLinksConstants.androidUpdateLink,
     iosAppLink: appUpdateLinksConstants.iosUpdateLink,
     firebaseUrls: {getTheApp: firebaseGetTheAppUrl},
-    pageMeta : apiResponse.data.pageMeta
+    pageMeta : apiResponse.data.pageMeta,
+    highlightLink: ''
   });
 
 });
@@ -55,7 +56,8 @@ router.get('/feed', sanitizer.sanitizeDynamicUrlParams, async function (req, res
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
       iosAppLink: appUpdateLinksConstants.iosUpdateLink,
       firebaseUrls: {openInApp: firebaseGetTheAppUrl},
-      showFooter: false
+      showFooter: false,
+      highlightLink: 'feed-page'
     };
 
     webRouteHelper.perform(req, res, 'loggedIn', 'web/_feed', locals);

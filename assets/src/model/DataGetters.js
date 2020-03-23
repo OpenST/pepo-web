@@ -28,6 +28,11 @@ class DataGetters {
       || deepGet(getDataStore(), `image_entities[${PREFIX}${profileImageId}].resolutions.original.url`) ;
   }
 
+  getImageUrl(id, size){
+    return deepGet(getDataStore(), `image_entities[${PREFIX}${id}].resolutions.${size}.url`)
+      || deepGet(getDataStore(), `image_entities[${PREFIX}${id}].resolutions.original.url`);
+  }
+
   getUserName (id) {
     return deepGet(this.getUserInfo(id), 'user_name');
   }
@@ -113,80 +118,54 @@ class DataGetters {
     return basicHelper.getVideoShareUrl(id)
   }
 
+  getChannelName(id){
+    return deepGet(this.getChannelEntity(id), 'name');
+  }
+
+  getChannelPermalink(id){
+    return deepGet(this.getChannelEntity(id), 'permalink');
+  }
+
+
+  getChannelTagText(id){
+    return this.getText(deepGet(this.getChannelDetailEntity(id), 'tagline_id'));
+  }
+
+  getChannelDesc(id){
+    return this.getText(deepGet(this.getChannelDetailEntity(id), 'description_id'));
+  }
+
+  getChannelVideoCount(id){
+    return deepGet(this.getChannelStatsEntity(id), 'total_videos');
+  }
+
+  getChannelMemberCount(id){
+    return deepGet(this.getChannelStatsEntity(id), 'total_users');
+  }
+
+  getChannelCoverImage(id){
+    return this.getImageUrl(deepGet(this.getChannelDetailEntity(id), 'cover_image_id'), '576w');
+  }
+
+
+  getChannelDetailEntity(id){
+    return deepGet(getDataStore(), `channel_detail_entities[${PREFIX}${id}]`);
+  }
+
+  getChannelStatsEntity(id){
+    return deepGet(getDataStore(), `channel_stat_entities[${PREFIX}${id}]`);
+  }
+
+  getText(id){
+    return deepGet(getDataStore(), `text_entities[${PREFIX}${id}].text`);
+  }
+
+
+
+
 }
 
 export default new DataGetters();
-
-
-const a = {
-
-  'video_id'
-:
-  '',
-    'web_video_url'
-:
-  '',
-    'mobile_video_url'
-:
-  '',
-    'web_video_poster_url'
-:
-  '',
-    'mobile_video_poster_url'
-:
-  '',
-    'tokens_raised'
-:
-  null,
-    'replies_count'
-:
-  null,
-    'description_link'
-:
-  '',
-    'description_display_link'
-:
-  '',
-    'description_text'
-:
-  '',
-    'channels_list'
-:
-  [],
-    'profile_name'
-:
-  '',
-    'profile_username'
-:
-  '',
-    'original_profile_image_url'
-:
-  '',
-    '144w_profile_image_url'
-:
-  '',
-    'firebase_video_url'
-:
-  '',
-    'share_url'
-:
-  '',
-    'page_meta'
-:
-  {
-  }
-,
-  'home_url'
-:
-  '',
-    'display_cts'
-:
-  ''
-
-
-}
-
-
 
 
 

@@ -1,13 +1,10 @@
 const rootPrefix = "../..";
 
 // All Requires
-const UserApi = require(rootPrefix + '/lib/pepoApi/User'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response'),
+const responseHelper = require(rootPrefix + '/lib/formatter/response'),
   renderResponseHelper = require(rootPrefix + '/helpers/renderResponseHelper'),
-  cookieConstants = require(rootPrefix + '/lib/globalConstant/cookie'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
-  logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  CurrentUser = require(rootPrefix + '/lib/model/CurrentUser');
+  logger = require(rootPrefix + '/lib/logger/customConsoleLogger');
 
 const errorConfig = basicHelper.fetchErrorConfig();
 

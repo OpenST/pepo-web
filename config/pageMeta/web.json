@@ -57,6 +57,11 @@
     "robots": "index, follow",
     "pageType":"channel"
   },
+  "channel_list": {
+    "page": "Communities",
+    "robots": "index, follow",
+    "pageType":"channel_list"
+  },
   "webView":{
     "page" : "WebView",
     "robots": "noindex, nofollow",

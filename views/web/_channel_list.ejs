@@ -1,21 +1,17 @@
 <%- include ../partials/web/home/_uberBanner -%>
 <% if (!currentUser.isLoggedIn()) {%>
-    <%- include ../partials/shared/_navBar -%>
+  <%- include ../partials/shared/_navBar -%>
 <% } else{ %>
     <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
 <% } %>
-<%- include ../partials/shared/_videoListWrapper -%>
 
-<%- include ../partials/shared/_video_modal -%>
-
+<%- include ../partials/web/community_list/content %>
+<%- include ../partials/web/community_list/community_list_wrapper %>
 <%- include ../partials/shared/_modals %>
-<%- include ../partials/web/video/_svg_sprite %>
-
-
 
 <script type="text/javascript">
   window.onload = function () {
-    new pepo.feed({
+    new pepo.channelList({
       "apiResponse"  : <%- JSON.stringify(apiResponseData) %>,
       "appMeta" : <%- JSON.stringify(appMeta)%>
     });
