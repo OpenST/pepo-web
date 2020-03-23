@@ -50,9 +50,9 @@
     }
   }
   .community-list-image{
-    @include aspect-ratio(21, 9);
+    @include aspect-ratio(21, 6);
     @media only screen and (min-width: 768px) {
-      @include aspect-ratio(19, 10);
+      @include aspect-ratio(19, 9);
     }
   }
   .communityContainerInner{

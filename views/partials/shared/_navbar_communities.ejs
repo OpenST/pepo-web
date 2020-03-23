@@ -9,9 +9,20 @@
         </div>
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-auto" id="navbarToggler">
 
-            <li class="nav-item-wrapper">
-                <a class="main-nav-item" title="Go Live!">Go Live!</a>
+            <li class="nav-item-wrapper position-relative"><a href="javascript:void(0)" class="main-nav-item py-2 pl-md-5">Go Live!
+                    <label title="Toggle Drop-down" class="navbar-toggler p-0 m-0" for="developers" data-toggle="collapse" data-target="#navbarToggler3" aria-controls="navbarToggler3" aria-expanded="false" aria-label="Toggle navigation"></label>
+                </a>
+                <input type="checkbox" id="goLive"/>
+                <ul class="sub-menu arrow-icon-top list-unstyled pt-0 py-md-2 px-1 mx-2 mx-md-0 collapse" id="navbarToggler3">
+                    <li>
+                        <a href="platform" target="_blank" class="" title="Community">Community</a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank" class="" title="Community Name">Community Name</a>
+                    </li>
+                </ul>
             </li>
+
             <li class="nav-item-wrapper logInOut mx-3 mb-3 d-block d-md-none">
                 <a href="" class="main-nav-item p-0 d-flex align-items-center justify-content-between loginApp" title="Login">Login<span class="login-icon"></span></a>
             </li>
