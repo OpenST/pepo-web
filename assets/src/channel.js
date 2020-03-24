@@ -38,7 +38,7 @@ class Channel extends BaseView {
       $("#tips-to-go-live").modal("show");
     });
 
-    $("#tips-to-go-live-btn").on("click" , function () {
+    $(".tips-to-go-live-btn").on("click" , function () {
       if(oThis.isGoLive) return;
       oThis.goLive($(this));
     });
