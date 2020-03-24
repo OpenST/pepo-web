@@ -33,7 +33,7 @@ class CommunityList{
   initDefaultDataTable = () => {
     let params = {
       jParent: $("#default-community-list-parent"),
-      fetchResultsUrl: 'api/web/search/channels',
+      fetchResultsUrl: '/api/web/search/channels',
       rowTemplate: ejs.compile(communityListItem, {client: true}),
       getRowData : function (result) {
         console.log('result',result);
@@ -71,7 +71,7 @@ class CommunityList{
   };
 
   getFetchUrl = () => {
-    return `api/web/search/channels?q=${this.searchTerm}`;
+    return `/api/web/search/channels?q=${this.searchTerm}`;
   };
 
   updateUIOnResults = () => {

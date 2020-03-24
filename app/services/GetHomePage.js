@@ -1,11 +1,9 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  GetFirebaseChannelListUrl = require(rootPrefix + '/app/services/FireBaseUrl/ChannelList'),
+  GetFirebaseHomeUrl = require(rootPrefix + '/app/services/FireBaseUrl/Home'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
-  appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
-  ChannelLib = require(rootPrefix + '/lib/pepoApi/Channel'),
-  basicHelper = require(rootPrefix + '/helpers/basic');
+  appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks');
 
 /**
  * Class for Getting channel
@@ -40,9 +38,9 @@ class GetChannel extends ServiceBase {
 
     await oThis._validateAndSanitize();
 
-    await oThis.getCurrentUser();
+    await oThis._fetchHomePageMeta();
 
-    await oThis._fetchChannelListMeta();
+    await oThis.getCurrentUser();
 
     return oThis._prepareResponse();
 
@@ -62,11 +60,11 @@ class GetChannel extends ServiceBase {
    * @return {Promise<Result>}
    * @private
    */
-  async _fetchChannelListMeta() {
+  async _fetchHomePageMeta() {
     const oThis = this;
     logger.log('Start::_fetchChannel');
 
-    let pageMetaResponse = await new GetFirebaseChannelListUrl({
+    let pageMetaResponse = await new GetFirebaseHomeUrl({
       headers: oThis.headers,
       decodedParams: oThis.decodedParams
     }).perform();
@@ -81,34 +79,6 @@ class GetChannel extends ServiceBase {
     }
 
     return responseHelper.successWithData({});
-  }
-
-  _getChannelName() {
-    const oThis = this;
-    return oThis.apiResponseData['channel'].name;
-  }
-
-  _getDescription() {
-    const oThis = this,
-      channelId = oThis.apiResponseData['channel'].id,
-      channelDetails = oThis.apiResponseData['channel_details'][channelId],
-      descriptionId = channelDetails['description_id'];
-
-    if(!descriptionId || !oThis.apiResponseData['texts'] || !oThis.apiResponseData['texts'][descriptionId]){
-      return '';
-    }
-
-    return oThis.apiResponseData['texts'][descriptionId]['text'];
-  }
-
-  _getChannelImageUrl() {
-    const oThis = this,
-      channelId = oThis.apiResponseData['channel'].id,
-      channelDetails = oThis.apiResponseData['channel_details'][channelId],
-      coverImageId = channelDetails['cover_image_id'],
-      imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'];
-
-    return imageResolutions['original']['url'];
   }
 
   /**
@@ -131,8 +101,7 @@ class GetChannel extends ServiceBase {
       firebaseUrls: {openInApp: oThis.apiResponseData.firebase_channel_list_url},
       showFooter: false,
       currentUserData: oThis.currentUserData,
-      currentUser: oThis.currentUser,
-      highlightLink: 'channel-list-page'
+      currentUser: oThis.currentUser
     })
   }
 

@@ -6,10 +6,10 @@ const rootPrefix = '../..',
   webRouteHelper = require(rootPrefix + '/routes/pepo/helper');
 
 /* Communities list page */
-router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
-
-  return webRouteHelper.perform(req, res, '/app/services/GetChannelList', 'loggedOut', 'web/_channel_list', 'r_p_v_1');
-});
+// router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
+//
+//   return webRouteHelper.perform(req, res, '/app/services/GetChannelList', 'loggedOut', 'web/_channel_list', 'r_p_v_1');
+// });
 
 /* Specific community page */
 router.get('/:permalink', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
