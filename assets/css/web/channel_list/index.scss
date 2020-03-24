@@ -52,7 +52,11 @@
   }
   .meet-your-peeps{
     text-align: center;
-    h3,h5{
+    h2{
+      font-size: 2.2rem;
+      font-family: $font-family-avenir-demi-bold;
+    }
+    h2,h5{
       color: #2c2c3d;
     }
   }
