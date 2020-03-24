@@ -174,6 +174,10 @@ class GetChannel extends ServiceBase {
   async _prepareResponse() {
     const oThis = this;
 
+    if(oThis.currentUserData){
+      oThis.apiResponseData.current_user_data = oThis.currentUserData;
+    }
+
     return responseHelper.successWithData({
       apiResponseData: oThis.apiResponseData,
       androidAppLink: appUpdateLinksConstants.androidUpdateLink,
