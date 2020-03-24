@@ -101,7 +101,7 @@ router.get('/about', function (req, res) {
 
 /* zoom-meeting iframe page */
 router.get('/zoom-meeting', function (req, res) {
-  webRouteHelper.perform(req, res, 'zoomMeeting');
+  webRouteHelper.perform(req, res, 'zoomMeeting', 'web/_zoomMeeting');
 });
 
 module.exports = router;
