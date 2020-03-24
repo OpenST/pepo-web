@@ -122,6 +122,10 @@ class DataGetters {
     return deepGet(this.getChannelEntity(id), 'name');
   }
 
+  getChannelLiveMeetingId(id){
+    return deepGet(this.getChannelEntity(id), 'live_meeting_id');
+  }
+
   getChannelPermalink(id){
     return deepGet(this.getChannelEntity(id), 'permalink');
   }
@@ -147,6 +151,10 @@ class DataGetters {
     return this.getImageUrl(deepGet(this.getChannelDetailEntity(id), 'cover_image_id'), '576w');
   }
 
+  getCurrentUserIsMember(id){
+    return deepGet(this.getCurrentUserChannelRelations(id), 'is_member');
+  }
+
 
   getChannelDetailEntity(id){
     return deepGet(getDataStore(), `channel_detail_entities[${PREFIX}${id}]`);
@@ -159,6 +167,13 @@ class DataGetters {
   getText(id){
     return deepGet(getDataStore(), `text_entities[${PREFIX}${id}].text`);
   }
+
+
+  getCurrentUserChannelRelations(id){
+    return deepGet(getDataStore(), `current_user_channel_relation_entities[${PREFIX}${id}]`);
+  }
+
+
 
 
 

@@ -3,15 +3,26 @@
         <a class="pepo-brand" href="/" title="Pepo">
             <span class="pepo-logo-nav"></span>
         </a>
-        <div class="mx-auto px-2 search-box  d-md-flex  d-none align-items-center justify-content-center">
+        <div class="pl-2 pr-0 search-box d-md-flex d-none align-items-center justify-content-center ml-4 ml-lg-0 col-5">
             <div class="search-icon"></div>
-            <input class="search-input ml-2 community-search" placeholder="Search communities by name" type="search" type="text" />
+            <input class="search-input ml-2 mr-1 community-search" placeholder="Search communities by name" type="search" type="text" />
         </div>
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-auto" id="navbarToggler">
 
-            <li class="nav-item-wrapper">
-                <a class="main-nav-item" title="Go Live!">Go Live!</a>
+            <li class="nav-item-wrapper position-relative"><a href="javascript:void(0)" class="main-nav-item py-2 pl-md-5">Go Live!
+                    <label title="Toggle Drop-down" class="navbar-toggler p-0 m-0" for="developers" data-toggle="collapse" data-target="#navbarToggler3" aria-controls="navbarToggler3" aria-expanded="false" aria-label="Toggle navigation"></label>
+                </a>
+                <input type="checkbox" id="goLive"/>
+                <ul class="sub-menu arrow-icon-top list-unstyled pt-0 py-md-2 px-1 mx-2 mx-md-0 collapse" id="navbarToggler3">
+                    <li>
+                        <a href="platform" target="_blank" class="" title="Community">Community</a>
+                    </li>
+                    <li>
+                        <a href="" target="_blank" class="" title="Community Name">Community Name</a>
+                    </li>
+                </ul>
             </li>
+
             <li class="nav-item-wrapper logInOut mx-3 mb-3 d-block d-md-none">
                 <a href="" class="main-nav-item p-0 d-flex align-items-center justify-content-between loginApp" title="Login">Login<span class="login-icon"></span></a>
             </li>
@@ -23,7 +34,7 @@
             <a href="<%= firebaseUrls.getTheApp %>" class="downloadApp main-nav-item d-app-nav-item d-inline-block d-md-none mobile" title="Get the App" rel="noopener noreferrer nofollow">Get the App</a>
             <% } %>
             <a href="javascript:void(0)" rel="noopener noreferrer nofollow" class="downloadApp main-nav-item d-app-nav-item d-none d-md-inline-block web mr-0" title="Get the App">Get the App</a>
-            <a href="javascript:void(0)" class="loginApp main-nav-item d-app-nav-item-secondary d-none d-md-inline-block ml-2" title="Login">Login</a>
+            <a href="javascript:void(0)" class="loginApp main-nav-item d-app-nav-item-secondary d-none d-md-inline-block ml-3" title="Login">Login</a>
         </div>
         <label for="tm" id="toggle-menu" class="mb-0 navbar-toggler" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" aria-label="Toggle navigation">
             <span>

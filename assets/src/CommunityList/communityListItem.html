@@ -9,7 +9,7 @@
                 <img src="<%= DataGetters.getChannelCoverImage(channelId) %>" class="img-fluid h-100"/>
                 <span class="position-absolute d-flex justify-content-between flex-column h-100 w-100 p-3" style="left: 0; top: 0;background-color: rgba(0, 0, 0, 0.4);">
                     <span class="details">
-                        <span class="mb-2 text-truncate d-block" style="color: #FFFFFF;font-family: AvenirNext-DemiBold;font-size: 18px;line-height: 100%;"><%= DataGetters.getChannelName(channelId) %></span>
+                        <span class="mb-2 text-truncate d-block" style="color: #FFFFFF;font-family: AvenirNext-DemiBold;font-size: 18px;line-height: 100%;width: calc(100% - 60px);"><%= DataGetters.getChannelName(channelId) %></span>
                         <span class="mb-0 text-truncate d-block" style="color: #FFFFFF;font-size: 14px;line-height: 100%;"><%= DataGetters.getChannelTagText(channelId) %></span>
                     </span>
 
@@ -20,23 +20,27 @@
                                 <span class="desc ml-4" style="color: #FFFFFF;font-family: AvenirNext-Medium;font-size: 14px;font-weight: 500;"><%= DataGetters.getChannelVideoCount(channelId) %> <span style="font-family: AvenirNext-Regular;">Videos</span></span>
                             </span>
                         <!--</span>-->
+                        <% if (DataGetters.getCurrentUserIsMember(channelId)) { %>
                         <span style="color: #2a293b; background: rgba(255, 255, 255, 0.5); border-radius: 30px; width: 60px; font-size: 12px; text-align: center; padding: 3px 0; line-height: 100%;display: flex;align-items: center;justify-content: center;">
                           <span class="joined-icon" style="margin-right: 2px"></span>
                           <span>Joined</span>
                         </span>
+                        <% } %>
                     </span>
                 </span>
             </span>
         </span>
         <% if (DataGetters.getChannelDesc(channelId)) { %>
-            <span class="p-2" style="background-color: #FFFFFF;display: block;">
+            <span class="p-2 d-none d-md-block" style="background-color: #FFFFFF;display: block;">
                 <span style="display: -webkit-box;max-width: 100%;-webkit-line-clamp: 2;-webkit-box-orient: vertical;overflow: hidden;text-overflow: ellipsis;color: #6a6a76;font-size: 12px">
                     <%= DataGetters.getChannelDesc(channelId) %>
                 </span>
             </span>
         <% } %>
     </a>
+    <% if (DataGetters.getChannelLiveMeetingId(channelId) != null ){  %>
     <span id="ribbon-container">
-      <a href="http://youtu.be/zJahlKPCL9g" id="ribbon" target="_blank"><span class="live-icon" style="margin: 0 3px 0 6px"></span>LIVE</a>
+      <a href="http://youtu.be/zJahlKPCL9g" id="ribbon" target="_blank"><span class="join-live-meeting-icon" style="margin: 0 3px 0 6px"></span>LIVE</a>
     </span>
+    <% } %>
 </li>
