@@ -26,7 +26,7 @@ router.get('/:permalink/meetings/:meetingId', sanitizer.sanitizeDynamicUrlParams
   req.decodedParams.meetingId =  req.params.meetingId;
 
   // @todo: this is copy paste from above, please fix this someone
-  return webRouteHelper.perform(req, res, '/app/services/GetChannel', 'loggedOut', 'web/_meeting', 'r_p_v_2');
+  return webRouteHelper.perform(req, res, '/app/services/GetMeetingPage', 'loggedOut', 'web/_meeting', 'r_p_v_3');
 });
 
 module.exports = router;

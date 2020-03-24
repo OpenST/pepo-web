@@ -43,7 +43,8 @@ class GetChannel extends ServiceBase {
 
     await oThis.getCurrentUser();
 
-    await oThis._fetchChannelList();
+    await oThis._fetchChannelListMeta();
+
     return oThis._prepareResponse();
 
   }
@@ -62,7 +63,7 @@ class GetChannel extends ServiceBase {
    * @return {Promise<Result>}
    * @private
    */
-  async _fetchChannelList() {
+  async _fetchChannelListMeta() {
     const oThis = this;
     logger.log('Start::_fetchChannel');
 

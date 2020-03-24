@@ -145,15 +145,15 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
 }
 
 .join-live-meeting-icon{
-  @include icon-generator(40px, 30px, -418px, -502px, -418px, -418px, 40);
+  @include icon-generator(40px, 30px, -370px, -602px, -370px, -370px, 42);
 }
 
 .start-live-meeting-icon{
-  @include icon-generator(40px, 30px, -370px, -502px, -370px, -370px, 40);
+  @include icon-generator(40px, 30px, -322px, -602px, -322px, -322px, 42);
 }
 
 .joined-icon{
-  @include icon-generator(22px, 22px, -620px, -506px, -620px, -620px, 40);
+  @include icon-generator(22px, 22px, -572px, -606px, -572px, -572px, 40);
 }
 .search-icon{
   @include icon-generator(40px, 37px, -572px, -498px, -572px, -572px, 40);
