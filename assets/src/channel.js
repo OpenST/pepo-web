@@ -32,6 +32,8 @@ class Channel extends BaseView {
     $(".list-unstyled .float-left").on('click', (e)=>{
       videoList.init({fetchApi:  `/api/web/feeds` });
     });
+    
+    
 
   };
 
@@ -40,6 +42,7 @@ class Channel extends BaseView {
     jMobileAfterText.append("<span class='showLess'> Show Less</span>");
 
   }
+  
 
 }
 
