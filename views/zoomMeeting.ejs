@@ -21,6 +21,7 @@
 </head>
 <body contenteditable="false">
     <!-- import ZoomMtg dependencies -->
+    <%- include(_contentPartial) -%>
     <script src="//source.zoom.us/1.7.2/lib/vendor/react.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/react-dom.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/redux.min.js"></script>
@@ -32,7 +33,6 @@
     <script src="//source.zoom.us/zoom-meeting-1.7.2.min.js"></script>
 
     <!-- import ZoomMtg -->
-    <!-- <%- JSON.stringify(pageMeta) %> -->
     <%- include partials/shared/_script_zoomMeeting.ejs %>
 </body>
 </html>
