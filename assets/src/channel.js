@@ -77,7 +77,7 @@ class Channel extends BaseView {
   }
   
   getGoLiveFetchUrl(){
-    return `/api/web/communities/${this.channel.permalink}/meetings`
+    return `/api/web/channels/${this.channel.permalink}/meetings`
   }
   
   onGoLiveError(error , jEl){
