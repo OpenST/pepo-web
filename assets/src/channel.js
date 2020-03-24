@@ -1,7 +1,8 @@
 import  ns from "../js/libs/namespace";
 import BaseView from "../src/common/BaseView";
 import videoList from "./common/video/videoList";
-import  deepGet from "lodash/get"
+import  deepGet from "lodash/get";
+import  helper from "./helpers/index";
 
 class Channel extends BaseView {
 
@@ -46,28 +47,13 @@ class Channel extends BaseView {
   
   goLive = (jEl) => {
     this.isGoLive = true;
-    $.ajax({
-      url: this.getGoLiveFetchUrl(),
-      method:'POST',
-      beforeSend: ()=> {
-        this.beforeGoLive(jEl);
-      },
-      success: ( response )=>{
-        if(response && response.success ){
-          const meetingId  = deepGet(response , "data.start_zoom_meeting_payload.meeting_id") ;
-          if(meetingId){
-            window.location = `/communities/${this.channel.permalink}/meetings/${meetingId}/`
-          }else {
-            this.onGoLiveError(response, jEl);
-          }
-        }else {
-          this.onGoLiveError(response, jEl);
-        }
-      },
-      error : ( xhr,status,error )=>{
-        this.onGoLiveError(error, jEl)
-      }
-    });
+    helper.goLive(this.channel , ()=> {
+      this.beforeGoLive(jEl)
+    },
+    (error) => {
+      this.onGoLiveError(error, jEl)
+    }
+    );
   };
   
   beforeGoLive(jEl){

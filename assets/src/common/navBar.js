@@ -6,6 +6,7 @@ import LoginServiceFactory from '../login/LoginServicefactory';
 import adminCommunityList from './adminCommunityList.html';
 import deepGet from 'lodash/get';
 import {setDataStore} from "../model/DataStore";
+import  helper from "../helpers/index";
 
 const LOG_TAG = 'NavBar';
 
@@ -43,9 +44,20 @@ class NavBar {
         }));
 
       $("#navbarToggler3").html(adminCommunityListHtml);
+      this.bindChannelClickEvent();
       }).catch((err) => {
       console.warn(LOG_TAG, 'initUser', err);
     })
+  }
+  
+  bindChannelClickEvent(){
+    $(".jGoLiveChannel").off(`click.${namespace}`).on(`click.${namespace}`, function () {
+      let channel = $(this).data("channel");
+      if(typeof channel == "string"){
+        channel = JSON.parse(channel);
+      }
+      helper.goLive(channel);
+    });
   }
 
   bindEvents = () => {
