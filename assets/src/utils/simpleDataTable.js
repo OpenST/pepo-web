@@ -413,7 +413,10 @@ export default class SimpleDataTable {
 
   scrollObserver  () {
     var oThis = this;
-
+    if ( ! oThis.jParent.visible(true, true)){
+      //If in trouble contact Rachin!
+      return;
+    }
     var partial = true
       , hidden  = null
       , direction   = "vertical"
