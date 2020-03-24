@@ -63,18 +63,18 @@ class Meeting extends BaseView {
                     ){
                         this.joinZoom(response.data[response.data.result_type]);
                     } else {
-                        this.joinParamError('Something went wrong');
+                        this.showError('Something went wrong');
                     }
                 },
-                error: () => this.joinParamError('Something went wrong'),
+                error: () => this.showError('Something went wrong'),
             })
         } else {
-            this.joinParamError('Invalid Meeting');
+            this.showError('Invalid Meeting');
         }
 
     }
 
-    joinParamError(message){
+    showError(message){
         this.jqIframe.hide();
         this.jqError.text(message);
         this.jqError.show();
@@ -86,9 +86,7 @@ class Meeting extends BaseView {
     }
 
     onJoinError(error){
-        this.jqIframe.hide();
-        this.jqError.text(error.errorMessage);
-        this.jqError.show();
+        this.showError(error.errorMessage);
     }
 
 }
