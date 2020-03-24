@@ -3,12 +3,16 @@
         <a class="pepo-brand" href="/" title="Pepo">
             <span class="pepo-logo-nav"></span>
         </a>
+        <div class="pl-2 pr-0 search-box d-md-flex d-none align-items-center justify-content-center ml-4 ml-lg-0 col-5">
+            <div class="search-icon"></div>
+            <input class="search-input ml-2 mr-1 community-search" placeholder="Search communities by name" type="search" type="text" />
+        </div>
         <div class="nav-item-wrapper ml-auto">
                 <a class="main-nav-item" title="Go Live!">Go Live!</a>
         </div>
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-3" id="navbarToggler">
             <li id="logoutAppWeb"
-                class="user-info d-md-flex align-items-center d-none login-details-section" style="min-width: 200px">
+                class="pl-2 user-info d-md-flex align-items-center d-none login-details-section" style="min-width: 200px">
                 <span class="position-relative" style="font-size: 0">
                     <% if (currentUser.getUserProfileImage()) {%>
                     <img src="<%= currentUser.getUserProfileImage() %>" class="user-profile-icon"/>
