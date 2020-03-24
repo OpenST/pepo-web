@@ -75,6 +75,10 @@
 //  }
 //}
 
+.loginBtn.disableClick {
+  opacity: 0.5;
+}
+
 .pepo-loader-scale{
   animation: heartbeat .5s alternate infinite ease-in;
 }

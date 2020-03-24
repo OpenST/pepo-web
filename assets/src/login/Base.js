@@ -2,7 +2,9 @@ const { $ } = window;
 
 class Base{
 
-    constructor(){}
+    constructor(){
+        this.isGettingRedirectXhr = false;
+    }
 
     init =()=> {
         this.bindEvents();
@@ -12,27 +14,29 @@ class Base{
         let jButtonSelector = this.getButtonSelector();
         if(!jButtonSelector) return;
         $(jButtonSelector).on('click',()=> {
+            if(this.isGettingRedirectXhr) return;
             this.disableLoginBtns();
             this.getRedirectUrl();
         });
-    }
+    };
 
     disableLoginBtns = () =>{
-        $("#googleSignIn").removeClass().addClass("disableClick");
-        $("#twitterSignIn").removeClass().addClass("disableClick");
-        $("#githubSignIn").removeClass().addClass("disableClick");
-        $("#appleSignIn").removeClass().addClass("disableClick");
-    }
+        $("#googleSignIn").addClass("disableClick");
+        $("#twitterSignIn").addClass("disableClick");
+        $("#githubSignIn").addClass("disableClick");
+        $("#appleSignIn").addClass("disableClick");
+    };
 
     enableLoginBtns = () =>{
-        $("#googleSignIn").removeClass().addClass("enableClick");
-        $("#twitterSignIn").removeClass().addClass("enableClick");
-        $("#githubSignIn").removeClass().addClass("enableClick");
-        $("#appleSignIn").removeClass().addClass("enableClick");
-    }
+        $("#googleSignIn").removeClass("disableClick");
+        $("#twitterSignIn").removeClass("disableClick");
+        $("#githubSignIn").removeClass("disableClick");
+        $("#appleSignIn").removeClass("disableClick");
+    };
 
     getRedirectUrl = () => {
         let urlEndpoint = this.getUrlEndpoint();
+        this.isGettingRedirectXhr = true;
         $.ajax({
             url: urlEndpoint,
             method:'GET',
@@ -41,29 +45,25 @@ class Base{
             },
             error : ( xhr,status,error )=>{
                 this.onRedirectError( error );
-            },
-            complete: ()=>{
-                this.onRedirectComplete();
             }
         });
-    }
+    };
 
     onRedirectSuccess = ( response ) => {
         if (response && response.success) {
             let resultType = response && response.data && response.data['result_type'],
                 redirectUrl = response && response.data && response.data[resultType];
             window.location = redirectUrl && redirectUrl.url;
+        }else {
+            this.onRedirectError(response)
         }
-    }
+    };
 
     onRedirectError = ( error ) => {
-        console.log("Redirect error ", error);
-    }
-
-    onRedirectComplete = () => {
-        this.enableLoginBtns();
-    }
-
+      this.isGettingRedirectXhr =false;
+      this.enableLoginBtns();
+    };
+    
     logout = () => {
         $.ajax({
             url: this.getDisconnectUrl(),
@@ -76,15 +76,15 @@ class Base{
                 console.log("logged out error", error);
             }
         });
-    }
+    };
 
     getButtonSelector = () => {
         //implement in child
-    }
+    };
 
     getUrlEndpoint = () => {
         //implement in child
-    }
+    };
 
     getDisconnectUrl = () => {
         //implement in child
