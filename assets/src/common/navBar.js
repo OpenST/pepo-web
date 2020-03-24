@@ -79,6 +79,16 @@ class NavBar {
         loginInstance.logout();
         e.stopPropagation();
       });
+      
+      $(".jGoLiveBtn").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
+        if(!CurrentUser.isLoggedIn()){
+          $("#logged-out-instructions").modal("show");
+        }else if(!CurrentUser.isChannelAdmin()){
+          $("#logged-in-instructions").modal("show");
+        }
+        e.stopPropagation();
+        e.preventDefault();
+      });
     };
 
     setupUberBanner = () => {

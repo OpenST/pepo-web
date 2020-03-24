@@ -49,6 +49,14 @@ class  CurrentUser {
   getLoginType(){
     return this.meta.service_type;
   };
+  
+  isLoggedIn(){
+    return !!this.userId;
+  }
+  
+  isChannelAdmin(){
+    return !!(this.user && this.user.is_managing_any_channel);
+  }
 }
 
 export default new CurrentUser();
