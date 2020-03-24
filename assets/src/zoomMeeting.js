@@ -1,1 +1,9 @@
-console.log('in zoomMeeting.js');
+class ZoomMeeting {
+
+    constructor(){
+        console.log('hello!');
+    }
+
+}
+
+window.ZoomMeeting = ZoomMeeting;

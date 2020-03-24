@@ -68,11 +68,7 @@
   },
   "zoomMeeting": {
     "page": "Zoom Meeting",
-    "robots": "index, follow",
-    "assets": {
-      "js_manifest" : true,
-      "css_manifest" : false
-    }
+    "robots": "index, follow"
   },
   "webView":{
     "page" : "WebView",
