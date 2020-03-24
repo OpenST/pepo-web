@@ -144,8 +144,12 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(90px, 90px, -94px, -246px, -94px, -94px, 40);
 }
 
-.live-icon{
+.join-live-meeting-icon{
   @include icon-generator(40px, 30px, -418px, -502px, -418px, -418px, 40);
+}
+
+.start-live-meeting-icon{
+  @include icon-generator(40px, 30px, -370px, -502px, -370px, -370px, 40);
 }
 
 .joined-icon{
