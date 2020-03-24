@@ -62,18 +62,74 @@
       @include aspect-ratio(19, 9);
     }
   }
-  .communityContainerInner{
+  .communityContainerCell{
     padding: 0;
-    //overflow: hidden;
     background-clip: padding-box;
     border: 5px solid transparent;
     @media only screen and (min-width: 768px){
       border: 7px solid transparent;
     }
     a{
+      overflow: hidden;
+      border-radius: 3px;
+      box-shadow: 0 3px 9px 1px rgba(0, 0, 0, 0.13);
       &:hover{
         color: #6a6a76;
         text-decoration: none;
+      }
+    }
+    .overlay{
+      top: 0;
+      left: 0;
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    .channel-name{
+      color: $white;
+      display: block;
+      font-size: 18px;
+      line-height: 100%;
+      width: calc(100% - 60px);
+      font-family: $font-family-avenir-demi-bold;
+    }
+    .channel-desc{
+      color: $white;
+      font-size: 14px;
+      line-height: 100%;
+    }
+    .stats{
+      color: $white;
+      font-size: 14px;
+      font-weight: 500;
+      font-family: $font-family-avenir-medium;
+    }
+    .font-regular{
+      font-family: $font-family-avenir-regular;
+    }
+    .joined{
+      width: 60px;
+      display: flex;
+      color: $valhalla;
+      padding: 3px 0;
+      font-size: 12px;
+      line-height: 100%;
+      text-align: center;
+      align-items: center;
+      border-radius: 30px;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.5);
+    }
+    .cell-desc{
+      display: block;
+      background-color: $white;
+      .desc{
+        color: #6a6a76;
+        max-width: 100%;
+        font-size: 12px;
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        text-overflow: ellipsis;
+        -webkit-box-orient: vertical;
       }
     }
   }
@@ -82,6 +138,9 @@
     position: absolute;
     top: 15px;
     right: -5px;
+    .ribbon-icon{
+      margin: 0 3px 0 6px;
+    }
   }
 
 
