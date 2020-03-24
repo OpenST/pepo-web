@@ -1,0 +1,4 @@
+<% var channelList = Object.keys(channels) %>
+<% for(var i=0; i < channelList.length; i++) { %>
+<li><a href="/communities/<%= channels[channelList[i]].permalink %>" target="_blank" class="" ><%= channels[channelList[i]].name %></a></li>
+<% } %>

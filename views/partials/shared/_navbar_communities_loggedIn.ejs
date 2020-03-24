@@ -7,8 +7,16 @@
             <div class="search-icon"></div>
             <input class="search-input ml-2 mr-1 community-search" placeholder="Search communities by name" type="search" type="text" />
         </div>
-        <div class="nav-item-wrapper ml-auto">
-                <a class="main-nav-item jGoLiveBtn" title="Go Live!">Go Live!</a>
+        <div class="nav-item-wrapper ml-auto main-menu clearfix m-0 p-0 list-unstyled collapse ml-auto" id="navbarToggler">
+                <li class="nav-item-wrapper position-relative">
+                    <a href="javascript:void(0)" class="main-nav-item py-2 pl-md-5 jGoLiveBtn">Go Live!
+                    <label title="Toggle Drop-down" class="navbar-toggler p-0 m-0" for="developers" data-toggle="collapse" data-target="#navbarToggler3" aria-controls="navbarToggler3" aria-expanded="false" aria-label="Toggle navigation"></label>
+                </a>
+                <input type="checkbox" id="goLive"/>
+                <ul class="sub-menu arrow-icon-top list-unstyled pt-0 py-md-2 px-1 mx-2 mx-md-0 collapse" id="navbarToggler3">
+
+                </ul>
+            </li>
         </div>
         <ul class="main-menu clearfix m-0 p-0 list-unstyled collapse ml-3" id="navbarToggler">
             <li id="logoutAppWeb"

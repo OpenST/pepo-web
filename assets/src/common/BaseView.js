@@ -12,9 +12,7 @@ import * as ajaxHooks from '../utils/ajaxHooks';
 class BaseView {
 
   constructor( config ){
-    
-    this.initLogin();
-    
+
     if(typeof config.apiResponse == "string"){
       config.apiResponse =  JSON.parse( config.apiResponse );
     }
@@ -26,11 +24,12 @@ class BaseView {
     this.initCurrentUser( config.apiResponse );
     this.initDataStore( config.apiResponse  );
     this.initSocket();
+    this.initLogin();
     return;
     this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
     this.initPixelDrop(config.appMeta);
   }
-  
+
   initLogin (){
     navBar.init();
     appleAuth.init();
@@ -50,7 +49,7 @@ class BaseView {
     if(!data) return;
     setDataStore(data);
   }
-  
+
   initSocket() {
     SocketManager.init();
   }
@@ -65,7 +64,7 @@ class BaseView {
     //@Sharadha
   }
 
-  
+
 
 }
 
