@@ -64,8 +64,15 @@
   },
   "meeting": {
     "page": "Meeting",
+    "robots": "index, follow"
+  },
+  "zoomMeeting": {
+    "page": "Zoom Meeting",
     "robots": "index, follow",
-    "pageType":"channel"
+    "assets": {
+      "js_manifest" : true,
+      "css_manifest" : false
+    }
   },
   "webView":{
     "page" : "WebView",
