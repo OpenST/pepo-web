@@ -21,6 +21,7 @@ export default class SimpleDataTable {
     oThis.rowTemplate = null;
     oThis.sScrollParent = null;
     oThis.associatedData = {};
+    this.tableId = 'simple-d-t';
 
     oThis.events = {
       "responseProcessed": "responseProcessed"
@@ -434,14 +435,13 @@ export default class SimpleDataTable {
 
   bindScrollObserver () {
     var oThis = this;
-
     var jScrollParent = oThis.getJScrollParent();
 
     //Trigger once.
     oThis.scrollObserver();
 
     //Now bind it.
-    jScrollParent.off(`scroll.${namespace}`).on(`scroll.${namespace}`, oThis.scrollObserver );
+    jScrollParent.off(`scroll.${this.tableId}`).on(`scroll.${this.id}`, oThis.scrollObserver );
 
   }
 
@@ -450,7 +450,7 @@ export default class SimpleDataTable {
 
     var jScrollParent = oThis.getJScrollParent();
 
-    jScrollParent.off("scroll", oThis.scrollObserver );
+    jScrollParent.off(`scroll.${this.tableId}`, oThis.scrollObserver );
   }
 
 
