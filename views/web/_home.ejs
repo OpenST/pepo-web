@@ -1,8 +1,8 @@
 <%- include ../partials/web/home/_uberBanner -%>
 <% if (!currentUser.isLoggedIn()) {%>
-    <%- include ../partials/shared/_navBar -%>
+<%- include('../partials/shared/_navbar_communities.ejs' , {showSearch: false}) -%>
 <% } else{ %>
-    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
+<%- include('../partials/shared/_navbar_communities_loggedIn', {pepoNav: "pepo-nav" , showSearch: false}) -%>
 <% } %>
 <%- include ../partials/web/home/_content -%>
 <%- include ../partials/web/home/_sideBySide -%>

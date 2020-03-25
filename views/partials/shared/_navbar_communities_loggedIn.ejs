@@ -3,10 +3,12 @@
         <a class="pepo-brand" href="/" title="Pepo">
             <span class="pepo-logo-nav"></span>
         </a>
-        <div class="pl-2 pr-0 search-box d-md-flex d-none align-items-center justify-content-center ml-4 ml-lg-0 col-5">
-            <div class="search-icon"></div>
-            <input class="search-input ml-2 mr-1 community-search" placeholder="Search communities by name" type="search" type="text" />
-        </div>
+        <% if (!!showSearch) {%>
+            <div class="pl-2 pr-0 search-box d-md-flex d-none align-items-center justify-content-center ml-4 ml-lg-0 col-5">
+                <div class="search-icon"></div>
+                <input class="search-input ml-2 mr-1 community-search" placeholder="Search communities by name" type="search" type="text" />
+            </div>
+        <% } %>
         <div class="nav-item-wrapper ml-auto main-menu clearfix m-0 p-0 list-unstyled collapse ml-auto" id="navbarToggler">
                 <li class="nav-item-wrapper position-relative">
                     <a href="javascript:void(0)" class="main-nav-item py-2 pl-md-5 jGoLiveBtn">Go Live!
