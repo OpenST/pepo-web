@@ -35,7 +35,7 @@
     </a>
     <% if (DataGetters.getChannelLiveMeetingId(channelId) != null ){  %>
         <span id="ribbon-container">
-          <a href="http://youtu.be/zJahlKPCL9g" id="ribbon" target="_blank"><span class="join-live-meeting-icon ribbon-icon"></span>LIVE</a>
+          <a href="/communities/<%= DataGetters.getChannelPermalink(channelId) %>/meetings/" id="ribbon" target="_blank"><span class="join-live-meeting-icon ribbon-icon"></span>LIVE</a>
         </span>
     <% } %>
 </li>
