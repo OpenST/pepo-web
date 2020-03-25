@@ -26,6 +26,10 @@ class NavBar {
     this.jUberBanner = $('.uber-banner');
     this.jNavPhantomEl = $('.navbar-phatom-el');
     this.jNavTogglerEl = $('#navbarToggler');
+    this.jDialogLogout = $('.modal-dialog-logout');
+    this.jDialogLogin = $('.modal-dialog-login');
+    this.logoutMarginTop = parseInt(this.jDialogLogout.css('margin-top'));
+    this.loginMarginTop = parseInt(this.jDialogLogin.css('margin-top'));
 
     this.bindEvents();
     this.fixedNavBarMenu();
@@ -127,12 +131,12 @@ class NavBar {
       }
       e.stopPropagation();
       e.preventDefault();
-      
+
       $("body").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
         $("#navbarToggler3").css({'visibility': 'hidden'});
       });
     });
-    
+
   };
 
   setupUberBanner = () => {
@@ -150,10 +154,14 @@ class NavBar {
       this.jNavPhantomEl.height(this.jNavEl.outerHeight());
       this.jNavEl.addClass('nav-box-shadow fixed-top');
       this.jNavTogglerEl.css({top: this.jNavEl.outerHeight()});
+      this.jDialogLogout.css({marginTop: this.logoutMarginTop - this.jUberBanner.outerHeight()});
+      this.jDialogLogin.css({marginTop: this.loginMarginTop - this.jUberBanner.outerHeight()});
     } else {
       this.jNavPhantomEl.height(0);
       this.jNavEl.removeClass('nav-box-shadow fixed-top');
       this.jNavTogglerEl.css({top: this.jNavEl.outerHeight() + this.jUberBanner.outerHeight()});
+      this.jDialogLogout.css({marginTop: this.logoutMarginTop});
+      this.jDialogLogin.css({marginTop: this.loginMarginTop});
     }
 
   }
