@@ -23,7 +23,9 @@
 <% if(goto) { %>
     <h4 class="text-center">Redirecting...</h4>
     <script type="text/javascript">
-        window.parent.location = '<%- goto %>';
+        setTimeout(function(){
+            window.parent.location = '<%- goto %>';
+        }, 5000)
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->
