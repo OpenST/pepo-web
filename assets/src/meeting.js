@@ -12,6 +12,7 @@ class Meeting extends BaseView {
         this.zoomMeeting = null;
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
+        this.jqLoader = $('#meetingLoader');
 
         this.onJoinError = this.onJoinError.bind(this);
         this.onJoinSuccess = this.onJoinSuccess.bind(this);
@@ -25,7 +26,7 @@ class Meeting extends BaseView {
     }
 
     initZoom(){
-        this.jqIframe.hide();
+        this.showLoader();
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
         this.zoomMeeting.init({
@@ -85,13 +86,22 @@ class Meeting extends BaseView {
 
     showError(message){
         this.jqIframe.hide();
+        this.jqLoader.hide();
         this.jqError.text(message);
         this.jqError.addClass('h-100');
         this.jqError.show();
     }
 
+    showLoader(){
+        this.jqIframe.hide();
+        this.jqError.hide();
+        this.jqLoader.show();
+    }
+
     onJoinSuccess(response){
         console.log(response);
+        this.jqLoader.hide();
+        this.jqError.hide();
         this.jqIframe.show();
     }
 
