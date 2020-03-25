@@ -5,12 +5,6 @@ const rootPrefix = '../..',
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   webRouteHelper = require(rootPrefix + '/routes/pepo/helper');
 
-/* Communities list page */
-// router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
-//
-//   return webRouteHelper.perform(req, res, '/app/services/GetChannelList', 'loggedOut', 'web/_channel_list', 'r_p_v_1');
-// });
-
 /* Specific community page */
 router.get('/:permalink', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
@@ -24,6 +18,7 @@ router.get('/:permalink/meetings/:meetingId', sanitizer.sanitizeDynamicUrlParams
 
   req.decodedParams.permalink =  req.params.permalink;
   req.decodedParams.meetingId =  req.params.meetingId;
+  req.decodedParams.leaveUrl = '/zoom-meeting?goto=communities/'+req.params.permalink;
 
   return webRouteHelper.perform(req, res, '/app/services/GetMeetingPage', 'loggedOut', 'web/_meeting', 'r_p_v_3');
 });

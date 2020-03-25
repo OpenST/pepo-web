@@ -23,6 +23,9 @@
 
 
 .communityList{
+  .grey-background{
+    background: #F9F9F9;
+  }
   .container{
     max-width: 1140px;
     .search-box{
@@ -125,6 +128,7 @@
     .cell-desc{
       display: block;
       background-color: $white;
+      min-height: 52px;
       .desc{
         color: #6a6a76;
         max-width: 100%;

@@ -1,6 +1,7 @@
-<div style="width: 100%; height: calc(100% - 58px)">
-    <iframe id="zoomMeeting" src="/zoom-meeting" style="display: none; width: 100%; height: 100%; border:none"></iframe>
-    <div id="meetingError" style="display: none;">
-        Something went wrong while joining meeting
+<div class="meeting-iframe-wrapper d-flex align-items-center justify-content-center">
+    <iframe id="zoomMeeting" class="meeting-iframe" src="/zoom-meeting" style="display: none;"></iframe>
+    <div id="meetingError" class="meeting-error" style="display: none;"></div>
+    <div id="meetingLoader" class="align-items-center justify-content-center" style="display: none;">
+        <span class="pepo-loading-icon pepo-loader-scale"></span>
     </div>
 </div>

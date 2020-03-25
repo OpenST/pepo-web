@@ -167,6 +167,9 @@
   .main-menu {
     width: 100%;
     background-color: $white;
+    #logoutAppWeb{
+      cursor: pointer;
+    }
     .login-details-section{
       border-left: 1px solid #d8d8d8;
     }

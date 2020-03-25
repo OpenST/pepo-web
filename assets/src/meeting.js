@@ -8,9 +8,11 @@ class Meeting extends BaseView {
     constructor(config){
         super(config);
         this.config = config;
+        this.leaveUrl = this.config.leaveUrl;
         this.zoomMeeting = null;
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
+        this.jqLoader = $('#meetingLoader');
 
         this.onJoinError = this.onJoinError.bind(this);
         this.onJoinSuccess = this.onJoinSuccess.bind(this);
@@ -24,13 +26,14 @@ class Meeting extends BaseView {
     }
 
     initZoom(){
-        this.jqIframe.hide();
+        this.showLoader();
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
         this.zoomMeeting.init({
-            leaveUrl: 'https://pepo.com',
+            leaveUrl: this.leaveUrl,
             disableInvite: true,
-            screenShare: false
+            disableRecord: true,
+            screenShare: true //only host
         });
     }
 
@@ -66,7 +69,14 @@ class Meeting extends BaseView {
                         this.showError('Something went wrong');
                     }
                 },
-                error: () => this.showError('Something went wrong'),
+                error: (jqXHR) => {
+                    let error = jqXHR.responseJSON;
+                    let errorMsg = 'Something went wrong';
+                    if(error && error.err && error.err.msg){
+                        errorMsg = error.err.msg;
+                    }
+                    this.showError(errorMsg);
+                },
             })
         } else {
             this.showError('Invalid Meeting');
@@ -76,12 +86,22 @@ class Meeting extends BaseView {
 
     showError(message){
         this.jqIframe.hide();
+        this.jqLoader.hide();
         this.jqError.text(message);
+        this.jqError.addClass('h-100');
         this.jqError.show();
+    }
+
+    showLoader(){
+        this.jqIframe.hide();
+        this.jqError.hide();
+        this.jqLoader.show();
     }
 
     onJoinSuccess(response){
         console.log(response);
+        this.jqLoader.hide();
+        this.jqError.hide();
         this.jqIframe.show();
     }
 

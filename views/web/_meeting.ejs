@@ -10,7 +10,8 @@
     window.onload = function () {
         new pepo.meeting({
             "apiResponse"  : <%- JSON.stringify(apiResponseData) %>,
-            "appMeta" : <%- JSON.stringify(appMeta)%>
+            "appMeta" : <%- JSON.stringify(appMeta)%>,
+            "leaveUrl" : '<%- leaveUrl %>'
         });
     }
 </script>

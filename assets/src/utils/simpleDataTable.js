@@ -1,5 +1,6 @@
 require('../plugins/jquery-visible/jquery.visible');
 import {setDataStore}  from "../model/DataStore";
+import uuid from 'uuid/v4';
 
 import ns from "../libs/namespace";
 
@@ -20,7 +21,7 @@ export default class SimpleDataTable {
     oThis.rowTemplate = null;
     oThis.sScrollParent = null;
     oThis.associatedData = {};
-    this.namespace = 'simpleDataTable';
+    oThis.namespace = uuid();
 
     oThis.events = {
       "responseProcessed": "responseProcessed"
@@ -435,12 +436,11 @@ export default class SimpleDataTable {
   bindScrollObserver () {
     var oThis = this;
     var jScrollParent = oThis.getJScrollParent();
-
     //Trigger once.
     oThis.scrollObserver();
 
     //Now bind it.
-    jScrollParent.off(`scroll.${this.namespace}`).on(`scroll.${this.namespace}`, oThis.scrollObserver );
+    jScrollParent.off(`scroll.${oThis.namespace}`).on(`scroll.${oThis.namespace}`, oThis.scrollObserver );
 
   }
 
@@ -449,7 +449,7 @@ export default class SimpleDataTable {
 
     var jScrollParent = oThis.getJScrollParent();
 
-    jScrollParent.off(`scroll.${this.namespace}`, oThis.scrollObserver );
+    jScrollParent.off(`scroll.${oThis.namespace}`, oThis.scrollObserver );
   }
 
 

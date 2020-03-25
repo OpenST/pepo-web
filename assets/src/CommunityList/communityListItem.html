@@ -27,13 +27,11 @@
                 </span>
             </span>
         </span>
-        <% if (DataGetters.getChannelDesc(channelId)) { %>
-            <span class="p-2 d-none d-md-block cell-desc">
+            <span class="p-2 d-none d-md-block cell-desc" >
                 <span class="desc">
                     <%= DataGetters.getChannelDesc(channelId) %>
                 </span>
             </span>
-        <% } %>
     </a>
     <% if (DataGetters.getChannelLiveMeetingId(channelId) != null ){  %>
         <span id="ribbon-container">

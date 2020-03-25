@@ -49,7 +49,7 @@ class NavBar {
       console.warn(LOG_TAG, 'initUser', err);
     })
   }
-  
+
   bindChannelClickEvent(){
     $(".jGoLiveChannel").off(`click.${namespace}`).on(`click.${namespace}`, function () {
       let channel = $(this).data("channel");
@@ -61,6 +61,8 @@ class NavBar {
   }
 
   bindEvents = () => {
+    const oThis = this
+    ;
 
     $("#toggle-menu").off(`click.${namespace}`).on(`click.${namespace}`, function () {
       $(this).toggleClass("is-active");
@@ -122,7 +124,16 @@ class NavBar {
       } else if (!CurrentUser.isChannelAdmin()) {
         $("#logged-in-instructions").modal("show");
       } else {
-        $("#navbarToggler3").css({'visibility': 'visible'});
+
+        if (!oThis.channels) return;
+
+        const channelIdList = Object.keys(oThis.channels);
+        if (channelIdList.length === 1) {
+          let channel = oThis.channels[channelIdList[0]];
+          helper.goLive(channel);
+        } else {
+          $("#navbarToggler3").css({'visibility': 'visible'});
+        }
       }
       e.stopPropagation();
       e.preventDefault();
