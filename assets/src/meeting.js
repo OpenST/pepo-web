@@ -58,7 +58,7 @@ class Meeting extends BaseView {
 
     joinZoom(data){
         this.zoomMeeting.join({
-            meetingNumber: data.zoomMeetingId,
+            meetingNumber: data.zoom_meeting_id,
             userName: data.name,
             apiKey: data.api_key,
             signature: data.signature
@@ -128,6 +128,7 @@ class Meeting extends BaseView {
     }
 
     onJoinError(error){
+        console.log("here", error);
         this.showError(error.errorMessage);
     }
 
