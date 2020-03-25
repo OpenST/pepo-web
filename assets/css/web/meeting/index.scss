@@ -1,3 +1,9 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../Starboy/variables";
+
 .meeting-iframe-wrapper{
   width: 100%;
   height: calc(100% - 178px);
@@ -18,7 +24,6 @@
 }
 
 .meeting-subnav{
-  //padding: 10px 0;
   background: #f9f9f9;
   ul{
     @media screen and (min-width: 768px){
@@ -31,6 +36,37 @@
   font-size: 1rem;
   span{
     font-family: AvenirNext-Medium;
+  }
+}
+
+.copyToClipboard, .jMeetingTips{
+  cursor: pointer;
+}
+
+.toast {
+  top: 50px;
+  @media only screen and (min-width: 768px){
+    top: 78px;
+  }
+  left: 50%;
+  //z-index: 1051;
+  border-radius: 5px;
+  position: absolute;
+  background-color: $white;
+  transform: translateX(-50%);
+  box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.1);
+  pointer-events: none;
+  .toast-text{
+    font-size: 16px;
+    color: $valhalla;
+    padding: 10px 12px;
+    text-align: center;
+  }
+}
+
+.toast.show {
+  body.modal-open & {
+    z-index: 1051;
   }
 }
 

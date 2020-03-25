@@ -1,7 +1,9 @@
 import  ns from "../js/libs/namespace";
+import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
 
 const { $ } = window;
+const namespace = "meeting";
 
 class Meeting extends BaseView {
 
@@ -21,6 +23,7 @@ class Meeting extends BaseView {
         this.onJoinSuccess = this.onJoinSuccess.bind(this);
 
         this.init();
+        this.bindEvents();
     }
 
     init(){
@@ -29,10 +32,21 @@ class Meeting extends BaseView {
         this.populateMeetingDetails();
         this.bindEvents();
     }
-    
+
     bindEvents(){
         $(".jMeetingTips").on("click" , ()=> {
             $("#meeting-tips-modal").modal("show");
+        });
+
+        $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
+            console.log('here');
+            let isCopied = BasicHelper.copyToClipboard(this.config.apiResponse.share_url, $(e.target));
+            if(isCopied){
+                $('.toast-copied-to-clipboard').toast('show');
+            } else {
+                $('.toast-copied-to-clipboard-failed').toast('show');
+            }
+            e.stopPropagation();
         });
     }
 
