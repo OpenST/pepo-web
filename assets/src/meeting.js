@@ -88,7 +88,6 @@ class Meeting extends BaseView {
         this.jqIframe.hide();
         this.jqLoader.hide();
         this.jqError.text(message);
-        this.jqError.addClass('h-100');
         this.jqError.show();
     }
 

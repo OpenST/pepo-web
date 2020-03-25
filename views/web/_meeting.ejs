@@ -1,10 +1,11 @@
 <% if (!currentUser.isLoggedIn()) {%>
-    <%- include('../partials/shared/_navBar', {pepoNav: ""}) -%>
+    <%- include('../partials/shared/_navbar_communities.ejs', {showSearch: false}) -%>
 <% } else{ %>
-    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>
+    <%- include('../partials/shared/_navbar_communities_loggedIn', {pepoNav: "pepo-nav", showSearch: false}) -%>
 <% } %>
 
 <%- include('../partials/web/meeting/_zoomIframe') -%>
+<%- include ../partials/shared/_light_boxes.ejs%>
 
 <script type="text/javascript">
     window.onload = function () {
