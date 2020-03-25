@@ -56,7 +56,7 @@ class Meeting extends BaseView {
             this.config.apiResponse.channel.live_meeting_id
         ){
             $.ajax({
-                url: `/api/web/channels/${this.config.apiResponse.channel.permalink}/meetings/${this.config.apiResponse.channel.live_meeting_id}`,
+                url: `/api/web/channels/${this.config.apiResponse.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}`,
                 success: (response) => {
                     if(
                         response.success &&
