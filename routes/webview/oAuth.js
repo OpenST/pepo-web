@@ -14,7 +14,7 @@ getRedirectPath = function (state) {
   let redirectPath = null;
   try {
     if (state) {
-      const decodedState = JSON.parse(base64Helper.decode(state));
+      const decodedState = JSON.parse(base64Helper.decode(decodeURIComponent(state)));
 
       //Note: Added slash to stop unwanted redirects (security fix)
       if (decodedState.hasOwnProperty('rd')) {
