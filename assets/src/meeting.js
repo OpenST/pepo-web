@@ -9,6 +9,7 @@ class Meeting extends BaseView {
         super(config);
         this.config = config;
         this.leaveUrl = this.config.leaveUrl;
+        this.channel = this.config.apiResponse.channel;
         this.zoomMeeting = null;
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
@@ -28,6 +29,10 @@ class Meeting extends BaseView {
         this.populateMeetingDetails();
     }
 
+    canStartMeeting(){
+        return this.config.apiResponse.channel_allowed_actions[this.channel.id].can_start_meeting == 1;
+    }
+
     initZoom(){
         this.showLoader();
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
@@ -36,12 +41,12 @@ class Meeting extends BaseView {
             leaveUrl: this.leaveUrl,
             disableInvite: true,
             disableRecord: true,
-            screenShare: true //only host
+            screenShare: this.canStartMeeting()
         });
     }
 
     populateMeetingDetails(){
-        this.jqMeetingName.text(this.config.apiResponse.channel.name);
+        this.jqMeetingName.text(this.channel.name);
     }
 
     joinZoom(data){
@@ -59,11 +64,11 @@ class Meeting extends BaseView {
     getJoinParamsAndJoin(){
         if(
             this.config.apiResponse &&
-            this.config.apiResponse.channel &&
-            this.config.apiResponse.current_meeting_id
+            this.config.apiResponse.current_meeting_id &&
+            this.channel
         ){
             $.ajax({
-                url: `/api/web/channels/${this.config.apiResponse.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}`,
+                url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}`,
                 success: (response) => {
                     if(
                         response.success &&
