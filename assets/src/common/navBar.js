@@ -126,6 +126,15 @@ class NavBar {
       }
       e.stopPropagation();
       e.preventDefault();
+      
+      $("body").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
+        $("#navbarToggler3").css({'visibility': 'hidden'});
+      });
+    });
+    
+    $(".sub-menu").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
+        e.stopPropagation();
+        e.preventDefault();
     });
   };
 
@@ -135,7 +144,7 @@ class NavBar {
     } else {
       this.heightTrigger = this.jUberBanner.outerHeight();
     }
-  }
+  };
 
   fixedNavBarMenu() {
     this.setupUberBanner();
