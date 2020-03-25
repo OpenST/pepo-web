@@ -76,7 +76,7 @@ class Meeting extends BaseView {
             userName: data.name,
             apiKey: data.api_key,
             signature: data.signature,
-            participant_id: data.participant_id
+            participantId: data.participant_id
         },
             this.onJoinSuccess,
             this.onJoinError
