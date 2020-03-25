@@ -1,6 +1,9 @@
 .meeting-iframe-wrapper{
   width: 100%;
-  height: calc(100% - 118px);
+  height: calc(100% - 178px);
+  @media screen and (min-width: 768px){
+    height: calc(100% - 114px);
+  }
 
   .meeting-iframe{
     display: none;
