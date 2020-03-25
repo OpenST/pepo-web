@@ -21,8 +21,8 @@ class WebView {
       let oThis = this,
           data = JSON.parse(params.oAuthData),
           kind = params.oAuthKind,
-          redirectUrl = this.sanitizeUrl(params.redirectUrl);
-      if(!data || !redirectUrl) return;
+          redirectUrl = this.sanitizeUrl(params.redirectUrl) || "/" ;
+      if(!data) return;
       $.ajax({
         url:`/api/web/auth/${kind}/login`,
         method:'POST',
