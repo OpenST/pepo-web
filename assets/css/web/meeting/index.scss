@@ -15,8 +15,13 @@
 }
 
 .meeting-subnav{
-  padding: 10px 0;
+  //padding: 10px 0;
   background: #f9f9f9;
+  ul{
+    @media screen and (min-width: 768px){
+      width: 50%;
+    }
+  }
 }
 
 .community{
