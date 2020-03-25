@@ -20,6 +20,12 @@
     <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
 </head>
 <body contenteditable="false">
+<% if(goto) { %>
+    <h4 class="text-center">Redirecting...</h4>
+    <script type="text/javascript">
+        window.parent.location = '<%- goto %>';
+    </script>
+<% } else { %>
     <!-- import ZoomMtg dependencies -->
     <%- include(_contentPartial) -%>
     <script src="//source.zoom.us/1.7.2/lib/vendor/react.min.js"></script>
@@ -34,6 +40,7 @@
 
     <!-- import ZoomMtg -->
     <%- include partials/shared/_script_zoomMeeting.ejs %>
+<% } %>
 
 </body>
 </html>

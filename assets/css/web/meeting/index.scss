@@ -1,6 +1,6 @@
 .meeting-iframe-wrapper{
   width: 100%;
-  height: calc(100% - 58px);
+  height: calc(100% - 118px);
 
   .meeting-iframe{
     display: none;
@@ -12,5 +12,10 @@
     font-size: 20px;
     text-transform: capitalize;
   }
+}
+
+.meeting-subnav{
+  padding: 10px 0;
+  background: #f9f9f9;
 }
 

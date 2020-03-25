@@ -13,6 +13,8 @@ class Meeting extends BaseView {
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
         this.jqLoader = $('#meetingLoader');
+        this.jqMeetingName = $('#communityName');
+        this.fallbackErrorMsg = 'Something went wrong';
 
         this.onJoinError = this.onJoinError.bind(this);
         this.onJoinSuccess = this.onJoinSuccess.bind(this);
@@ -23,6 +25,7 @@ class Meeting extends BaseView {
     init(){
         this.initZoom();
         this.getJoinParamsAndJoin();
+        this.populateMeetingDetails();
     }
 
     initZoom(){
@@ -35,6 +38,10 @@ class Meeting extends BaseView {
             disableRecord: true,
             screenShare: true //only host
         });
+    }
+
+    populateMeetingDetails(){
+        this.jqMeetingName.text(this.config.apiResponse.channel.name);
     }
 
     joinZoom(data){
@@ -53,7 +60,7 @@ class Meeting extends BaseView {
         if(
             this.config.apiResponse &&
             this.config.apiResponse.channel &&
-            this.config.apiResponse.channel.live_meeting_id
+            this.config.apiResponse.current_meeting_id
         ){
             $.ajax({
                 url: `/api/web/channels/${this.config.apiResponse.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}`,
@@ -66,12 +73,16 @@ class Meeting extends BaseView {
                     ){
                         this.joinZoom(response.data[response.data.result_type]);
                     } else {
-                        this.showError('Something went wrong');
+                        let errorMsg = this.fallbackErrorMsg;
+                        if(response.err && response.err.msg){
+                            errorMsg = response.err.msg;
+                        }
+                        this.showError(errorMsg);
                     }
                 },
                 error: (jqXHR) => {
                     let error = jqXHR.responseJSON;
-                    let errorMsg = 'Something went wrong';
+                    let errorMsg = this.fallbackErrorMsg;
                     if(error && error.err && error.err.msg){
                         errorMsg = error.err.msg;
                     }
@@ -79,7 +90,7 @@ class Meeting extends BaseView {
                 },
             })
         } else {
-            this.showError('Invalid Meeting');
+            this.showError(this.fallbackErrorMsg);
         }
 
     }
