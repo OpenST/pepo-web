@@ -4,24 +4,24 @@ import  ns from "../src/libs/namespace";
 import * as ajaxHooks from './utils/ajaxHooks';
 
 class WebView {
-  
+
   sanitizeUrl = ( url ) => {
     if( url.indexOf('lerr') !== -1) {
       url = url.replace(/(\?|&)+lerr=1/gi, ' ');
     }
     return url;
   };
-  
+
   init =(params)=> {
       if(!params || !params.oAuthData){
         window.location ="/";
         return;
       }
-    
+
       let oThis = this,
           data = JSON.parse(params.oAuthData),
           kind = params.oAuthKind,
-          redirectUrl = this.sanitizeUrl(params.redirectUrl);
+          redirectUrl = this.sanitizeUrl(params.redirectUrl) || "/";
       $.ajax({
         url:`/api/web/auth/${kind}/login`,
         method:'POST',
@@ -42,7 +42,7 @@ class WebView {
         }
       })
   };
-  
+
   onError = (res, redirectUrl) => {
     let error = "Failed to login please try again later!";
     if(res && res.err && res.err.code == "web_signup_prohibited"){
@@ -55,7 +55,7 @@ class WebView {
       window.location = redirectUrl;
     });
   };
-  
+
 };
 
 const pepo = ns("pepo");
