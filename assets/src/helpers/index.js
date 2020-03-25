@@ -15,7 +15,7 @@ class Helper {
           const meetingId  = deepGet(response , "data.start_zoom_meeting_payload.meeting_id") ;
           if(meetingId){
             window.location = `/communities/${channel.permalink}/meetings/${meetingId}/`;
-            success(response);
+            success && success(response);
           }else {
             errorCallback && errorCallback(response);
           }
