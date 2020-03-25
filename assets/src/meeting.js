@@ -28,9 +28,10 @@ class Meeting extends BaseView {
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
         this.zoomMeeting.init({
-            leaveUrl: 'https://pepo.com',
+            leaveUrl: '/zoom-meeting?leave=1',
             disableInvite: true,
-            screenShare: false
+            disableRecord: true,
+            screenShare: true //only host
         });
     }
 
@@ -66,7 +67,14 @@ class Meeting extends BaseView {
                         this.showError('Something went wrong');
                     }
                 },
-                error: () => this.showError('Something went wrong'),
+                error: (jqXHR) => {
+                    let error = jqXHR.responseJSON;
+                    let errorMsg = 'Something went wrong';
+                    if(error && error.err && error.err.msg){
+                        errorMsg = error.err.msg;
+                    }
+                    this.showError(errorMsg);
+                },
             })
         } else {
             this.showError('Invalid Meeting');

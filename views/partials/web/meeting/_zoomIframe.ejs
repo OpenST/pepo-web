@@ -1,6 +1,4 @@
-<div style="width: 100%; height: calc(100% - 58px)">
-    <iframe id="zoomMeeting" src="/zoom-meeting" style="display: none; width: 100%; height: 100%; border:none"></iframe>
-    <div id="meetingError" style="display: none;">
-        Something went wrong while joining meeting
-    </div>
+<div class="meeting-iframe-wrapper">
+    <iframe id="zoomMeeting" class="meeting-iframe" src="/zoom-meeting"></iframe>
+    <div id="meetingError" class="meeting-error d-flex h-100 align-items-center justify-content-center" style="display: none;"></div>
 </div>
