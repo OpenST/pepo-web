@@ -3,7 +3,7 @@ import  deepGet from "lodash/get"
 
 class Helper {
 
-  goLive = (channel , beforeSend , success ,  errorCallback   ) => {
+  goLive = (channel , beforeSend , success ,  errorCallback  , complete  ) => {
     $.ajax({
       url: `/api/web/channels/${channel.permalink}/meetings`,
       method:'POST',
@@ -25,6 +25,9 @@ class Helper {
       },
       error : ( xhr,status,error )=>{
         errorCallback && errorCallback(error);
+      },
+      complete : () => {
+        complete && complete();
       }
     });
   };

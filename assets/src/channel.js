@@ -52,13 +52,12 @@ class Channel extends BaseView {
     this.isGoLive = true;
     helper.goLive(this.channel, () => {
         this.beforeGoLive(jEl)
+      },null,
+      (error) => {
+        this.onGoLiveError(error, jEl);
       },
       () => {
-
-      }
-      ,
-      (error) => {
-        this.onGoLiveError(error, jEl)
+        this.onGoLiveComplete(jEl);
       }
     );
   };
@@ -76,6 +75,9 @@ class Channel extends BaseView {
   onGoLiveError(error , jEl){
     const msg = deepGet(error, "err.msg"  , "Something went wrong please try again later!");
     $(".jGoLiveError").html(msg);
+  }
+  
+  onGoLiveComplete(jEl){
     jEl.html("GO LIVE");
     jEl.removeClass("disabled");
   }
