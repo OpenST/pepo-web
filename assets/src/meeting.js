@@ -27,6 +27,13 @@ class Meeting extends BaseView {
         this.initZoom();
         this.getJoinParamsAndJoin();
         this.populateMeetingDetails();
+        this.bindEvents();
+    }
+    
+    bindEvents(){
+        $(".jMeetingTips").on("click" , ()=> {
+            $("#meeting-tips-modal").modal("show");
+        });
     }
 
     canStartMeeting(){
