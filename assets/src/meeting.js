@@ -51,7 +51,7 @@ class Meeting extends BaseView {
     }
 
     canStartMeeting(){
-        return this.config.apiResponse.channel_allowed_actions[this.channel.id].can_start_meeting == 1;
+        return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
     }
 
     initZoom(){
