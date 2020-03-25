@@ -1,5 +1,5 @@
 <% if (!currentUser.isLoggedIn()) {%>
-<%- include('../partials/shared/_navbar_communities.ejs' , {showSearch: false, pepoNav: ""}) -%>
+<%- include('../partials/shared/_navbar_communities.ejs' , {showSearch: false}) -%>
 <% } else{ %>
 <%- include('../partials/shared/_navbar_communities_loggedIn', {pepoNav: "pepo-nav" , showSearch: false}) -%>
 <% } %>
