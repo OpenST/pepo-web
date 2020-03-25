@@ -61,7 +61,8 @@ class Meeting extends BaseView {
             meetingNumber: data.zoom_meeting_id,
             userName: data.name,
             apiKey: data.api_key,
-            signature: data.signature
+            signature: data.signature,
+            participant_id: data.participant_id
         },
             this.onJoinSuccess,
             this.onJoinError
