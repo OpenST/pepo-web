@@ -79,8 +79,14 @@ router.get('/about', function (req, res) {
 });
 
 /* zoom-meeting iframe page */
+router.get('/zoom-meeting/leave', function (req, res) {
+  req.decodedParams.goto = coreConstants.PEPO_DOMAIN + '/' + req.decodedParams.goto;
+  webRouteHelper.perform(req, res, '', 'zoomMeeting', 'web/_leaveZoomMeeting', 'r_p_h_1');
+});
+
+/* zoom-meeting iframe page */
 router.get('/zoom-meeting', function (req, res) {
-  webRouteHelperBack.perform(req, res, 'zoomMeeting', 'web/_zoomMeeting');
+  webRouteHelper.perform(req, res, '', 'zoomMeeting', 'web/_zoomMeeting', 'r_p_h_2');
 });
 
 module.exports = router;
