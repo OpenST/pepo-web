@@ -37,7 +37,7 @@ class Channel extends BaseView {
     $(".list-unstyled .float-left").on('click', (e)=>{
       videoList.init({fetchApi:  `/api/web/feeds` });
     });
-    
+
     $(".jStartMeeting").on("click" , (e)=> {
       $("#tips-to-go-live").modal("show");
     });
@@ -47,28 +47,32 @@ class Channel extends BaseView {
       oThis.goLive($(this));
     });
   };
-  
+
   goLive = (jEl) => {
     this.isGoLive = true;
-    helper.goLive(this.channel , ()=> {
-      this.beforeGoLive(jEl)
-    },
-    (error) => {
-      this.onGoLiveError(error, jEl)
-    }
+    helper.goLive(this.channel, () => {
+        this.beforeGoLive(jEl)
+      },
+      () => {
+
+      }
+      ,
+      (error) => {
+        this.onGoLiveError(error, jEl)
+      }
     );
   };
-  
+
   beforeGoLive(jEl){
     $(".jGoLiveError").html(" ");
     jEl.html("Going live...");
     jEl.addClass("disabled");
   }
-  
+
   getGoLiveFetchUrl(){
     return `/api/web/channels/${this.channel.permalink}/meetings`
   }
-  
+
   onGoLiveError(error , jEl){
     const msg = deepGet(error, "err.msg"  , "Something went wrong please try again later!");
     $(".jGoLiveError").html(msg);
@@ -81,7 +85,7 @@ class Channel extends BaseView {
     jMobileAfterText.append("<span class='showLess'> Show Less</span>");
 
   }
-  
+
 
 }
 
