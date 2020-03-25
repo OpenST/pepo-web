@@ -22,6 +22,10 @@ class ZoomMeeting {
         }));
     }
 
+    getZoomMtg(){
+        return ZoomMtg;
+    }
+
     onInitSuccess(res){
         console.log('onInitSuccess: ', res);
     }
