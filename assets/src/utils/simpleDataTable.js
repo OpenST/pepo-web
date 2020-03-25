@@ -4,7 +4,6 @@ import {setDataStore}  from "../model/DataStore";
 import ns from "../libs/namespace";
 
 const  logMe = true;
-const namespace = "simpleDataTable";
 
 export default class SimpleDataTable {
 
@@ -21,7 +20,7 @@ export default class SimpleDataTable {
     oThis.rowTemplate = null;
     oThis.sScrollParent = null;
     oThis.associatedData = {};
-    this.tableId = 'simple-d-t';
+    this.namespace = 'simpleDataTable';
 
     oThis.events = {
       "responseProcessed": "responseProcessed"
@@ -441,7 +440,7 @@ export default class SimpleDataTable {
     oThis.scrollObserver();
 
     //Now bind it.
-    jScrollParent.off(`scroll.${this.tableId}`).on(`scroll.${this.tableId}`, oThis.scrollObserver );
+    jScrollParent.off(`scroll.${this.namespace}`).on(`scroll.${this.namespace}`, oThis.scrollObserver );
 
   }
 
@@ -450,7 +449,7 @@ export default class SimpleDataTable {
 
     var jScrollParent = oThis.getJScrollParent();
 
-    jScrollParent.off(`scroll.${this.tableId}`, oThis.scrollObserver );
+    jScrollParent.off(`scroll.${this.namespace}`, oThis.scrollObserver );
   }
 
 
