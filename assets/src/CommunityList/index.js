@@ -13,6 +13,7 @@ class CommunityList{
   init = () => {
     this.searchTerm = '';
     this.queryDataTable = null;
+    this.defaultDataTable = null;
     this.searchedResults = [];
     let searchComponent = new Search({searchSelector: '.community-search', onSearchHandler: this.onSearchHandler });
     this.initDefaultDataTable();
@@ -33,6 +34,7 @@ class CommunityList{
   initDefaultDataTable = () => {
     let params = {
       jParent: $("#default-community-list-parent"),
+      namespace: 'defaultCommunityList',
       fetchResultsUrl: '/api/web/search/channels',
       rowTemplate: ejs.compile(communityListItem, {client: true}),
       getRowData : function (result) {
@@ -43,7 +45,7 @@ class CommunityList{
         };
       }
     };
-    let defaultDataTable = new SimpleDataTable(params);
+    this.defaultDataTable = new SimpleDataTable(params);
   };
 
   fetchQueryDataTable = () => {
@@ -53,6 +55,7 @@ class CommunityList{
     }
     let params = {
       jParent: $("#searched-community-list-parent"),
+      namespace: 'searchedCommunityList',
       fetchResultsUrl: this.getFetchUrl(),
       rowTemplate: ejs.compile(communityListItem, {client: true}),
       getRowData : function (result) {
