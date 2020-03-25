@@ -1,6 +1,7 @@
 <%
 
 channelId = apiResponseData['channel']['id']
+channel = apiResponseData['channel']
 channelDetails = apiResponseData['channel_details'][channelId]
 taglineId = channelDetails['tagline_id']
 tagLine = (taglineId ? apiResponseData['texts'][taglineId]['text'] : '')
@@ -24,10 +25,10 @@ channelAllowedActions = apiResponseData['channel_allowed_actions'][channelId]
 canStart = channelAllowedActions['can_start_meeting']
 canJoin = channelAllowedActions['can_join_meeting']
 
-meetingId = channelDetails.live_meeting_id
+meetingId = channel.live_meeting_id
 meetingUrl = ''
 if(canJoin) {
-meetingUrl = '/communities/'+channelDetails.permalink+'/meetings/'+meetingId
+meetingUrl = '/communities/'+channel.permalink+'/meetings/'+meetingId
 }
 %>
 
