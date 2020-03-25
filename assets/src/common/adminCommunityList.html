@@ -2,7 +2,7 @@
 <% for(var i=0; i < channelList.length; i++) { %>
 <li>
     <a  data-channel='<%- JSON.stringify(channels[channelList[i]]) %>'
-        href="javascript:void(0)" target="_blank" class="jGoLiveChannel" >
+        href="/communities/<%= channels[channelList[i]].permalink%>">
         <%= channels[channelList[i]].name %>
     </a>
 </li>
