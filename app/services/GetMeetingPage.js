@@ -191,6 +191,7 @@ class GetChannel extends ServiceBase {
     if(oThis.currentUserData){
       oThis.apiResponseData.current_user_data = oThis.currentUserData;
     }
+    oThis.apiResponseData.current_meeting_id = oThis.meetingId;
 
     return responseHelper.successWithData({
       apiResponseData: oThis.apiResponseData,
