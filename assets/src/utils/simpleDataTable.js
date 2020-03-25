@@ -441,7 +441,7 @@ export default class SimpleDataTable {
     oThis.scrollObserver();
 
     //Now bind it.
-    jScrollParent.off(`scroll.${this.tableId}`).on(`scroll.${this.id}`, oThis.scrollObserver );
+    jScrollParent.off(`scroll.${this.tableId}`).on(`scroll.${this.tableId}`, oThis.scrollObserver );
 
   }
 

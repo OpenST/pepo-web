@@ -34,7 +34,7 @@ class CommunityList{
   initDefaultDataTable = () => {
     let params = {
       jParent: $("#default-community-list-parent"),
-      id: 'default-d-t',
+      tableId: 'default-d-t',
       fetchResultsUrl: '/api/web/search/channels',
       rowTemplate: ejs.compile(communityListItem, {client: true}),
       getRowData : function (result) {
@@ -55,7 +55,7 @@ class CommunityList{
     }
     let params = {
       jParent: $("#searched-community-list-parent"),
-      id: 'searched-d-t',
+      tableId: 'searched-d-t',
       fetchResultsUrl: this.getFetchUrl(),
       rowTemplate: ejs.compile(communityListItem, {client: true}),
       getRowData : function (result) {
