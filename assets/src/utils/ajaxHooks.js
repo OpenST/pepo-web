@@ -5,6 +5,7 @@ const {$} = window;
   // //Add CSRF TOKEN
   $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     if(options.url.indexOf('http') !== 0 || options.url.indexOf(window.location.origin) !== -1){
+      jqXHR.setRequestHeader('x-pepo-fingerprint-id', new Fingerprint().get());
       var csrf_token = $("meta[name='csrf-token']").attr("content");
       if ( csrf_token ) {
         jqXHR.setRequestHeader('X-CSRF-Token', csrf_token);
@@ -17,9 +18,9 @@ const {$} = window;
     }
   });
 
-  
-  $( window.document ).ajaxError( function( event, jqXHR, settings, thrownError ) { 
-    
+
+  $( window.document ).ajaxError( function( event, jqXHR, settings, thrownError ) {
+
     var jParent = (jqXHR.ost && jqXHR.ost.jParent ) ? jqXHR.ost.jParent : $("body")
         , msg   = ''
     ;
@@ -47,7 +48,7 @@ const {$} = window;
         .find(".general_error")
         .addClass("is-invalid")
           .text(msg)
-      ;      
+      ;
     } else {
       jParent
         .find('.general_error')

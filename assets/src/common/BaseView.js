@@ -1,4 +1,5 @@
 const {$} = window;
+import Fingerprint from 'fingerprintjs';
 import CurrentUser from "../model/CurrentUser" ;
 import {setDataStore} from "../model/DataStore";
 import SocketManager from "../../src/services/SocketManager";
@@ -7,6 +8,7 @@ import googleAuth from "../login/GoogleAuth";
 import navBar from "./navBar";
 import twitterAuth from "../login/TwitterAuth";
 
+window.Fingerprint = Fingerprint; // This has to be before importing ajaxHooks;
 import * as ajaxHooks from '../utils/ajaxHooks';
 
 class BaseView {
