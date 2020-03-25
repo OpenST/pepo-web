@@ -3,7 +3,6 @@ const router = express.Router();
 
 const rootPrefix = '../..',
   DoubleOptIn = require(rootPrefix + '/app/services/DoubleOptIn'),
-  GetFirebaseHomeUrl = require(rootPrefix + '/app/services/FireBaseUrl/Home'),
   basicHelper = require(rootPrefix + '/helpers/basic'),
   sanitizer = require(rootPrefix + '/helpers/sanitizer'),
   coreConstants = require(rootPrefix + '/config/coreConstants'),
@@ -79,14 +78,8 @@ router.get('/about', function (req, res) {
 });
 
 /* zoom-meeting iframe page */
-router.get('/zoom-meeting/leave', function (req, res) {
-  req.decodedParams.goto = coreConstants.PEPO_DOMAIN + '/' + req.decodedParams.goto;
-  webRouteHelper.perform(req, res, '', 'zoomMeeting', 'web/_leaveZoomMeeting', 'r_p_h_1');
-});
-
-/* zoom-meeting iframe page */
 router.get('/zoom-meeting', function (req, res) {
-  webRouteHelper.perform(req, res, '', 'zoomMeeting', 'web/_zoomMeeting', 'r_p_h_2');
+  webRouteHelper.perform(req, res, '/app/services/GetZoomMeeting', 'zoomMeeting', 'web/_zoomMeeting', 'r_p_h_2');
 });
 
 module.exports = router;

@@ -28,6 +28,7 @@ class GetChannel extends ServiceBase {
     oThis.decodedParams = params.decodedParams;
     oThis.channelPermalink = oThis.decodedParams.permalink;
     oThis.meetingId = oThis.decodedParams.meetingId;
+    oThis.leaveUrl = oThis.decodedParams.leaveUrl;
 
     oThis.apiResponseData = {};
   }
@@ -200,6 +201,7 @@ class GetChannel extends ServiceBase {
       showFooter: false,
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser,
+      leaveUrl: oThis.leaveUrl,
       highlightLink: ''
     })
   }

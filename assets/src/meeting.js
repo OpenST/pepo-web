@@ -8,6 +8,7 @@ class Meeting extends BaseView {
     constructor(config){
         super(config);
         this.config = config;
+        this.leaveUrl = this.config.leaveUrl;
         this.zoomMeeting = null;
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
@@ -28,7 +29,7 @@ class Meeting extends BaseView {
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
         this.zoomMeeting.init({
-            leaveUrl: '/zoom-meeting?leave=1',
+            leaveUrl: this.leaveUrl,
             disableInvite: true,
             disableRecord: true,
             screenShare: true //only host

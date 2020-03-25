@@ -64,24 +64,20 @@ class webRouteHelper {
   ) {
     req.decodedParams = req.decodedParams || {};
 
-    if(!serviceGetter) {
-      renderResponseHelper.renderWithLayout(req, res, layout, contentPartialPath, req.decodedParams)
-    } else {
-      const Service = require(rootPrefix + serviceGetter);
-      const serviceResp = await new Service({headers: req.headers, decodedParams: req.decodedParams}).perform();
+    const Service = require(rootPrefix + serviceGetter);
+    const serviceResp = await new Service({headers: req.headers, decodedParams: req.decodedParams}).perform();
 
-      if(serviceResp.isSuccess()){
-        if(onServiceSuccess){
-          await onServiceSuccess(serviceResp);
-        }
-        let locals = serviceResp.data || {};
-        renderResponseHelper.renderWithLayout(req, res, layout, contentPartialPath, locals);
-      } else {
-        if (onServiceFailure) {
-          await onServiceFailure(serviceResp);
-        }
-        return Promise.reject(serviceResp);
+    if(serviceResp.isSuccess()){
+      if(onServiceSuccess){
+        await onServiceSuccess(serviceResp);
       }
+      let locals = serviceResp.data || {};
+      renderResponseHelper.renderWithLayout(req, res, layout, contentPartialPath, locals);
+    } else {
+      if (onServiceFailure) {
+        await onServiceFailure(serviceResp);
+      }
+      return Promise.reject(serviceResp);
     }
 
   }
