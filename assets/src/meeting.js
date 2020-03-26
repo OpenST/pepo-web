@@ -16,6 +16,7 @@ class Meeting extends BaseView {
         this.channelId = this.apiResponse.meeting.channel_id;
         this.channel = this.apiResponse.channels[this.channelId];
         this.zoomMeeting = null;
+        this.readyStateAttempt = 0;
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
         this.jqLoader = $('#meetingLoader');
@@ -71,21 +72,32 @@ class Meeting extends BaseView {
 
     initZoom(){
         this.showLoader();
-        const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
-        this.zoomMeeting = new ZoomMeeting();
-        this.zoomMeeting.init({
-            leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
-            disableInvite: true,
-            disableRecord: true,
-            screenShare: this.canStartMeeting()
-        });
+        let contentWindow = this.jqIframe[0].contentWindow;
+        this.readyStateAttempt++;
+        if(contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting){
+            const ZoomMeeting = contentWindow.ZoomMeeting;
+            this.zoomMeeting = new ZoomMeeting();
+            this.zoomMeeting.init({
+                leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
+                disableInvite: true,
+                disableRecord: true,
+                screenShare: this.canStartMeeting()
+            });
+        } else {
+            if(this.readyStateAttempt >= 3) {
+                this.showError('Error initiating Zoom Web');
+                return;
+            }
+            setTimeout(() => this.initZoom(), 100);
+        }
+
     }
 
     joinZoom(data){
         this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
         if(!this.isFullySupported(this.systemRequirements)){
             let browser = this.systemRequirements.browserInfo || 'this';
-            this.showError(`Pepo live events is not supported on ${browser} browser, please use Chrome or Edge browsers.`);
+            this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
             return;
         }
         this.zoomMeeting.join({
