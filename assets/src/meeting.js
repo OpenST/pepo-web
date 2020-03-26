@@ -32,7 +32,6 @@ class Meeting extends BaseView {
     init(){
         if(this.meeting && (this.meeting.status == 'STARTED' || this.meeting.status == 'WAITING')) {
           this.initZoom();
-          this.getJoinParamsAndJoin();
         } else {
           this.showError('This Pepo live event has ended');
         }
@@ -82,7 +81,7 @@ class Meeting extends BaseView {
                 disableInvite: true,
                 disableRecord: true,
                 screenShare: this.canStartMeeting()
-            });
+            }, () => this.getJoinParamsAndJoin());
         } else {
             if(this.readyStateAttempt >= 3) {
                 this.showError('Error initiating Zoom Web');
