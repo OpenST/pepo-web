@@ -1,0 +1,9 @@
+@supports (-webkit-touch-callout: none) {
+  .d-flex.ios-d-none,
+  .d-block.ios-d-none,
+  .d-inline-block.ios-d-none,
+  .d-inline.ios-d-none,
+  .ios-d-none {
+    display: none !important;
+  }
+}
