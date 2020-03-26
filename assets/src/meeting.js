@@ -90,7 +90,7 @@ class Meeting extends BaseView {
             this.channel
         ){
             $.ajax({
-                url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}`,
+                url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
                 success: (response) => {
                     if(
                         response.success &&
