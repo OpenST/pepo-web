@@ -72,7 +72,11 @@ class GetChannel extends ServiceBase {
     const oThis = this;
     logger.log('Start::_fetchChannel');
 
-    const serviceResp = await new ChannelLib(oThis.headers).getChannelDetails({permalink: oThis.channelPermalink});
+    const serviceResp = await new ChannelLib(oThis.headers)
+      .getMeetingDetails({
+        permalink: oThis.channelPermalink, meetingId: oThis.meetingId
+      });
+
     if (serviceResp.isFailure()) {
       return Promise.reject(serviceResp);
     }
@@ -88,8 +92,9 @@ class GetChannel extends ServiceBase {
    * @private
    */
   _getChannelName() {
-    const oThis = this;
-    return oThis.apiResponseData['channel'].name;
+    const oThis = this,
+      channelId = oThis.apiResponseData['meeting'].channel_id;
+    return oThis.apiResponseData['channels'][channelId].name;
   }
 
   /**
@@ -100,7 +105,7 @@ class GetChannel extends ServiceBase {
    */
   _getChannelTagLine() {
     const oThis = this,
-      channelId = oThis.apiResponseData['channel'].id,
+      channelId = oThis.apiResponseData['meeting'].channel_id,
       channelDetails = oThis.apiResponseData['channel_details'][channelId],
       taglineId = channelDetails['tagline_id'];
 
@@ -118,7 +123,7 @@ class GetChannel extends ServiceBase {
    */
   _getShareKeywordsList() {
     const oThis = this,
-      channelId = oThis.apiResponseData['channel'].id,
+      channelId = oThis.apiResponseData['meeting'].channel_id,
       channelDetails = oThis.apiResponseData['channel_details'][channelId],
       tagIds = channelDetails['tag_ids'],
       tagDetails = oThis.apiResponseData['tags'],
@@ -139,7 +144,7 @@ class GetChannel extends ServiceBase {
    */
   _getChannelImageUrl() {
     const oThis = this,
-      channelId = oThis.apiResponseData['channel'].id,
+      channelId = oThis.apiResponseData['meeting'].channel_id,
       channelDetails = oThis.apiResponseData['channel_details'][channelId],
       coverImageId = channelDetails['cover_image_id'],
       imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'];
