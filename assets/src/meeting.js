@@ -62,7 +62,7 @@ class Meeting extends BaseView {
             systemRequirements &&
             systemRequirements.features &&
             systemRequirements.features.length > 0 &&
-            !systemRequirements.features.length.includes('computerAudio')
+            !systemRequirements.features.includes('computerAudio')
         ) {
             return false;
         }
