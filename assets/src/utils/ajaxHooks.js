@@ -6,7 +6,7 @@ import Fingerprint from 'fingerprintjs';
   // //Add CSRF TOKEN
   $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
     if(options.url.indexOf('http') !== 0 || options.url.indexOf(window.location.origin) !== -1){
-      if(window.Fingerprint){
+      if(Fingerprint){
         jqXHR.setRequestHeader('x-pepo-fingerprint-id', new Fingerprint().get());
       }
       var csrf_token = $("meta[name='csrf-token']").attr("content");
