@@ -1,9 +1,10 @@
 require('../plugins/jquery-visible/jquery.visible');
 import {setDataStore}  from "../model/DataStore";
+import uuid from 'uuid/v4';
 
 import ns from "../libs/namespace";
 
-const  logMe = true;
+const  logMe = false;
 
 export default class SimpleDataTable {
 
@@ -20,6 +21,7 @@ export default class SimpleDataTable {
     oThis.rowTemplate = null;
     oThis.sScrollParent = null;
     oThis.associatedData = {};
+    oThis.namespace = uuid();
 
     oThis.events = {
       "responseProcessed": "responseProcessed"
@@ -59,7 +61,7 @@ export default class SimpleDataTable {
 
     logMe && console.log("oThis", oThis);
 
-    oThis.jDataLoader       = oThis.jDataLoader || oThis.createLoadingWrap( oThis.jParent );
+    oThis.jDataLoader       = oThis.jDataLoader || oThis.createLoadingWrap( oThis.jParent , true );
     // oThis.jRowTemplateHtml && oThis.jRowTemplateHtml.remove();
 
     oThis.loadTableData();
@@ -68,6 +70,19 @@ export default class SimpleDataTable {
     oThis.scrollObserver = function () {
       wrapperScrollObserver.apply( oThis, arguments );
     };
+  }
+
+  updateFetchUrlAndLoad(url){
+    var oThis = this;
+    if(url !== this.fetchResultsUrl){
+      this.fetchResultsUrl = url;
+      oThis.loadTableData();
+    }
+  }
+
+  refresh(){
+    var oThis = this;
+    oThis.loadTableData();
   }
 
   getRowTemplate () {
@@ -354,7 +369,7 @@ export default class SimpleDataTable {
     oThis.applyTrigger(oThis.events.responseProcessed, arguments );
   }
 
-  createLoadingWrap ( jParent ) {
+  createLoadingWrap ( jParent , isFirstLoad ) {
     var jWrap = $('<div data-simple-table-end class="w-100 position-relative" style="min-height:30px;" ></div>');
     //Do you magic here.
     var jContent = $(''
@@ -366,7 +381,12 @@ export default class SimpleDataTable {
       + '<div class="jPObserver w-100 position-absolute" style="height:1px; top: -100px; right: 0" ></div>'
     );
 
-    jWrap.append( jContent );
+    if(isFirstLoad){
+      jWrap.html( jContent );
+    }else{
+      jWrap.append( jContent );
+    }
+
     jWrap.insertAfter( jParent );
     return jWrap;
   }
@@ -394,7 +414,10 @@ export default class SimpleDataTable {
 
   scrollObserver  () {
     var oThis = this;
-
+    if ( ! oThis.jParent.visible(true, true)){
+      //If in trouble contact Rachin!
+      return;
+    }
     var partial = true
       , hidden  = null
       , direction   = "vertical"
@@ -412,14 +435,12 @@ export default class SimpleDataTable {
 
   bindScrollObserver () {
     var oThis = this;
-
     var jScrollParent = oThis.getJScrollParent();
-
     //Trigger once.
     oThis.scrollObserver();
 
     //Now bind it.
-    jScrollParent.on("scroll", oThis.scrollObserver );
+    jScrollParent.off(`scroll.${oThis.namespace}`).on(`scroll.${oThis.namespace}`, oThis.scrollObserver );
 
   }
 
@@ -428,7 +449,7 @@ export default class SimpleDataTable {
 
     var jScrollParent = oThis.getJScrollParent();
 
-    jScrollParent.off("scroll", oThis.scrollObserver );
+    jScrollParent.off(`scroll.${oThis.namespace}`, oThis.scrollObserver );
   }
 
 

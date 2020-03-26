@@ -83,7 +83,8 @@ class GetChannel extends ServiceBase {
       channelShareDetails: {
         title: oThis._getChannelName() + ' - Pepo',
         description: oThis._getDescription(),
-        poster_image_url: oThis._getChannelImageUrl()
+        poster_image_url: oThis._getChannelImageUrl(),
+        keywords: oThis._getShareKeywordsList()
       }
     }).perform();
 
@@ -167,12 +168,36 @@ class GetChannel extends ServiceBase {
   }
 
   /**
+   * Get channel tag list.
+   *
+   * @private
+   */
+  _getShareKeywordsList() {
+    const oThis = this,
+      channelId = oThis.apiResponseData['channel'].id,
+      channelDetails = oThis.apiResponseData['channel_details'][channelId],
+      tagIds = channelDetails['tag_ids'],
+      tagDetails = oThis.apiResponseData['tags'],
+      tagNameList = ['Pepo', 'Pepo Live Event'];
+
+    for(let i=0;i<tagIds.length;i++) {
+      tagNameList.push(tagDetails[tagIds[i]].text);
+    }
+
+    return tagNameList.join(',')
+  }
+
+  /**
    *
    * @returns {Promise<*|result>}
    * @private
    */
   async _prepareResponse() {
     const oThis = this;
+
+    if(oThis.currentUserData){
+      oThis.apiResponseData.current_user_data = oThis.currentUserData;
+    }
 
     return responseHelper.successWithData({
       apiResponseData: oThis.apiResponseData,
@@ -182,7 +207,8 @@ class GetChannel extends ServiceBase {
       firebaseUrls: {openInApp: oThis.apiResponseData.firebase_channel_url},
       showFooter: false,
       currentUserData: oThis.currentUserData,
-      currentUser: oThis.currentUser
+      currentUser: oThis.currentUser,
+      highlightLink: ''
     })
   }
 

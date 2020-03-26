@@ -1,14 +1,14 @@
 <%- include ../partials/web/home/_uberBanner -%>
 <% if (!currentUser.isLoggedIn()) {%>
-    <%- include('../partials/shared/_navBar', {pepoNav: ""}) -%>
+<%- include('../partials/shared/_navbar_communities.ejs' , {showSearch: false}) -%>
 <% } else{ %>
-    <%- include('../partials/shared/_navbar_loggedIn', {pepoNav: "pepo-nav"}) -%>  
+<%- include('../partials/shared/_navbar_communities_loggedIn', {pepoNav: "pepo-nav" , showSearch: false}) -%>
 <% } %>
 <%- include ../partials/web/home/_content -%>
 <%- include ../partials/web/home/_sideBySide -%>
-<%- include ../partials/shared/_modals %>
 <%- include ../partials/shared/_svg_sprite_common.ejs%>
 
+<%- include ../partials/shared/_light_boxes.ejs%>
 
 <script type="text/javascript">
     window.onload = function () {

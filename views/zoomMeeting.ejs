@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" type="image/png" sizes="64x64" href="https://dxwfxs8b4lg24.cloudfront.net/ost-kit/images/fav-icons/64x64.png"/>
+    <link rel="apple-touch-icon" sizes="57x57" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/16x16.png">
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.2/css/bootstrap.css" />
+    <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.2/css/react-select.css" />
+    <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
+</head>
+<body contenteditable="false">
+<% if(goto) { %>
+    <h4 class="text-center">Disconnecting Pepo live event...</h4>
+    <script type="text/javascript">
+        setTimeout(function(){
+            window.parent.location = '<%- goto %>';
+        }, 3000);
+    </script>
+<% } else { %>
+    <!-- import ZoomMtg dependencies -->
+    <%- include(_contentPartial) -%>
+    <script src="//source.zoom.us/1.7.2/lib/vendor/react.min.js"></script>
+    <script src="//source.zoom.us/1.7.2/lib/vendor/react-dom.min.js"></script>
+    <script src="//source.zoom.us/1.7.2/lib/vendor/redux.min.js"></script>
+    <script src="//source.zoom.us/1.7.2/lib/vendor/redux-thunk.min.js"></script>
+    <script src="//source.zoom.us/1.7.2/lib/vendor/jquery.min.js"></script>
+    <script src="//source.zoom.us/1.7.2/lib/vendor/lodash.min.js"></script>
+
+    <!-- import ZoomMtg -->
+    <script src="//source.zoom.us/zoom-meeting-1.7.2.min.js"></script>
+
+    <!-- import ZoomMtg -->
+    <%- include partials/shared/_script_zoomMeeting.ejs %>
+<% } %>
+
+</body>
+</html>
+

@@ -5,9 +5,10 @@ class  CurrentUser {
 
   constructor(){
     this.user = null;
+    this.meta = null;
   }
 
-  initUser(currentUserData){
+  initUser(currentUserData) {
     console.log(LOG_TAG, currentUserData);
 
     if (!currentUserData) {
@@ -34,14 +35,28 @@ class  CurrentUser {
     }
 
     this.user = Object.assign({}, loggedInUserData, loggedInUser);
+    
+    this.meta = currentUserData.meta || {};
 
     this.userId = loggedInUser.id;
     
-  }
+  };
 
-  getUserId() {
+  getUserId(){
     return this.userId;
+  };
+  
+  getLoginType(){
+    return this.meta.service_type;
+  };
+  
+  isLoggedIn(){
+    return !!this.userId;
+  }
+  
+  isChannelAdmin(){
+    return !!(this.user && this.user.is_managing_any_channel);
   }
 }
 
-export default  new CurrentUser();
+export default new CurrentUser();

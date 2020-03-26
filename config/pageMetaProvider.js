@@ -70,11 +70,11 @@ const processCSSAssetsConfig = ( controller, action, assetsConfig ) => {
 
 const processJSAssetsConfig = ( controller, action, assetsConfig ) => {
   const assetsArrayProp = "js",
-        commonProp = "common_js",
+        commonProp = null,
         manifestProp = "js_manifest";
 
   return genericAssetConfigProcessor(controller, action, assetsConfig, assetsArrayProp, commonProp, manifestProp);
-}
+};
 
 const genericAssetConfigProcessor = (controller, action, assetsConfig, assetsArrayProp, commonProp, manifestProp) => {
   assetsConfig = assetsConfig || {};

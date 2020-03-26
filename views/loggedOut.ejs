@@ -6,7 +6,6 @@
    <%- include partials/shared/_csrf -%>
    <%- include partials/shared/_dev_env -%>
    <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
-
   </head>
   <body contenteditable="false">
 
@@ -16,7 +15,8 @@
         <%- include partials/shared/_footer -%>
     <% } %>
 
-    <%- include partials/shared/_script %>
+    <% include partials/shared/_script %>
+    <% include partials/shared/_modals %>
 
     <% if (_endJSPartial) { %>
         <%- include(_endJSPartial) -%>

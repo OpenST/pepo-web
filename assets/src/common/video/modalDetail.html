@@ -50,7 +50,7 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
                         <div class="active ppBtnUi ppBtn" style="display: none">
                             <span class="video-play-icon"></span>
                         </div>
-                        <video class="pepoVideo" playsinline loop
+                        <video class="pepoVideo" playsinline
                                style="width: 100%; height: 100%; object-fit: cover"
                                poster="<%=DataGetters.getVideoCoverImage(videoId)%>"
                         >
@@ -112,7 +112,7 @@ profileImage = DataGetters.getOwnerProfileImage(DataGetters.getVideoOwnerId(vide
                     <div class="active ppBtnUi ppBtn" style="display: none">
                         <span class="video-play-icon"></span>
                     </div>
-                    <video class="pepoVideo h-100" playsinline loop
+                    <video class="pepoVideo h-100" playsinline
                            style="width: 100%; height: 100%; object-fit: cover; pointer-events: auto;"
                            poster="<%=DataGetters.getVideoCoverImage(videoId)%>"
                            data-video-id="<%=videoId%>"

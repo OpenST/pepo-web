@@ -14,13 +14,14 @@
     <% if (showFooter) { %>
         <%- include partials/shared/_footer -%>
     <% } %>
-    
+
     <% include partials/shared/_script %>
+    <% include partials/shared/_modals %>
 
     <% if (_endJSPartial) { %>
         <%- include(_endJSPartial) -%>
     <% } %>
-  
+
   </body>
 
 </html>

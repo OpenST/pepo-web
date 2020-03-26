@@ -1,0 +1,42 @@
+<li class="communityContainerCell col-12 col-md-6 col-lg-4 ">
+    <a href="/communities/<%= DataGetters.getChannelPermalink(channelId) %>"
+       class="d-block"
+       rel="noopener noreferrer nofollow"
+    >
+        <span class="community-list-image d-block">
+            <span class="content">
+                <img src="<%= DataGetters.getChannelCoverImage(channelId) %>" class="img-fluid h-100"/>
+                <span class="position-absolute d-flex justify-content-between flex-column h-100 w-100 p-3 overlay">
+                    <span class="details">
+                        <span class="text-truncate channel-name"><%= DataGetters.getChannelName(channelId) %></span>
+                        <span class="mb-0 text-truncate channel-desc"><%= DataGetters.getChannelTagText(channelId) %></span>
+                    </span>
+
+                    <span class="details d-flex justify-content-between align-items-center">
+                        <span class="d-flex" style="line-height: 100%">
+                            <span class="stats"><%= DataGetters.getChannelMemberCount(channelId) %> <span class="font-regular">Members</span></span>
+                            <span class="stats ml-4"><%= DataGetters.getChannelVideoCount(channelId) %> <span class="font-regular">Videos</span></span>
+                        </span>
+                        <% if (DataGetters.getCurrentUserIsMember(channelId)) { %>
+                            <span class="joined">
+                              <span class="joined-icon" style="margin-right: 2px"></span>
+                              <span>Joined</span>
+                            </span>
+                        <% } %>
+                    </span>
+                </span>
+            </span>
+        </span>
+            <span class="p-2 d-none d-md-block cell-desc" >
+                <span class="desc">
+                    <%= DataGetters.getChannelDesc(channelId) %>
+                </span>
+            </span>
+    </a>
+    <% var meetingId = DataGetters.getChannelLiveMeetingId(channelId) %>
+    <% if (meetingId != null ){  %>
+    <span class="d-none d-md-inline" id="ribbon-container">
+          <a href="/communities/<%= DataGetters.getChannelPermalink(channelId) %>/meetings/<%= meetingId %>" id="ribbon"><span class="join-live-meeting-icon ribbon-icon"></span>LIVE</a>
+        </span>
+    <% } %>
+</li>
