@@ -60,7 +60,7 @@ class Meeting extends BaseView {
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
         this.zoomMeeting.init({
-            leaveUrl: this.leaveUrl,
+            leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
             disableInvite: true,
             disableRecord: true,
             screenShare: this.canStartMeeting()
