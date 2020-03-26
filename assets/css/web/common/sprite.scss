@@ -166,6 +166,11 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
 .share-icon{
   @include icon-generator(44px, 48px, -471px, -594px, -471px, -471px, 55 );
 }
+
+.share-meeting-icon{
+  @include icon-generator(47px, 44px, -324px, -678px, -324px, -324px, 45);
+}
+
 //.pepo-logo-nav{
 //  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 25);
 //}
