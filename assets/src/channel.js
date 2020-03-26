@@ -12,7 +12,9 @@ class Channel extends BaseView {
     this.channel =  deepGet(this.config,  "apiResponse.channel" , {});
     this.isGoLive = false;
     const videoCnt =  deepGet(this.config,  `apiResponse.channel_stats.${this.channelId}.total_videos`);
-    if(videoCnt != 0){
+    if(videoCnt == 0){
+      $("#noVideoContainer").show();
+    }else {
       videoList.init({fetchApi:  `/api/web/channels/${this.channelId}/videos` });
     }
     this.descShowMoreLessHandling();
