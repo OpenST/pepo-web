@@ -73,12 +73,6 @@ class Meeting extends BaseView {
         this.showLoader();
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
-        this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
-        if(!this.isFullySupported(this.systemRequirements)){
-            let browser = this.systemRequirements.browserInfo || 'this';
-            this.showError(`Pepo live events is not supported on ${browser} browser, please use Chrome or Edge browsers.`);
-            return;
-        }
         this.zoomMeeting.init({
             leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
             disableInvite: true,
@@ -88,6 +82,12 @@ class Meeting extends BaseView {
     }
 
     joinZoom(data){
+        this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+        if(!this.isFullySupported(this.systemRequirements)){
+            let browser = this.systemRequirements.browserInfo || 'this';
+            this.showError(`Pepo live events is not supported on ${browser} browser, please use Chrome or Edge browsers.`);
+            return;
+        }
         this.zoomMeeting.join({
             meetingNumber: data.zoom_meeting_id,
             userName: data.name,
@@ -161,7 +161,6 @@ class Meeting extends BaseView {
     }
 
     onJoinError(error){
-        console.log("here", error);
         this.showError(error.errorMessage);
     }
 
