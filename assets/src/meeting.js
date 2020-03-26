@@ -80,7 +80,7 @@ class Meeting extends BaseView {
                 leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
                 disableInvite: true,
                 disableRecord: true,
-                screenShare: this.canStartMeeting()
+                screenShare: true /* Always show share screen button. */
             }, () => this.getJoinParamsAndJoin());
         } else {
             if(this.readyStateAttempt >= 3) {
