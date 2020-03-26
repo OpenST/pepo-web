@@ -29,8 +29,12 @@ class Meeting extends BaseView {
     }
 
     init(){
-        this.initZoom();
-        this.getJoinParamsAndJoin();
+        if(this.meeting && (this.meeting.status == 'STARTED' || this.meeting.status == 'WAITING')) {
+          this.initZoom();
+          this.getJoinParamsAndJoin();
+        } else {
+          this.showError('This Pepo live event has ended');
+        }
         this.bindEvents();
     }
 
@@ -120,7 +124,7 @@ class Meeting extends BaseView {
         this.jqIframe.hide();
         this.jqLoader.hide();
         this.jqError.find('.error-text').html(message);
-        this.jqError.find('.error-btn').attr("href", this.leaveUrl);
+        this.jqError.find('.error-btn').attr("href", '/'+this.leaveUrl);
         this.jqError.show();
     }
 

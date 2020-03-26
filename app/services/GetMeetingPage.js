@@ -209,7 +209,7 @@ class GetChannel extends ServiceBase {
       currentUser: oThis.currentUser,
       leaveUrl: oThis.leaveUrl,
       highlightLink: ''
-    })
+    });
   }
 
 }
