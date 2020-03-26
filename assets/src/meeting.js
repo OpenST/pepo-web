@@ -122,7 +122,8 @@ class Meeting extends BaseView {
     showError(message){
         this.jqIframe.hide();
         this.jqLoader.hide();
-        this.jqError.text(message);
+        this.jqError.find('.error-text').html(message);
+        this.jqError.find('.error-btn').attr("href", this.leaveUrl);
         this.jqError.show();
     }
 
