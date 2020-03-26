@@ -4,6 +4,9 @@
 // Import theme variables
 @import "../Starboy/variables";
 
+.jGoLiveBtn {
+  display:none !important;
+}
 .meeting-iframe-wrapper{
   width: 100%;
   height: calc(100% - 178px);
