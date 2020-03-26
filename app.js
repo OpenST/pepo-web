@@ -188,6 +188,8 @@ if (coreConstants.environment !== 'development') {
   connectAssetConfig.servePath = coreConstants.CLOUD_FRONT_BASE_DOMAIN + coreConstants.APP_NAME + '/js-css';
   connectAssetConfig.bundle = true;
   connectAssetConfig.compress = true;
+} else {
+  connectAssetConfig.servePath = "http://localhost:5000/";
 }
 
 let connectAssets = require('connect-assets');
