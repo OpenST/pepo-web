@@ -11,12 +11,14 @@ class Meeting extends BaseView {
         super(config);
         this.config = config;
         this.leaveUrl = this.config.leaveUrl;
-        this.channel = this.config.apiResponse.channel;
+        this.apiResponse = this.config.apiResponse;
+        this.meeting = this.apiResponse.meeting;
+        this.channelId = this.apiResponse.meeting.channel_id;
+        this.channel = this.apiResponse.channels[this.channelId];
         this.zoomMeeting = null;
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
         this.jqLoader = $('#meetingLoader');
-        this.jqMeetingName = $('#communityName');
         this.fallbackErrorMsg = 'Something went wrong';
 
         this.onJoinError = this.onJoinError.bind(this);
@@ -29,7 +31,6 @@ class Meeting extends BaseView {
     init(){
         this.initZoom();
         this.getJoinParamsAndJoin();
-        this.populateMeetingDetails();
         this.bindEvents();
     }
 
@@ -64,10 +65,6 @@ class Meeting extends BaseView {
             disableRecord: true,
             screenShare: this.canStartMeeting()
         });
-    }
-
-    populateMeetingDetails(){
-        this.jqMeetingName.text(this.channel.name);
     }
 
     joinZoom(data){
