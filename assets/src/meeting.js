@@ -35,9 +35,6 @@ class Meeting extends BaseView {
     }
 
     bindEvents(){
-        $(".jMeetingTips").on("click" , ()=> {
-            $("#meeting-tips-modal").modal("show");
-        });
 
         $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
             console.log('here');
