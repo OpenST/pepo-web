@@ -82,6 +82,7 @@ class Channel extends BaseView {
   onGoLiveComplete(jEl){
     jEl.html("GO LIVE");
     jEl.removeClass("disabled");
+    this.isGoLive = false;
   }
 
   descShowMoreLessHandling = () => {
