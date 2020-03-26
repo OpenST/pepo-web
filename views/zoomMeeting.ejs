@@ -21,9 +21,11 @@
 </head>
 <body contenteditable="false">
 <% if(goto) { %>
-    <h4 class="text-center">Redirecting...</h4>
+    <h4 class="text-center">Disconnecting Pepo Live...</h4>
     <script type="text/javascript">
-        window.parent.location = '<%- goto %>';
+        setTimeout(function(){
+            window.parent.location = '<%- goto %>';
+        }, 3000);
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->

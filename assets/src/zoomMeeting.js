@@ -19,7 +19,11 @@ class ZoomMeeting {
         ZoomMtg.join(Object.assign({}, options, {
             success: onSuccess || this.onJoinSuccess,
             error: onError || this.onJoinError,
-        }))
+        }));
+    }
+
+    getZoomMtg(){
+        return ZoomMtg;
     }
 
     onInitSuccess(res){

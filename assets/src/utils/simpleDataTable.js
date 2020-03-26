@@ -4,7 +4,7 @@ import uuid from 'uuid/v4';
 
 import ns from "../libs/namespace";
 
-const  logMe = true;
+const  logMe = false;
 
 export default class SimpleDataTable {
 
@@ -380,13 +380,13 @@ export default class SimpleDataTable {
       + '</div>'
       + '<div class="jPObserver w-100 position-absolute" style="height:1px; top: -100px; right: 0" ></div>'
     );
-    
+
     if(isFirstLoad){
       jWrap.html( jContent );
     }else{
       jWrap.append( jContent );
     }
-   
+
     jWrap.insertAfter( jParent );
     return jWrap;
   }

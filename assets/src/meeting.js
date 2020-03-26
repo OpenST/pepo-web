@@ -1,7 +1,9 @@
 import  ns from "../js/libs/namespace";
+import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
 
 const { $ } = window;
+const namespace = "meeting";
 
 class Meeting extends BaseView {
 
@@ -9,35 +11,48 @@ class Meeting extends BaseView {
         super(config);
         this.config = config;
         this.leaveUrl = this.config.leaveUrl;
-        this.channel = this.config.apiResponse.channel;
+        this.apiResponse = this.config.apiResponse;
+        this.meeting = this.apiResponse.meeting;
+        this.channelId = this.apiResponse.meeting.channel_id;
+        this.channel = this.apiResponse.channels[this.channelId];
         this.zoomMeeting = null;
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
         this.jqLoader = $('#meetingLoader');
-        this.jqMeetingName = $('#communityName');
         this.fallbackErrorMsg = 'Something went wrong';
 
         this.onJoinError = this.onJoinError.bind(this);
         this.onJoinSuccess = this.onJoinSuccess.bind(this);
 
         this.init();
+        this.bindEvents();
     }
 
     init(){
         this.initZoom();
         this.getJoinParamsAndJoin();
-        this.populateMeetingDetails();
         this.bindEvents();
     }
-    
+
     bindEvents(){
         $(".jMeetingTips").on("click" , ()=> {
             $("#meeting-tips-modal").modal("show");
         });
+
+        $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
+            console.log('here');
+            let isCopied = BasicHelper.copyToClipboard(this.config.apiResponse.share_url, $(e.target));
+            if(isCopied){
+                $('.toast-copied-to-clipboard').toast('show');
+            } else {
+                $('.toast-copied-to-clipboard-failed').toast('show');
+            }
+            e.stopPropagation();
+        });
     }
 
     canStartMeeting(){
-        return this.config.apiResponse.channel_allowed_actions[this.channel.id].can_start_meeting == 1;
+        return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
     }
 
     initZoom(){
@@ -45,23 +60,20 @@ class Meeting extends BaseView {
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
         this.zoomMeeting.init({
-            leaveUrl: this.leaveUrl,
+            leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
             disableInvite: true,
             disableRecord: true,
             screenShare: this.canStartMeeting()
         });
     }
 
-    populateMeetingDetails(){
-        this.jqMeetingName.text(this.channel.name);
-    }
-
     joinZoom(data){
         this.zoomMeeting.join({
-            meetingNumber: data.zoomMeetingId,
+            meetingNumber: data.zoom_meeting_id,
             userName: data.name,
             apiKey: data.api_key,
-            signature: data.signature
+            signature: data.signature,
+            participantId: data.participant_id
         },
             this.onJoinSuccess,
             this.onJoinError
@@ -75,7 +87,7 @@ class Meeting extends BaseView {
             this.channel
         ){
             $.ajax({
-                url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}`,
+                url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
                 success: (response) => {
                     if(
                         response.success &&
@@ -128,6 +140,7 @@ class Meeting extends BaseView {
     }
 
     onJoinError(error){
+        console.log("here", error);
         this.showError(error.errorMessage);
     }
 

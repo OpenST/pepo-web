@@ -18,7 +18,7 @@ router.get('/:permalink/meetings/:meetingId', sanitizer.sanitizeDynamicUrlParams
 
   req.decodedParams.permalink =  req.params.permalink;
   req.decodedParams.meetingId =  req.params.meetingId;
-  req.decodedParams.leaveUrl = '/zoom-meeting?goto=communities/'+req.params.permalink;
+  req.decodedParams.leaveUrl = 'communities/'+req.params.permalink;
 
   return webRouteHelper.perform(req, res, '/app/services/GetMeetingPage', 'loggedOut', 'web/_meeting', 'r_p_v_3');
 });
