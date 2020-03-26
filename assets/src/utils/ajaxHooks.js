@@ -1,4 +1,5 @@
 const {$} = window;
+import Fingerprint from 'fingerprintjs';
 ;
 (function(window){
 
