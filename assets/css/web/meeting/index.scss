@@ -55,6 +55,15 @@
   cursor: pointer;
 }
 
+.jMeetingTips{
+  a{
+    color: $gray-900;
+    &:hover, &:focus{
+      text-decoration: none;
+    }
+  }
+}
+
 .toast {
   top: 50px;
   @media only screen and (min-width: 768px){

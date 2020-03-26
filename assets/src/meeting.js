@@ -29,8 +29,12 @@ class Meeting extends BaseView {
     }
 
     init(){
-        this.initZoom();
-        this.getJoinParamsAndJoin();
+        if(this.meeting && (this.meeting.status == 'STARTED' || this.meeting.status == 'WAITING')) {
+          this.initZoom();
+          this.getJoinParamsAndJoin();
+        } else {
+          this.showError('This Pepo live event has ended');
+        }
         this.bindEvents();
     }
 
@@ -52,10 +56,29 @@ class Meeting extends BaseView {
         return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
     }
 
+    isFullySupported(systemRequirements){
+        if(!systemRequirements) return false;
+        if(
+            systemRequirements &&
+            systemRequirements.features &&
+            systemRequirements.features.length > 0 &&
+            !systemRequirements.features.includes('computerAudio')
+        ) {
+            return false;
+        }
+        return true;
+    }
+
     initZoom(){
         this.showLoader();
         const ZoomMeeting = this.jqIframe[0].contentWindow.ZoomMeeting;
         this.zoomMeeting = new ZoomMeeting();
+        this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+        if(!this.isFullySupported(this.systemRequirements)){
+            let browser = this.systemRequirements.browserInfo || 'this';
+            this.showError(`Pepo live events is not supported on ${browser} browser, please use Chrome or Edge browsers.`);
+            return;
+        }
         this.zoomMeeting.init({
             leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
             disableInvite: true,
@@ -120,7 +143,7 @@ class Meeting extends BaseView {
         this.jqIframe.hide();
         this.jqLoader.hide();
         this.jqError.find('.error-text').html(message);
-        this.jqError.find('.error-btn').attr("href", this.leaveUrl);
+        this.jqError.find('.error-btn').attr("href", '/'+this.leaveUrl);
         this.jqError.show();
     }
 
