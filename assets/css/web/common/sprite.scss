@@ -160,11 +160,11 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
 }
 
 .mute-icon{
-  @include icon-generator(40px, 40px, -418px, -596px, -418px, -418px, 70);
+  @include icon-generator(50px, 50px, -420px, -596px, -418px, -418px, 55);
 }
 
 .share-icon{
-  @include icon-generator(50px, 40px, -466px, -596px, -466px, -466px, 70);
+  @include icon-generator(50px, 40px, -466px, -596px, -466px, -466px, 55);
 }
 //.pepo-logo-nav{
 //  @include icon-generator(362px, 100px, -94px, -246px, -94px, -94px, 25);
