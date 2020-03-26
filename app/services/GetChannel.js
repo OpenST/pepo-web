@@ -178,7 +178,7 @@ class GetChannel extends ServiceBase {
       channelDetails = oThis.apiResponseData['channel_details'][channelId],
       tagIds = channelDetails['tag_ids'],
       tagDetails = oThis.apiResponseData['tags'],
-      tagNameList = ['Pepo', 'Pepo Live'];
+      tagNameList = ['Pepo', 'Pepo Live Event'];
 
     for(let i=0;i<tagIds.length;i++) {
       tagNameList.push(tagDetails[tagIds[i]].text);
