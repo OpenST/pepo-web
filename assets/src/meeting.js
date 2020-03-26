@@ -88,7 +88,7 @@ class Meeting extends BaseView {
                 this.showError('Error initiating Zoom Web');
                 return;
             }
-            setTimeout(() => this.initZoom(), 100);
+            setTimeout(() => this.initZoom(), this.readyStateAttempt * 500);
         }
 
     }
