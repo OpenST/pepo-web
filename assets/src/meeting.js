@@ -69,7 +69,10 @@ class Meeting extends BaseView {
                 disableInvite: true,
                 disableRecord: true,
                 screenShare: true /* Always show share screen button. */
-            }, () => this.getJoinParamsAndJoin());
+            },
+                () => this.getJoinParamsAndJoin(),
+                (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
+            );
         } else {
             if(this.readyStateAttempt >= 3) {
                 this.showError('Error initiating Zoom Web');
