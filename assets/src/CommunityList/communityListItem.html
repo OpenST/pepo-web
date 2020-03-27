@@ -35,7 +35,7 @@
     </a>
     <% var meetingId = DataGetters.getChannelLiveMeetingId(channelId) %>
     <% if (meetingId != null ){  %>
-    <span class="d-inline ios-d-none" id="ribbon-container">
+    <span class="d-inline" id="ribbon-container">
           <a href="/communities/<%= DataGetters.getChannelPermalink(channelId) %>/meetings/<%= meetingId %>" id="ribbon"><span class="join-live-meeting-icon ribbon-icon"></span>LIVE</a>
         </span>
     <% } %>
