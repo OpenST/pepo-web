@@ -3,7 +3,8 @@ import BaseView from "../src/common/BaseView";
 import videoList from "./common/video/videoList";
 import  deepGet from "lodash/get";
 import  helper from "./helpers/index";
-import  zoomMeeting from "./services/ZoomMeeting";
+
+//import  zoomMeeting from "./services/ZoomMeeting";
 
 class Channel extends BaseView {
 
