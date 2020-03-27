@@ -68,8 +68,21 @@
                         </div>
                     </div>
 
-                    <div class="loginBtn my-3" style="">
+                    <% if (firebaseUrls.openInApp) { %>
+                    <div id="openInApp" class="d-block d-md-none">
+                        <div class="customBtn my-3">
+                            <a href="<%= firebaseUrls.openInApp %>" class="buttonText" style="color: black" title="Open in App" rel="noopener noreferrer nofollow">Open in App</a>
+                        </div>
+                    </div>
+                    <% } else if (firebaseUrls.getTheApp) { %>
+                    <div id="getInApp" class="d-block d-md-none">
+                        <div class="customBtn my-3">
+                            <a href="<%= firebaseUrls.getTheApp %>" class="buttonText" style="color: black" title="Get App" rel="noopener noreferrer nofollow">Get App</a>
+                        </div>
+                    </div>
+                    <%}%>
 
+                    <div class="my-3 d-none d-md-block">
                         <div class="d-flex justify-content-center">
                             <div class="flex-fill align-self-center rounded sideSpacer"></div>
                             <div class="p-2 flex-fill dontHavaAccount">Don't have an account?</div>
@@ -78,16 +91,16 @@
 
                         <div class="d-flex mt-2 justify-content-around">
 
-                                <a href="<%= androidAppLink %>" target="_blank" title="Download Pepo App - Android" rel="noopener noreferrer nofollow">
-                                    <span class="login-drop-down-google-play-icon"></span>
-                                </a>
+                            <a href="<%= androidAppLink %>" target="_blank" title="Download Pepo App - Android" rel="noopener noreferrer nofollow">
+                                <span class="login-drop-down-google-play-icon"></span>
+                            </a>
 
-                                <a href="<%= iosAppLink %>" target="_blank" title="Download Pepo App - iOS" rel="noopener noreferrer nofollow">
-                                    <span class="login-drop-down-modal-app-store-icon"></span>
-                                </a>
+                            <a href="<%= iosAppLink %>" target="_blank" title="Download Pepo App - iOS" rel="noopener noreferrer nofollow">
+                                <span class="login-drop-down-modal-app-store-icon"></span>
+                            </a>
                         </div>
                     </div>
-               </div>
+                </div>
             </div>
         </div>
     </div>
