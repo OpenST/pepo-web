@@ -88,19 +88,8 @@ class Meeting extends BaseView {
         try{
             this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
         } catch(e) {
-            // Temp code
-            fetch("https://en3bb4vrieimf.x.pipedream.net/", {
-                method: "POST",
-                mode: "cors",
-                body: JSON.stringify(e),
-            });
+            console.warn(e);
         }
-        // Temp code
-        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
-            method: "POST",
-            mode: "cors",
-            body: JSON.stringify(this.systemRequirements),
-        });
         if(!helper.isFullySupported(this.systemRequirements)){
             let browser = this.systemRequirements.browserInfo || 'this';
             this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
