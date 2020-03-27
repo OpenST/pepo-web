@@ -1,7 +1,7 @@
 import  ns from "../js/libs/namespace";
 import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
-import helper from "./helpers/index";
+import zoomMeeting from "./services/ZoomMeeting";
 
 const { $ } = window;
 const namespace = "meeting";
@@ -90,7 +90,7 @@ class Meeting extends BaseView {
         } catch(e) {
             console.warn(e);
         }
-        if(!helper.isZoomFullySupported(this.systemRequirements)){
+        if(!zoomMeeting.isFullySupported(this.systemRequirements)){
             let browser = (this.systemRequirements && this.systemRequirements.browserInfo) || 'this';
             this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
             return;
