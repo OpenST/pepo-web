@@ -56,7 +56,7 @@ class Meeting extends BaseView {
     }
 
     adjustWidth(){
-        const minWidth = 480;
+        const minWidth = 410;
         let width = $(window).innerWidth();
         if(width < minWidth){
             let ratio = minWidth/width;
