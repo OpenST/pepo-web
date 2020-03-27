@@ -88,6 +88,7 @@ class Meeting extends BaseView {
         try{
             this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
         } catch(e) {
+            this.systemRequirements = true;
             console.warn(e);
         }
         if(!helper.isFullySupported(this.systemRequirements)){
