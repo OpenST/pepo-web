@@ -33,22 +33,25 @@
         }, 3000);
     </script>
 <% } else { %>
+    <!-- import ZoomMtg -->
+    <script src="//source.zoom.us/1.7.2/lib/vendor/jquery.min.js"></script>
+    <%- include partials/shared/_script_zoomMeeting.ejs %>
+
     <!-- import ZoomMtg dependencies -->
     <%- include(_contentPartial) -%>
     <script src="//source.zoom.us/1.7.2/lib/vendor/react.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/react-dom.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/redux.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/redux-thunk.min.js"></script>
-    <script src="//source.zoom.us/1.7.2/lib/vendor/jquery.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/lodash.min.js"></script>
 
     <!-- import ZoomMtg -->
     <script src="//source.zoom.us/zoom-meeting-1.7.2.min.js"></script>
 
-    <!-- import ZoomMtg -->
-    <%- include partials/shared/_script_zoomMeeting.ejs %>
 <% } %>
-
+<script type="text/javascript">
+    console.log("Dom should be ready after this point.");
+</script>
 </body>
 </html>
 
