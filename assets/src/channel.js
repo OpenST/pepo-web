@@ -51,6 +51,7 @@ class Channel extends BaseView {
     });
 
     $(".jStartMeeting").on("click" , (e)=> {
+      $(".jGoLiveError").html(" ");
       $("#tips-to-go-live").modal("show");
     });
 
