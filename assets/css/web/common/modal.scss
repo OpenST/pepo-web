@@ -39,7 +39,7 @@ svg{
 }
 
 .modal-dialog-login{
-  max-width: 255px;
+  max-width: 300px;
   margin: 100px 15px 0 auto;
 
   @media screen and (max-width: 768px){
@@ -58,9 +58,14 @@ svg{
   }
 
   .dontHavaAccount {
-    text-align: center;
     font-weight: 600;
     color: $wildWatermelon;
+  }
+
+  .sideSpacer {
+    background-color: $wildWatermelon;
+    height: 5px;
+    width: 14%
   }
 }
 
