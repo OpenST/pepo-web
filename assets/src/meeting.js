@@ -1,6 +1,7 @@
 import  ns from "../js/libs/namespace";
 import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
+import helper from "./helpers/index";
 
 const { $ } = window;
 const namespace = "meeting";
@@ -56,19 +57,6 @@ class Meeting extends BaseView {
         return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
     }
 
-    isFullySupported(systemRequirements){
-        if(!systemRequirements) return false;
-        if(
-            systemRequirements &&
-            systemRequirements.features &&
-            systemRequirements.features.length > 0 &&
-            !systemRequirements.features.includes('computerAudio')
-        ) {
-            return false;
-        }
-        return true;
-    }
-
     initZoom(){
         this.showLoader();
         let contentWindow = this.jqIframe[0].contentWindow;
@@ -94,7 +82,7 @@ class Meeting extends BaseView {
 
     joinZoom(data){
         this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
-        if(!this.isFullySupported(this.systemRequirements)){
+        if(!helper.isFullySupported(this.systemRequirements)){
             let browser = this.systemRequirements.browserInfo || 'this';
             this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
             return;

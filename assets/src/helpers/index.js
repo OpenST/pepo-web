@@ -31,10 +31,19 @@ class Helper {
       }
     });
   };
-
-
-
-
+  
+  isFullySupported(systemRequirements){
+    if(!systemRequirements) return false;
+    if(
+      systemRequirements &&
+      systemRequirements.features &&
+      systemRequirements.features.length > 0 &&
+      !systemRequirements.features.includes('computerAudio')
+    ) {
+      return false;
+    }
+    return true;
+  }
 
 
 }
