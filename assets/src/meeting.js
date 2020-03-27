@@ -42,7 +42,6 @@ class Meeting extends BaseView {
     bindEvents(){
 
         $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
-            console.log('here');
             let isCopied = BasicHelper.copyToClipboard(this.config.apiResponse.share_url, $(e.target));
             if(isCopied){
                 $('.toast-copied-to-clipboard').toast('show');
@@ -59,11 +58,23 @@ class Meeting extends BaseView {
 
     initZoom(){
         this.showLoader();
+        // Temp code
+        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
+            method: "POST",
+            mode: "cors",
+            body: 'initZoom',
+        });
         let contentWindow = this.jqIframe[0].contentWindow;
         this.readyStateAttempt++;
         if(contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting){
             const ZoomMeeting = contentWindow.ZoomMeeting;
             this.zoomMeeting = new ZoomMeeting();
+            // Temp code
+            fetch("https://en3bb4vrieimf.x.pipedream.net/", {
+                method: "POST",
+                mode: "cors",
+                body: 'calling this.zoomMeeting.init',
+            });
             this.zoomMeeting.init({
                 leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
                 disableInvite: true,
@@ -90,6 +101,12 @@ class Meeting extends BaseView {
             this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
             return;
         }
+        // Temp code
+        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
+            method: "POST",
+            mode: "cors",
+            body: 'calling this.zoomMeeting.join',
+        });
         this.zoomMeeting.join({
             meetingNumber: data.zoom_meeting_id,
             userName: data.name,
