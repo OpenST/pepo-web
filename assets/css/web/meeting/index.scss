@@ -42,6 +42,12 @@
       width: 50%;
     }
   }
+
+  .first-list {
+    @media screen and (max-width: 768px){
+      width: 100%;
+    }
+  }
 }
 
 .community{
