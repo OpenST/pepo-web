@@ -4,7 +4,7 @@ import videoList from "./common/video/videoList";
 import  deepGet from "lodash/get";
 import  helper from "./helpers/index";
 
-//import  zoomMeeting from "./services/ZoomMeeting";
+import  zoomMeeting from "./services/ZoomMeeting";
 
 class Channel extends BaseView {
 
@@ -22,12 +22,13 @@ class Channel extends BaseView {
     this.descShowMoreLessHandling();
     this.eventBindings();
   
-    
-    // zoomMeeting.init( (jEl)=> {
-    //   //TODO DJ check where u can get
-    //   const meetingId = jEl.data("meeting-id") || this.config;
-    //   zoomMeeting.setZoomMeetingUserName(this.channel , meetingId);
-    // } );
+    const oThis = this;
+    zoomMeeting.init( (jEl)=> {
+      console.log(jEl)
+      //TODO DJ check where u can get
+     // const meetingId = oThis.channel.live_meeting_id || oThis.config;
+      zoomMeeting.setZoomMeetingUserName(oThis.channel)//, meetingId);
+    } );
     
   }
 
