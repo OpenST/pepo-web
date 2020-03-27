@@ -45,14 +45,14 @@ meetingUrl = '/communities/'+channel.permalink+'/meetings/'+meetingId
                                     <div class="d-flex">
                                         <h6 class="header block-with-text mb-1 mb-md-2 text-truncate" style="flex: 1"><%= apiResponseData['channel']['name'] %></h6>
                                         <% if(canJoin) { %>
-                                            <a  class="d-none d-md-flex"
+                                            <a  class="d-flex"
                                                 href="<%= meetingUrl%>"
                                                 style="padding: 5px; color: #FFFFFF; border-radius: 5px; background: linear-gradient(45deg, rgb(255, 116, 153) 0%, rgb(255,85,102) 100%); font-size: 12px; text-align: center; padding: 3px 12px; line-height: 100%;display: flex;align-items: center;justify-content: center;">
                                                 <span class="join-live-meeting-icon" style="margin-right: 4px"></span>
                                                 <span>Join the Live Stream</span>
                                             </a>
                                         <%}  else if(canStart) { %>
-                                            <span class="d-none d-md-flex jStartMeeting" style="padding: 5px; border: 1px solid #ff5566; color: #ff5566; border-radius: 5px; background: rgba(247, 252, 252, 0.95); font-size: 12px; text-align: center; padding: 3px 12px; line-height: 100%;display: flex;align-items: center;justify-content: center; cursor: pointer;">
+                                            <span class="d-flex jStartMeeting" style="padding: 5px; border: 1px solid #ff5566; color: #ff5566; border-radius: 5px; background: rgba(247, 252, 252, 0.95); font-size: 12px; text-align: center; padding: 3px 12px; line-height: 100%;display: flex;align-items: center;justify-content: center; cursor: pointer;">
                                                 <span class="start-live-meeting-icon" style="margin-right: 4px"></span>
                                                 <span>Start a Live Event</span>
                                             </span>

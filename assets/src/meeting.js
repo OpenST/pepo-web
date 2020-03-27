@@ -1,6 +1,7 @@
 import  ns from "../js/libs/namespace";
 import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
+import zoomMeeting from "./services/ZoomMeeting";
 
 const { $ } = window;
 const namespace = "meeting";
@@ -16,7 +17,9 @@ class Meeting extends BaseView {
         this.channelId = this.apiResponse.meeting.channel_id;
         this.channel = this.apiResponse.channels[this.channelId];
         this.zoomMeeting = null;
+        this.systemRequirements = false;
         this.readyStateAttempt = 0;
+        this.jWrapper = $('#meetingWrapper');
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
         this.jqLoader = $('#meetingLoader');
@@ -27,6 +30,7 @@ class Meeting extends BaseView {
 
         this.init();
         this.bindEvents();
+        this.adjustWidth();
     }
 
     init(){
@@ -41,7 +45,6 @@ class Meeting extends BaseView {
     bindEvents(){
 
         $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
-            console.log('here');
             let isCopied = BasicHelper.copyToClipboard(this.config.apiResponse.share_url, $(e.target));
             if(isCopied){
                 $('.toast-copied-to-clipboard').toast('show');
@@ -52,21 +55,28 @@ class Meeting extends BaseView {
         });
     }
 
-    canStartMeeting(){
-        return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
+    adjustWidth(){
+        const minWidth = 410;
+        let width = $(window).innerWidth();
+        if(width < minWidth){
+            let ratio = minWidth/width;
+            let ratioInverse = width/minWidth;
+            let ratioDiff = (ratio - 1) / 2;
+            let halfRatio = ratio - ratioDiff;
+            let halfRatioDiff = (halfRatio - 1) / 2;
+            this.jWrapper.css({
+                transform: `scale(${ratioInverse})`,
+                width: `${ratio*100}%`,
+                left: `-${ratioDiff*100}%`,
+                height: `${halfRatio*100}%`,
+                top: `-${halfRatioDiff*100}%`,
+                position: 'relative'
+            });
+        }
     }
 
-    isFullySupported(systemRequirements){
-        if(!systemRequirements) return false;
-        if(
-            systemRequirements &&
-            systemRequirements.features &&
-            systemRequirements.features.length > 0 &&
-            !systemRequirements.features.includes('computerAudio')
-        ) {
-            return false;
-        }
-        return true;
+    canStartMeeting(){
+        return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
     }
 
     initZoom(){
@@ -80,8 +90,11 @@ class Meeting extends BaseView {
                 leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
                 disableInvite: true,
                 disableRecord: true,
-                screenShare: this.canStartMeeting()
-            }, () => this.getJoinParamsAndJoin());
+                screenShare: true /* Always show share screen button. */
+            },
+                () => this.getJoinParamsAndJoin(),
+                (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
+            );
         } else {
             if(this.readyStateAttempt >= 3) {
                 this.showError('Error initiating Zoom Web');
@@ -93,9 +106,14 @@ class Meeting extends BaseView {
     }
 
     joinZoom(data){
-        this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
-        if(!this.isFullySupported(this.systemRequirements)){
-            let browser = this.systemRequirements.browserInfo || 'this';
+        // Cos this might break at times
+        try{
+            this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+        } catch(e) {
+            console.warn(e);
+        }
+        if(!zoomMeeting.isFullySupported(this.systemRequirements)){
+            let browser = (this.systemRequirements && this.systemRequirements.browserInfo) || 'this';
             this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
             return;
         }

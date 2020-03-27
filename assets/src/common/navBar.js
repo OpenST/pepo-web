@@ -126,14 +126,14 @@ class NavBar {
           let channel = oThis.channels[channelIdList[0]] || {};
           window.location = `/communities/${channel.permalink}/`
         } else {
-          $("#navbarToggler3").css({'visibility': 'visible'});
+          $("#navbarToggler3").toggleClass('show');
         }
       }
       e.stopPropagation();
       e.preventDefault();
 
       $("body").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
-        $("#navbarToggler3").css({'visibility': 'hidden'});
+        $("#navbarToggler3").removeClass('show');
       });
     });
 
