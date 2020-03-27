@@ -58,12 +58,6 @@ class Meeting extends BaseView {
 
     initZoom(){
         this.showLoader();
-        // Temp code
-        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
-            method: "POST",
-            mode: "cors",
-            body: 'initZoom',
-        });
         let contentWindow = this.jqIframe[0].contentWindow;
         this.readyStateAttempt++;
         if(contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting){
@@ -125,6 +119,12 @@ class Meeting extends BaseView {
             this.config.apiResponse.current_meeting_id &&
             this.channel
         ){
+            // Temp code
+            fetch("https://en3bb4vrieimf.x.pipedream.net/", {
+                method: "POST",
+                mode: "cors",
+                body: 'getJoinParamsAndJoin',
+            });
             $.ajax({
                 url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
                 success: (response) => {
@@ -134,6 +134,12 @@ class Meeting extends BaseView {
                         response.data.result_type &&
                         response.data[response.data.result_type]
                     ){
+                        // Temp code
+                        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
+                            method: "POST",
+                            mode: "cors",
+                            body: 'calling this.joinZoom from getJoinParamsAndJoin',
+                        });
                         this.joinZoom(response.data[response.data.result_type]);
                     } else {
                         let errorMsg = this.fallbackErrorMsg;
