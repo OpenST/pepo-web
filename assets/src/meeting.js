@@ -84,7 +84,17 @@ class Meeting extends BaseView {
     }
 
     joinZoom(data){
-        this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+        // Cos this might break at times
+        try{
+            this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+        } catch(e) {
+            // Temp code
+            fetch("https://en3bb4vrieimf.x.pipedream.net/", {
+                method: "POST",
+                mode: "cors",
+                body: JSON.stringify(e),
+            });
+        }
         // Temp code
         fetch("https://en3bb4vrieimf.x.pipedream.net/", {
             method: "POST",
