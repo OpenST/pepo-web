@@ -63,12 +63,6 @@ class Meeting extends BaseView {
         if(contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting){
             const ZoomMeeting = contentWindow.ZoomMeeting;
             this.zoomMeeting = new ZoomMeeting();
-            // Temp code
-            fetch("https://en3bb4vrieimf.x.pipedream.net/", {
-                method: "POST",
-                mode: "cors",
-                body: 'calling this.zoomMeeting.init',
-            });
             this.zoomMeeting.init({
                 leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
                 disableInvite: true,
@@ -90,17 +84,17 @@ class Meeting extends BaseView {
 
     joinZoom(data){
         this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+        // Temp code
+        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
+            method: "POST",
+            mode: "cors",
+            body: JSON.stringify(this.systemRequirements),
+        });
         if(!helper.isFullySupported(this.systemRequirements)){
             let browser = this.systemRequirements.browserInfo || 'this';
             this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
             return;
         }
-        // Temp code
-        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
-            method: "POST",
-            mode: "cors",
-            body: 'calling this.zoomMeeting.join',
-        });
         this.zoomMeeting.join({
             meetingNumber: data.zoom_meeting_id,
             userName: data.name,
@@ -119,12 +113,6 @@ class Meeting extends BaseView {
             this.config.apiResponse.current_meeting_id &&
             this.channel
         ){
-            // Temp code
-            fetch("https://en3bb4vrieimf.x.pipedream.net/", {
-                method: "POST",
-                mode: "cors",
-                body: 'getJoinParamsAndJoin',
-            });
             $.ajax({
                 url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
                 success: (response) => {
@@ -134,12 +122,6 @@ class Meeting extends BaseView {
                         response.data.result_type &&
                         response.data[response.data.result_type]
                     ){
-                        // Temp code
-                        fetch("https://en3bb4vrieimf.x.pipedream.net/", {
-                            method: "POST",
-                            mode: "cors",
-                            body: 'calling this.joinZoom from getJoinParamsAndJoin',
-                        });
                         this.joinZoom(response.data[response.data.result_type]);
                     } else {
                         let errorMsg = this.fallbackErrorMsg;
