@@ -32,7 +32,7 @@ class Helper {
     });
   };
   
-  isFullySupported(systemRequirements){
+  isZoomFullySupported(systemRequirements){
     if(!systemRequirements) return false;
     if(
       systemRequirements &&
@@ -45,6 +45,8 @@ class Helper {
     return true;
   }
 
+  
+  
 
 }
 
