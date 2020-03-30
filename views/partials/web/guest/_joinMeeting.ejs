@@ -23,16 +23,25 @@
 <div id="guestJoining" class="d-flex align-items-center justify-content-center log-in-tabs">
     <ul class="nav nav-tabs w-25" role="tablist">
         <li class="nav-item w-50 text-center">
-            <a class="nav-link active px-5" href="#jagt" role="tab" data-toggle="tab" aria-selected="true">profile</a>
+            <a class="nav-link active px-5" href="#jagt" role="tab" data-toggle="tab" aria-selected="true">Join As Guest</a>
         </li>
         <li class="nav-item w-50 text-center">
-            <a class="nav-link" href="#lajt" role="tab" data-toggle="tab">buzz</a>
+            <a class="nav-link" href="#lajt" role="tab" data-toggle="tab">Login and Join</a>
         </li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active show" id="jagt">Content 1</div>
+        <div role="tabpanel" class="tab-pane fade in active show" id="jagt">
+            <br>
+            <div class="mx-2 mx-lg-6 text-center" >
+                <input id="username-input" class="mt-2" placeholder="Your Name" type="text" style="border-radius: 5px;  width: 350px;  height: 30px;  padding: 20px; outline: none; border: 2px solid rgba(0, 0, 0, .15); font-size: small;"/>
+            </div>
+            <div class="d-flex flex-column mx-6 text-center" >
+                <div class="general_error error jJoinError">&nbsp;</div>
+                <div class="flex-md-row"><a class="btn btn-primary join-event-btn" href="javascript:void(0)" style="width: 100px;">Join</a></div>
+            </div>
+        </div>
         <div role="tabpanel" class="tab-pane fade" id="lajt">Content 2</div>
     </div>
 </div>
