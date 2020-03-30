@@ -1,47 +1,82 @@
-<!--<div id="guestJoining" class="d-flex align-items-center justify-content-center log-in-tabs">-->
-    <!--<div class="row">-->
-        <!--<ul class="nav nav-tabs" role="tablist">-->
-            <!--<li class="nav-item">-->
-                <!--<a class="nav-link active px-5" id="join-as-guest-tab" data-toggle="tab" href="#jag" role="tab" aria-controls="jag" aria-selected="true">Join As Guest</a>-->
-            <!--</li>-->
-            <!--<li class="nav-item">-->
-                <!--<a class="nav-link px-5" href="#" id="login-and-join-tab" data-toggle="tab" href="#laj" role="tab" aria-controls="laj" aria-selected="false">Login and Join</a>-->
-            <!--</li>-->
-        <!--</ul>-->
-    <!--</div>-->
-    <!--<div class="tab-content" id="page-tab-content">-->
-        <!--<div class="tab-pane fade show active" id="jagt" role="tabpanel" aria-labelledby="join-as-guest-tab">-->
-            <!--<h4>content 1</h4>-->
-        <!--</div>-->
-        <!--<div class="tab-pane fade" id="lajt" role="tabpanel" aria-labelledby="login-and-join-tab">-->
-            <!--<h4>content 2</h4>-->
-        <!--</div>-->
-    <!--</div>-->
-
-<!--</div>-->
-
-<div id="guestJoining" class="d-flex align-items-center justify-content-center log-in-tabs" style="display: none !important;">
-    <ul class="nav nav-tabs w-25" role="tablist">
-        <li class="nav-item w-50 text-center">
-            <a class="nav-link active px-5" href="#jagt" role="tab" data-toggle="tab" aria-selected="true">Join As Guest</a>
-        </li>
-        <li class="nav-item w-50 text-center">
-            <a class="nav-link" href="#lajt" role="tab" data-toggle="tab">Login and Join</a>
-        </li>
-    </ul>
-
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div role="tabpanel" class="tab-pane fade in active show" id="jagt">
-            <br>
-            <div class="mx-2 mx-lg-6 text-center" >
-                <input id="username-input" class="mt-2" placeholder="Your Name" type="text" style="border-radius: 5px;  width: 350px;  height: 30px;  padding: 20px; outline: none; border: 2px solid rgba(0, 0, 0, .15); font-size: small;"/>
+<div id="guestJoining" class="container log-in-tabs">
+    <div class="row justify-content-md-center ">
+        <h4 class="join-title mt-5 mb-5" style="color: #ff5566;font-weight: 600 ">Options to Join the Meeting</h4>
+    </div>
+    <div class="row justify-content-md-center">
+        <ul class="nav nav-tabs w-50" role="tablist">
+            <li class="nav-item w-50 text-center">
+                <a class="nav-link active px-5" href="#jagt" role="tab" data-toggle="tab" aria-selected="true">Join As Guest</a>
+            </li>
+            <li class="nav-item w-50 text-center">
+                <a class="nav-link" href="#lajt" role="tab" data-toggle="tab">Login and Join</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row justify-content-md-center">
+        <div class="tab-content mt-5" >
+            <div role="tabpanel" class="tab-pane fade in active show" id="jagt">
+                <div class="mx-2 mx-lg-6 text-center" >
+                    <input id="username-input" class="mt-2" placeholder="Your Name" type="text" style="border-radius: 5px;  width: 380px;  height: 30px;  padding: 20px; outline: none; border: 2px solid rgba(0, 0, 0, .15); font-size: small;"/>
+                </div>
+                <div class="d-flex flex-column mx-6 text-center" >
+                    <div class="general_error error jJoinError">&nbsp;</div>
+                    <div class="flex-md-row mt-2"><a class="btn btn-primary join-event-btn" href="javascript:void(0)" style="width: 100px;">Join</a></div>
+                </div>
             </div>
-            <div class="d-flex flex-column mx-6 text-center" >
-                <div class="general_error error jJoinError">&nbsp;</div>
-                <div class="flex-md-row"><a class="btn btn-primary join-event-btn" href="javascript:void(0)" style="width: 100px;">Join</a></div>
+    
+            <div role="tabpanel" class="tab-pane fade" id="lajt">
+                <div class="login-tab-content" style="zoom: 1.3; -moz-transform: scale(1.3);">
+                    <div class="p-0">
+    
+                        <div class="d-md-none">
+                            <h5 class="pt-4" style="color: #ff5566;font-weight: 600;">Login Using</h5>
+                        </div>
+            
+                        <div class="my-0">
+                           <div class="logged-out">
+                                <div id="twitterSignIn" class="loginBtn">
+                                    <div class="customBtn my-3">
+                                        <span class="login-twitter-icon"></span>
+                                        <span class="buttonText">Continue with Twitter</span>
+                                    </div>
+                                </div>
+                                <div id="googleSignIn" class="loginBtn">
+                                    <div class="customBtn my-3">
+                                        <span class="login-google-icon"></span>
+                                        <span class="buttonText">Continue with Gmail</span>
+                                    </div>
+                                </div>
+                                <div id="appleSignIn" class="loginBtn">
+                                    <div class="customBtn my-3">
+                                        <span class="login-apple-id-icon"></span>
+                                        <span class="buttonText">Continue with Apple ID</span>
+                                    </div>
+                                </div>
+            
+                                <div class="my-3 d-none d-md-block">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="flex-fill align-self-center rounded sideSpacer"></div>
+                                        <div class="p-2 flex-fill dontHavaAccount">Don't have an account?</div>
+                                        <div class="flex-fill align-self-center rounded sideSpacer"></div>
+                                    </div>
+            
+                                    <div class="d-flex mt-2 justify-content-around">
+            
+                                        <a href="<%= _androidAppLink %>" target="_blank" title="Download Pepo App - Android" rel="noopener noreferrer nofollow">
+                                            <span class="login-drop-down-google-play-icon"></span>
+                                        </a>
+            
+                                        <a href="<%= _iosAppLink %>" target="_blank" title="Download Pepo App - iOS" rel="noopener noreferrer nofollow">
+                                            <span class="login-drop-down-modal-app-store-icon"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
             </div>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="lajt">Content 2</div>
     </div>
 </div>
