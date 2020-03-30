@@ -1,3 +1,13 @@
+<%
+if(typeof androidAppLink == "undefined" || typeof iosAppLink == "undefined" ){
+    _androidAppLink = null;
+    _iosAppLink = null;
+} else {
+    _androidAppLink = androidAppLink;
+    _iosAppLink = iosAppLink;
+}
+%>
+
 <section id="downloadModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content" style="padding: 35px 0; border-radius: 5px">
@@ -8,10 +18,10 @@
                 </button>
             </div>
             <div class="modal-footer d-flex flex-column flex-md-row mx-auto">
-                <a href="<%= androidAppLink %>" target="_blank" title="Download Pepo App - Android" class="d-inline-block" rel="noopener noreferrer nofollow">
+                <a href="<%= _androidAppLink %>" target="_blank" title="Download Pepo App - Android" class="d-inline-block" rel="noopener noreferrer nofollow">
                     <span class="modal-google-play-icon"></span>
                 </a>
-                <a href="<%= iosAppLink %>" target="_blank" title="Download Pepo App - iOS" class="ml-md-3 mt-4 mt-md-0" rel="noopener noreferrer nofollow">
+                <a href="<%= _iosAppLink %>" target="_blank" title="Download Pepo App - iOS" class="ml-md-3 mt-4 mt-md-0" rel="noopener noreferrer nofollow">
                     <span class="modal-app-store-icon"></span>
                 </a>
             </div>
@@ -67,7 +77,7 @@
                             <span class="buttonText">Continue with Apple ID</span>
                         </div>
                     </div>
-                   
+
                     <div class="my-3 d-none d-md-block">
                         <div class="d-flex justify-content-center">
                             <div class="flex-fill align-self-center rounded sideSpacer"></div>
@@ -77,11 +87,11 @@
 
                         <div class="d-flex mt-2 justify-content-around">
 
-                            <a href="<%= androidAppLink %>" target="_blank" title="Download Pepo App - Android" rel="noopener noreferrer nofollow">
+                            <a href="<%= _androidAppLink %>" target="_blank" title="Download Pepo App - Android" rel="noopener noreferrer nofollow">
                                 <span class="login-drop-down-google-play-icon"></span>
                             </a>
 
-                            <a href="<%= iosAppLink %>" target="_blank" title="Download Pepo App - iOS" rel="noopener noreferrer nofollow">
+                            <a href="<%= _iosAppLink %>" target="_blank" title="Download Pepo App - iOS" rel="noopener noreferrer nofollow">
                                 <span class="login-drop-down-modal-app-store-icon"></span>
                             </a>
                         </div>

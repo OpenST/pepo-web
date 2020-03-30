@@ -19,6 +19,7 @@ class Meeting extends BaseView {
         this.zoomMeeting = null;
         this.systemRequirements = false;
         this.readyStateAttempt = 0;
+        this.jWrapper = $('#meetingWrapper');
         this.jqIframe = $('#zoomMeeting');
         this.jqError = $('#meetingError');
         this.jqLoader = $('#meetingLoader');
@@ -29,6 +30,7 @@ class Meeting extends BaseView {
 
         this.init();
         this.bindEvents();
+        this.adjustWidth();
     }
 
     init(){
@@ -51,6 +53,26 @@ class Meeting extends BaseView {
             }
             e.stopPropagation();
         });
+    }
+
+    adjustWidth(){
+        const minWidth = 410;
+        let width = $(window).innerWidth();
+        if(width < minWidth){
+            let ratio = minWidth/width;
+            let ratioInverse = width/minWidth;
+            let ratioDiff = (ratio - 1) / 2;
+            let halfRatio = ratio - ratioDiff;
+            let halfRatioDiff = (halfRatio - 1) / 2;
+            this.jWrapper.css({
+                transform: `scale(${ratioInverse})`,
+                width: `${ratio*100}%`,
+                left: `-${ratioDiff*100}%`,
+                height: `${halfRatio*100}%`,
+                top: `-${halfRatioDiff*100}%`,
+                position: 'relative'
+            });
+        }
     }
 
     canStartMeeting(){
