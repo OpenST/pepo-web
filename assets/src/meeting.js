@@ -1,197 +1,202 @@
-import  ns from "../js/libs/namespace";
+import ns from "../js/libs/namespace";
 import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
 import zoomMeeting from "./services/ZoomMeeting";
 
-const { $ } = window;
+const {$} = window;
 const namespace = "meeting";
 
 class Meeting extends BaseView {
 
-    constructor(config){
-        super(config);
-        this.config = config;
-        this.leaveUrl = this.config.leaveUrl;
-        this.apiResponse = this.config.apiResponse;
-        this.meeting = this.apiResponse.meeting;
-        this.channelId = this.apiResponse.meeting.channel_id;
-        this.channel = this.apiResponse.channels[this.channelId];
-        this.zoomMeeting = null;
-        this.systemRequirements = false;
-        this.readyStateAttempt = 0;
-        this.jWrapper = $('#meetingWrapper');
-        this.jqIframe = $('#zoomMeeting');
-        this.jqError = $('#meetingError');
-        this.jqLoader = $('#meetingLoader');
-        this.fallbackErrorMsg = 'Something went wrong';
+  constructor(config) {
+    super(config);
+    this.config = config;
+    this.leaveUrl = this.config.leaveUrl;
+    this.apiResponse = this.config.apiResponse;
+    this.meeting = this.apiResponse.meeting;
+    this.meetingId = this.meeting.id;
+    this.channelId = this.apiResponse.meeting.channel_id;
+    this.channel = this.apiResponse.channels[this.channelId];
+    this.channelPermalink = this.channel.permalink;
+    this.zoomMeeting = null;
+    this.systemRequirements = false;
+    this.readyStateAttempt = 0;
+    this.jWrapper = $('#meetingWrapper');
+    this.jqIframe = $('#zoomMeeting');
+    this.jqError = $('#meetingError');
+    this.jqLoader = $('#meetingLoader');
+    this.fallbackErrorMsg = 'Something went wrong';
 
-        this.onJoinError = this.onJoinError.bind(this);
-        this.onJoinSuccess = this.onJoinSuccess.bind(this);
+    this.onJoinError = this.onJoinError.bind(this);
+    this.onJoinSuccess = this.onJoinSuccess.bind(this);
 
-        this.init();
-        this.bindEvents();
-        this.adjustWidth();
+    this.init();
+    this.bindEvents();
+    this.adjustWidth();
+  }
+
+  init() {
+    if (this.meeting && (this.meeting.status == 'STARTED' || this.meeting.status == 'WAITING')) {
+      this.initZoom();
+    } else {
+      this.showError('This Pepo live event has ended');
+    }
+    this.bindEvents();
+  }
+
+  bindEvents() {
+
+    $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
+      let isCopied = BasicHelper.copyToClipboard(this.config.apiResponse.share_url, $(e.target));
+      if (isCopied) {
+        $('.toast-copied-to-clipboard').toast('show');
+      } else {
+        $('.toast-copied-to-clipboard-failed').toast('show');
+      }
+      e.stopPropagation();
+    });
+  }
+
+  adjustWidth() {
+    const minWidth = 410;
+    let width = $(window).innerWidth();
+    if (width < minWidth) {
+      let ratio = minWidth / width;
+      let ratioInverse = width / minWidth;
+      let ratioDiff = (ratio - 1) / 2;
+      let halfRatio = ratio - ratioDiff;
+      let halfRatioDiff = (halfRatio - 1) / 2;
+      this.jWrapper.css({
+        transform: `scale(${ratioInverse})`,
+        width: `${ratio * 100}%`,
+        left: `-${ratioDiff * 100}%`,
+        height: `${halfRatio * 100}%`,
+        top: `-${halfRatioDiff * 100}%`,
+        position: 'relative'
+      });
+    }
+  }
+
+  canStartMeeting() {
+    return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
+  }
+
+  initZoom() {
+    this.showLoader();
+    let contentWindow = this.jqIframe[0].contentWindow;
+    this.readyStateAttempt++;
+    if (contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting) {
+      const ZoomMeeting = contentWindow.ZoomMeeting;
+      this.zoomMeeting = new ZoomMeeting();
+      this.getJoinParamsAndJoin();
+    } else {
+      if (this.readyStateAttempt >= 3) {
+        this.showError('Error initiating Zoom Web');
+        return;
+      }
+      setTimeout(() => this.initZoom(), this.readyStateAttempt * 500);
     }
 
-    init(){
-        if(this.meeting && (this.meeting.status == 'STARTED' || this.meeting.status == 'WAITING')) {
-          this.initZoom();
-        } else {
-          this.showError('This Pepo live event has ended');
-        }
-        this.bindEvents();
+  }
+
+  joinZoom(data) {
+
+    this.zoomMeeting.init({
+        leaveUrl: `/zoom-meeting?goto=${this.leaveUrl}&role=${data.role}&channel_permalink=${this.channelPermalink}&meeting_id=${this.meetingId}`,
+        disableInvite: true,
+        disableRecord: true,
+        screenShare: true /* Always show share screen button. */
+      },
+      () => console.log("init zoom done"),
+      (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
+    );
+
+    // Cos this might break at times
+    try {
+      this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+    } catch (e) {
+      console.warn(e);
     }
+    if (!zoomMeeting.isFullySupported(this.systemRequirements)) {
+      let browser = (this.systemRequirements && this.systemRequirements.browserInfo) || 'this';
+      this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
+      return;
+    }
+    this.zoomMeeting.join({
+        meetingNumber: data.zoom_meeting_id,
+        userName: data.name,
+        apiKey: data.api_key,
+        signature: data.signature,
+        participantId: data.participant_id
+      },
+      this.onJoinSuccess,
+      this.onJoinError
+    );
+  }
 
-    bindEvents(){
-
-        $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
-            let isCopied = BasicHelper.copyToClipboard(this.config.apiResponse.share_url, $(e.target));
-            if(isCopied){
-                $('.toast-copied-to-clipboard').toast('show');
-            } else {
-                $('.toast-copied-to-clipboard-failed').toast('show');
+  getJoinParamsAndJoin() {
+    if (
+      this.config.apiResponse &&
+      this.config.apiResponse.current_meeting_id &&
+      this.channel
+    ) {
+      $.ajax({
+        url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
+        success: (response) => {
+          if (
+            response.success &&
+            response.data &&
+            response.data.result_type &&
+            response.data[response.data.result_type]
+          ) {
+            this.joinZoom(response.data[response.data.result_type]);
+          } else {
+            let errorMsg = this.fallbackErrorMsg;
+            if (response.err && response.err.msg) {
+              errorMsg = response.err.msg;
             }
-            e.stopPropagation();
-        });
-    }
-
-    adjustWidth(){
-        const minWidth = 410;
-        let width = $(window).innerWidth();
-        if(width < minWidth){
-            let ratio = minWidth/width;
-            let ratioInverse = width/minWidth;
-            let ratioDiff = (ratio - 1) / 2;
-            let halfRatio = ratio - ratioDiff;
-            let halfRatioDiff = (halfRatio - 1) / 2;
-            this.jWrapper.css({
-                transform: `scale(${ratioInverse})`,
-                width: `${ratio*100}%`,
-                left: `-${ratioDiff*100}%`,
-                height: `${halfRatio*100}%`,
-                top: `-${halfRatioDiff*100}%`,
-                position: 'relative'
-            });
-        }
-    }
-
-    canStartMeeting(){
-        return (this.config.apiResponse.current_user_channel_relations[this.channel.id] || {}).is_admin == 1;
-    }
-
-    initZoom(){
-        this.showLoader();
-        let contentWindow = this.jqIframe[0].contentWindow;
-        this.readyStateAttempt++;
-        if(contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting){
-            const ZoomMeeting = contentWindow.ZoomMeeting;
-            this.zoomMeeting = new ZoomMeeting();
-            this.zoomMeeting.init({
-                leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
-                disableInvite: true,
-                disableRecord: true,
-                screenShare: true /* Always show share screen button. */
-            },
-                () => this.getJoinParamsAndJoin(),
-                (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
-            );
-        } else {
-            if(this.readyStateAttempt >= 3) {
-                this.showError('Error initiating Zoom Web');
-                return;
-            }
-            setTimeout(() => this.initZoom(), this.readyStateAttempt * 500);
-        }
-
-    }
-
-    joinZoom(data){
-        // Cos this might break at times
-        try{
-            this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
-        } catch(e) {
-            console.warn(e);
-        }
-        if(!zoomMeeting.isFullySupported(this.systemRequirements)){
-            let browser = (this.systemRequirements && this.systemRequirements.browserInfo) || 'this';
-            this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
-            return;
-        }
-        this.zoomMeeting.join({
-            meetingNumber: data.zoom_meeting_id,
-            userName: data.name,
-            apiKey: data.api_key,
-            signature: data.signature,
-            participantId: data.participant_id
+            this.showError(errorMsg);
+          }
         },
-            this.onJoinSuccess,
-            this.onJoinError
-        );
+        error: (jqXHR) => {
+          let error = jqXHR.responseJSON;
+          let errorMsg = this.fallbackErrorMsg;
+          if (error && error.err && error.err.msg) {
+            errorMsg = error.err.msg;
+          }
+          this.showError(errorMsg);
+        },
+      })
+    } else {
+      this.showError(this.fallbackErrorMsg);
     }
 
-    getJoinParamsAndJoin(){
-        if(
-            this.config.apiResponse &&
-            this.config.apiResponse.current_meeting_id &&
-            this.channel
-        ){
-            $.ajax({
-                url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
-                success: (response) => {
-                    if(
-                        response.success &&
-                        response.data &&
-                        response.data.result_type &&
-                        response.data[response.data.result_type]
-                    ){
-                        this.joinZoom(response.data[response.data.result_type]);
-                    } else {
-                        let errorMsg = this.fallbackErrorMsg;
-                        if(response.err && response.err.msg){
-                            errorMsg = response.err.msg;
-                        }
-                        this.showError(errorMsg);
-                    }
-                },
-                error: (jqXHR) => {
-                    let error = jqXHR.responseJSON;
-                    let errorMsg = this.fallbackErrorMsg;
-                    if(error && error.err && error.err.msg){
-                        errorMsg = error.err.msg;
-                    }
-                    this.showError(errorMsg);
-                },
-            })
-        } else {
-            this.showError(this.fallbackErrorMsg);
-        }
+  }
 
-    }
+  showError(message) {
+    this.jqIframe.hide();
+    this.jqLoader.hide();
+    this.jqError.find('.error-text').html(message);
+    this.jqError.find('.error-btn').attr("href", '/' + this.leaveUrl);
+    this.jqError.show();
+  }
 
-    showError(message){
-        this.jqIframe.hide();
-        this.jqLoader.hide();
-        this.jqError.find('.error-text').html(message);
-        this.jqError.find('.error-btn').attr("href", '/'+this.leaveUrl);
-        this.jqError.show();
-    }
+  showLoader() {
+    this.jqIframe.hide();
+    this.jqError.hide();
+    this.jqLoader.show();
+  }
 
-    showLoader(){
-        this.jqIframe.hide();
-        this.jqError.hide();
-        this.jqLoader.show();
-    }
+  onJoinSuccess(response) {
+    console.log(response);
+    this.jqLoader.hide();
+    this.jqError.hide();
+    this.jqIframe.show();
+  }
 
-    onJoinSuccess(response){
-        console.log(response);
-        this.jqLoader.hide();
-        this.jqError.hide();
-        this.jqIframe.show();
-    }
-
-    onJoinError(error){
-        this.showError(error.errorMessage);
-    }
+  onJoinError(error) {
+    this.showError(error.errorMessage);
+  }
 
 }
 

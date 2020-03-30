@@ -22,7 +22,9 @@ class GetZoomMeeting extends ServiceBase {
     const oThis = this;
     oThis.headers = params.headers || {};
     oThis.goto = params.decodedParams.goto;
-
+    oThis.channelPermalink = params.decodedParams.channel_permalink;
+    oThis.meetingId = params.decodedParams.meeting_id;
+    oThis.role = params.decodedParams.role;
   }
 
   /**
@@ -46,7 +48,7 @@ class GetZoomMeeting extends ServiceBase {
    */
   async _validateAndSanitize() {
     const oThis = this;
-    if(oThis.goto){
+    if (oThis.goto) {
       //sanitize goto
       if (/^[A-Z0-9\-\_\/]*$/i.test(oThis.goto)) {
         oThis.goto = coreConstants.PEPO_DOMAIN + '/' + oThis.goto;
@@ -55,6 +57,14 @@ class GetZoomMeeting extends ServiceBase {
       }
     } else {
       oThis.goto = '';
+    }
+
+    if (!(/^[A-Z0-9\-\_]+$/i.test(oThis.channelPermalink))) {
+      oThis.channelPermalink = null;
+    }
+
+    if (!(/^[0-9]+$/i.test(oThis.meetingId))) {
+      oThis.meetingId = null;
     }
 
   }
@@ -68,7 +78,10 @@ class GetZoomMeeting extends ServiceBase {
     const oThis = this;
 
     return responseHelper.successWithData({
-      goto: oThis.goto
+      goto: oThis.goto,
+      channelPermalink: oThis.channelPermalink,
+      meetingId: oThis.meetingId,
+      role: oThis.role
     })
   }
 

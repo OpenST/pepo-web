@@ -17,6 +17,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/16x16.png">
     <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.2/css/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.2/css/react-select.css" />
+    <%- include partials/shared/_csrf -%>
     <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
     <style>
         .stop-recording-text {
@@ -25,12 +26,32 @@
     </style>
 </head>
 <body contenteditable="false">
+
 <% if(goto) { %>
     <h4 class="text-center">Disconnecting Pepo live event...</h4>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <%- include partials/shared/_script_zoomMeeting.ejs %>
     <script type="text/javascript">
-        setTimeout(function(){
-            window.parent.location = '<%- goto %>';
-        }, 3000);
+      window.onload = function () {
+        var permaLink = '<%= channelPermalink%>' ,
+          meetingId = '<%= meetingId%>',
+          goto = '<%- goto %>',
+          role = '<%=role%>'
+        ;
+        if(!permaLink || !meetingId || role != 1 ){
+          window.parent.location = goto;
+          return;
+        }
+        $.ajax({
+          url: `/api/web/channels/${permaLink}/meetings/${meetingId}/end`,
+          method:'POST',
+          success: function (res) {},
+          error : function( xhr,status,error ){},
+          complete : function()  {
+            window.parent.location = goto;
+          }
+        });
+      };
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->

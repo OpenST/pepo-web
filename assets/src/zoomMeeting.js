@@ -1,13 +1,14 @@
+import * as ajaxHooks from './utils/ajaxHooks';
 const { ZoomMtg } = window;
 
 class ZoomMeeting {
 
-    constructor(){
+    constructor(config){
         ZoomMtg.setZoomJSLib('https://source.zoom.us/1.7.2/lib', '/av');
         ZoomMtg.preLoadWasm();
         ZoomMtg.prepareJssdk();
     }
-
+    
     init(options, onSuccess, onError){
         ZoomMtg.init(Object.assign({}, options, {
             success: onSuccess || this.onInitSuccess,
