@@ -142,12 +142,11 @@ class Meeting extends BaseView {
 
   ensureUserName() {
     let _resolve
-      , _reject
       , oThis = this
     ;
 
     if (CurrentUser.isLoggedIn()) {
-      return _resolve();
+      return Promise.resolve();
     }
 
     oThis.getUsernameFromPopup((name) => {
@@ -155,9 +154,8 @@ class Meeting extends BaseView {
       return _resolve();
     });
 
-    return new Promise(function (resolve, reject) {
+    return new Promise(function (resolve) {
       _resolve = resolve;
-      _reject = reject;
     });
   }
 
