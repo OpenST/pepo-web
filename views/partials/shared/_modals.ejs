@@ -1,9 +1,11 @@
-<%
-if(typeof androidAppLink == "undefined" || typeof iosAppLink == "undefined" ){
-    _androidAppLink = null;
-    _iosAppLink = null;
-}
-%>
+<% if(typeof androidAppLink == "undefined" || typeof iosAppLink == "undefined" ) {
+    _androidAppLink = '#';
+    _iosAppLink = '#';
+} else {
+    _androidAppLink = androidAppLink;
+    _iosAppLink = iosAppLink;
+} %>
+
 
 <section id="downloadModal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
