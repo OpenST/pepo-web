@@ -25,12 +25,29 @@
     </style>
 </head>
 <body contenteditable="false">
+<script src="//source.zoom.us/1.7.2/lib/vendor/jquery.min.js"></script>
 <% if(goto) { %>
     <h4 class="text-center">Disconnecting Pepo live event...</h4>
     <script type="text/javascript">
-        setTimeout(function(){
-            window.parent.location = '<%- goto %>';
-        }, 3000);
+
+      if('<%- role %>' == 1){
+        var permaLink = '<%- permalink%>' ,
+            meetingId = '<%- meeting_id%>'
+        ;
+       $.ajax({
+         url: `/communities/${permaLink}/meetings/${meetingId}`,
+         method:'POST',
+         success: function (res) {},
+         error : function( xhr,status,error ){},
+         complete : function()  {
+           window.parent.location = '<%- goto %>';
+         }
+       });
+
+     }else {
+       window.parent.location = '<%- goto %>';
+     }
+
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->
@@ -39,7 +56,6 @@
     <script src="//source.zoom.us/1.7.2/lib/vendor/react-dom.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/redux.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/redux-thunk.min.js"></script>
-    <script src="//source.zoom.us/1.7.2/lib/vendor/jquery.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/lodash.min.js"></script>
 
     <!-- import ZoomMtg -->
