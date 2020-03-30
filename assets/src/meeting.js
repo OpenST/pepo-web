@@ -88,15 +88,7 @@ class Meeting extends BaseView {
     if (contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting) {
       const ZoomMeeting = contentWindow.ZoomMeeting;
       this.zoomMeeting = new ZoomMeeting();
-      this.zoomMeeting.init({
-          leaveUrl: `/zoom-meeting?goto=${this.leaveUrl}&channel_permalink=${this.channelPermalink}&meeting_id=${this.meetingId}`,
-          disableInvite: true,
-          disableRecord: true,
-          screenShare: true /* Always show share screen button. */
-        },
-        () => this.getJoinParamsAndJoin(),
-        (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
-      );
+      this.getJoinParamsAndJoin();
     } else {
       if (this.readyStateAttempt >= 3) {
         this.showError('Error initiating Zoom Web');
@@ -108,6 +100,17 @@ class Meeting extends BaseView {
   }
 
   joinZoom(data) {
+
+    this.zoomMeeting.init({
+        leaveUrl: `/zoom-meeting?goto=${this.leaveUrl}&role=${data.role}&channel_permalink=${this.channelPermalink}&meeting_id=${this.meetingId}`,
+        disableInvite: true,
+        disableRecord: true,
+        screenShare: true /* Always show share screen button. */
+      },
+      () => console.log("init zoom done"),
+      (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
+    );
+
     // Cos this might break at times
     try {
       this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();

@@ -31,17 +31,23 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <%- include partials/shared/_script_zoomMeeting.ejs %>
     <script type="text/javascript">
-      window.onload = function () {
-        var permaLink = '<%= channelPermalink%>' ,
-          meetingId = '<%- meetingId%>',
-          goto = '<%- goto %>'
-        ;
-        new pepo.ZoomMeeting({
-          "permaLink"  : permaLink,
-          "meetingId" : meetingId,
-          goto:goto
-        });
-      };
+       <% if((role == 1) && channelPermalink && meetingId) { %>
+           var channelPermalink = '<%= channelPermalink%>' ,
+                  meetingId = '<%= meetingId %>';
+
+           $.ajax({
+             url: `/api/web/channels/${channelPermalink}/meetings/${meetingId}/end`,
+             method:'POST',
+             success: function (res) {},
+             error : function( xhr,status,error ){},
+             complete : function()  {
+               window.parent.location = '<%- goto %>';
+             }
+           });
+       <% } else { %>
+           window.parent.location = '<%- goto %>';
+       <% } %>
+
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->

@@ -24,6 +24,7 @@ class GetZoomMeeting extends ServiceBase {
     oThis.goto = params.decodedParams.goto;
     oThis.channelPermalink = params.decodedParams.channel_permalink;
     oThis.meetingId = params.decodedParams.meeting_id;
+    oThis.role = params.decodedParams.role;
   }
 
   /**
@@ -79,7 +80,8 @@ class GetZoomMeeting extends ServiceBase {
     return responseHelper.successWithData({
       goto: oThis.goto,
       channelPermalink: oThis.channelPermalink,
-      meetingId: oThis.meetingId
+      meetingId: oThis.meetingId,
+      role: oThis.role
     })
   }
 
