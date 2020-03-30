@@ -25,27 +25,23 @@
     </style>
 </head>
 <body contenteditable="false">
-<script src="//source.zoom.us/1.7.2/lib/vendor/jquery.min.js"></script>
+
 <% if(goto) { %>
     <h4 class="text-center">Disconnecting Pepo live event...</h4>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <%- include partials/shared/_script_zoomMeeting.ejs %>
     <script type="text/javascript">
-       <% if(channelPermalink && meetingId) { %>
-           var channelPermalink = '<%= channelPermalink%>' ,
-                  meetingId = '<%= meetingId %>';
-
-           $.ajax({
-             url: `/api/web/channels/${channelPermalink}/meetings/${meetingId}`,
-             method:'POST',
-             success: function (res) {},
-             error : function( xhr,status,error ){},
-             complete : function()  {
-               window.parent.location = '<%- goto %>';
-             }
-           });
-       <% } else { %>
-           window.parent.location = '<%- goto %>';
-       <% } %>
-
+      window.onload = function () {
+        var permaLink = '<%= channelPermalink%>' ,
+          meetingId = '<%- meetingId%>',
+          goto = '<%- goto %>'
+        ;
+        new pepo.ZoomMeeting({
+          "permaLink"  : permaLink,
+          "meetingId" : meetingId,
+          goto:goto
+        });
+      };
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->
@@ -54,6 +50,7 @@
     <script src="//source.zoom.us/1.7.2/lib/vendor/react-dom.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/redux.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/redux-thunk.min.js"></script>
+    <script src="//source.zoom.us/1.7.2/lib/vendor/jquery.min.js"></script>
     <script src="//source.zoom.us/1.7.2/lib/vendor/lodash.min.js"></script>
 
     <!-- import ZoomMtg -->
