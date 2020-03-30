@@ -29,11 +29,9 @@
 <% if(goto) { %>
     <h4 class="text-center">Disconnecting Pepo live event...</h4>
     <script type="text/javascript">
-
-      if('<%- role %>' == 1){
-        var permaLink = '<%- permalink%>' ,
-            meetingId = '<%- meeting_id%>'
-        ;
+       var permaLink = '<%- permalink%>' ,
+           meetingId = '<%- meeting_id%>'
+       ;
        $.ajax({
          url: `/communities/${permaLink}/meetings/${meetingId}`,
          method:'POST',
@@ -43,11 +41,6 @@
            window.parent.location = '<%- goto %>';
          }
        });
-
-     }else {
-       window.parent.location = '<%- goto %>';
-     }
-
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->
