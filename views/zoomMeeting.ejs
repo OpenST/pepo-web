@@ -39,6 +39,7 @@
         ;
         if(!permaLink || !meetingId || role != 1 ){
           window.parent.location = goto;
+          return;
         }
         $.ajax({
           url: `/api/web/channels/${permalink}/meetings/${meetingId}/end`,
