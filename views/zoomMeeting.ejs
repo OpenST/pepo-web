@@ -33,11 +33,11 @@
     <script type="text/javascript">
       window.onload = function () {
         var permaLink = '<%= channelPermalink%>' ,
-          meetingId = '<%- meetingId%>',
+          meetingId = '<%= meetingId%>',
           goto = '<%- goto %>',
-          role : `<%= role%>`
+          role = '<%=role%>'
         ;
-        new pepo.ZoomMeeting({
+        pepo.zoomDisconnectGotoInit({
           "permaLink"  : permaLink,
           "meetingId" : meetingId,
           "goto":goto,
