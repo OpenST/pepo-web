@@ -1,6 +1,5 @@
-const { ZoomMtg } = window;
-import  ns from "../src/libs/namespace";
 import * as ajaxHooks from './utils/ajaxHooks';
+const { ZoomMtg } = window;
 
 class ZoomMeeting {
 
@@ -47,19 +46,3 @@ class ZoomMeeting {
 }
 
 window.ZoomMeeting = ZoomMeeting;
-
-const pepo = ns("pepo");
-pepo.zoomDisconnectGotoInit = function (config) {
-  if(!config.permalink || !config.meetingId || config.role != 1 ){
-    window.parent.location = config.goto;
-  }
-  $.ajax({
-    url: `/api/web/channels/${config.permalink}/meetings/${config.meetingId}`,
-    method:'POST',
-    success: function (res) {},
-    error : function( xhr,status,error ){},
-    complete : function()  {
-      window.parent.location = config.goto;
-    }
-  });
-};

@@ -37,11 +37,17 @@
           goto = '<%- goto %>',
           role = '<%=role%>'
         ;
-        pepo.zoomDisconnectGotoInit({
-          "permaLink"  : permaLink,
-          "meetingId" : meetingId,
-          "goto":goto,
-          "role": role
+        if(!permaLink || !meetingId || role != 1 ){
+          window.parent.location = goto;
+        }
+        $.ajax({
+          url: `/api/web/channels/${permalink}/meetings/${meetingId}/end`,
+          method:'POST',
+          success: function (res) {},
+          error : function( xhr,status,error ){},
+          complete : function()  {
+            window.parent.location = goto;
+          }
         });
       };
     </script>
