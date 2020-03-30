@@ -27,7 +27,7 @@ class Channel extends BaseView {
       //TODO DJ check where u can get
       // works without meetingId as param
      // const meetingId = oThis.channel.live_meeting_id || oThis.config;
-      zoomMeeting.setZoomMeetingUserName(oThis.channel)//, meetingId);
+      // zoomMeeting.setZoomMeetingUserName(oThis.channel)//, meetingId);
     } );
 
   }
@@ -54,6 +54,15 @@ class Channel extends BaseView {
     $(".jStartMeeting").on("click" , (e)=> {
       $(".jGoLiveError").html(" ");
       $("#tips-to-go-live").modal("show");
+    });
+
+    $(".jJoinMeeting").on('click', function (e) {
+      let meetingUrl = $(this).data('meeting-url');
+      if (!meetingUrl) return;
+
+      window.location = meetingUrl;
+      e.stopPropagation();
+
     });
 
     $(".tips-to-go-live-btn").on("click" , function () {

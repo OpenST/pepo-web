@@ -31,7 +31,6 @@ if(canJoin) {
 meetingUrl = '/communities/'+channel.permalink+'/meetings/'+meetingId
 }
 %>
-<iframe id="zoomMeetingHidden" class="meeting-iframe" src="/zoom-meeting" style="display: none;"></iframe>
 <div class="container-fluid community-channel">
     <div class="row">
         <div class="col-12 mx-auto">
@@ -47,6 +46,7 @@ meetingUrl = '/communities/'+channel.permalink+'/meetings/'+meetingId
                                         <% if(canJoin) { %>
                                             <a  class="d-flex jJoinMeeting"
                                                 href="javascript:void(0)"
+                                                data-meeting-url="<%= meetingUrl %>"
                                                 style="padding: 5px; color: #FFFFFF; border-radius: 5px; background: linear-gradient(45deg, rgb(255, 116, 153) 0%, rgb(255,85,102) 100%); font-size: 12px; text-align: center; padding: 3px 12px; line-height: 100%;display: flex;align-items: center;justify-content: center;">
                                                 <span class="join-live-meeting-icon" style="margin-right: 4px"></span>
                                                 <span>Join the Live Stream</span>
