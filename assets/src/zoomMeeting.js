@@ -50,7 +50,7 @@ window.ZoomMeeting = ZoomMeeting;
 
 const pepo = ns("pepo");
 pepo.zoomDisconnectGotoInit = function (config) {
-  if(!config.permalink || !config.meetingId){
+  if(!config.permalink || !config.meetingId || config.role != 1 ){
     window.parent.location = config.goto;
   }
   $.ajax({
