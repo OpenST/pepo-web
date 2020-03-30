@@ -1,5 +1,4 @@
 import  deepGet from "lodash/get";
-import  helper from "../helpers/index";
 
 const namespace = "zoomMeeting" ;
 
@@ -26,10 +25,11 @@ class ZoomMeeting {
    * @param isSupportedBrowserCallback
    */
   init( isSupportedBrowserCallback ){
-
+    const oThis = this;
+    oThis.__init();
     $(".jJoinMeeting").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
       //TODO check is isSupportedBrowserCallback, remove || true
-      if(helper.isZoomFullySupported()){
+      if(oThis.isFullySupported(oThis.systemRequirements)){
         isSupportedBrowserCallback && isSupportedBrowserCallback($(this));
         return;
       }
@@ -59,6 +59,23 @@ class ZoomMeeting {
       setTimeout(() => this.init(), this.readyStateAttempt * 500);
     }
   }
+
+  isFullySupported(systemRequirements){
+
+    systemRequirements = systemRequirements || this.systemRequirements;
+
+    if(!systemRequirements) return false;
+
+    if(
+      systemRequirements &&
+      systemRequirements.features &&
+      systemRequirements.features.length > 0 &&
+      !systemRequirements.features.includes('computerAudio')
+    ) {
+      return false;
+    }
+    return true;
+  }
   
   setZoomMeetingUserName (channel, onBeforeSend , onSuccess , onError, onComplete ){
     const jEl = $('.join-event-btn');
@@ -69,54 +86,57 @@ class ZoomMeeting {
     //TODO Validate name
     jEl.on(`click`, function(e){
       const name = $("#username-input").val();
-      console.log(name)
-      if(!name) return;
+      if(!name)  $(".jJoinError").html("Enter your name");
 
-      // $("#logged-out-username-modal").on(`hidden.bs.modal`,function(e){
-      //   $("#username-input").val('');
-      //   $(".jJoinError").html(" ");
-      //   jEl.removeClass("disabled");
-      // });
+      $("#logged-out-username-modal").on(`hidden.bs.modal`,function(e){
+        $("#username-input").val('');
+        $(".jJoinError").html(" ");
+        jEl.removeClass("disabled");
+      });
 
-      $.ajax({
-        url: "",//TODO
-        method:'POST',
-        beforeSend: ()=> {
-          //TODO Disabled butoon
-          //TODO Change btn  text    
-          $(".jJoinError").html(" ");
-          jEl.html("Joining...");
-          jEl.addClass("disabled");
-          onBeforeSend && onBeforeSend();
-        },
-        success: ( response )=>{
-          if(response && response.success ){
-            //TODO Close modal and navigate to meeting page
-            $("#logged-out-username-modal").modal("hide");
-            window.location = `/communities/${channel.permalink}/meetings/${meetingId}`;
-            onSuccess && onSuccess(response);
-          }else {
-            //TODO SHOW error in modal
+      if(name){
+
+        $.ajax({
+          url: "",//TODO
+          method:'POST',
+          beforeSend: ()=> {
+            //TODO Disabled butoon
+            //TODO Change btn  text    
+            $(".jJoinError").html(" ");
+            jEl.html("Joining...");
+            jEl.addClass("disabled");
+            onBeforeSend && onBeforeSend();
+          },
+          success: ( response )=>{
+            if(response && response.success ){
+              //TODO Close modal and navigate to meeting page
+              $("#logged-out-username-modal").modal("hide");
+              window.location = `/communities/${channel.permalink}/meetings/${meetingId}`;
+              onSuccess && onSuccess(response);
+            }else {
+              //TODO SHOW error in modal
+              const msg = deepGet(error, "err.msg"  , "Something went wrong please try again later!");
+              $(".jJoinError").html(msg);
+              onError && onError(response);
+            }
+          },
+          error : ( xhr,status,error )=>{
+            //SHOW error in modal
             const msg = deepGet(error, "err.msg"  , "Something went wrong please try again later!");
             $(".jJoinError").html(msg);
-            onError && onError(response);
+            onError && onError(error);
+          },
+          complete : () => {
+            //TODO enable butoon
+            //TODO Change btn text to normal
+            jEl.html("JOIN");
+            jEl.removeClass("disabled");
+            onComplete && onComplete();
+           
           }
-        },
-        error : ( xhr,status,error )=>{
-          //SHOW error in modal
-          const msg = deepGet(error, "err.msg"  , "Something went wrong please try again later!");
-          $(".jJoinError").html(msg);
-          onError && onError(error);
-        },
-        complete : () => {
-          //TODO enable butoon
-          //TODO Change btn text to normal
-          jEl.html("JOIN");
-          jEl.removeClass("disabled");
-          onComplete && onComplete();
-         
-        }
-      });
+        });
+
+      }
 
     });
   

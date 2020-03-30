@@ -23,9 +23,9 @@ class Channel extends BaseView {
     this.eventBindings();
   
     const oThis = this;
-    zoomMeeting.init( (jEl)=> {
-      console.log(jEl)
+    zoomMeeting.init( ()=> {
       //TODO DJ check where u can get
+      // works without meetingId as param
      // const meetingId = oThis.channel.live_meeting_id || oThis.config;
       zoomMeeting.setZoomMeetingUserName(oThis.channel)//, meetingId);
     } );
