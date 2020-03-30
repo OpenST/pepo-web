@@ -24,6 +24,8 @@ class Meeting extends BaseView {
     this.jqIframe = $('#zoomMeeting');
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
+    this.guestJoining = $('#guestJoining');
+
     this.fallbackErrorMsg = 'Something went wrong';
 
     this.userName = "Pepo User";
@@ -149,8 +151,13 @@ class Meeting extends BaseView {
       return Promise.resolve();
     }
 
+    //visible
+    this.guestJoining.css({'display': 'visible !important;'});
+
     oThis.getUsernameFromPopup((name) => {
       oThis.userName = name;
+      //hide
+      this.guestJoining.css({'display': 'none !important;'});
       return _resolve();
     });
 
