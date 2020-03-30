@@ -73,10 +73,16 @@ class ZoomMeeting {
       !systemRequirements.features.includes('computerAudio')
     ) {
       return false;
+    } else if (this.isiOSDevice()) {
+      return false;
     }
     return true;
   }
-  
+
+  isiOSDevice() {
+    return navigator.userAgent.indexOf("iPhone") !== -1 || navigator.userAgent.indexOf("iPad") !== -1;
+  }
+
   setZoomMeetingUserName (channel, onBeforeSend , onSuccess , onError, onComplete ){
     const jEl = $('.join-event-btn');
     const meetingId = deepGet(channel , "live_meeting_id");
@@ -101,7 +107,7 @@ class ZoomMeeting {
           method:'POST',
           beforeSend: ()=> {
             //TODO Disabled butoon
-            //TODO Change btn  text    
+            //TODO Change btn  text
             $(".jJoinError").html(" ");
             jEl.html("Joining...");
             jEl.addClass("disabled");
@@ -132,14 +138,14 @@ class ZoomMeeting {
             jEl.html("JOIN");
             jEl.removeClass("disabled");
             onComplete && onComplete();
-           
+
           }
         });
 
       }
 
     });
-  
+
   }
 
 
