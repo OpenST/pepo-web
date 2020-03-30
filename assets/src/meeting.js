@@ -1,7 +1,7 @@
 import  ns from "../js/libs/namespace";
 import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
-import zoomMeeting from "./services/ZoomMeeting";
+import zoomMeeting from "./helpers/ZoomMeeting";
 
 const { $ } = window;
 const namespace = "meeting";
