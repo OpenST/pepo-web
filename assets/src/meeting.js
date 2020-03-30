@@ -53,6 +53,11 @@ class Meeting extends BaseView {
             }
             e.stopPropagation();
         });
+
+        //change the selector if needed
+        $(".jJoinMeeting").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
+            $("#logged-out-username-modal").modal("show");
+        })
     }
 
     adjustWidth(){
@@ -166,6 +171,27 @@ class Meeting extends BaseView {
             this.showError(this.fallbackErrorMsg);
         }
 
+    }
+
+    hideUsernamePopup(){
+        $("#logged-out-username-modal").modal("hide");
+        $("#logged-out-username-modal").on(`hidden.bs.modal`,function(e){
+            $("#username-input").val('');
+            $(".jJoinError").html(" ");
+          });
+    }
+
+    getUsernameFromPopup(){
+        let name = '';
+        const jEl = $('.join-event-btn');
+        jEl.on(`click`, function(e){
+            name = $("#username-input").val();
+        })
+        if(!name) {
+            $(".jJoinError").html("Enter your name"); 
+            return;
+        }
+        return name;
     }
 
     showError(message){
