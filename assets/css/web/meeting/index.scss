@@ -97,3 +97,15 @@
   }
 }
 
+.log-in-tabs{
+  .nav-link{
+    border: none;
+    color: $valhalla;
+    //padding: 0.5rem 1.5rem;
+    &.active{
+      color: #ff5566;
+      border-bottom: 2px solid #ff5566!important;
+    }
+  }
+}
+
