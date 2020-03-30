@@ -1,21 +1,38 @@
-<div id="guestJoining" class="d-flex align-items-center justify-content-center log-in-tabs">
-    <div class="row">
-        <ul class="nav nav-tabs" role="tablist">
-            <li class="nav-item">
-                <a class="nav-link active px-5" id="join-as-guest-tab" data-toggle="tab" href="#red" role="tab" aria-controls="jag" aria-selected="true">Join As Guest</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link px-5" href="#" id="login-and-join-tab" data-toggle="tab" href="#yellow" role="tab" aria-controls="laj" aria-selected="false">Login and Join</a>
-            </li>
-        </ul>
-    </div>
-    <div class="tab-content" id="page-tab-content">
-        <div class="tab-pane active" id="red" role="tabpanel" >
-            <h4>content 1</h4>
-        </div>
-        <div class="tab-pane" id="yellow" role="tabpanel" >
-            <h4>content 2</h4>
-        </div>
-    </div>
+<!--<div id="guestJoining" class="d-flex align-items-center justify-content-center log-in-tabs">-->
+    <!--<div class="row">-->
+        <!--<ul class="nav nav-tabs" role="tablist">-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link active px-5" id="join-as-guest-tab" data-toggle="tab" href="#jag" role="tab" aria-controls="jag" aria-selected="true">Join As Guest</a>-->
+            <!--</li>-->
+            <!--<li class="nav-item">-->
+                <!--<a class="nav-link px-5" href="#" id="login-and-join-tab" data-toggle="tab" href="#laj" role="tab" aria-controls="laj" aria-selected="false">Login and Join</a>-->
+            <!--</li>-->
+        <!--</ul>-->
+    <!--</div>-->
+    <!--<div class="tab-content" id="page-tab-content">-->
+        <!--<div class="tab-pane fade show active" id="jagt" role="tabpanel" aria-labelledby="join-as-guest-tab">-->
+            <!--<h4>content 1</h4>-->
+        <!--</div>-->
+        <!--<div class="tab-pane fade" id="lajt" role="tabpanel" aria-labelledby="login-and-join-tab">-->
+            <!--<h4>content 2</h4>-->
+        <!--</div>-->
+    <!--</div>-->
    
+<!--</div>-->
+
+<div id="guestJoining" class="d-flex align-items-center justify-content-center log-in-tabs">
+    <ul class="nav nav-tabs w-25" role="tablist">
+        <li class="nav-item w-50 text-center">
+            <a class="nav-link active px-5" href="#jagt" role="tab" data-toggle="tab" aria-selected="true">profile</a>
+        </li>
+        <li class="nav-item w-50 text-center">
+            <a class="nav-link" href="#lajt" role="tab" data-toggle="tab">buzz</a>
+        </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane fade in active show" id="jagt">Content 1</div>
+        <div role="tabpanel" class="tab-pane fade" id="lajt">Content 2</div>
+    </div>
 </div>
