@@ -29,18 +29,23 @@
 <% if(goto) { %>
     <h4 class="text-center">Disconnecting Pepo live event...</h4>
     <script type="text/javascript">
-       var permaLink = '<%- permalink%>' ,
-           meetingId = '<%- meeting_id%>'
-       ;
-       $.ajax({
-         url: `/communities/${permaLink}/meetings/${meetingId}`,
-         method:'POST',
-         success: function (res) {},
-         error : function( xhr,status,error ){},
-         complete : function()  {
+       <% if(channelPermalink && meetingId) { %>
+           var channelPermalink = '<%= channelPermalink%>' ,
+                  meetingId = '<%= meetingId %>';
+
+           $.ajax({
+             url: `/api/web/channels/${channelPermalink}/meetings/${meetingId}`,
+             method:'POST',
+             success: function (res) {},
+             error : function( xhr,status,error ){},
+             complete : function()  {
+               window.parent.location = '<%- goto %>';
+             }
+           });
+       <% } else { %>
            window.parent.location = '<%- goto %>';
-         }
-       });
+       <% } %>
+
     </script>
 <% } else { %>
     <!-- import ZoomMtg dependencies -->
