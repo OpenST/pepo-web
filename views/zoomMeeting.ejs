@@ -17,6 +17,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="https://d3attjoi5jlede.cloudfront.net/images/web/fav/16x16.png">
     <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.2/css/bootstrap.css" />
     <link type="text/css" rel="stylesheet" href="https://source.zoom.us/1.7.2/css/react-select.css" />
+    <%- include partials/shared/_csrf -%>
+    <%- include partials/shared/_dev_env -%>
     <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
     <style>
         .stop-recording-text {
