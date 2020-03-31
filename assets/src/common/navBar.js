@@ -126,16 +126,26 @@ class NavBar {
           let channel = oThis.channels[channelIdList[0]] || {};
           window.location = `/communities/${channel.permalink}/`
         } else {
-          $("#navbarToggler3").toggleClass('show');
+          let goLiveModal = $('#goLiveModal'),
+            backdrop = window.innerWidth < 768 ? true : false
+          ;
+          goLiveModal.modal({
+            backdrop: backdrop
+          });
+          goLiveModal.modal('show');
+          $('body').on('click', function () {
+            if (goLiveModal.length !== 0) {
+              goLiveModal.modal('hide');
+            }
+
+          });
         }
       }
       e.stopPropagation();
       e.preventDefault();
 
-      $("body").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
-        $("#navbarToggler3").removeClass('show');
-      });
     });
+
 
   };
 
