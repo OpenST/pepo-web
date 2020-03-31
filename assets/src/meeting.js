@@ -27,7 +27,7 @@ class Meeting extends BaseView {
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
     this.jGuestJoining = $('#guestJoining');
-
+    this.isCustomUserName = false;
     this.fallbackErrorMsg = 'Something went wrong';
 
     this.userName = "Pepo User";
@@ -150,37 +150,24 @@ class Meeting extends BaseView {
   }
 
   ensureUserName() {
-    let _resolve
-      , oThis = this
-    ;
+    const oThis = this;
 
     if (CurrentUser.isLoggedIn()) {
-      return Promise.resolve();
+      oThis.getJoinParamsAndJoin();
+      return;
     }
 
     //Ask for sign in or enter user name
     oThis.showLogIn();
-
-    oThis.getUsernameFromPopup((name) => {
-      oThis.userName = name;
-      //hide guest partial
-      oThis.hideLogIn();
-      return _resolve();
-    });
-
-    return new Promise(function (resolve) {
-      _resolve = resolve;
-    });
+    oThis.isCustomUserName = true;
+    oThis.getUsernameFromPopup();
   }
 
   handleZoomMeeting() {
     const oThis = this
     ;
 
-    oThis.ensureUserName()
-      .then(() => {
-        oThis.getJoinParamsAndJoin();
-      });
+    oThis.ensureUserName();
   }
 
   getJoinParamsAndJoin() {
@@ -201,11 +188,17 @@ class Meeting extends BaseView {
             response.data.result_type &&
             response.data[response.data.result_type]
           ) {
+            this.hideLogIn();
             this.joinZoom(response.data[response.data.result_type]);
           } else {
             let errorMsg = this.fallbackErrorMsg;
+            //Todo:: Extract error from error parameter
             if (response.err && response.err.msg) {
               errorMsg = response.err.msg;
+            }
+            if (this.isCustomUserName) {
+              this.showErrorInGuestForm(errorMsg);
+              return;
             }
             this.showError(errorMsg);
           }
@@ -216,23 +209,44 @@ class Meeting extends BaseView {
           if (error && error.err && error.err.msg) {
             errorMsg = error.err.msg;
           }
+          if (this.isCustomUserName) {
+            this.showErrorInGuestForm(errorMsg);
+            return;
+          }
           this.showError(errorMsg);
         },
+        complete: () => {
+          const jEl = $('.join-event-btn');
+          jEl.text('Join');
+          jEl.removeAttr('disabled');
+        }
       })
     } else {
       this.showError(this.fallbackErrorMsg);
     }
   }
 
-  getUsernameFromPopup(resolve) {
+  showErrorInGuestForm(errorMsg) {
+    $(".jJoinError").html(errorMsg);
+  }
+
+  getUsernameFromPopup() {
+    const oThis = this
+    ;
+
     let name = '';
     const jEl = $('.join-event-btn');
     jEl.on(`click`, function (e) {
       name = $("#username-input").val();
-      if (!name) {
+      $(".jJoinError").html("");
+      name = name.trim();
+      if (!name || name == '') {
         $(".jJoinError").html("Please enter your name to join the event");
       } else {
-        resolve(name);
+        oThis.userName = name;
+        oThis.getJoinParamsAndJoin();
+        jEl.text('Joining...');
+        jEl.attr('disabled');
       }
     });
   }
