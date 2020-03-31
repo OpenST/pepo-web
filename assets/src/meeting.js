@@ -24,7 +24,6 @@ class Meeting extends BaseView {
     this.jqIframe = $('#zoomMeeting');
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
-    this.guestJoining = $('#guestJoining');
 
     this.fallbackErrorMsg = 'Something went wrong';
 
@@ -151,13 +150,11 @@ class Meeting extends BaseView {
       return Promise.resolve();
     }
 
-    //visible
-    this.guestJoining.css({'display': 'visible !important;'});
-
     oThis.getUsernameFromPopup((name) => {
       oThis.userName = name;
-      //hide
-      this.guestJoining.css({'display': 'none !important;'});
+      //hide guest partial
+      console.log("DEBUG", "Hide guestJoining");
+      $('#guestJoining').css({'display': 'none'});
       return _resolve();
     });
 
@@ -214,7 +211,7 @@ class Meeting extends BaseView {
     jEl.on(`click`, function (e) {
       name = $("#username-input").val();
       if (!name) {
-        $(".jJoinError").html("Enter your name");
+        $(".jJoinError").html("Please enter your name to join the event");
       } else {
         resolve(name);
       }

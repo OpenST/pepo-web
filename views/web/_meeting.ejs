@@ -1,12 +1,12 @@
 <% if (!currentUser.isLoggedIn()) {%>
     <%- include('../partials/shared/_navbar_communities.ejs', {showSearch: false}) -%>
+    <%- include('../partials/shared/_subnavbar_meetings.ejs') -%>
+    <%- include ../partials/web/guest/_joinMeeting.ejs%>
 <% } else{ %>
     <%- include('../partials/shared/_navbar_communities_loggedIn', {pepoNav: "pepo-nav", showSearch: false}) -%>
+    <%- include('../partials/shared/_subnavbar_meetings.ejs') -%>
 <% } %>
-<%- include('../partials/shared/_subnavbar_meetings.ejs') -%>
-<!--Need to be reviewed-->
-<%- include ../partials/web/guest/_joinMeeting.ejs%>
-<!--Need to be reviewed-->
+
 <%- include('../partials/web/meeting/_zoomIframe') -%>
 <%- include ../partials/shared/_light_boxes.ejs%>
 <%- include ../partials/web/video/_toast.ejs %>
