@@ -7,7 +7,7 @@ class GoogleAuth extends Base{
     }
 
     getButtonSelector = () => {
-      return '#googleSignIn';
+      return '#googleSignIn, .jLoginWithGoogleSignIn';
     }
 
     getUrlEndpoint = () => {
@@ -17,7 +17,7 @@ class GoogleAuth extends Base{
     getDisconnectUrl = () => {
       return '/api/web/auth/google/disconnect';
     }
- 
+
 }
 
 export default new GoogleAuth();

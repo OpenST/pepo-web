@@ -21,17 +21,17 @@ class Base{
     };
 
     disableLoginBtns = () =>{
-        $("#googleSignIn").addClass("disableClick");
-        $("#twitterSignIn").addClass("disableClick");
-        $("#githubSignIn").addClass("disableClick");
-        $("#appleSignIn").addClass("disableClick");
+        $("#googleSignIn, .jLoginWithGoogleSignIn").addClass("disableClick");
+        $("#twitterSignIn, .jLoginWithTwitterSignIn").addClass("disableClick");
+        $("#githubSignIn, .jLoginWithGithubSignIn").addClass("disableClick");
+        $("#appleSignIn, .jLoginWithAppleSignIn").addClass("disableClick");
     };
 
     enableLoginBtns = () =>{
-        $("#googleSignIn").removeClass("disableClick");
-        $("#twitterSignIn").removeClass("disableClick");
-        $("#githubSignIn").removeClass("disableClick");
-        $("#appleSignIn").removeClass("disableClick");
+      $("#googleSignIn, .jLoginWithGoogleSignIn").removeClass("disableClick");
+      $("#twitterSignIn, .jLoginWithTwitterSignIn").removeClass("disableClick");
+      $("#githubSignIn, .jLoginWithGithubSignIn").removeClass("disableClick");
+      $("#appleSignIn, .jLoginWithAppleSignIn").removeClass("disableClick");
     };
 
     getRedirectUrl = () => {
@@ -63,7 +63,7 @@ class Base{
       this.isGettingRedirectXhr =false;
       this.enableLoginBtns();
     };
-    
+
     logout = () => {
         $.ajax({
             url: this.getDisconnectUrl(),

@@ -1,0 +1,82 @@
+<div id="guestJoining" class="container log-in-tabs" style="display: none">
+    <div class="row justify-content-center ">
+        <h4 class="join-title mt-5 mb-5">Options to join Pepo live event</h4>
+    </div>
+    <div class="row justify-content-center">
+        <ul class="nav nav-tabs" role="tablist" style="min-width: 350px">
+            <li class="nav-item w-50 text-center">
+                <a class="nav-link active px-5" href="#jagt" role="tab" data-toggle="tab" aria-selected="true">Join as a guest</a>
+            </li>
+            <li class="nav-item w-50 text-center">
+                <a class="nav-link" href="#lajt" role="tab" data-toggle="tab">Login and join</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row justify-content-center">
+        <div class="tab-content" >
+            <div role="tabpanel" class="tab-pane fade in active show mt-5" id="jagt">
+                <input id="username-input" class="form-control mx-auto" placeholder="Your Name" type="text"/>
+                <div class="d-flex flex-column mx-6 text-center" >
+                    <div class="mt-2 mb-2 general_error error jJoinError" style="font-size: smaller; color: red;">&nbsp;</div>
+                    <div class="flex-md-row"><a class="btn btn-primary join-event-btn" href="javascript:void(0)"
+                                                style="width: 140px; font-size: 16px; padding:9px 30px; text-transform: none;">Join</a>
+                    </div>
+                </div>
+            </div>
+
+            <div role="tabpanel" class="tab-pane fade mt-5" id="lajt">
+                <div class="login-tab-content" style="min-width: 236px">
+                    <div class="p-0">
+
+                        <!-- <div class="d-md-none">
+                            <h5 class="pt-4" style="color: #ff5566;font-weight: 600;">Login Using</h5>
+                        </div> -->
+
+                        <div class="my-0">
+                           <div class="logged-out">
+                                <div class="loginBtn jLoginWithTwitterSignIn">
+                                    <div class="customBtn my-3">
+                                        <span class="login-twitter-icon"></span>
+                                        <span class="buttonText">Continue with Twitter</span>
+                                    </div>
+                                </div>
+                                <div class="loginBtn jLoginWithGoogleSignIn">
+                                    <div class="customBtn my-3">
+                                        <span class="login-google-icon"></span>
+                                        <span class="buttonText">Continue with Gmail</span>
+                                    </div>
+                                </div>
+                                <div class="loginBtn jLoginWithAppleSignIn">
+                                    <div class="customBtn my-3">
+                                        <span class="login-apple-id-icon"></span>
+                                        <span class="buttonText">Continue with Apple ID</span>
+                                    </div>
+                                </div>
+
+                                <div class="my-3 d-none d-md-block">
+                                    <div class="d-flex justify-content-center">
+                                        <div class="flex-fill align-self-center rounded sideSpacer"></div>
+                                        <div class="p-2 flex-fill dontHavaAccount">Don't have an account?</div>
+                                        <div class="flex-fill align-self-center rounded sideSpacer"></div>
+                                    </div>
+
+                                    <div class="d-flex mt-2 justify-content-around">
+
+                                        <a href="<%= _androidAppLink %>" target="_blank" title="Download Pepo App - Android" rel="noopener noreferrer nofollow">
+                                            <span class="login-drop-down-google-play-icon"></span>
+                                        </a>
+
+                                        <a href="<%= _iosAppLink %>" target="_blank" title="Download Pepo App - iOS" rel="noopener noreferrer nofollow">
+                                            <span class="login-drop-down-modal-app-store-icon"></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

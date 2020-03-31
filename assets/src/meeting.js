@@ -1,7 +1,8 @@
 import ns from "../js/libs/namespace";
 import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
-import zoomMeeting from "./services/ZoomMeeting";
+import zoomMeeting from "./helpers/ZoomMeeting";
+import CurrentUser from "./model/CurrentUser";
 
 const {$} = window;
 const namespace = "meeting";
@@ -25,7 +26,11 @@ class Meeting extends BaseView {
     this.jqIframe = $('#zoomMeeting');
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
+    this.jGuestJoining = $('#guestJoining');
+    this.isCustomUserName = false;
     this.fallbackErrorMsg = 'Something went wrong';
+
+    this.userName = "Pepo User";
 
     this.onJoinError = this.onJoinError.bind(this);
     this.onJoinSuccess = this.onJoinSuccess.bind(this);
@@ -55,6 +60,7 @@ class Meeting extends BaseView {
       }
       e.stopPropagation();
     });
+
   }
 
   adjustWidth() {
@@ -88,7 +94,11 @@ class Meeting extends BaseView {
     if (contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting) {
       const ZoomMeeting = contentWindow.ZoomMeeting;
       this.zoomMeeting = new ZoomMeeting();
-      this.getJoinParamsAndJoin();
+
+      if (!this.isBrowserSupported()) return;
+
+      this.handleZoomMeeting();
+
     } else {
       if (this.readyStateAttempt >= 3) {
         this.showError('Error initiating Zoom Web');
@@ -107,10 +117,24 @@ class Meeting extends BaseView {
         disableRecord: true,
         screenShare: true /* Always show share screen button. */
       },
-      () => console.log("init zoom done"),
+      () => {
+        console.log("init zoom done");
+        this.zoomMeeting.join({
+            meetingNumber: data.zoom_meeting_id,
+            userName: data.name,
+            apiKey: data.api_key,
+            signature: data.signature,
+            participantId: data.participant_id
+          },
+          this.onJoinSuccess,
+          this.onJoinError
+        );
+      },
       (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
     );
+  }
 
+  isBrowserSupported() {
     // Cos this might break at times
     try {
       this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
@@ -120,21 +144,35 @@ class Meeting extends BaseView {
     if (!zoomMeeting.isFullySupported(this.systemRequirements)) {
       let browser = (this.systemRequirements && this.systemRequirements.browserInfo) || 'this';
       this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
+      return false;
+    }
+    return true;
+  }
+
+  ensureUserName() {
+    const oThis = this;
+
+    if (CurrentUser.isLoggedIn()) {
+      oThis.getJoinParamsAndJoin();
       return;
     }
-    this.zoomMeeting.join({
-        meetingNumber: data.zoom_meeting_id,
-        userName: data.name,
-        apiKey: data.api_key,
-        signature: data.signature,
-        participantId: data.participant_id
-      },
-      this.onJoinSuccess,
-      this.onJoinError
-    );
+
+    //Ask for sign in or enter user name
+    oThis.showLogIn();
+    oThis.isCustomUserName = true;
+    oThis.getUsernameFromPopup();
+  }
+
+  handleZoomMeeting() {
+    const oThis = this
+    ;
+
+    oThis.ensureUserName();
   }
 
   getJoinParamsAndJoin() {
+    let userName = this.userName;
+
     if (
       this.config.apiResponse &&
       this.config.apiResponse.current_meeting_id &&
@@ -142,6 +180,7 @@ class Meeting extends BaseView {
     ) {
       $.ajax({
         url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
+        data: {guest_name: userName},
         success: (response) => {
           if (
             response.success &&
@@ -149,12 +188,27 @@ class Meeting extends BaseView {
             response.data.result_type &&
             response.data[response.data.result_type]
           ) {
+            this.hideLogIn();
             this.joinZoom(response.data[response.data.result_type]);
           } else {
             let errorMsg = this.fallbackErrorMsg;
-            if (response.err && response.err.msg) {
-              errorMsg = response.err.msg;
+            if (response.err) {
+              if (response.err.error_data &&
+                response.err.error_data[0] &&
+                response.err.error_data[0].msg) {
+
+                errorMsg = response.err.error_data[0].msg;
+                if (this.isCustomUserName) {
+                  this.showErrorInGuestForm(errorMsg);
+                  return;
+                }
+              } else {
+                if (response.err.msg) {
+                  errorMsg = response.err.msg;
+                }
+              }
             }
+            this.hideLogIn();
             this.showError(errorMsg);
           }
         },
@@ -164,13 +218,60 @@ class Meeting extends BaseView {
           if (error && error.err && error.err.msg) {
             errorMsg = error.err.msg;
           }
+          if (this.isCustomUserName) {
+            this.showErrorInGuestForm(errorMsg);
+            return;
+          }
           this.showError(errorMsg);
         },
+        complete: () => {
+          const jEl = $('.join-event-btn');
+          jEl.text('Join');
+          jEl.removeAttr('disabled');
+        }
       })
     } else {
       this.showError(this.fallbackErrorMsg);
     }
+  }
 
+  showErrorInGuestForm(errorMsg) {
+    $(".jJoinError").html(errorMsg);
+  }
+
+  getUsernameFromPopup() {
+    const oThis = this
+    ;
+
+    let name = '';
+    const jEl = $('.join-event-btn');
+    jEl.on(`click`, function (e) {
+      name = $("#username-input").val();
+      $(".jJoinError").html("&nbsp;");
+      name = name.trim();
+      if (!name || name == '') {
+        $(".jJoinError").html("Please enter your name to join the event");
+      } else {
+        oThis.userName = name;
+        oThis.getJoinParamsAndJoin();
+        jEl.text('Joining...');
+        jEl.attr('disabled');
+      }
+    });
+  }
+
+  showLogIn() {
+    this.jqLoader.hide();
+    this.jqIframe.hide();
+    this.jqError.hide();
+    this.jGuestJoining.show();
+  }
+
+  hideLogIn() {
+    this.jqIframe.hide();
+    this.jqError.hide();
+    this.jGuestJoining.hide();
+    this.jqLoader.show();
   }
 
   showError(message) {
@@ -186,6 +287,7 @@ class Meeting extends BaseView {
     this.jqError.hide();
     this.jqLoader.show();
   }
+
 
   onJoinSuccess(response) {
     console.log(response);
