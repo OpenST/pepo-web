@@ -1,5 +1,3 @@
-import  deepGet from "lodash/get";
-
 const namespace = "zoomMeeting" ;
 
 const LOG_TAG = "ZoomMeeting";
@@ -50,8 +48,6 @@ class ZoomMeeting {
       systemRequirements.features.length > 0 &&
       !systemRequirements.features.includes('computerAudio')
     ) {
-      return false;
-    } else if (this.isiOSDevice()) {
       return false;
     }
     return true;

@@ -60,9 +60,12 @@ class Channel extends BaseView {
       let meetingUrl = $(this).data('meeting-url');
       if (!meetingUrl) return;
 
-      window.location = meetingUrl;
-      e.stopPropagation();
+      if (zoomMeeting.isiOSDevice()) {
+        //Todo:: show modal
+        alert('iOS device not supported');
+      }
 
+      window.location = meetingUrl;
     });
 
     $(".tips-to-go-live-btn").on("click" , function () {

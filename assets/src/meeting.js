@@ -24,7 +24,7 @@ class Meeting extends BaseView {
     this.jqIframe = $('#zoomMeeting');
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
-    this.guestJoining = $('#guestJoining');
+    this.jGuestJoining = $('#guestJoining');
 
     this.fallbackErrorMsg = 'Something went wrong';
 
@@ -151,15 +151,13 @@ class Meeting extends BaseView {
       return Promise.resolve();
     }
 
-    oThis.hideLoader();
     //Ask for sign in or enter user name
-    oThis.guestJoining.css({display: 'block'});
+    oThis.showLogIn();
 
     oThis.getUsernameFromPopup((name) => {
       oThis.userName = name;
       //hide guest partial
-      oThis.guestJoining.css({'display': 'none'});
-      oThis.showLoader();
+      oThis.hideLogIn();
       return _resolve();
     });
 
@@ -188,7 +186,7 @@ class Meeting extends BaseView {
     ) {
       $.ajax({
         url: `/api/web/channels/${this.channel.permalink}/meetings/${this.config.apiResponse.current_meeting_id}/join-payload`,
-        data:`guest_name=${userName}`,
+        data: {guest_name: userName},
         success: (response) => {
           if (
             response.success &&
@@ -233,6 +231,20 @@ class Meeting extends BaseView {
     });
   }
 
+  showLogIn() {
+    this.jqLoader.hide();
+    this.jqIframe.hide();
+    this.jqError.hide();
+    this.jGuestJoining.show();
+  }
+
+  hideLogIn() {
+    this.jqIframe.hide();
+    this.jqError.hide();
+    this.jGuestJoining.hide();
+    this.jqLoader.show();
+  }
+
   showError(message) {
     this.jqIframe.hide();
     this.jqLoader.hide();
@@ -247,9 +259,6 @@ class Meeting extends BaseView {
     this.jqLoader.show();
   }
 
-  hideLoader() {
-    this.jqLoader.hide();
-  }
 
   onJoinSuccess(response) {
     console.log(response);
