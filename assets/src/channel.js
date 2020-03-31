@@ -56,18 +56,6 @@ class Channel extends BaseView {
       $("#tips-to-go-live").modal("show");
     });
 
-    $(".jJoinMeeting").on('click', function (e) {
-      let meetingUrl = $(this).data('meeting-url');
-      if (!meetingUrl) return;
-
-      if (zoomMeeting.isiOSDevice()) {
-        //Todo:: show modal
-        alert('iOS device not supported');
-      }
-
-      window.location = meetingUrl;
-    });
-
     $(".tips-to-go-live-btn").on("click" , function () {
       if(oThis.isGoLive) return;
       oThis.goLive($(this));
