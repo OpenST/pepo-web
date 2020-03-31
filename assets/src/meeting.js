@@ -24,6 +24,7 @@ class Meeting extends BaseView {
     this.jqIframe = $('#zoomMeeting');
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
+    this.guestJoining = $('#guestJoining');
 
     this.fallbackErrorMsg = 'Something went wrong';
 
@@ -38,14 +39,8 @@ class Meeting extends BaseView {
   }
 
   init() {
-    const oThis = this
-    ;
-
     if (this.meeting && (this.meeting.status == 'STARTED' || this.meeting.status == 'WAITING')) {
-      oThis.ensureUserName()
-        .then(() => {
-          oThis.initZoom();
-        })
+      this.initZoom();
     } else {
       this.showError('This Pepo live event has ended');
     }
@@ -97,13 +92,16 @@ class Meeting extends BaseView {
     if (contentWindow.document.readyState == 'complete' && contentWindow.ZoomMeeting) {
       const ZoomMeeting = contentWindow.ZoomMeeting;
       this.zoomMeeting = new ZoomMeeting();
+
+      if (!this.isBrowserSupported()) return;
+
       this.zoomMeeting.init({
           leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
           disableInvite: true,
           disableRecord: true,
           screenShare: true /* Always show share screen button. */
         },
-        () => this.getJoinParamsAndJoin(),
+        () => this.handleZoomMeeting(),
         (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
       );
     } else {
@@ -117,18 +115,6 @@ class Meeting extends BaseView {
   }
 
   joinZoom(data) {
-    // Cos this might break at times
-    try {
-      this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
-    } catch (e) {
-      console.warn(e);
-    }
-    if (!zoomMeeting.isFullySupported(this.systemRequirements)) {
-      let browser = (this.systemRequirements && this.systemRequirements.browserInfo) || 'this';
-      this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
-      return;
-    }
-
     this.zoomMeeting.join({
         meetingNumber: data.zoom_meeting_id,
         userName: data.name,
@@ -141,6 +127,21 @@ class Meeting extends BaseView {
     );
   }
 
+  isBrowserSupported() {
+    // Cos this might break at times
+    try {
+      this.systemRequirements = this.zoomMeeting.getZoomMtg().checkSystemRequirements();
+    } catch (e) {
+      console.warn(e);
+    }
+    if (!zoomMeeting.isFullySupported(this.systemRequirements)) {
+      let browser = (this.systemRequirements && this.systemRequirements.browserInfo) || 'this';
+      this.showError(`Pepo live events are not supported on ${browser} browser, please use Chrome or Edge browsers.`);
+      return false;
+    }
+    return true;
+  }
+
   ensureUserName() {
     let _resolve
       , oThis = this
@@ -150,17 +151,31 @@ class Meeting extends BaseView {
       return Promise.resolve();
     }
 
+    oThis.hideLoader();
+    //Ask for sign in or enter user name
+    oThis.guestJoining.css({display: 'block'});
+
     oThis.getUsernameFromPopup((name) => {
       oThis.userName = name;
       //hide guest partial
-      console.log("DEBUG", "Hide guestJoining");
-      $('#guestJoining').css({'display': 'none'});
+      oThis.guestJoining.css({'display': 'none'});
+      oThis.showLoader();
       return _resolve();
     });
 
     return new Promise(function (resolve) {
       _resolve = resolve;
     });
+  }
+
+  handleZoomMeeting() {
+    const oThis = this
+    ;
+
+    oThis.ensureUserName()
+      .then(() => {
+        oThis.getJoinParamsAndJoin();
+      });
   }
 
   getJoinParamsAndJoin() {
@@ -230,6 +245,10 @@ class Meeting extends BaseView {
     this.jqIframe.hide();
     this.jqError.hide();
     this.jqLoader.show();
+  }
+
+  hideLoader() {
+    this.jqLoader.hide();
   }
 
   onJoinSuccess(response) {
