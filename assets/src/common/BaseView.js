@@ -45,11 +45,11 @@ class BaseView {
 
   bindCommonEvents() {
     //For zoom meeting join
-    $(".jJoinMeeting").on('click', function (e) {
+    $('body').off('click.jJoinMeeting').on('click.jJoinMeeting', '.jJoinMeeting', function (e) {
       let meetingUrl = $(this).data('meeting-url');
       if (!meetingUrl) return;
 
-      if (zoomMeeting.isiOSDevice() || true) {
+      if (zoomMeeting.isiOSDevice()) {
         $("#broser-not-supported").modal("show");
         return;
       }
