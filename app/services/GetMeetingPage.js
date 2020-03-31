@@ -5,7 +5,7 @@ const rootPrefix = '../..',
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   ChannelLib = require(rootPrefix + '/lib/pepoApi/Channel'),
-  basicHelper = require(rootPrefix + '/helpers/basic');
+  coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
  * Class for Getting channel
@@ -31,6 +31,7 @@ class GetChannel extends ServiceBase {
     oThis.leaveUrl = oThis.decodedParams.leaveUrl;
 
     oThis.apiResponseData = {};
+    oThis.socialShareDetails = {};
   }
 
   /**
@@ -48,6 +49,8 @@ class GetChannel extends ServiceBase {
     await oThis.getCurrentUser();
 
     await oThis._fetchMeetingsPageMeta();
+
+    await oThis._prepareSocialShareData();
 
     return oThis._prepareResponse();
 
@@ -186,6 +189,32 @@ class GetChannel extends ServiceBase {
   }
 
   /**
+   * Prepare social share data.
+   *
+   * @sets oThis.socialShareDetails
+   *
+   * @returns {Promise<never>}
+   * @private
+   */
+  async _prepareSocialShareData() {
+    const twitterUserData = oThis.apiResponseData['twitterUsersMap'];
+    const hostData = oThis.apiResponseData['usersByIdMap'];
+
+    const channel = await _getChannelName();
+    const meetingUrl = `${coreConstants.PEPO_DOMAIN}/communities/${oThis.channelPermalink}/meetings/${oThis.meetingId}`;
+    const hostName = hostData.userName;
+    const hostUserHandle = twitterUserData.handle;
+
+    const defaultCopy = `Live Now! ${channel} with ${hostName} and community -- join the live event at ${meetingUrl}`;
+    const twitterCopy = hostUserHandle ? `Live Now! ${channel} with ${hostUserHandle} and community -- join the live event at ${meetingUrl}` : defaultCopy;
+
+    oThis.socialShareDetails = {
+      default: defaultCopy,
+      twitter: twitterCopy
+    }
+  }
+
+  /**
    *
    * @returns {Promise<*|result>}
    * @private
@@ -208,7 +237,8 @@ class GetChannel extends ServiceBase {
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser,
       leaveUrl: oThis.leaveUrl,
-      highlightLink: ''
+      highlightLink: '',
+      socialShareDetails: oThis.socialShareDetails
     });
   }
 
