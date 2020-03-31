@@ -247,7 +247,7 @@ class Meeting extends BaseView {
     const jEl = $('.join-event-btn');
     jEl.on(`click`, function (e) {
       name = $("#username-input").val();
-      $(".jJoinError").html("");
+      $(".jJoinError").html("&nbsp;");
       name = name.trim();
       if (!name || name == '') {
         $(".jJoinError").html("Please enter your name to join the event");
