@@ -203,8 +203,8 @@ class GetChannel extends ServiceBase {
 
     const hostUserId = oThis.apiResponseData['meeting']['host_user_id'];
     const hostData = oThis.apiResponseData['users'][hostUserId];
-    const hostName = hostData['user_name'];
-    const hostUserHandle = twitterUserData['host_user_id'].handle;
+    const hostName = hostData['name'];
+    const hostUserHandle = twitterUserData['host_user_id'] ? twitterUserData['host_user_id'].handle : null;
 
     const channel = await oThis._getChannelName();
     const meetingUrl = `${coreConstants.PEPO_DOMAIN}/communities/${oThis.channelPermalink}/meetings/${oThis.meetingId}`;
