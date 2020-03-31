@@ -119,3 +119,16 @@
   }
 }
 
+.login-tab-content {
+  .dontHavaAccount {
+    font-size: 14px;
+    font-weight: 600;
+    color: $wildWatermelon;
+  }
+
+  .sideSpacer {
+    background-color: $wildWatermelon;
+    height: 1px;
+    width: 14%
+  }
+}
