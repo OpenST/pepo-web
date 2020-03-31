@@ -198,17 +198,17 @@ class Meeting extends BaseView {
                 response.err.error_data[0].msg) {
 
                 errorMsg = response.err.error_data[0].msg;
-
+                if (this.isCustomUserName) {
+                  this.showErrorInGuestForm(errorMsg);
+                  return;
+                }
               } else {
                 if (response.err.msg) {
                   errorMsg = response.err.msg;
                 }
               }
             }
-            if (this.isCustomUserName) {
-              this.showErrorInGuestForm(errorMsg);
-              return;
-            }
+            this.hideLogIn();
             this.showError(errorMsg);
           }
         },
