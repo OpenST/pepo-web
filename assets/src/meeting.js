@@ -15,8 +15,10 @@ class Meeting extends BaseView {
     this.leaveUrl = this.config.leaveUrl;
     this.apiResponse = this.config.apiResponse;
     this.meeting = this.apiResponse.meeting;
+    this.meetingId = this.meeting.id;
     this.channelId = this.apiResponse.meeting.channel_id;
     this.channel = this.apiResponse.channels[this.channelId];
+    this.channelPermalink = this.channel.permalink;
     this.zoomMeeting = null;
     this.systemRequirements = false;
     this.readyStateAttempt = 0;
@@ -95,15 +97,8 @@ class Meeting extends BaseView {
 
       if (!this.isBrowserSupported()) return;
 
-      this.zoomMeeting.init({
-          leaveUrl: '/zoom-meeting?goto=' + this.leaveUrl,
-          disableInvite: true,
-          disableRecord: true,
-          screenShare: true /* Always show share screen button. */
-        },
-        () => this.handleZoomMeeting(),
-        (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
-      );
+      this.handleZoomMeeting();
+
     } else {
       if (this.readyStateAttempt >= 3) {
         this.showError('Error initiating Zoom Web');
@@ -115,15 +110,27 @@ class Meeting extends BaseView {
   }
 
   joinZoom(data) {
-    this.zoomMeeting.join({
-        meetingNumber: data.zoom_meeting_id,
-        userName: data.name,
-        apiKey: data.api_key,
-        signature: data.signature,
-        participantId: data.participant_id
+
+    this.zoomMeeting.init({
+        leaveUrl: `/zoom-meeting?goto=${this.leaveUrl}&role=${data.role}&channel_permalink=${this.channelPermalink}&meeting_id=${this.meetingId}`,
+        disableInvite: true,
+        disableRecord: true,
+        screenShare: true /* Always show share screen button. */
       },
-      this.onJoinSuccess,
-      this.onJoinError
+      () => {
+        console.log("init zoom done");
+        this.zoomMeeting.join({
+            meetingNumber: data.zoom_meeting_id,
+            userName: data.name,
+            apiKey: data.api_key,
+            signature: data.signature,
+            participantId: data.participant_id
+          },
+          this.onJoinSuccess,
+          this.onJoinError
+        );
+      },
+      (error) => this.showError(`Error initiating Zoom Web: ${error && error.errorMessage}`)
     );
   }
 
@@ -215,7 +222,6 @@ class Meeting extends BaseView {
     } else {
       this.showError(this.fallbackErrorMsg);
     }
-
   }
 
   getUsernameFromPopup(resolve) {

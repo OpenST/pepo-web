@@ -1,0 +1,11 @@
+// Import functions as variables depend on functions
+@import "../../plugins/bootstrap/scss/functions";
+
+// Import theme variables
+@import "../../web/Starboy/variables";
+
+.modal-body{
+  .icon-flex-none{
+    flex:none;
+  }
+}
