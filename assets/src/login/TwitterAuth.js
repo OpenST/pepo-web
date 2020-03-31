@@ -7,7 +7,7 @@ class TwitterAuth extends Base{
     }
 
     getButtonSelector = () => {
-      return '#twitterSignIn';
+      return '#twitterSignIn, .jLoginWithTwitterSignIn';
     }
 
     getUrlEndpoint = () => {
@@ -17,7 +17,7 @@ class TwitterAuth extends Base{
     getDisconnectUrl = () => {
       return '/api/web/auth/twitter/disconnect';
     }
- 
+
 }
 
 export default new TwitterAuth();

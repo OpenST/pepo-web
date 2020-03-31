@@ -4,7 +4,7 @@ import videoList from "./common/video/videoList";
 import  deepGet from "lodash/get";
 import  helper from "./helpers/index";
 
-//import  zoomMeeting from "./services/ZoomMeeting";
+import  zoomMeeting from "./helpers/ZoomMeeting";
 
 class Channel extends BaseView {
 
@@ -21,14 +21,15 @@ class Channel extends BaseView {
     }
     this.descShowMoreLessHandling();
     this.eventBindings();
-  
-    
-    // zoomMeeting.init( (jEl)=> {
-    //   //TODO DJ check where u can get
-    //   const meetingId = jEl.data("meeting-id") || this.config;
-    //   zoomMeeting.setZoomMeetingUserName(this.channel , meetingId);
-    // } );
-    
+
+    const oThis = this;
+    zoomMeeting.init( ()=> {
+      //TODO DJ check where u can get
+      // works without meetingId as param
+     // const meetingId = oThis.channel.live_meeting_id || oThis.config;
+      // zoomMeeting.setZoomMeetingUserName(oThis.channel)//, meetingId);
+    } );
+
   }
 
   eventBindings = () => {
@@ -89,7 +90,7 @@ class Channel extends BaseView {
     const msg = deepGet(error, "err.msg"  , "Something went wrong please try again later!");
     $(".jGoLiveError").html(msg);
   }
-  
+
   onGoLiveComplete(jEl){
     jEl.html("GO LIVE");
     jEl.removeClass("disabled");

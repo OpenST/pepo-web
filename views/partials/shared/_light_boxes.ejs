@@ -59,19 +59,35 @@
                             Remove People from the room.
                     </span>
                 </div>
-                <div class="d-flex flex-md-row align-items-center text-left">
+                <div class="d-flex flex-md-row align-items-center text-left my-3">
                     <span class="share-icon mr-3 icon-flex-none"></span>
                     <span>
                         You will be able to control who can share the screen.
                     </span>
                 </div>
                 <div class="general_error error jGoLiveError">&nbsp;</div>
-                <div class="flex-md-row"><a class="btn btn-primary tips-to-go-live-btn" href="javascript:void(0)">Go Live</a></div>
+                <div class="flex-md-row mt-3"><a class="btn btn-primary tips-to-go-live-btn" href="javascript:void(0)">Go Live</a></div>
             </div>
         </div>
     </div>
 </section>
 
+<section id="broser-not-supported" class="modal fade" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+        <div class="modal-content" style="padding: 35px 0; border-radius: 5px">
+            <div class="modal-header mb-3">
+                <h4 class="modal-title" style="color: #ff5566;font-weight: 600">Browser Not Supported</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="modal-close-icon"></span>
+                </button>
+            </div>
+            <div class="modal-body mx-6 text-center">
+                <div>Pepo live events are not supported on iPhone and iPad browser.</div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--
 <section id="logged-out-username-modal" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content" style="padding: 35px 0; border-radius: 5px">
@@ -82,35 +98,28 @@
                 </button>
             </div>
             <div class="modal-body mx-2 mx-lg-6 text-center" >
-                <input class="mt-2 username-input" placeholder="Your Name" type="text" style="border-radius: 5px;  width: 350px;  height: 30px;  padding: 20px; outline: none; border: 2px solid rgba(0, 0, 0, .15); font-size: small;"/>
+                <input id="username-input" class="mt-2" placeholder="Your Name" type="text" style="border-radius: 5px;  width: 350px;  height: 30px;  padding: 20px; outline: none; border: 2px solid rgba(0, 0, 0, .15); font-size: small;"/>
             </div>
             <div class="modal-footer d-flex flex-column mx-6 text-center" >
-                <div class="general_error error jGoLiveError">&nbsp;</div>
+                <div class="general_error error jJoinError">&nbsp;</div>
                 <div class="flex-md-row"><a class="btn btn-primary join-event-btn" href="javascript:void(0)" style="width: 100px;">Join</a></div>
             </div>
         </div>
     </div>
 </section>
 
-<section id="meeting-tips-modal" class="modal fade" tabindex="-1" role="dialog">
+<section id="browser-not-supported" class="modal fade" tabindex="-1" role="dialog">
     <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
         <div class="modal-content" style="padding: 35px 0; border-radius: 5px">
             <div class="modal-header mb-5">
-                <h4 class="modal-title" style="color: #ff5566;font-weight: 600">Some Tips before you go live!</h4>
+                <h4 class="modal-title" style="color: #ff5566;font-weight: 600">Browser not supported!</h4>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="modal-close-icon"></span>
                 </button>
             </div>
             <div class="modal-footer d-flex flex-column mx-6 text-center" >
-                <div class="flex-md-row">
-                    <span class="mute-icon mr-3"></span>
-                        SOME LIVE EVENT TIPS  SOME LIVE EVENT TIPS SOME LIVE EVENT TIPS
-                </div>
-                <div class="flex-md-row mb-5">
-                    <span class="share-icon mr-3"></span>
-                        SOME MORE TIPS SOME MORE TIPS SOME MORE TIPS
-                </div>
+
             </div>
         </div>
     </div>
-</section>
+</section> -->

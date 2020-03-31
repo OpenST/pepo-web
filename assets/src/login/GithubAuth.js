@@ -7,7 +7,7 @@ class GithubAuth extends Base{
     }
 
     getButtonSelector = () => {
-      return '#githubSignIn';
+      return '#githubSignIn, .jLoginWithGithubSignIn';
     }
 
     getUrlEndpoint = () => {
@@ -17,7 +17,7 @@ class GithubAuth extends Base{
     getDisconnectUrl = () => {
       return '/api/web/auth/github/disconnect';
     }
- 
+
 }
 
 export default new GithubAuth();

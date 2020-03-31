@@ -1,3 +1,5 @@
+import zoomMeeting from "../helpers/ZoomMeeting";
+
 const {$} = window;
 import CurrentUser from "../model/CurrentUser" ;
 import {setDataStore} from "../model/DataStore";
@@ -25,6 +27,7 @@ class BaseView {
     this.initDataStore( config.apiResponse  );
     this.initSocket();
     this.initLogin();
+    this.bindCommonEvents();
     return;
     this.initSdk(config.appMeta, config.apiResponse["current_user_data"]);
     this.initPixelDrop(config.appMeta);
@@ -37,6 +40,21 @@ class BaseView {
     googleAuth.init();
     $(window).on('resize scroll', () => {
       navBar.fixedNavBarMenu();
+    });
+  }
+
+  bindCommonEvents() {
+    //For zoom meeting join
+    $('body').off('click.jJoinMeeting').on('click.jJoinMeeting', '.jJoinMeeting', function (e) {
+      let meetingUrl = $(this).data('meeting-url');
+      if (!meetingUrl) return;
+
+      if (zoomMeeting.isiOSDevice()) {
+        $("#broser-not-supported").modal("show");
+        return;
+      }
+
+      window.location = meetingUrl;
     });
   }
 
