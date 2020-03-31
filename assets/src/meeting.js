@@ -192,9 +192,18 @@ class Meeting extends BaseView {
             this.joinZoom(response.data[response.data.result_type]);
           } else {
             let errorMsg = this.fallbackErrorMsg;
-            //Todo:: Extract error from error parameter
-            if (response.err && response.err.msg) {
-              errorMsg = response.err.msg;
+            if (response.err) {
+              if (response.err.error_data &&
+                response.err.error_data[0] &&
+                response.err.error_data[0].msg) {
+
+                errorMsg = response.err.error_data[0].msg;
+
+              } else {
+                if (response.err.msg) {
+                  errorMsg = response.err.msg;
+                }
+              }
             }
             if (this.isCustomUserName) {
               this.showErrorInGuestForm(errorMsg);
