@@ -230,7 +230,7 @@ class GetChannel extends ServiceBase {
       oThis.apiResponseData.current_user_data = oThis.currentUserData;
     }
     oThis.apiResponseData.current_meeting_id = oThis.meetingId;
-    oThis.apiResponseData.socialShareDetails = oThis.socialShareDetails;
+    oThis.apiResponseData.social_share_details = oThis.socialShareDetails;
 
     return responseHelper.successWithData({
       apiResponseData: oThis.apiResponseData,
