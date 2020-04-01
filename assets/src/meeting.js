@@ -24,6 +24,7 @@ class Meeting extends BaseView {
     this.zoomMeeting = null;
     this.systemRequirements = false;
     this.showHostliveToast = false;
+    this.showHostliveToastTimeoutMs = 10000;
     this.readyStateAttempt = 0;
     this.jWrapper = $('#meetingWrapper');
     this.jqIframe = $('#zoomMeeting');
@@ -272,7 +273,7 @@ class Meeting extends BaseView {
         this.jHostNotificatonToast.find('.toast-text').text(`We have notified the members of ${this.channel.name} that you are live now!`);
         this.jHostNotificatonToast.toast('show');
         this.showHostliveToast = false;
-      }, 2000);
+      }, this.showHostliveToastTimeoutMs);
     }
   }
 
