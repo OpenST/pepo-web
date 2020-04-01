@@ -292,6 +292,12 @@ class Meeting extends BaseView {
   }
 
   showError(message) {
+    message = message || '';
+
+    if((message).toLowerCase() == 'meeting is not started') {
+      message = 'Pepo live event has not started';
+    }
+
     this.jqIframe.hide();
     this.jqLoader.hide();
     this.jqError.find('.error-text').html(message);
