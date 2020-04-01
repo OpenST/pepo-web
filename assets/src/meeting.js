@@ -7,6 +7,8 @@ import CurrentUser from "./model/CurrentUser";
 const {$} = window;
 const namespace = "meeting";
 
+const HOST_ROLE_CODE = 1;
+
 class Meeting extends BaseView {
 
   constructor(config) {
@@ -111,7 +113,7 @@ class Meeting extends BaseView {
   }
 
   joinZoom(data) {
-    if (data.role) {
+    if (HOST_ROLE_CODE == data.role) {
       this.showHostliveToast = true;
     }
     this.zoomMeeting.init({
@@ -267,6 +269,7 @@ class Meeting extends BaseView {
     if (this.showHostliveToast){
       setTimeout(()=> {
         $('.toast-host-live-notified').toast('show');
+        this.showHostliveToast = false;
       }, 2000);
     }
   }
