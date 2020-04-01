@@ -59,9 +59,11 @@ class Meeting extends BaseView {
       this.isCloseShareEventBinded = true;
 
       const jMeetingShareBtn = $(".jMeetingShareBtn");
-      const jMeetingShareOptions = $("#meetingShareOptions")
+      const jMeetingShareOptions = $("#meetingShareOptions");
+      const copyToClipboardClass = ".copyToClipboard";
+
       jMeetingShareBtn.off(`click`).on(`click`, () => {
-        jMeetingShareOptions.removeClass('d-none');
+        jMeetingShareOptions.show();
       });
 
       document.body.addEventListener('click', (e) => {
@@ -73,7 +75,11 @@ class Meeting extends BaseView {
           return;
         }
 
-        jMeetingShareOptions.addClass('d-none');
+        if (e.target.hasClass(copyToClipboardClass) ) {
+          return;
+        }
+
+        jMeetingShareOptions.hide();
 
       }, true);
     }
@@ -94,6 +100,7 @@ class Meeting extends BaseView {
       
 
       let isCopied = BasicHelper.copyToClipboard(textToCopy, $(e.target));
+      $("#meetingShareOptions").hide();
       if (isCopied) {
         $('.toast-copied-to-clipboard').toast('show');
       } else {
