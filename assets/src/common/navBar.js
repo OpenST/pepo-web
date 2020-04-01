@@ -42,7 +42,7 @@ class NavBar {
       .then((response) => {
         oThis.setManagedCommunities(response);
         if (!oThis.channels) return;
-        console.log("DEBUG", JSON.stringify(oThis.channels));
+
         const modal = ejs.compile(adminCommunityList, {client: true});
         let adminCommunityListHtml = $(modal({
           channels: oThis.channels

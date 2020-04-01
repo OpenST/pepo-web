@@ -7,7 +7,7 @@ class AppleAuth extends Base{
     }
 
     getButtonSelector = () => {
-      return '#appleSignIn';
+      return '#appleSignIn, .jLoginWithAppleSignIn';
     }
 
     getUrlEndpoint = () => {
@@ -17,7 +17,7 @@ class AppleAuth extends Base{
     getDisconnectUrl = () => {
       return '/api/web/auth/apple/disconnect';
     }
- 
+
 }
 
 export default new AppleAuth();
