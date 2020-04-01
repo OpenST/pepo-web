@@ -8,6 +8,7 @@
  *   * LinkedIn - removed title and support.
  *   * Changed the selector of wrapper from share-btn to share-btn-wrap.
  *   * Changed the selector of anchor links (a) to share-btn class (.share-btn)
+ *   * Added element level description support.
  */
 
 (function (global, factory) {
@@ -105,7 +106,7 @@
                     id: '',
                     url: getUrl(el),
                     title: getTitle(el),
-                    desc: getDesc(el)
+                    desc: getDesc(a[i], el)
                 });
             }
         };
@@ -142,9 +143,14 @@
          * Method for getting description from page or options
          * @param {HTMLElement} share
          */
-        var getDesc = function (share) {
+        var getDesc = function (ele, share) {
             var metaDesc = d.querySelector('meta[name=description]');
-            return getAttribute(share, 'data-desc') || (metaDesc && getAttribute(metaDesc, 'content')) || ' ';
+
+            let shareDesc = getAttribute(ele, 'data-desc');
+            if (!shareDesc) {
+                shareDesc = getAttribute(share, 'data-desc');
+            }
+            return shareDesc || (metaDesc && getAttribute(metaDesc, 'content')) || ' ';
         };
 
        /**
