@@ -24,7 +24,7 @@ class Meeting extends BaseView {
     this.zoomMeeting = null;
     this.systemRequirements = false;
     this.showHostliveToast = false;
-    this.showHostliveToastTimeoutMs = 10000;
+    this.showHostliveToastTimeoutMs = 3000;
     this.readyStateAttempt = 0;
     this.jWrapper = $('#meetingWrapper');
     this.jqIframe = $('#zoomMeeting');
