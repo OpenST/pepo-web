@@ -36,6 +36,8 @@ class Meeting extends BaseView {
     this.onJoinError = this.onJoinError.bind(this);
     this.onJoinSuccess = this.onJoinSuccess.bind(this);
 
+    this.isCloseShareEventBinded = false;
+
     this.init();
     this.bindEvents();
     this.adjustWidth();
@@ -52,6 +54,31 @@ class Meeting extends BaseView {
 
   bindEvents() {
     const oThis = this;
+
+    if ( !this.isCloseShareEventBinded ) {
+      this.isCloseShareEventBinded = true;
+
+      const jMeetingShareBtn = $(".jMeetingShareBtn");
+      const jMeetingShareOptions = $("#meetingShareOptions")
+      jMeetingShareBtn.off(`click`).on(`click`, () => {
+        jMeetingShareOptions.removeClass('d-none');
+      });
+
+      document.body.addEventListener('click', (e) => {
+        if ( !e.target ) {
+          return;
+        }
+
+        if ( jMeetingShareBtn.has(e.target).length ) {
+          return;
+        }
+
+        jMeetingShareOptions.addClass('d-none');
+
+      }, true);
+    }
+
+    
 
     $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
       if ( !oThis.config.apiResponse )  {
