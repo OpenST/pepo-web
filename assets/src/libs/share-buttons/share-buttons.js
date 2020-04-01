@@ -4,7 +4,10 @@
  * Changes
  * - [31st March 2020] 
  *   * Updated whatsapp url as advised here: https://faq.whatsapp.com/en/general/26000030
- *   * Updated 
+ *   * WhatsApp and Twitter - only post description (as it contains the url also).
+ *   * LinkedIn - removed title and support.
+ *   * Changed the selector of wrapper from share-btn to share-btn-wrap.
+ *   * Changed the selector of anchor links (a) to share-btn class (.share-btn)
  */
 
 (function (global, factory) {
@@ -25,17 +28,17 @@
      */
     function ShareButtons() {
 
-        var FB_LINK_FORMAT = 'https://www.facebook.com/sharer/sharer.php?u={0}',
+        var FB_LINK_FORMAT = 'https://www.facebook.com/sharer/sharer.php?u={0}&quote={1}',
             VK_LINK_FORMAT = 'https://vk.com/share.php?url={0}&title={1}',
-            TW_LINK_FORMAT = 'https://twitter.com/intent/tweet?url={0}&text={1}',
+            TW_LINK_FORMAT = 'https://twitter.com/intent/tweet?text={0}',
             TG_LINK_FORMAT = 'https://t.me/share/url?url={0}&text={1}',
             POCKET_LINK_FORMAT = 'https://getpocket.com/edit?url={0}&title={1}',
             RE_LINK_FORMAT = 'https://reddit.com/submit/?url={0}',
             EV_LINK_FORMAT = 'https://www.evernote.com/clip.action?url={0}&t={1}',
-            IN_LINK_FORMAT = 'https://www.linkedin.com/shareArticle?mini=true&url={0}&title={1}&summary={2}&source={0}',
+            IN_LINK_FORMAT = 'https://www.linkedin.com/shareArticle?mini=true&url={0}&title={1}&summary={1}&source={0}',
             PI_LINK_FORMAT = 'https://pinterest.com/pin/create/button/?url={0}&media={0}&description={1}',
             SK_LINK_FORMAT = 'https://web.skype.com/share?url={0}&source=button&text={1}',
-            WA_LINK_FORMAT = 'https://wa.me/?text={1}%20{0}',
+            WA_LINK_FORMAT = 'https://wa.me/?text={0}',
             OK_LINK_FORMAT = 'https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&service=odnoklassniki&st.shareUrl={0}',
             TU_LINK_FORMAT = 'https://www.tumblr.com/widgets/share/tool?posttype=link&title={0}&caption={0}&content={1}&canonicalUrl={1}&shareSource=tumblr_share_button',
             HN_LINK_FORMAT = 'https://news.ycombinator.com/submitlink?t={0}&u={1}',
@@ -197,7 +200,7 @@
             switch (id) {
             case FB_CLASS_NAME:
                 popupCenter(
-                    stringFormat(FB_LINK_FORMAT, [url]),
+                    stringFormat(FB_LINK_FORMAT, [url, desc]),
                     titleDef);
                 break;
 
@@ -212,11 +215,8 @@
 
             case TW_CLASS_NAME:
                 popupCenter(
-                    stringFormat(TW_LINK_FORMAT, [
-                        url,
-                        mergeForTitle([title, desc])
-                    ]),
-                    titleDef);
+                    stringFormat(TW_LINK_FORMAT, [desc]) 
+                    ,titleDef);
                 break;
 
             case TG_CLASS_NAME:
@@ -253,8 +253,7 @@
                 popupCenter(
                     stringFormat(IN_LINK_FORMAT, [
                         url,
-                        title,
-                        mergeForTitle([title, desc])
+                        desc
                     ]),
                     titleDef);
                 break;
@@ -280,8 +279,7 @@
             case WA_CLASS_NAME:
                 popupCenter(
                     stringFormat(WA_LINK_FORMAT, [
-                        mergeForTitle([title, desc]),
-                        url
+                        desc
                     ]),
                     titleDef);
                 break;

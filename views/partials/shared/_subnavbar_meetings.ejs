@@ -7,9 +7,12 @@
     hostUserName = hostUser["name"];
 
 
-    shareUrl = "https://pepodev.com/communities/channel6/meetings/10468";
-    shareTitle = "This is some dummy title";
-    shareDesc = "This is some dummy desc";
+    shareUrl    = apiResponseData.share_url;
+    let shareDetails = apiResponseData.socialShareDetails || apiResponseData.social_share_details;
+    shareText  = shareDetails["default"];
+
+    shareUrl = shareUrl.replace("https://pepodev.com", "https://stagingpepo.com");
+    shareText = shareText.replace("https://pepodev.com", "https://stagingpepo.com");
 %>
 <nav class="meeting-subnav nav px-md-3 py-md-2">
     <ul class="meeting-subnav-ul list-unstyled m-0 d-md-flex first-list" style="font-size: 0;">
@@ -29,11 +32,9 @@
             <a href="https://intercom.help/pepo/en/articles/3832441-pepo-live-events" title="FAQs" target="_blank" rel="noopener noreferrer nofollow"   style="font-size: 16px">FAQs</a>
         </li>
     </ul>
-
-    <!-- copyToClipboard - id for  -->
 </nav>
 <div class="pageShareOptions">
-    <div class="pageShareOptionsBox share-btn-wrap" id='jPageShareOptionsBox' data-title='<%- shareTitle %>' data-desc='<%- shareDesc %>'>
+    <div class="pageShareOptionsBox share-btn-wrap" id='jPageShareOptionsBox' data-url='<%- shareUrl %>' data-desc='<%- shareText %>'>
         <span class="share-option share-btn" id='jTwitterShare' data-id="tw">
             <span class="twitter-icon-h-20-px share-option-icon"></span>
         </span>

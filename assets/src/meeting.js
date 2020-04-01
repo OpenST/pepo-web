@@ -51,9 +51,22 @@ class Meeting extends BaseView {
   }
 
   bindEvents() {
+    const oThis = this;
 
     $(".copyToClipboard").off(`click.${namespace}`).on(`click.${namespace}`, (e) => {
-      let isCopied = BasicHelper.copyToClipboard(this.config.apiResponse.share_url, $(e.target));
+      if ( !oThis.config.apiResponse )  {
+        return;
+      }
+
+      let shareDetails = oThis.config.apiResponse.socialShareDetails || oThis.config.apiResponse.social_share_details;
+      if ( !shareDetails ) {
+        return;
+      }
+
+      let textToCopy = shareDetails["default"];
+      
+
+      let isCopied = BasicHelper.copyToClipboard(textToCopy, $(e.target));
       if (isCopied) {
         $('.toast-copied-to-clipboard').toast('show');
       } else {
