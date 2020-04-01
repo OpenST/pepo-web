@@ -21,6 +21,7 @@ class Meeting extends BaseView {
     this.channelPermalink = this.channel.permalink;
     this.zoomMeeting = null;
     this.systemRequirements = false;
+    this.showHostliveToast = false;
     this.readyStateAttempt = 0;
     this.jWrapper = $('#meetingWrapper');
     this.jqIframe = $('#zoomMeeting');
@@ -110,7 +111,9 @@ class Meeting extends BaseView {
   }
 
   joinZoom(data) {
-
+    if (data.role) {
+      this.showHostliveToast = true;
+    }
     this.zoomMeeting.init({
         leaveUrl: `/zoom-meeting?goto=${this.leaveUrl}&role=${data.role}&channel_permalink=${this.channelPermalink}&meeting_id=${this.meetingId}`,
         disableInvite: true,
@@ -260,6 +263,14 @@ class Meeting extends BaseView {
     });
   }
 
+  handleHostLiveNotificationToast() {
+    if (this.showHostliveToast){
+      setTimeout(()=> {
+        $('.toast-host-live-notified').toast('show');
+      }, 2000);
+    }
+  }
+
   showLogIn() {
     this.jqLoader.hide();
     this.jqIframe.hide();
@@ -291,6 +302,7 @@ class Meeting extends BaseView {
 
   onJoinSuccess(response) {
     console.log(response);
+    this.handleHostLiveNotificationToast();
     this.jqLoader.hide();
     this.jqError.hide();
     this.jqIframe.show();
