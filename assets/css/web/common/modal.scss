@@ -106,6 +106,14 @@ svg{
   .modal-content-go-live{
     border-radius: 3px !important;
     box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
+    .modal-title{
+      color: $valhalla;
+      font-weight: 500;
+      font-size: 16px;
+    }
+    .modal-header{
+      border-bottom: 1px solid $mystic ;
+    }
   }
 
   @media screen and (max-width: 768px){
@@ -116,6 +124,13 @@ svg{
 
     .modal-content-go-live {
       border-radius: 30px 30px 0 0!important;
+      .modal-title{
+        color: $wildWatermelon;
+        font-weight: $font-weight-600;
+      }
+      .modal-header{
+        border-bottom: none;
+      }
     }
   }
 }
