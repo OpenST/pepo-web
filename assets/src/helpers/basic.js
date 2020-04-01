@@ -43,9 +43,10 @@ class BasicHelper {
     var dummy = $('<input style="font-size: 3px; display: inline"/>').val(str).appendTo(context);
     dummy[0].select();
     dummy[0].setSelectionRange(0, 99999);
-    document.execCommand('copy');
+
+    var isSuccess = document.execCommand('copy');
     dummy.remove();
-    return 1;
+    return isSuccess;
   }
 
 }
