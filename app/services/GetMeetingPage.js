@@ -204,13 +204,13 @@ class GetChannel extends ServiceBase {
     const hostUserId = oThis.apiResponseData['meeting']['host_user_id'];
     const hostData = oThis.apiResponseData['users'][hostUserId];
     const hostName = hostData['name'];
-    const hostUserHandle = twitterUserData['host_user_id'] ? twitterUserData['host_user_id'].handle : null;
+    const hostUserHandle = twitterUserData[hostUserId] ? twitterUserData[hostUserId].handle : null;
 
-    const channel = await oThis._getChannelName();
+    const channelName = await oThis._getChannelName();
     const meetingUrl = `${coreConstants.PEPO_DOMAIN}/communities/${oThis.channelPermalink}/meetings/${oThis.meetingId}`;
 
-    const defaultCopy = `Live Now! ${channel} with ${hostName} and community -- join the live event at ${meetingUrl}`;
-    const twitterCopy = hostUserHandle ? `Live Now! ${channel} with @${hostUserHandle} and community -- join the live event at ${meetingUrl}` : defaultCopy;
+    const defaultCopy = `Live Now! ${channelName} with ${hostName} and community -- join the live event at ${meetingUrl}`;
+    const twitterCopy = hostUserHandle ? `Live Now! ${channelName} with @${hostUserHandle} and community -- join the live event at ${meetingUrl}` : defaultCopy;
 
     oThis.socialShareDetails = {
       default: defaultCopy,
@@ -242,8 +242,7 @@ class GetChannel extends ServiceBase {
       currentUserData: oThis.currentUserData,
       currentUser: oThis.currentUser,
       leaveUrl: oThis.leaveUrl,
-      highlightLink: '',
-      socialShareDetails: oThis.socialShareDetails
+      highlightLink: ''
     });
   }
 
