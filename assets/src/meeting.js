@@ -30,6 +30,7 @@ class Meeting extends BaseView {
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
     this.jGuestJoining = $('#guestJoining');
+    this.jHostNotificatonToast = $('.toast-host-live-notified');
     this.isCustomUserName = false;
     this.fallbackErrorMsg = 'Something went wrong';
 
@@ -268,7 +269,8 @@ class Meeting extends BaseView {
   handleHostLiveNotificationToast() {
     if (this.showHostliveToast){
       setTimeout(()=> {
-        $('.toast-host-live-notified').toast('show');
+        this.jHostNotificatonToast.find('.toast-text').text(`We have notified the members of ${this.channel.name} that you are live now!`);
+        this.jHostNotificatonToast.toast('show');
         this.showHostliveToast = false;
       }, 2000);
     }
