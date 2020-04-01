@@ -95,6 +95,9 @@ svg{
 
 #goLiveModal{
   @media screen and (max-width: 768px){
+    ul{
+      max-height: 70vh;
+    }
     &.fade .modal-dialog {
       transform: translate3d(0, 0, 0);
     }
