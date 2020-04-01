@@ -7,6 +7,8 @@ import CurrentUser from "./model/CurrentUser";
 const {$} = window;
 const namespace = "meeting";
 
+const HOST_ROLE_CODE = 1;
+
 class Meeting extends BaseView {
 
   constructor(config) {
@@ -21,12 +23,14 @@ class Meeting extends BaseView {
     this.channelPermalink = this.channel.permalink;
     this.zoomMeeting = null;
     this.systemRequirements = false;
+    this.showHostliveToast = false;
     this.readyStateAttempt = 0;
     this.jWrapper = $('#meetingWrapper');
     this.jqIframe = $('#zoomMeeting');
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
     this.jGuestJoining = $('#guestJoining');
+    this.jHostNotificatonToast = $('.toast-host-live-notified');
     this.isCustomUserName = false;
     this.fallbackErrorMsg = 'Something went wrong';
 
@@ -110,7 +114,9 @@ class Meeting extends BaseView {
   }
 
   joinZoom(data) {
-
+    if (HOST_ROLE_CODE == data.role) {
+      this.showHostliveToast = true;
+    }
     this.zoomMeeting.init({
         leaveUrl: `/zoom-meeting?goto=${this.leaveUrl}&role=${data.role}&channel_permalink=${this.channelPermalink}&meeting_id=${this.meetingId}`,
         disableInvite: true,
@@ -260,6 +266,16 @@ class Meeting extends BaseView {
     });
   }
 
+  handleHostLiveNotificationToast() {
+    if (this.showHostliveToast){
+      setTimeout(()=> {
+        this.jHostNotificatonToast.find('.toast-text').text(`We have notified the members of ${this.channel.name} that you are live now!`);
+        this.jHostNotificatonToast.toast('show');
+        this.showHostliveToast = false;
+      }, 2000);
+    }
+  }
+
   showLogIn() {
     this.jqLoader.hide();
     this.jqIframe.hide();
@@ -291,6 +307,7 @@ class Meeting extends BaseView {
 
   onJoinSuccess(response) {
     console.log(response);
+    this.handleHostLiveNotificationToast();
     this.jqLoader.hide();
     this.jqError.hide();
     this.jqIframe.show();
