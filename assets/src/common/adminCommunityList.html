@@ -1,6 +1,6 @@
 <% var channelList = Object.keys(channels) %>
 <% for(var i=0; i < channelList.length; i++) { %>
-<li>
+<li class="p-2">
     <a  data-channel='<%- JSON.stringify(channels[channelList[i]]) %>'
         href="/communities/<%= channels[channelList[i]].permalink%>">
         <%= channels[channelList[i]].name %>
