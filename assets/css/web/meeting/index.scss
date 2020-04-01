@@ -42,7 +42,7 @@
 
 .meeting-subnav{
   background: #f9f9f9;
-  ul{
+  .meeting-subnav-ul {
     li{
       a{
         color: #212529;
@@ -51,6 +51,10 @@
     @media screen and (min-width: 768px){
       width: 50%;
     }
+  }
+
+  .meeting-share-li {
+    cursor: pointer;
   }
 
   .first-list {
@@ -132,3 +136,52 @@
     width: 14%
   }
 }
+.pageShareOptions {
+  
+  position: absolute;
+  @media only screen and (min-width: 768px){
+    right: 1rem;
+  }
+
+  @media only screen and (max-width: 768px){
+    left: 1rem;
+  }
+
+  .pageShareOptionsBox {
+    background: #fff;
+    box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+  }
+
+  .share-option:first-child {
+    padding-left: 21px;
+  }
+  .share-option {
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 18px;
+    padding-bottom: 18px; 
+    display: inline-block;
+    display: inline-flex;
+    cursor: pointer;
+  }
+  .share-option:last-child {
+    padding-right: 21px;
+  }
+
+  .copy-to-clipboard-wrap.share-option {
+    padding-top: 16px;
+  }
+
+  .options-divider {
+    width: 1px;
+    height: 24px;
+    background: rgb(255, 85, 102);
+    margin-right: 4px;
+    margin-left: 4px;
+    display: inline-block;
+    margin-bottom: -2px;
+  }
+}
+
+
