@@ -5,9 +5,14 @@
     hostUserId = apiResponseData['meeting']['host_user_id'];
     hostUser = apiResponseData["users"][hostUserId];
     hostUserName = hostUser["name"];
+
+
+    shareUrl = "https://pepodev.com/communities/channel6/meetings/10468";
+    shareTitle = "This is some dummy title";
+    shareDesc = "This is some dummy desc";
 %>
 <nav class="meeting-subnav nav px-md-3 py-md-2">
-    <ul class="list-unstyled m-0 d-md-flex first-list" style="font-size: 0;">
+    <ul class="meeting-subnav-ul list-unstyled m-0 d-md-flex first-list" style="font-size: 0;">
         <li class="nav-link text-truncate w-100 pr-0">
             <span class="text-truncate d-block community">Community: <span style="font-family: AvenirNext-Medium" class="ml-2"><%- channelName %></span></span>
         </li>
@@ -15,8 +20,8 @@
             <span class="text-truncate d-block" style="font-size: 16px">Host: <span style="font-family: AvenirNext-Medium" class="ml-2"><%- hostUserName %></span></span>
         </li>
     </ul>
-    <ul class="list-unstyled m-0 d-flex justify-content-md-end ml-md-auto" style="font-size: 0;">
-        <li class="nav-link copyToClipboard d-flex align-items-center">
+    <ul class="meeting-subnav-ul list-unstyled m-0 d-flex justify-content-md-end ml-md-auto" style="font-size: 0;">
+        <li class="meeting-share-li nav-link d-flex align-items-center">
             <span class="share-meeting-icon mr-2"></span>
             <span style="font-size: 16px">Share Event</span>
         </li>
@@ -24,4 +29,26 @@
             <a href="https://intercom.help/pepo/en/articles/3832441-pepo-live-events" title="FAQs" target="_blank" rel="noopener noreferrer nofollow"   style="font-size: 16px">FAQs</a>
         </li>
     </ul>
+
+    <!-- copyToClipboard - id for  -->
 </nav>
+<div class="pageShareOptions">
+    <div class="pageShareOptionsBox share-btn-wrap" id='jPageShareOptionsBox' data-title='<%- shareTitle %>' data-desc='<%- shareDesc %>'>
+        <span class="share-option share-btn" id='jTwitterShare' data-id="tw">
+            <span class="twitter-icon-h-20-px share-option-icon"></span>
+        </span>
+        <span class="share-option share-btn" id='jFacebookShare' data-id="fb">
+            <span class="fb-share-icon-h-20-px share-option-icon"></span>
+        </span>
+        <span class="share-option share-btn" id='jWhatsAppShare' data-id="wa">
+            <span class="whatsapp-share-icon-h-20-px share-option-icon"></span>
+        </span>
+        <span class="share-option share-btn" id='jLinkedInShare' data-id="in">
+            <span class="linkedin-share-icon-h-20-px share-option-icon"></span>
+        </span>
+        <span class="options-divider"></span>
+        <span class="share-option copy-to-clipboard-wrap copyToClipboard">
+            <span class="copy-to-clipboard-icon-h-20-px share-option-icon"></span>
+        </span>
+    </div>
+</div>

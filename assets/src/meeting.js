@@ -3,6 +3,7 @@ import BasicHelper from '../src/helpers/basic'
 import BaseView from "../src/common/BaseView";
 import zoomMeeting from "./helpers/ZoomMeeting";
 import CurrentUser from "./model/CurrentUser";
+require('../src/libs/share-buttons/share-buttons.js');
 
 const {$} = window;
 const namespace = "meeting";

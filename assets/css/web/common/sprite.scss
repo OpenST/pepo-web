@@ -88,6 +88,25 @@ $vActionIcons: 'replies' 0px, 'report' -76px, 'copy' -160px;
   @include icon-generator(284px, 284px, -14px, -354px, -14px, -14px, 10.55);
 }
 
+// meetings page share icon - twitter.
+.twitter-icon-h-20-px {
+  @include icon-generator(45px, 40px, -502px, -130px, -502px, -502px, 45);
+}
+
+.fb-share-icon-h-20-px {
+  @include icon-generator(46px, 46px, -515px, -511px, -515px, -515px, 44);
+}
+.whatsapp-share-icon-h-20-px {
+  @include icon-generator(50px, 51px, -581px, -508px, -581px, -581px, 40);
+}
+.linkedin-share-icon-h-20-px {
+  @include icon-generator(39px, 39px, -651px, -514px, -651px, -651px, 51.67);
+}
+
+.copy-to-clipboard-icon-h-20-px {
+  @include icon-generator(42px, 42px, -506px, -416px, -506px, -506px, 47.62);
+}
+
 .login-twitter-icon{
   @include icon-generator(45px, 40px, -502px, -130px, -502px, -502px, 45);
 }
