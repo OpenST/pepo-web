@@ -19,6 +19,7 @@ class NavBar {
     this.jNavPhantomEl = null;
     this.jNavTogglerEl = null;
     this.heightTrigger = 0;
+    this.uberBannerHeight = 42;
   }
 
   init() {
@@ -30,7 +31,7 @@ class NavBar {
     this.jDialogGoLive = $('.modal-dialog-go-live');
     this.jDialogLogin = $('.modal-dialog-login');
     this.logoutMarginTop = parseInt(this.jDialogLogout.css('margin-top'));
-    this.loginMarginTop = parseInt(this.jDialogLogin.css('margin-top'));
+    this.loginMarginTop = this.jUberBanner.outerHeight() ? parseInt(this.jDialogLogin.css('margin-top')) : parseInt(this.jDialogLogin.css('margin-top')) - this.uberBannerHeight;
     this.goLiveMarginTop = parseInt(this.jDialogGoLive.css('margin-top'));
 
     this.bindEvents();

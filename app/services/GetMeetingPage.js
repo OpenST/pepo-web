@@ -5,7 +5,7 @@ const rootPrefix = '../..',
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   appUpdateLinksConstants = require(rootPrefix + '/lib/globalConstant/appUpdateLinks'),
   ChannelLib = require(rootPrefix + '/lib/pepoApi/Channel'),
-  basicHelper = require(rootPrefix + '/helpers/basic');
+  coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
  * Class for Getting channel
@@ -31,6 +31,7 @@ class GetChannel extends ServiceBase {
     oThis.leaveUrl = oThis.decodedParams.leaveUrl;
 
     oThis.apiResponseData = {};
+    oThis.socialShareDetails = {};
   }
 
   /**
@@ -48,6 +49,8 @@ class GetChannel extends ServiceBase {
     await oThis.getCurrentUser();
 
     await oThis._fetchMeetingsPageMeta();
+
+    await oThis._prepareSocialShareData();
 
     return oThis._prepareResponse();
 
@@ -149,7 +152,8 @@ class GetChannel extends ServiceBase {
       coverImageId = channelDetails['cover_image_id'],
       imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'];
 
-    return imageResolutions['original']['url'];
+    const imageUrl = imageResolutions['720w'] ? imageResolutions['720w']['url'] : imageResolutions['original']['url']
+    return imageUrl;
   }
 
   /**
@@ -186,6 +190,36 @@ class GetChannel extends ServiceBase {
   }
 
   /**
+   * Prepare social share data.
+   *
+   * @sets oThis.socialShareDetails
+   *
+   * @returns {Promise<never>}
+   * @private
+   */
+  async _prepareSocialShareData() {
+    const oThis = this;
+
+    const twitterUserData = oThis.apiResponseData['twitter_users'];
+
+    const hostUserId = oThis.apiResponseData['meeting']['host_user_id'];
+    const hostData = oThis.apiResponseData['users'][hostUserId];
+    const hostName = hostData['name'];
+    const hostUserHandle = twitterUserData[hostUserId] ? twitterUserData[hostUserId].handle : null;
+
+    const channelName = await oThis._getChannelName();
+    const meetingUrl = `${coreConstants.PEPO_DOMAIN}/communities/${oThis.channelPermalink}/meetings/${oThis.meetingId}`;
+
+    const defaultCopy = `Live Now! ${channelName} with ${hostName} and community -- join the live event at ${meetingUrl}`;
+    const twitterCopy = hostUserHandle ? `Live Now! ${channelName} with @${hostUserHandle} and community -- join the live event at ${meetingUrl}` : defaultCopy;
+
+    oThis.socialShareDetails = {
+      default: defaultCopy,
+      twitter: twitterCopy
+    }
+  }
+
+  /**
    *
    * @returns {Promise<*|result>}
    * @private
@@ -197,6 +231,7 @@ class GetChannel extends ServiceBase {
       oThis.apiResponseData.current_user_data = oThis.currentUserData;
     }
     oThis.apiResponseData.current_meeting_id = oThis.meetingId;
+    oThis.apiResponseData.social_share_details = oThis.socialShareDetails;
 
     return responseHelper.successWithData({
       apiResponseData: oThis.apiResponseData,
