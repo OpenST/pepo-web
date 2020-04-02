@@ -139,13 +139,33 @@
 .pageShareOptions {
   
   position: absolute;
+  z-index: 10;
   @media only screen and (min-width: 768px){
     right: 1rem;
   }
 
-  @media only screen and (max-width: 768px){
+  @media only screen and (max-width: 767px){
     left: 1rem;
   }
+
+  .pageShareOptionsBoxArrow {
+    /* if width is 20 px */
+    position: absolute;
+    left: 50%;
+    margin-left: -8px;  /* -width/2 */
+    top: -8px; /* -width/2 */
+    background: #fff;
+    transform: rotate(45deg);
+    width: 16px; /* width */
+    height: 16px; /* width */
+    box-shadow: -1px -1px 5px -2px rgba(0, 0, 0, 0.1);
+    
+    @media only screen and (max-width: 767px){
+      margin-left: -8px;
+      left: 4rem;
+    }
+  }
+
 
   .pageShareOptionsBox {
     background: #fff;
