@@ -152,7 +152,8 @@ class GetChannel extends ServiceBase {
       coverImageId = channelDetails['cover_image_id'],
       imageResolutions = oThis.apiResponseData['images'][coverImageId]['resolutions'];
 
-    return imageResolutions['original']['url'];
+    const imageUrl = imageResolutions['720w'] ? imageResolutions['720w']['url'] : imageResolutions['original']['url']
+    return imageUrl;
   }
 
   /**
