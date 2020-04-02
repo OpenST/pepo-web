@@ -52,6 +52,12 @@ class Channel extends BaseView {
     });
 
     $(".jStartMeeting").on("click" , (e)=> {
+
+      if (zoomMeeting.isUnsupportedDeviceOrBrowser()) {
+        $("#broser-not-supported").modal("show");
+        return;
+      }
+
       $(".jGoLiveError").html(" ");
       $("#tips-to-go-live").modal("show");
     });

@@ -1,3 +1,5 @@
+import platform from 'platform';
+
 const namespace = "zoomMeeting" ;
 
 const LOG_TAG = "ZoomMeeting";
@@ -53,8 +55,8 @@ class ZoomMeeting {
     return true;
   }
 
-  isiOSDevice() {
-    return navigator.userAgent.indexOf("iPhone") !== -1 || navigator.userAgent.indexOf("iPad") !== -1;
+  isUnsupportedDeviceOrBrowser() {
+    return platform.os.family.toLowerCase() === 'ios' || platform.name.toLowerCase() === 'firefox' || platform.name.toLowerCase() === 'safari'
   }
 }
 
