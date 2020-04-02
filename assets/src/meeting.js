@@ -80,15 +80,12 @@ class Meeting extends BaseView {
         if ( jMeetingShareBtn.has(e.target).length ) {
           return;
         }
-        
-        if ($(e.target).hasClass(copyToClipboardClass)
-            || jCopyToClipboard.has(e.target).length) {
-          console.log("returning from hiding");
+
+        if ($(e.target).hasClass(copyToClipboardClass) || jCopyToClipboard.has(e.target).length) {
           return;
         }
-        console.log("hiding", e.target);
-        jMeetingShareOptions.hide();
 
+        jMeetingShareOptions.hide();
       }, true);
     }
 
@@ -99,15 +96,12 @@ class Meeting extends BaseView {
         return;
       }
 
-      let shareDetails = oThis.config.apiResponse.socialShareDetails || oThis.config.apiResponse.social_share_details;
-      if ( !shareDetails ) {
+      let shareURL = oThis.config.apiResponse.share_url;
+      if ( !shareURL ) {
         return;
       }
 
-      let textToCopy = shareDetails["default"];
-      
-
-      let isCopied = BasicHelper.copyToClipboard(textToCopy, $(e.target));
+      let isCopied = BasicHelper.copyToClipboard(shareURL, $(e.target));
       $("#meetingShareOptions").hide();
       if (isCopied) {
         $('.toast-copied-to-clipboard').toast('show');
