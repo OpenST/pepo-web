@@ -8,6 +8,8 @@ require('../src/libs/share-buttons/share-buttons.js');
 const {$} = window;
 const namespace = "meeting";
 
+const HOST_ROLE_CODE = 1;
+
 class Meeting extends BaseView {
 
   constructor(config) {
@@ -22,12 +24,15 @@ class Meeting extends BaseView {
     this.channelPermalink = this.channel.permalink;
     this.zoomMeeting = null;
     this.systemRequirements = false;
+    this.showHostliveToast = false;
+    this.showHostliveToastTimeoutMs = 3000;
     this.readyStateAttempt = 0;
     this.jWrapper = $('#meetingWrapper');
     this.jqIframe = $('#zoomMeeting');
     this.jqError = $('#meetingError');
     this.jqLoader = $('#meetingLoader');
     this.jGuestJoining = $('#guestJoining');
+    this.jHostNotificatonToast = $('.toast-host-live-notified');
     this.isCustomUserName = false;
     this.fallbackErrorMsg = 'Something went wrong';
 
@@ -161,7 +166,9 @@ class Meeting extends BaseView {
   }
 
   joinZoom(data) {
-
+    if (HOST_ROLE_CODE == data.role) {
+      this.showHostliveToast = true;
+    }
     this.zoomMeeting.init({
         leaveUrl: `/zoom-meeting?goto=${this.leaveUrl}&role=${data.role}&channel_permalink=${this.channelPermalink}&meeting_id=${this.meetingId}`,
         disableInvite: true,
@@ -311,6 +318,16 @@ class Meeting extends BaseView {
     });
   }
 
+  handleHostLiveNotificationToast() {
+    if (this.showHostliveToast){
+      setTimeout(()=> {
+        this.jHostNotificatonToast.find('.toast-text').text(`We have notified the members of ${this.channel.name} that you are live now!`);
+        this.jHostNotificatonToast.toast('show');
+        this.showHostliveToast = false;
+      }, this.showHostliveToastTimeoutMs);
+    }
+  }
+
   showLogIn() {
     this.jqLoader.hide();
     this.jqIframe.hide();
@@ -326,6 +343,12 @@ class Meeting extends BaseView {
   }
 
   showError(message) {
+    message = message || '';
+
+    if((message).toLowerCase() == 'meeting is not started') {
+      message = 'Pepo live event has not started';
+    }
+
     this.jqIframe.hide();
     this.jqLoader.hide();
     this.jqError.find('.error-text').html(message);
@@ -342,6 +365,7 @@ class Meeting extends BaseView {
 
   onJoinSuccess(response) {
     console.log(response);
+    this.handleHostLiveNotificationToast();
     this.jqLoader.hide();
     this.jqError.hide();
     this.jqIframe.show();

@@ -27,9 +27,11 @@ class NavBar {
     this.jNavPhantomEl = $('.navbar-phatom-el');
     this.jNavTogglerEl = $('#navbarToggler');
     this.jDialogLogout = $('.modal-dialog-logout');
+    this.jDialogGoLive = $('.modal-dialog-go-live');
     this.jDialogLogin = $('.modal-dialog-login');
     this.logoutMarginTop = parseInt(this.jDialogLogout.css('margin-top'));
     this.loginMarginTop = parseInt(this.jDialogLogin.css('margin-top'));
+    this.goLiveMarginTop = parseInt(this.jDialogGoLive.css('margin-top'));
 
     this.bindEvents();
     this.fixedNavBarMenu();
@@ -126,16 +128,26 @@ class NavBar {
           let channel = oThis.channels[channelIdList[0]] || {};
           window.location = `/communities/${channel.permalink}/`
         } else {
-          $("#navbarToggler3").toggleClass('show');
+          let goLiveModal = $('#goLiveModal'),
+            backdrop = window.innerWidth < 768 ? true : false
+          ;
+          goLiveModal.modal({
+            backdrop: backdrop
+          });
+          goLiveModal.modal('show');
+          $('body').on('click', function () {
+            if (goLiveModal.length !== 0) {
+              goLiveModal.modal('hide');
+            }
+
+          });
         }
       }
       e.stopPropagation();
       e.preventDefault();
 
-      $("body").off(`click.${namespace}`).on(`click.${namespace}`, function (e) {
-        $("#navbarToggler3").removeClass('show');
-      });
     });
+
 
   };
 
@@ -156,12 +168,14 @@ class NavBar {
       this.jNavTogglerEl.css({top: this.jNavEl.outerHeight()});
       this.jDialogLogout.css({marginTop: this.logoutMarginTop - this.jUberBanner.outerHeight()});
       this.jDialogLogin.css({marginTop: this.loginMarginTop - this.jUberBanner.outerHeight()});
+      this.jDialogGoLive.css({marginTop: this.goLiveMarginTop - this.jUberBanner.outerHeight()});
     } else {
       this.jNavPhantomEl.height(0);
       this.jNavEl.removeClass('nav-box-shadow fixed-top');
       this.jNavTogglerEl.css({top: this.jNavEl.outerHeight() + this.jUberBanner.outerHeight()});
       this.jDialogLogout.css({marginTop: this.logoutMarginTop});
       this.jDialogLogin.css({marginTop: this.loginMarginTop});
+      this.jDialogGoLive.css({marginTop: this.goLiveMarginTop});
     }
 
   }
