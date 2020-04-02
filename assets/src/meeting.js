@@ -65,6 +65,7 @@ class Meeting extends BaseView {
 
       const jMeetingShareBtn = $(".jMeetingShareBtn");
       const jMeetingShareOptions = $("#meetingShareOptions");
+      const jCopyToClipboard = $('.jCopyToClipboard');
       const copyToClipboardClass = ".copyToClipboard";
 
       jMeetingShareBtn.off(`click`).on(`click`, () => {
@@ -79,11 +80,13 @@ class Meeting extends BaseView {
         if ( jMeetingShareBtn.has(e.target).length ) {
           return;
         }
-
-        if ($(e.target).hasClass(copyToClipboardClass) ) {
+        
+        if ($(e.target).hasClass(copyToClipboardClass)
+            || jCopyToClipboard.has(e.target).length) {
+          console.log("returning from hiding");
           return;
         }
-
+        console.log("hiding", e.target);
         jMeetingShareOptions.hide();
 
       }, true);
