@@ -49,8 +49,9 @@ class BaseView {
       let meetingUrl = $(this).data('meeting-url');
       if (!meetingUrl) return;
 
-      if (zoomMeeting.isiOSDevice()) {
+      if (zoomMeeting.isUnsupportedDeviceOrBrowser()) {
         $("#broser-not-supported").modal("show");
+        e.stopPropagation();
         return;
       }
 
