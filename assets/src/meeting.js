@@ -75,7 +75,7 @@ class Meeting extends BaseView {
           return;
         }
 
-        if (e.target.hasClass(copyToClipboardClass) ) {
+        if ($(e.target).hasClass(copyToClipboardClass) ) {
           return;
         }
 
