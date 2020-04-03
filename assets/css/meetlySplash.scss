@@ -41,6 +41,7 @@ html, body{
     }
      input, button{
        height: 40px;
+       line-height: 40px;
        &:focus{
          outline: none;
          box-shadow: none;
