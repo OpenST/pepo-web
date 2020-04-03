@@ -48,12 +48,12 @@ class GetMeetlySplashPage extends ServiceBase {
         title: 'Meetly',
         description: 'Manage Your Instagram Classes',
         robots: 'index, follow',
-        canonical: '',
+        canonical: coreConstants.MEETLY_DOMAIN,
         og: {
           title: 'Meetly',
           description: 'Manage Your Instagram Classes',
           image: 'https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-meta-image.png',
-          url: ''
+          url: coreConstants.MEETLY_DOMAIN
         },
         twitter: {
           title: 'Meetly',
