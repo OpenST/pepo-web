@@ -5,10 +5,8 @@ html, body{
 
 .main-section{
   height: 100vh;
-  background-image: url('https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-bg-web.png');
-  background-repeat: no-repeat;
+  background: url('https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-bg-web.png') no-repeat center center fixed;
   background-size: cover;
-  background-position: 100% 100%;
   .bg-gradient{
     display: flex;
     flex-direction: column;
