@@ -39,10 +39,10 @@ html, body{
     input::placeholder {
       color: #2A293B;
       font-size: 13px;
+      line-height: 26px;
     }
      input, button{
        height: 40px;
-       line-height: 40px;
        &:focus{
          outline: none;
          box-shadow: none;
