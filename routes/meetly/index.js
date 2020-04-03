@@ -7,7 +7,7 @@ const rootPrefix = '../..',
 
 router.get('/', sanitizer.sanitizeDynamicUrlParams, async function (req, res) {
 
-  return webRouteHelper.perform(req, res, '/app/services/GetMeetlySplashPage', 'meetlySplash', null, 'r_m_s_1');
+  return webRouteHelper.perform(req, res, '/app/services/GetMeetlySplashPage', 'meetlySplash', 'web/_meetlySplash', 'r_m_s_1');
 });
 
 
