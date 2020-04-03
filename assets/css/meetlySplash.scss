@@ -27,6 +27,15 @@ html, body{
       line-height: 28px;
     }
 
+    .launching-soon{
+      margin-left: 8px;
+      font-size: 10px;
+      background: linear-gradient(101.26deg, #E09B3D 5.96%, #FF5566 100.53%);
+      border-radius: 10px;
+      color: #fff;
+      padding: 2px 8px;
+    }
+
     input::placeholder {
       color: #2A293B;
       font-size: 13px;
