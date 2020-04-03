@@ -1,0 +1,59 @@
+<%
+const getPageTitle = (pageMeta) => {
+
+  var defaultPageTitle = "Meetly";
+  if ( !pageMeta || !pageMeta.title ) {
+    return defaultPageTitle;
+  }
+
+  var title = pageMeta.title.replace(/(- |)http(s|):\/\/.*\S/g, "").trim();
+
+  return title;
+
+} %>
+  <title><%= getPageTitle(pageMeta) %></title>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+  <% if(pageMeta.description) { %><meta name="description" content="<%= pageMeta.description %>"><% } %>
+  <% if(pageMeta.keywords) { %><meta name="keywords" content="<%= pageMeta.keywords %>"><% } %>
+  <meta name="robots" content="<%= pageMeta.robots%>">
+
+  <meta property="og:title" content="<%= pageMeta.og.title %>"/>
+  <% if(pageMeta.og.description) { %><meta property="og:description" content="<%= pageMeta.og.description %>"/><% } %>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="<%= pageMeta.og.url || 'https://meetly.xyz' %>"/>
+  <meta property="og:site_name" content="meetly.xyz"/>
+  <meta property="og:image" content="<%= pageMeta.og.image %>"/>
+  <% if(pageMeta.og.video) { %><meta property="og:video" content="<%= pageMeta.og.video %>"/><% } %>
+
+  <meta name="twitter:title" content="<%= pageMeta.twitter.title %>" />
+  <% if(pageMeta.og.description) { %><meta name="twitter:description" content="<%= pageMeta.twitter.description %>" /><% } %>
+  <meta name="twitter:image" content="<%= pageMeta.twitter.image %>" />
+  <meta name="twitter:card" content="<%= pageMeta.twitter.card %>" />
+
+  <meta name="csrf-token" content="<%= _CSRFToken %>" />
+
+  <link rel="canonical" href="<%= pageMeta.canonical %>" />
+  <link rel="icon" type="image/png" sizes="64x64" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/64x64.png"/>
+  <link rel="apple-touch-icon" sizes="57x57" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/fav/16x16.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

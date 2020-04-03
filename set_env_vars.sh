@@ -22,6 +22,10 @@ export PW_INVITE_DOMAIN='https://join.pepodev.com';
 export PW_FIREBASE_DOMAIN='https://app.pepodev.com';
 export PW_COOKIE_SECRET='6BC9B1968BBA53CA8E28878DAD4AB549B154027F10EA1C3FD2D37BAE6F9A5540'
 
+export MEETLY_DOMAIN='http://meetlydev.xyz:8080'
+export MEETLY_PC_LIST_ID='445acf4fbe66704b'
+export MEETLY_PC_CLIENT_ID='905956c7bcf4e8ca66e2d095d37e37da'
+
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 export PW_CLOUD_FRONT_BASE_DOMAIN='https://d3attjoi5jlede.cloudfront.net/'

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/shared/_headerMeetly.ejs %>
+    <%- css('common') %>
+    <%- css('meetlySplash') %>
+    <script>window.name = "<%= Math.random().toString(36).replace(/[^a-z0-9]+/g, ''); %>"</script>
+  </head>
+  <body contenteditable="false">
+    <%- include(_contentPartial) -%>
+    <%- js('meetlySplash') %>
+  </body>
+</html>
