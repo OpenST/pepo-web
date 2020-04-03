@@ -47,5 +47,13 @@ html, body{
          box-shadow: none;
        }
      }
+
+     .btn-primary{
+       &:hover{
+         border-color: #CF4F54;
+         background: #CF4F54;
+         color: #FFF;
+       }
+     }
   }
 }
