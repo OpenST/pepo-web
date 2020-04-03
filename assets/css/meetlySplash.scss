@@ -5,7 +5,7 @@ html, body{
 
 .main-section{
   height: 100%;
-  background: url('https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-bg-web.png') no-repeat center center fixed;
+  background: url('https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-bg-web.png') no-repeat center bottom fixed;
   background-size: cover;
   .bg-gradient{
     display: flex;
@@ -32,6 +32,7 @@ html, body{
       border-radius: 10px;
       color: #fff;
       padding: 2px 8px;
+      white-space: nowrap;
     }
 
     input::placeholder {
