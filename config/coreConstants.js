@@ -47,6 +47,10 @@ class CoreConstant {
     return process.env.PEPO_DOMAIN;
   }
 
+  get MEETLY_DOMAIN() {
+    return process.env.MEETLY_DOMAIN;
+  }
+
   get PEPO_STORE_DOMAIN() {
     return process.env.PEPO_STORE_DOMAIN;
   }
@@ -122,23 +126,23 @@ class CoreConstant {
   get DEFAULT_SHARE_TITLE(){
     return 'Meet your peeps!';
   }
-  
+
   get PEPO_TOKEN_ID(){
     return process.env.PW_TOKEN_ID;
   }
-  
+
   get PEPO_PLATFORM_API_ENDPOINT(){
     return process.env.PW_PLATFORM_API_ENDPOINT;
   }
-  
+
   get PEPO_SDK_ENV(){
     return process.env.PW_SDK_ENV;
   }
-  
+
   get PEPO_TRACKER_ENDPOINT(){
     return process.env.PW_TRACKER_ENDPOINT;
   }
-  
+
   get PEPO_TRACKER_URL(){
     return process.env.PW_TRACKER_URL;
   }

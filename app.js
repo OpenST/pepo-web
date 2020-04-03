@@ -13,6 +13,7 @@ const elbHealthCheckerRoute = require(rootPrefix + '/routes/elb_health_checker')
   pepoRoutes = require(rootPrefix + '/routes/pepo/index'),
   storeRoutes = require(rootPrefix + '/routes/store/index'),
   inviteRoutes = require(rootPrefix + '/routes/invite/index'),
+  meetlyRoutes = require(rootPrefix + '/routes/meetly/index'),
   webviewRoutes = require(rootPrefix + '/routes/webview/index'),
   logger = require(rootPrefix + '/lib/logger/customConsoleLogger'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
@@ -113,6 +114,7 @@ const setResponseHeader = async function(req, res, next) {
 };
 
 const pepoHostName = new URL(coreConstants.PEPO_DOMAIN).hostname;
+const meetlyHostName = new URL(coreConstants.MEETLY_DOMAIN).hostname;
 const pepoStoreHostName = new URL(coreConstants.PEPO_STORE_DOMAIN).hostname;
 const pepoInviteHostName = new URL(coreConstants.PEPO_INVITE_DOMAIN).hostname;
 
@@ -171,6 +173,8 @@ app.use('/', function(request, response, next){
     storeRoutes(request, response, next);
   } else if(request.hostname === pepoInviteHostName) {
     inviteRoutes(request, response, next);
+  } else if(request.hostname === meetlyHostName) {
+    meetlyRoutes(request, response, next);
   } else {
     next();
   }
