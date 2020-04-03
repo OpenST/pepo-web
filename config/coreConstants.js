@@ -51,6 +51,14 @@ class CoreConstant {
     return process.env.MEETLY_DOMAIN;
   }
 
+  get MEETLY_PC_LIST_ID() {
+    return process.env.MEETLY_PC_LIST_ID;
+  }
+
+  get MEETLY_PC_CLIENT_ID() {
+    return process.env.MEETLY_PC_CLIENT_ID;
+  }
+
   get PEPO_STORE_DOMAIN() {
     return process.env.PEPO_STORE_DOMAIN;
   }

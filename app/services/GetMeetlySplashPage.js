@@ -1,6 +1,7 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
-  responseHelper = require(rootPrefix + '/lib/formatter/response');
+  responseHelper = require(rootPrefix + '/lib/formatter/response'),
+  coreConstants = require(rootPrefix + '/config/coreConstants');
 
 /**
  * Class for Getting Meetly Splash Page
@@ -39,21 +40,25 @@ class GetMeetlySplashPage extends ServiceBase {
   async _prepareResponse() {
 
     return responseHelper.successWithData({
+      pepoCampaigns: {
+        listId: coreConstants.MEETLY_PC_LIST_ID,
+        clientId: coreConstants.MEETLY_PC_CLIENT_ID
+      },
       pageMeta: {
         title: 'Meetly',
-        description: 'Meetly',
+        description: 'Manage Your Instagram Classes',
         robots: 'index, follow',
         canonical: '',
         og: {
           title: 'Meetly',
-          description: 'Meetly',
-          image: '',
+          description: 'Manage Your Instagram Classes',
+          image: 'https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-meta-image.png',
           url: ''
         },
         twitter: {
-          title: '',
-          description: '',
-          image: '',
+          title: 'Meetly',
+          description: 'Manage Your Instagram Classes',
+          image: 'https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-meta-image.png',
           card: "summary_large_image"
         }
       }
