@@ -1,0 +1,42 @@
+html, body{
+  margin: 0;
+  padding: 0;
+}
+
+.main-section{
+  height: 100vh;
+  background-image: url('https://d3attjoi5jlede.cloudfront.net/images/meetly-splash/meetly-bg-web.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 100% 100%;
+  .bg-gradient{
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(269.87deg, rgba(0, 0, 0, 0) 0.13%, rgba(11, 49, 53, 0.3) 99.85%);
+    @media screen and (min-width: 576px){
+      padding-left: 50px;
+    }
+    @media screen and (min-width: 1025px){
+      padding-left: 100px;
+    }
+    h3, p, h6{
+      color: #fff;
+    }
+    p{
+      font-size: 15px;
+      line-height: 28px;
+    }
+
+    input::placeholder {
+      color: #2A293B;
+      font-size: 13px;
+    }
+     input, button{
+       height: 40px;
+       &:focus{
+         outline: none;
+         box-shadow: none;
+       }
+     }
+  }
+}
