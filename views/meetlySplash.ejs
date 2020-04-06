@@ -6,6 +6,11 @@
     <%- css('meetlySplash') %>
   </head>
   <body contenteditable="false">
+    <% if(showGTM) { %>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WGXNP5B" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <% } %>
     <%- include(_contentPartial) -%>
     <%- js('meetlySplash') %>
   </body>
