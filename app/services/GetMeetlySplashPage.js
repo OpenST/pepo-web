@@ -1,7 +1,8 @@
 const rootPrefix = '../..',
   ServiceBase = require(rootPrefix + '/app/services/Base'),
   responseHelper = require(rootPrefix + '/lib/formatter/response'),
-  coreConstants = require(rootPrefix + '/config/coreConstants');
+  coreConstants = require(rootPrefix + '/config/coreConstants'),
+  basicHelper = require(rootPrefix + '/helpers/basic');
 
 /**
  * Class for Getting Meetly Splash Page
@@ -44,6 +45,7 @@ class GetMeetlySplashPage extends ServiceBase {
         listId: coreConstants.MEETLY_PC_LIST_ID,
         clientId: coreConstants.MEETLY_PC_CLIENT_ID
       },
+      showGTM: basicHelper.isProduction(),
       pageMeta: {
         title: 'Meetly',
         description: 'Manage Your Instagram Classes',
