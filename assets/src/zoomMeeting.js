@@ -4,11 +4,11 @@ const { ZoomMtg } = window;
 class ZoomMeeting {
 
     constructor(config){
-        ZoomMtg.setZoomJSLib('https://source.zoom.us/1.7.2/lib', '/av');
+        ZoomMtg.setZoomJSLib('https://source.zoom.us/1.7.4/lib', '/av');
         ZoomMtg.preLoadWasm();
         ZoomMtg.prepareJssdk();
     }
-    
+
     init(options, onSuccess, onError){
         ZoomMtg.init(Object.assign({}, options, {
             success: onSuccess || this.onInitSuccess,
