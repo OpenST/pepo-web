@@ -35,8 +35,8 @@ const getUtmFromParams = function (requestObj) {
 
   for (let i = 0; i < utmKeys.length; i++) {
     const utmKey = utmKeys[i];
-    // TODO - utm - use hasOwnProperty for if condition.
-    if (params[utmKey]) {
+
+    if (params.hasOwnProperty(utmKey)) {
       utmParams[utmKey] = params[utmKey];
     }
   }
@@ -69,8 +69,7 @@ const parseAndSetUtm = function (requestObj, responseObj, next) {
     for (let i = 0; i < utmKeys.length; i++) {
       const utmKey = utmKeys[i];
 
-      // TODO - utm - use hasOwnProperty for if condition.
-      if (parsedCookie[utmKey]) {
+      if (parsedCookie.hasOwnProperty(utmKey)) {
         utmParams[utmKey] = parsedCookie[utmKey];
       }
     }
