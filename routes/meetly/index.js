@@ -56,7 +56,11 @@ const parseAndSetUtm = function (requestObj, responseObj, next) {
   let utmParams = {};
 
   if (cookieVal) {
-    cookieVal = JSON.parse(cookieVal);
+    try {
+      cookieVal = JSON.parse(cookieVal);
+    } catch (e) {
+      cookieVal = {};
+    }
     cookieVal = sanitizer.sanitizeParams(cookieVal);
 
     for (let i = 0; i < utmKeys.length; i++) {
