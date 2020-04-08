@@ -13,7 +13,7 @@ const cookieDefaultOptions = {
   httpOnly: true,
   signed: true,
   path: '/',
-  domain: coreConstants.MEETLY_DOMAIN,
+  domain: coreConstants.MEETLY_COOKIE_DOMAIN,
   secure: basicHelper.isProduction(),
   sameSite: 'strict'
 };
@@ -56,7 +56,12 @@ const parseAndSetUtm = function (requestObj, responseObj, next) {
   let utmParams = {};
 
   if (cookieVal) {
-    cookieVal = JSON.parse(cookieVal);
+    try {
+      cookieVal = JSON.parse(cookieVal);
+    } catch (e) {
+      cookieVal = {};
+    }
+    cookieVal = sanitizer.sanitizeParams(cookieVal);
 
     for (let i = 0; i < utmKeys.length; i++) {
       const utmKey = utmKeys[i];
