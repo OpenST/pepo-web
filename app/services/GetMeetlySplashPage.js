@@ -46,7 +46,7 @@ class GetMeetlySplashPage extends ServiceBase {
       pepoCampaigns: {
         listId: coreConstants.MEETLY_PC_LIST_ID,
         clientId: coreConstants.MEETLY_PC_CLIENT_ID,
-        attributes: this.utmParams
+        attributes: oThis.utmParams
       },
       showGTM: basicHelper.isProduction(),
       pageMeta: {
