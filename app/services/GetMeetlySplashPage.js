@@ -41,6 +41,7 @@ class GetMeetlySplashPage extends ServiceBase {
    * @private
    */
   async _prepareResponse() {
+    const oThis = this;
 
     return responseHelper.successWithData({
       pepoCampaigns: {
