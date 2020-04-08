@@ -13,7 +13,7 @@ const cookieDefaultOptions = {
   httpOnly: true,
   signed: true,
   path: '/',
-  domain: coreConstants.MEETLY_DOMAIN,
+  domain: coreConstants.MEETLY_COOKIE_DOMAIN,
   secure: basicHelper.isProduction(),
   sameSite: 'strict'
 };

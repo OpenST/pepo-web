@@ -51,6 +51,10 @@ class CoreConstant {
     return process.env.MEETLY_DOMAIN;
   }
 
+  get MEETLY_COOKIE_DOMAIN() {
+    return process.env.MEETLY_COOKIE_DOMAIN;
+  }
+
   get MEETLY_PC_LIST_ID() {
     return process.env.MEETLY_PC_LIST_ID;
   }
@@ -83,75 +87,75 @@ class CoreConstant {
     return process.env.PW_SUPPORT_WIDGET_APP_ID;
   }
 
-  get VIEW_WEB_ROOT(){
+  get VIEW_WEB_ROOT() {
     return process.env.PW_VIEW_WEB_ROOT;
   }
 
-  get CHAIN_ID(){
+  get CHAIN_ID() {
     return process.env.PW_CHAIN_ID;
   }
 
-  get UBT_ADDRESS(){
+  get UBT_ADDRESS() {
     return process.env.PW_UBT_ADDRESS;
   }
 
-  get ETHERSCAN_WEB_ROOT(){
+  get ETHERSCAN_WEB_ROOT() {
     return process.env.PW_ETHERSCAN_WEB_ROOT;
   }
 
-  get BT_CONTRACT_ADDRESS(){
+  get BT_CONTRACT_ADDRESS() {
     return process.env.PW_BT_CONTRACT_ADDRESS;
   }
 
-  get PEPO_ANDROID_PACKAGE_NAME(){
+  get PEPO_ANDROID_PACKAGE_NAME() {
     return process.env.PW_ANDROID_PACKAGE_NAME;
   }
 
-  get PEPO_ANDROID_APP_LINK(){
+  get PEPO_ANDROID_APP_LINK() {
     return process.env.PW_ANDROID_APP_LINK;
   }
 
-  get PEPO_IOS_PACKAGE_NAME(){
+  get PEPO_IOS_PACKAGE_NAME() {
     return process.env.PW_IOS_PACKAGE_NAME;
   }
 
-  get PEPO_IOS_APP_LINK(){
+  get PEPO_IOS_APP_LINK() {
     return process.env.PW_IOS_APP_LINK;
   }
 
-  get PEPO_IOS_APP_ID(){
+  get PEPO_IOS_APP_ID() {
     return process.env.PW_IOS_APP_ID;
   }
 
-  get DEFAULT_SHARE_IMAGE(){
+  get DEFAULT_SHARE_IMAGE() {
     return 'https://d3attjoi5jlede.cloudfront.net/images/web/fav/pepo-intermittent-img.png';
   }
 
-  get DEFAULT_SHARE_DESCRIPTION(){
+  get DEFAULT_SHARE_DESCRIPTION() {
     return 'Real people. Real connections.';
   }
 
-  get DEFAULT_SHARE_TITLE(){
+  get DEFAULT_SHARE_TITLE() {
     return 'Meet your peeps!';
   }
 
-  get PEPO_TOKEN_ID(){
+  get PEPO_TOKEN_ID() {
     return process.env.PW_TOKEN_ID;
   }
 
-  get PEPO_PLATFORM_API_ENDPOINT(){
+  get PEPO_PLATFORM_API_ENDPOINT() {
     return process.env.PW_PLATFORM_API_ENDPOINT;
   }
 
-  get PEPO_SDK_ENV(){
+  get PEPO_SDK_ENV() {
     return process.env.PW_SDK_ENV;
   }
 
-  get PEPO_TRACKER_ENDPOINT(){
+  get PEPO_TRACKER_ENDPOINT() {
     return process.env.PW_TRACKER_ENDPOINT;
   }
 
-  get PEPO_TRACKER_URL(){
+  get PEPO_TRACKER_URL() {
     return process.env.PW_TRACKER_URL;
   }
 
