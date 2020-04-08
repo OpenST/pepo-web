@@ -19,6 +19,8 @@ class GetMeetlySplashPage extends ServiceBase {
    */
   constructor(params) {
     super(params);
+    const oThis = this;
+    oThis.utmParams = params.decodedParams.utm_params || {};
   }
 
   /**
@@ -39,11 +41,13 @@ class GetMeetlySplashPage extends ServiceBase {
    * @private
    */
   async _prepareResponse() {
+    const oThis = this;
 
     return responseHelper.successWithData({
       pepoCampaigns: {
         listId: coreConstants.MEETLY_PC_LIST_ID,
-        clientId: coreConstants.MEETLY_PC_CLIENT_ID
+        clientId: coreConstants.MEETLY_PC_CLIENT_ID,
+        attributes: oThis.utmParams
       },
       showGTM: basicHelper.isProduction(),
       pageMeta: {
