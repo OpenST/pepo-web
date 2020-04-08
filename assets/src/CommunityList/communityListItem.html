@@ -8,8 +8,8 @@
                 <img src="<%= DataGetters.getChannelCoverImage(channelId) %>" class="img-fluid h-100"/>
                 <span class="position-absolute d-flex justify-content-between flex-column h-100 w-100 p-3 overlay">
                     <span class="details">
-                        <span class="text-truncate channel-name"><%= DataGetters.getChannelName(channelId) %></span>
-                        <span class="mb-0 text-truncate channel-desc"><%= DataGetters.getChannelTagText(channelId) %></span>
+                        <span class="text-truncate channel-name"><%- DataGetters.getChannelName(channelId) %></span>
+                        <span class="mb-0 text-truncate channel-desc"><%- DataGetters.getChannelTagText(channelId) %></span>
                     </span>
 
                     <span class="details d-flex justify-content-between align-items-center">
@@ -29,7 +29,7 @@
         </span>
             <span class="p-2 d-none d-md-block cell-desc" >
                 <span class="desc">
-                    <%= DataGetters.getChannelDesc(channelId) %>
+                    <%- DataGetters.getChannelDesc(channelId) %>
                 </span>
             </span>
     </a>
