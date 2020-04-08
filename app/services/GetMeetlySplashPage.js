@@ -19,8 +19,7 @@ class GetMeetlySplashPage extends ServiceBase {
    */
   constructor(params) {
     super(params);
-    const oThis = this;
-    oThis.utmParams = params.utm_params || {};
+    this.utmParams = params.decodedParams.utm_params || {};
   }
 
   /**

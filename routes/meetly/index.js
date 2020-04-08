@@ -35,6 +35,7 @@ const getUtmFromParams = function (requestObj) {
 
   for (let i = 0; i < utmKeys.length; i++) {
     const utmKey = utmKeys[i];
+    // TODO - utm - use hasOwnProperty for if condition.
     if (params[utmKey]) {
       utmParams[utmKey] = params[utmKey];
     }
@@ -55,18 +56,22 @@ const parseAndSetUtm = function (requestObj, responseObj, next) {
 
   let utmParams = {};
 
+  let parsedCookie = null;
+
   if (cookieVal) {
     try {
-      cookieVal = JSON.parse(cookieVal);
+      parsedCookie = JSON.parse(cookieVal);
     } catch (e) {
-      cookieVal = {};
+      parsedCookie = {};
     }
-    cookieVal = sanitizer.sanitizeParams(cookieVal);
+    parsedCookie = sanitizer.sanitizeParams(parsedCookie);
 
     for (let i = 0; i < utmKeys.length; i++) {
       const utmKey = utmKeys[i];
-      if (cookieVal[utmKey]) {
-        utmParams[utmKey] = cookieVal[utmKey];
+
+      // TODO - utm - use hasOwnProperty for if condition.
+      if (parsedCookie[utmKey]) {
+        utmParams[utmKey] = parsedCookie[utmKey];
       }
     }
 
