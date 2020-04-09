@@ -42,7 +42,7 @@ meetingUrl = '/communities/'+channel.permalink+'/meetings/'+meetingId
                             <div class="details py-3 py-md-5 px-3 d-flex justify-content-between flex-column">
                                 <div>
                                     <div class="d-flex">
-                                        <h6 class="header block-with-text mb-1 mb-md-2 text-truncate" style="flex: 1"><%= apiResponseData['channel']['name'] %></h6>
+                                        <h6 class="header block-with-text mb-1 mb-md-2 text-truncate" style="flex: 1"><%- apiResponseData['channel']['name'] %></h6>
                                         <% if(canJoin) { %>
                                             <a  class="d-flex jJoinMeeting"
                                                 href="javascript:void(0)"
@@ -58,7 +58,7 @@ meetingUrl = '/communities/'+channel.permalink+'/meetings/'+meetingId
                                             </span>
                                         <%}%>
                                     </div>
-                                    <p class="desc tagline-font block-with-text mb-0 text-truncate"><%= tagLine %></p>
+                                    <p class="desc tagline-font block-with-text mb-0 text-truncate"><%- tagLine %></p>
                                 </div>
                                 <div class="d-flex">
                                     <span class="desc" >
