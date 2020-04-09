@@ -21,9 +21,7 @@ $(function() {
       url: $(this).attr('action'),
       jsonp: "callback",
       dataType: "jsonp",
-      data: {
-        email: email
-      },
+      data: $( this ).serialize(),
       success: function( response ) {
         if(response.error){
           jEmailError.text(response.error_message.general[0]);
