@@ -3,7 +3,7 @@
 <li class="p-2">
     <a  data-channel='<%- JSON.stringify(channels[channelList[i]]) %>'
         href="/communities/<%= channels[channelList[i]].permalink%>">
-        <%= channels[channelList[i]].name %>
+        <%- channels[channelList[i]].name %>
     </a>
 </li>
 <% } %>
