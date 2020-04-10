@@ -140,6 +140,23 @@ class GetChannel extends ServiceBase {
   }
 
   /**
+   * Append Pepo's twitter handle in the share text.
+   *
+   * @returns {string}
+   * @private
+   */
+  _appendPepoTwitterHandle() {
+    const oThis = this,
+      pepoTwitter = oThis.apiResponseData['pepo_twitter_details'];
+
+    if(pepoTwitter && pepoTwitter.handle){
+      return ' @' + pepoTwitter.handle;
+    }
+
+    return '';
+  }
+
+  /**
    * retrieve channel original url
    *
    * @returns {*}
@@ -211,7 +228,8 @@ class GetChannel extends ServiceBase {
     const meetingUrl = `${coreConstants.PEPO_DOMAIN}/communities/${oThis.channelPermalink}/meetings/${oThis.meetingId}`;
 
     const defaultCopy = `Live Now! ${channelName} with ${hostName} and community -- join the live event at ${meetingUrl}`;
-    const twitterCopy = hostUserHandle ? `Live Now! ${channelName} with @${hostUserHandle} and community -- join the live event at ${meetingUrl}` : defaultCopy;
+    let twitterCopy = hostUserHandle ? `Live Now! ${channelName} with @${hostUserHandle} and community -- join the live event at ${meetingUrl}` : defaultCopy;
+    twitterCopy += oThis._appendPepoTwitterHandle();
 
     oThis.socialShareDetails = {
       default: defaultCopy,
